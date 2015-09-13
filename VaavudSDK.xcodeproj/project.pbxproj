@@ -10,6 +10,14 @@
 		9F0409B71BA5DC22009FFBD4 /* VaavudSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F0409B61BA5DC22009FFBD4 /* VaavudSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F0409BD1BA5DC22009FFBD4 /* VaavudSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0409B11BA5DC22009FFBD4 /* VaavudSDK.framework */; };
 		9F0409C41BA5DC22009FFBD4 /* VaavudSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409C31BA5DC22009FFBD4 /* VaavudSDKTests.swift */; };
+		9F0409D61BA5DD18009FFBD4 /* AudioSampleProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409CE1BA5DD18009FFBD4 /* AudioSampleProcessor.swift */; };
+		9F0409D71BA5DD18009FFBD4 /* AudioVolume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409CF1BA5DD18009FFBD4 /* AudioVolume.swift */; };
+		9F0409D81BA5DD18009FFBD4 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409D01BA5DD18009FFBD4 /* Events.swift */; };
+		9F0409D91BA5DD18009FFBD4 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409D11BA5DD18009FFBD4 /* LocationController.swift */; };
+		9F0409DA1BA5DD18009FFBD4 /* RotationProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409D21BA5DD18009FFBD4 /* RotationProcessor.swift */; };
+		9F0409DB1BA5DD18009FFBD4 /* TickTimeProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409D31BA5DD18009FFBD4 /* TickTimeProcessor.swift */; };
+		9F0409DC1BA5DD18009FFBD4 /* Vaavud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409D41BA5DD18009FFBD4 /* Vaavud.swift */; };
+		9F0409DD1BA5DD18009FFBD4 /* WindController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409D51BA5DD18009FFBD4 /* WindController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +37,14 @@
 		9F0409BC1BA5DC22009FFBD4 /* VaavudSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VaavudSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0409C21BA5DC22009FFBD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F0409C31BA5DC22009FFBD4 /* VaavudSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaavudSDKTests.swift; sourceTree = "<group>"; };
+		9F0409CE1BA5DD18009FFBD4 /* AudioSampleProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioSampleProcessor.swift; sourceTree = "<group>"; };
+		9F0409CF1BA5DD18009FFBD4 /* AudioVolume.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioVolume.swift; sourceTree = "<group>"; };
+		9F0409D01BA5DD18009FFBD4 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		9F0409D11BA5DD18009FFBD4 /* LocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
+		9F0409D21BA5DD18009FFBD4 /* RotationProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationProcessor.swift; sourceTree = "<group>"; };
+		9F0409D31BA5DD18009FFBD4 /* TickTimeProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickTimeProcessor.swift; sourceTree = "<group>"; };
+		9F0409D41BA5DD18009FFBD4 /* Vaavud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vaavud.swift; sourceTree = "<group>"; };
+		9F0409D51BA5DD18009FFBD4 /* WindController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +87,9 @@
 		9F0409B31BA5DC22009FFBD4 /* VaavudSDK */ = {
 			isa = PBXGroup;
 			children = (
+				9F0409D41BA5DD18009FFBD4 /* Vaavud.swift */,
+				9F0409D01BA5DD18009FFBD4 /* Events.swift */,
+				9F0409CD1BA5DCB1009FFBD4 /* Internal */,
 				9F0409B61BA5DC22009FFBD4 /* VaavudSDK.h */,
 				9F0409B41BA5DC22009FFBD4 /* Supporting Files */,
 			);
@@ -100,6 +119,19 @@
 				9F0409C21BA5DC22009FFBD4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9F0409CD1BA5DCB1009FFBD4 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				9F0409CE1BA5DD18009FFBD4 /* AudioSampleProcessor.swift */,
+				9F0409CF1BA5DD18009FFBD4 /* AudioVolume.swift */,
+				9F0409D11BA5DD18009FFBD4 /* LocationController.swift */,
+				9F0409D21BA5DD18009FFBD4 /* RotationProcessor.swift */,
+				9F0409D31BA5DD18009FFBD4 /* TickTimeProcessor.swift */,
+				9F0409D51BA5DD18009FFBD4 /* WindController.swift */,
+			);
+			name = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +241,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F0409D91BA5DD18009FFBD4 /* LocationController.swift in Sources */,
+				9F0409D81BA5DD18009FFBD4 /* Events.swift in Sources */,
+				9F0409D71BA5DD18009FFBD4 /* AudioVolume.swift in Sources */,
+				9F0409D61BA5DD18009FFBD4 /* AudioSampleProcessor.swift in Sources */,
+				9F0409DB1BA5DD18009FFBD4 /* TickTimeProcessor.swift in Sources */,
+				9F0409DD1BA5DD18009FFBD4 /* WindController.swift in Sources */,
+				9F0409DC1BA5DD18009FFBD4 /* Vaavud.swift in Sources */,
+				9F0409DA1BA5DD18009FFBD4 /* RotationProcessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +363,7 @@
 		9F0409C81BA5DC22009FFBD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -332,12 +373,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		9F0409C91BA5DC22009FFBD4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
