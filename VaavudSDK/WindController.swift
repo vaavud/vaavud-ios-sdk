@@ -177,31 +177,15 @@ class WindController: NSObject, LocationListener {
                 return WindSpeedEvent(time: measurementTime, speed: windspeed)
             }
             
-            rotations.map {println("sampleTime \($0.sampleTime)") }
-            
             let windSpeedEventsWithZeros = self.addZeroSpeedEvents(windSpeedEvents, endTime: self.sampleTimeToUnixTime(time.sampleTime))
-            
-//            windSpeedEventsWithZeros.map { println("Event time\($0.time.timeIntervalSinceDate(self.debugStartTime)), \($0.speed)") }
-            
             windSpeedEventsWithZeros.map { event in self.listeners.map { listener in listener.newWindSpeed(Result(event)) } }
             
-//            addZeroSpeedEvents
-//            for rotation in rotations {
-//                let measurementTime = self.sampleTimeToUnixTime(rotation.sampleTime)
-//                let windspeed = WindController.rotationFrequencyToWindspeed(44100/Double(rotation.timeOneRotaion))
-//                let result = Result(WindSpeedEvent(time: measurementTime, speed: windspeed))
-//                self.listeners.map { $0.newWindSpeed(result) }
-//            }
             for direction in directions {
                 let measurementTime = self.sampleTimeToUnixTime(direction.sampleTime)
                 let result = Result(WindDirectionEvent(time: measurementTime, globalDirection: Double(direction.globalDirection)))
                 self.listeners.map { $0.newWindDirection(result) }
             }
             
-//            let plotData = [(0..<256).map { CGFloat(self.data[$0]) }]
-//            let plotData = [ self.rotationProcessor.t15.map { CGFloat($0) }]
-//            let plotData = rotations.map {rotation in rotation.relVelocities.map {CGFloat($0)}}
-//            let plotData = self.rotationProcessor.relVelsStore.filter { $0[0] != 0 }.map { relVels in relVels.map { CGFloat($0) } }
             let plotData = [self.rotationProcessor.debugLastDirectionAverage.map { CGFloat($0) },
                 map(zip(self.rotationProcessor.debugLastDirectionAverage, self.rotationProcessor.t15)) { CGFloat($0-$1) },
                 self.rotationProcessor.t15.map { CGFloat($0) },
