@@ -20,7 +20,7 @@ public enum Result<T> {
     case Value(Box<T>)
     case Error(ErrorEvent)
     
-    init(_ value: T) {
+    public init(_ value: T) {
         self = .Value(Box(value))
     }
     
@@ -50,6 +50,11 @@ public struct WindSpeedEvent: Event, Dictionarifiable {
     
     var dict: [String : AnyObject] {
         return ["time" : time.timeIntervalSince1970, "speed" : speed]
+    }
+    
+    public init(time: NSDate, speed: Double) {
+        self.time = time
+        self.speed = speed
     }
 }
 

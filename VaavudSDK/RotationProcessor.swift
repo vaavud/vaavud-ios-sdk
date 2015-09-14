@@ -148,7 +148,6 @@ struct RotationProcessor {
         // calculate winddirections
         return groupDirection.map {
             rotations in
-            println("processed \(rotations.count) rotations")
             let dir = self.fitAngle( rotations.map { $0.relVelocities }, headings: rotations.map { $0.heading! })
             // debug
             self.debugLastLocalAngle = (dir-rotations.last!.heading!+360)%360

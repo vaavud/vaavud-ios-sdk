@@ -498,6 +498,7 @@
 				9F040A361BA5DF53009FFBD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F040A371BA5DF53009FFBD4 /* Build configuration list for PBXNativeTarget "SimpleTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +507,7 @@
 				9F040A391BA5DF53009FFBD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

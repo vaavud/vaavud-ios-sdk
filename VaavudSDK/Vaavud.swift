@@ -8,6 +8,12 @@
 
 import Foundation
 
+public class VaavudSleipnirAvailability: NSObject {
+    public class func available() -> Bool {
+        return VaavudSDK().sleipnirAvailable()
+    }
+}
+
 public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     private var windController = WindController()
     private var locationController = LocationController()

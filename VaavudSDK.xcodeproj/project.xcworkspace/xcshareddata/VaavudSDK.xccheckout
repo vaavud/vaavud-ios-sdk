@@ -5,20 +5,20 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>C94FA15E-B4D5-49E4-92B6-ED1062E828A3</string>
+	<string>CFF8466E-2E76-4B6F-B63F-F9537020D4DD</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Simple</string>
+	<string>VaavudSDK</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>2231156D31C86B4488CA7553CC99CA9909AD6945</key>
 		<string>https://github.com/vaavud/vaavud-ios-sdk.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Examples/Simple/Simple.xcodeproj</string>
+	<string>VaavudSDK.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>2231156D31C86B4488CA7553CC99CA9909AD6945</key>
-		<string>../../../..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/vaavud/vaavud-ios-sdk.git</string>
