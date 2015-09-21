@@ -11,7 +11,7 @@ import VaavudSDK
 
 class ViewController: UIViewController {
 
-    let sdk = VaavudSDK()
+    let sdk = VaavudSDK.sharedInstance
     
     @IBOutlet weak var labelWindSpeed: UILabel!
     

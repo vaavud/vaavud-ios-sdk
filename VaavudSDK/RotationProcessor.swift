@@ -16,9 +16,9 @@ public struct Direction {
     public let heading: Float
 }
 
-struct RotationProcessor {
+public struct RotationProcessor {
     
-    var t15: [Float]
+    public var t15: [Float]
     let ea15: [Float]
     
     let rotationNMax: Int
@@ -63,7 +63,7 @@ struct RotationProcessor {
         let merge: Bool
     }
     
-    init() {
+    public init() {
         t15 = [Float](count: TPR, repeatedValue: 0)
         ea15 = [0,23.5,47.0,70.5,94.0,117.5,141.0,164.5,188.0,211.5,235.0,258.5,282.0,305.5,332.75]
         
@@ -99,7 +99,7 @@ struct RotationProcessor {
         }
     }
     
-    mutating func processRotations(rotations: [Rotation]) -> [Direction] {
+    public mutating func processRotations(rotations: [Rotation]) -> [Direction] {
         
         func steadyRotation(rotation: Rotation) -> Bool {
             return rotation.relRotaionTime > -0.03 && rotation.relRotaionTime < 0.03
@@ -162,7 +162,7 @@ struct RotationProcessor {
         for rotation in rotations {
             group.rots.append(rotation)
             group.totalTime += rotation.timeOneRotaion
-            if group.totalTime > 44100 || group.rots.count == 150 {
+            if group.totalTime > 44100 || group.rots.count == rotationNMax {
                 groups.append(group.rots)
                 group = RotationGroup()
             }
@@ -255,9 +255,9 @@ struct RotationProcessor {
             vDSP_vfill([headings[i]], UnsafeMutablePointer(h).advancedBy(i*anglesN*TPR), 1, vDSP_Length(anglesN * TPR))
             
             // load wind direction
-            vDSP_vgathr(angless[i], indiciesWD, 1, UnsafeMutablePointer(wd).advancedBy(i*anglesN * TPR), 1, lengthDSP)
+            vDSP_vgathr(angless[i], indiciesWD, 1, UnsafeMutablePointer(wd).advancedBy(i*anglesN * TPR), 1, vDSP_Length(anglesN * TPR)) // was lengthDSP
         }
-        
+
         vDSP_vgathr(tCor, indiciesTeeth, 1, &t, 1, lengthDSP)
         vDSP_vgathr(ea15, indiciesTeeth, 1, &ea, 1, lengthDSP)
         

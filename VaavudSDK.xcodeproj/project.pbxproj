@@ -190,6 +190,7 @@
 		9F0409A81BA5DC22009FFBD4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Vaavud ApS";
 				TargetAttributes = {
