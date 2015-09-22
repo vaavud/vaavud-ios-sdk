@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum AvgState {
     case DetectHigh
     case DetectLow
@@ -30,7 +29,7 @@ public struct Tick {
 
 public struct AudioSampleProcessor { // Audio Sample Processor State
     
-    // should be reset on each Tick
+    // Should be reset on each Tick
     struct TickProperties {
         var avgState = AvgState.DetectHigh
         var diffState = DiffState.DetectRising
@@ -39,20 +38,19 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
         var avgPositive = false
         var diffFullOpen = false
         
-        // one time set
+        // One time set
         var gapBlock = 0
         var diffRiseThreshold = 0
         var avgDropHalf = 0
         
-        // running set
+        // Running set
         var avgGapMax = 0
         var avgMax = 0
         var diffMax = 0
         var avgOpenMin = 0
-        
     }
     
-    //updating on each tick
+    // Updating on each tick
     struct FilteredValues {
         var avgMax = Int(INT16_MAX)
         var diffMax = Int(2*INT16_MAX)
@@ -65,17 +63,15 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
         }
     }
     
-    // primary running variables
+    // Primary running variables
     var avgBuffer = [Int](count: 3, repeatedValue: 0)
     var avg = 0
     var diffBuffer = [Int](count: 3, repeatedValue: 0)
     var diff = 0
     var bufferIndex = 0
     
-    
     var tf = FilteredValues()
     var tp = TickProperties()
-    
     
     public init() {
         
@@ -83,7 +79,7 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
     
     mutating func updateRunningStats(sample:Int) {
         // updateing primary statistics
-        var bufferIndexLast = (bufferIndex+2)%3
+        let bufferIndexLast = (bufferIndex + 2) % 3
         avg -= avgBuffer[bufferIndex]
         diff -= diffBuffer[bufferIndex]
         
@@ -94,7 +90,7 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
         diff += diffBuffer[bufferIndex]
         
         // next buffer index
-        bufferIndex = (bufferIndex+1)%3
+        bufferIndex = (bufferIndex + 1) % 3
         
         tp.samplesSinceTick++
         
@@ -118,12 +114,13 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
         FilteredValues.updateVal(&tf.avgClosedMax, newVal: tp.avgGapMax)
     }
     
-    mutating func updateStateAvg() -> Bool{
+    mutating func updateStateAvg() -> Bool {
         switch tp.avgState {
         case .DetectHigh:
             if tp.samplesSinceTick < 60 {
                 if avg*2 > tf.avgMax { tp.avgState = .DetectLow}
-            } else {
+            }
+            else {
                 tp.avgState = .NotValid
             }
         case .DetectLow:
@@ -131,16 +128,18 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
                 if avg*2 < tp.avgOpenMin && tf.avgMax + tp.avgOpenMin < 0 {
                     return true
                 }
-            } else {
+            }
+            else {
                 tp.avgState = .NotValid
             }
         case .NotValid:
             break
         }
+        
         return false
     }
     
-    mutating func updateStateDiff() -> Bool{
+    mutating func updateStateDiff() -> Bool {
         switch tp.diffState {
         case .DetectRising:
             if diff*10 > 3*tf.diffMax {
@@ -161,7 +160,7 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
         case .DetectFalling:
             if diff*10 < 3*tf.diffMax {
                 tp.diffState = .Pause
-                var gapBlock = Int(Float(tp.samplesSinceTick)*2.3)
+                let gapBlock = Int(Float(tp.samplesSinceTick)*2.3)
                 tp.gapBlock = gapBlock > 5000 ? 5000 : gapBlock
             }
         case .Pause:
@@ -177,18 +176,17 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
             if (((avg < tp.avgGapMax - tp.avgDropHalf) && (diff > tp.diffRiseThreshold)) || 4*diff > 3*tf.diffMax) {
                 return  true;
             }
-            break
         }
+        
         return false
     }
     
     public mutating func processSamples(samples: [Int16], sampleTime: Int64) -> [Tick] {
-        
         var ticks = [Tick]()
         var runningSampleTime = sampleTime - tp.samplesSinceTick
         
         for sample in samples {
-            var sampleInt = Int(sample)
+            let sampleInt = Int(sample)
             updateRunningStats(sampleInt)
             if (updateStateAvg() || updateStateDiff() || tp.samplesSinceTick == 7000) {
                 // start of new gap detected

@@ -22,10 +22,11 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     
     public private(set) var session = VaavudSession()
     
-    public var windSpeedCallback: (Result<WindSpeedEvent> -> Void)?
-    public var windDirectionCallback: (Result<WindDirectionEvent> -> Void)?
-    public var temperatureCallback: (Result<TemperatureEvent> -> Void)?
-    public var headingCallback: (Result<HeadingEvent> -> Void)?
+    public var windSpeedCallback: (WindSpeedEvent -> Void)?
+    public var windDirectionCallback: (WindDirectionEvent -> Void)?
+    public var temperatureCallback: (TemperatureEvent -> Void)?
+    public var headingCallback: (HeadingEvent -> Void)?
+    public var errorCallback: (ErrorEvent -> Void)?
 
     public var debugPlotCallback: ([[CGFloat]] -> Void)?
 
@@ -36,26 +37,32 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
         locationController.addListener(self)
     }
     
+    // fixme: ask: need to be stopped always?
     public func sleipnirAvailable() -> Bool {
-        var error = false
-        if locationController.start() == nil { error = true }
-        locationController.stop()
+        defer { locationController.stop() }
+
+        do { try locationController.start() }
+        catch { return false }
         
-        if windController.start() == nil { error = true }
-        windController.stop()
-        return error
+        defer { windController.stop() }
+        
+        do { try windController.start() }
+        catch { return false }
+
+        return true
     }
     
     func reset() {
         session = VaavudSession()
     }
     
-    public func start() -> ErrorEvent? {
+    public func start() throws {
         reset()
-        if let startLocationError = locationController.start() {
-            return startLocationError
-        }
-        return windController.start()
+        defer { locationController.stop() }
+        try locationController.start()
+        
+        defer { windController.stop() }
+        try windController.start()
     }
 
     public func stop() {
@@ -66,32 +73,35 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
         windController.resetCalibration()
     }
     
+    // MARK: Common error event handling
+    
+    func newError(error: ErrorEvent) {
+        errorCallback?(error)
+    }
+    
     // MARK: Temperature listener
     
-    func newTemperature(result: Result<TemperatureEvent>) {
-        temperatureCallback?(result)
+    func newTemperature(event: TemperatureEvent) {
+        temperatureCallback?(event)
     }
     
     // MARK: Location listener
 
-    func newHeading(result: Result<HeadingEvent>) {
-        headingCallback?(result)
-        
-        if let event = result.value { session.addHeading(event) }
+    func newHeading(event: HeadingEvent) {
+        headingCallback?(event)
+        session.addHeading(event)
     }
     
     // MARK: Wind listener
     
-    func newWindSpeed(result: Result<WindSpeedEvent>) {
-        windSpeedCallback?(result)
-        
-        if let event = result.value { session.addWindSpeed(event) }
+    func newWindSpeed(event: WindSpeedEvent) {
+        windSpeedCallback?(event)
+        session.addWindSpeed(event)
     }
     
-    func newWindDirection(result: Result<WindDirectionEvent>) {
-        windDirectionCallback?(result)
-        
-        if let event = result.value { session.addWindDirection(event) }
+    func newWindDirection(event: WindDirectionEvent) {
+        windDirectionCallback?(event)
+        session.addWindDirection(event)
     }
     
     func debugPlot(valuess: [[CGFloat]]) {
@@ -100,7 +110,7 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     
     deinit {
         // perform the deinitialization
-        println("DEINIT VaavudSDK")
+        print("DEINIT VaavudSDK")
     }
 }
 

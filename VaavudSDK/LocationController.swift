@@ -9,7 +9,6 @@
 import Foundation
 import CoreLocation
 
-
 class LocationController: NSObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
 	
@@ -21,12 +20,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         if listener1 == nil { listener1 = listener } else { listener2 = listener }
     }
     
-    func start() -> ErrorEvent? {
-        if CLLocationManager.authorizationStatus() == .Denied {
-            return ErrorEvent("Can not start since the app is not authorized to use location services, Denied", user: "Can not start since the app is not authorized to use location services, change phone settings!")
-        }
-        else if CLLocationManager.authorizationStatus() == .Restricted {
-            return ErrorEvent("Can not start since the app is not authorized to use location services, Restricted", user: "Can not start since the app is not authorized to use location services")
+    func start() throws {
+        let status = CLLocationManager.authorizationStatus()
+        if status == .Denied || status == .Restricted {
+            throw VaavudError.LocationAuthorisation(status)
         }
         
         locationManager.requestWhenInUseAuthorization()
@@ -34,15 +31,12 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.distanceFilter = 10
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
-        
         locationManager.headingFilter = 5
         
         if UIDevice.currentDevice().orientation == .PortraitUpsideDown {
             locationManager.headingOrientation = .PortraitUpsideDown
         }
         locationManager.startUpdatingHeading()
-        
-        return nil
     }
     
     func stop() {
@@ -50,26 +44,27 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingHeading()
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        if let locations = locations as? [CLLocation] {
-            locations.map { loc in
-                println("LC: latitude: \(loc.coordinate.latitude) and longitude: \(loc.coordinate.longitude)")
-            }
-        }
+    // fixme
+//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        _ = locations.map { loc in
+//            print("LC: latitude: \(loc.coordinate.latitude) and longitude: \(loc.coordinate.longitude)")
+//        }
+//    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        _ = listeners.map { $0.newHeading(HeadingEvent(heading: newHeading.trueHeading)) }
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateHeading newHeading: CLHeading!) {
-        let event = Result(HeadingEvent(heading: newHeading.trueHeading))
-        listeners.map { $0.newHeading(event) }
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+//        print(error.debugDescription)
+        // fixme: send error event?
+        _ = listeners.map { $0.newError(ErrorEvent(eventType: .LocationManagerFailure(error))) }
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
-        println(error.debugDescription)
-    }
-    
+    // fixme
     deinit {
         // perform the deinitialization
-        println("DEINIT Location Controller")
+        print("DEINIT Location Controller")
     }
 }
 

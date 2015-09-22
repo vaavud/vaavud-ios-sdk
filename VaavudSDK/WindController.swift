@@ -76,7 +76,12 @@ class WindController: NSObject, LocationListener {
         audioEngine.connect(player, to: audioEngine.mainMixerNode, format: outputBuffer.format)
         
         // setup input
-        audioEngine.inputNode.installTapOnBus(0, bufferSize: 16537, format: inputFormat) {
+        guard let inputNode = audioEngine.inputNode else {
+            // fixme: throw error
+            return
+        }
+        
+        inputNode.installTapOnBus(0, bufferSize: 16537, format: inputFormat) {
             [weak self] (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) in
             if let strongSelf = self {
                 strongSelf.inputHandler(buffer, time: time)
@@ -84,36 +89,42 @@ class WindController: NSObject, LocationListener {
         }
     }
 
-    func start() -> ErrorEvent? {
-        if audioEngine.running {
-            return ErrorEvent("Seriously! SDK is already started..", user: "Woops the programmer did a mistake, sorry!")
+    func start() throws {
+        guard !audioEngine.running else {
+            throw VaavudError.MultipleStart
         }
         
-        // setup volume
-        audioEngine.mainMixerNode.outputVolume = vol.getVolume()
+        // Setup volume
+        audioEngine.mainMixerNode.outputVolume = volumeSetting(vol.volume)
         setVolumeToMax()
         
         // initialize AVAudioSession
-        initAVAudioSession()
-        
-        // check current route
-        if let currentRouteError = checkCurrentRoute() {
+        do {
+            try initAVAudioSession()
+        }
+        catch {
             stop()
-            return currentRouteError
+            throw error
         }
         
-        if let startEngineError = startEngine() {
+        guard checkCurrentRoute() else {
             stop()
-            return startEngineError
+            throw VaavudError.Unplugged
+        }
+        
+        do {
+            try startEngine()
+        }
+        catch {
+            stop()
+            throw error
         }
         
         startOutput()
-        
-        return nil
     }
     
     func stop() {
-        observers.map(NSNotificationCenter.defaultCenter().removeObserver) // TODO: check
+        _ = observers.map(NSNotificationCenter.defaultCenter().removeObserver) // TODO: check
         vol.save()
         rotationProcessor.save()
         audioEngine.pause() // the other options (stop/reset) does ocationally cause a BAD_ACCESS CAStreamBasicDescription
@@ -124,15 +135,13 @@ class WindController: NSObject, LocationListener {
         rotationProcessor.resetCalibration()
     }
     
-    private func startEngine() -> ErrorEvent? {
+    private func startEngine() throws {
         // start the engine and play
         
         /*  startAndReturnError: calls prepare if it has not already been called since stop.
         
         Starts the audio hardware via the AVAudioInputNode and/or AVAudioOutputNode instances in
         the engine. Audio begins flowing through the engine.
-        
-        This method will return nil for success.
         
         Reasons for potential failure include:
         
@@ -141,12 +150,10 @@ class WindController: NSObject, LocationListener {
         2. An AVAudioSession error.
         3. The driver failed to start the hardware. */
         
-        var error: NSError?
+        // fixme
         
-        if !audioEngine.startAndReturnError(&error) {
-            return ErrorEvent("Could not start engine, " + error!.localizedDescription, user: "Internal sound system error! Engine Start")
-        }
-        return nil
+        do { try audioEngine.start() }
+        catch let error as NSError { throw VaavudError.AudioEngine(error) }
     }
     
     private func startOutput() {
@@ -169,7 +176,6 @@ class WindController: NSObject, LocationListener {
         audioEngine.mainMixerNode.outputVolume = vol.newVolume(resp)
         
         dispatch_async(dispatch_get_main_queue()) {
-            
             let windSpeedEvents = rotations.map {
                 (rotation: Rotation) -> WindSpeedEvent in
                 let measurementTime = self.sampleTimeToUnixTime(rotation.sampleTime)
@@ -178,32 +184,29 @@ class WindController: NSObject, LocationListener {
             }
             
             let windSpeedEventsWithZeros = self.addZeroSpeedEvents(windSpeedEvents, endTime: self.sampleTimeToUnixTime(time.sampleTime))
-            windSpeedEventsWithZeros.map { event in self.listeners.map { listener in listener.newWindSpeed(Result(event)) } }
+            _ = windSpeedEventsWithZeros.map { event in self.listeners.map { listener in listener.newWindSpeed(event) } }
             
             for direction in directions {
                 let measurementTime = self.sampleTimeToUnixTime(direction.sampleTime)
-                let result = Result(WindDirectionEvent(time: measurementTime, globalDirection: Double(direction.globalDirection)))
-                self.listeners.map { $0.newWindDirection(result) }
+                let event = WindDirectionEvent(time: measurementTime, globalDirection: Double(direction.globalDirection))
+                _ = self.listeners.map { $0.newWindDirection(event) }
             }
             
-            let plotData = [self.rotationProcessor.debugLastDirectionAverage.map { CGFloat($0) },
-                map(zip(self.rotationProcessor.debugLastDirectionAverage, self.rotationProcessor.t15)) { CGFloat($0-$1) },
-                self.rotationProcessor.t15.map { CGFloat($0) },
-                self.rotationProcessor.fitcurveForAngle(-self.rotationProcessor.debugLastLocalAngle).map { CGFloat($0) }]
+            let dirAvgs = self.rotationProcessor.debugLastDirectionAverage.map { CGFloat($0) }
+            let dirAvgsCorrected = zip(self.rotationProcessor.debugLastDirectionAverage, self.rotationProcessor.t15).map { CGFloat($0 - $1) }
+            let correctionCoeffs = self.rotationProcessor.t15.map { CGFloat($0) }
+            let localAngle: [CGFloat] = self.rotationProcessor.fitcurveForAngle(-self.rotationProcessor.debugLastLocalAngle).map { CGFloat($0) }
             
-            self.listeners.map { $0.debugPlot(plotData) }
+            let plotData = [dirAvgs, dirAvgsCorrected, correctionCoeffs, localAngle]
+            
+            _ = self.listeners.map { $0.debugPlot(plotData) }
         }
     }
     
     private func setVolumeToMax() {
-        let volView = MPVolumeView()
-        
-        for view in volView.subviews {
-            let uiview = view as! UIView
-            if uiview.description.rangeOfString("MPVolumeSlider") != nil {
-                let mpVolumeSilder = (uiview as! UISlider)
-                mpVolumeSilder.value = 1
-            }
+        for view in MPVolumeView().subviews where view.description.rangeOfString("MPVolumeSlider") != nil {
+            let mpVolumeSilder = (view as! UISlider)
+            mpVolumeSilder.value = 1
         }
     }
     
@@ -212,30 +215,28 @@ class WindController: NSObject, LocationListener {
             sampleTimeStart = sampleTime
             startTime = NSDate()
         }
-        else {
-            if sampleTimeLast + AVAudioFramePosition(bufferLength) != sampleTime {
-                println("Oops. Samples Lost at time: \(sampleTime)")
-            }
+        else if sampleTimeLast + AVAudioFramePosition(bufferLength) != sampleTime {
+            print("Oops. Samples Lost at time: \(sampleTime)")
         }
         sampleTimeLast = sampleTime
     }
     
     private func copyData(buffer: AVAudioPCMBuffer) {
-        var channel = buffer.int16ChannelData[0]
+        let channel = buffer.int16ChannelData[0]
         for i in 0..<Int(buffer.frameLength) {
             data[i] = channel[i]
         }
     }
     
     private class func createBuffer(outputFormat: AVAudioFormat) -> AVAudioPCMBuffer {
-        var buffer = AVAudioPCMBuffer(PCMFormat: outputFormat, frameCapacity: 99)
-        buffer.frameLength = 99 // should end in 3
+        let buffer = AVAudioPCMBuffer(PCMFormat: outputFormat, frameCapacity: 99)
+        buffer.frameLength = 99 // Should end in 3
         
         let leftChannel = buffer.floatChannelData[0]
         let rightChannel = buffer.floatChannelData[1]
         
         for i in 0..<Int(buffer.frameLength) {
-            leftChannel[i] = sinf(Float(i)*2*Float(M_PI)/3) // a 3 of the sample frequency
+            leftChannel[i] = sinf(Float(i)*2*Float(M_PI)/3) // One 3rd of the sample frequency
             rightChannel[i] = -sinf(Float(i)*2*Float(M_PI)/3)
         }
         return buffer
@@ -248,7 +249,7 @@ class WindController: NSObject, LocationListener {
     private func addZeroSpeedEvents(speedEvents: [WindSpeedEvent], endTime: NSDate) -> [WindSpeedEvent] {
         var newEvents = [WindSpeedEvent]()
         
-        if let event = speedEvents.first where lastWindSpeedEvent == nil {
+        if lastWindSpeedEvent == nil, let event = speedEvents.first {
             lastWindSpeedEvent = event
         }
         
@@ -277,7 +278,6 @@ class WindController: NSObject, LocationListener {
     private func noiseEstimator(samples: [Int16]) -> (diff20: Int, sN: Double) {
         let skipSamples = 10000
         let nSamples = 100
-        let percentile = 19
         
         var diffValues = [Int]()
 
@@ -292,7 +292,7 @@ class WindController: NSObject, LocationListener {
             diffValues.append(diff)
         }
 
-        diffValues.sort(<)
+        diffValues.sortInPlace(<)
         
         let preSN = Double(diffValues[79])/Double(diffValues[39])
         let sN = preSN == Double.infinity ? 0 : preSN
@@ -300,141 +300,98 @@ class WindController: NSObject, LocationListener {
         return (diffValues[19], sN)
     }
     
-    private func checkCurrentRoute() -> ErrorEvent? {
-        // Configure the audio session
-        let sessionInstance = AVAudioSession.sharedInstance()
-        let currentRoute = sessionInstance.currentRoute
+    // fixme: check logic
+    private func checkCurrentRoute() -> Bool {
+        return true // Fixme: Debugging
 
-        // check if headset and microphone wired
-//        var headsetMicActive = false
-//        var headphonesActive = false
+        // Configure the audio session
+        let currentRoute = AVAudioSession.sharedInstance().currentRoute
         
-        var headsetMicActive = true // DEBUGGING IN SIMULATOR
-        var headphonesActive = true
-        
-        if let inputs = currentRoute.inputs where inputs.count > 0 {
-            headsetMicActive = AVAudioSessionPortHeadsetMic == inputs[0].portType
-        }
-        
-        if let outputs = currentRoute.outputs where outputs.count > 0 {
-                headphonesActive = AVAudioSessionPortHeadphones == currentRoute.outputs[0].portType
-        }
-        
-        if headsetMicActive && headphonesActive {
-            return nil
-        }
-        
-        return ErrorEvent("Could not start measuring since Sleipnir measurement is not avialable since Headset and headsetmic not available: Current route \(currentRoute)", user: "Could not start measuring since the Sleipnir wind meter is not pluged into the audio jack")
+        return currentRoute.inputs.first?.portType == AVAudioSessionPortHeadsetMic &&
+            currentRoute.outputs.first?.portType == AVAudioSessionPortHeadphones
     }
     
-    private func initAVAudioSession() -> ErrorEvent? {
+    // fixme: check logic
+    private func initAVAudioSession() throws {
         // For complete details regarding the use of AVAudioSession see the AVAudioSession Programming Guide
         // https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Introduction/Introduction.html
         
         // Configure the audio session
         let sessionInstance = AVAudioSession.sharedInstance()
-        var error: NSError?
         
-        let errorUserDescriptionBase = "Error configuring audio system! "
-        
-        var success = sessionInstance.setCategory(AVAudioSessionCategoryPlayAndRecord, error: &error)
-        if !success {
-            return ErrorEvent("Error setting AVAudioSession category! " + error!.localizedDescription,
-                user: errorUserDescriptionBase + "Category")
-        }
+        do { try sessionInstance.setCategory(AVAudioSessionCategoryPlayAndRecord) }
+        catch let error as NSError { throw VaavudError.AudioSessionCategory(error) }
         
         let hsSampleRate = 44100.0
-        success = sessionInstance.setPreferredSampleRate(hsSampleRate, error: &error)
-        if !success {
-            return ErrorEvent("Error setting preferred sample rate! " + error!.localizedDescription, user: errorUserDescriptionBase + "Sample Rate")
-        }
+        
+        do { try sessionInstance.setPreferredSampleRate(hsSampleRate) }
+        catch let error as NSError { throw VaavudError.AudioSessionSampleRate(error) }
         
         let ioBufferDuration = 0.0029
-        success = sessionInstance.setPreferredIOBufferDuration(ioBufferDuration, error:&error)
-        if !success {
-            ErrorEvent("Error setting preferred io buffer duration! " + error!.localizedDescription, user: errorUserDescriptionBase + "Buffer Duration")
-        }
+        
+        do { try sessionInstance.setPreferredIOBufferDuration(ioBufferDuration) }
+        catch let error as NSError { throw VaavudError.AudioSessionBufferDuration(error) }
         
         let nc = NSNotificationCenter.defaultCenter()
         let mainQueue = NSOperationQueue.mainQueue()
-
+        
         let interuptionObserver = nc.addObserverForName(AVAudioSessionInterruptionNotification, object:sessionInstance, queue:mainQueue) {
             [unowned self] notification in
-            var info = notification.userInfo!
-            var intValue: UInt = 0
-            (info[AVAudioSessionInterruptionTypeKey] as! NSValue).getValue(&intValue)
-            if let type = AVAudioSessionInterruptionType(rawValue: intValue) {
-                switch type {
-                case .Began:
-                    // interruption began
-                    // stop sleipnir on all interuptions
+            if let info = notification.userInfo {
+                var intValue: UInt = 0
+                (info[AVAudioSessionInterruptionTypeKey] as! NSValue).getValue(&intValue)
+                if let type = AVAudioSessionInterruptionType(rawValue: intValue) where type == .Began {
                     self.stop()
-                    let error = ErrorEvent("Audio interuption has stopped the measurement")
-                    self.listeners.map { $0.newWindDirection(Result(error)) }
-                    self.listeners.map { $0.newWindSpeed(Result(error)) }
-
-                    println("began interuption, stoped the audio system ")
-                case .Ended:
-                    // interruption ended
-                    println("ended interuption")
+                    let error = ErrorEvent(eventType: .AudioInterruption(type))
+                    _ = self.listeners.map { $0.newError(error) }
                 }
             }
         }
+        
         observers.append(interuptionObserver)
         
-        var routeObserver = nc.addObserverForName(AVAudioSessionRouteChangeNotification, object:sessionInstance, queue:mainQueue) {
+        let routeObserver = nc.addObserverForName(AVAudioSessionRouteChangeNotification, object:sessionInstance, queue:mainQueue) {
             [unowned self] notification in
-            var info = notification.userInfo!
-            var intValue: UInt = 0
-            (info[AVAudioSessionRouteChangeReasonKey] as! NSValue).getValue(&intValue)
-            if let type = AVAudioSessionRouteChangeReason(rawValue: intValue) {
-                switch type {
-                    
-                case .Unknown:
-                    println("unknown route change")
-                case .NewDeviceAvailable:
-                    println("newDeviceAvailable")
-                case .OldDeviceUnavailable:
-                    println("OldDeviceUnavailable")
-                case .CategoryChange:
-                    println("CategoryChange")
-                case .Override:
-                    println("Override")
-                case .WakeFromSleep:
-                    println("WakeFromSleep")
-                case .NoSuitableRouteForCategory:
-                    println("NoSuitableRouteForCategory")
-                case .RouteConfigurationChange:
-                    println("RouteConfigChange")
+            if let info = notification.userInfo {
+                var intValue: UInt = 0
+                (info[AVAudioSessionRouteChangeReasonKey] as! NSValue).getValue(&intValue)
+                
+                if let reason = AVAudioSessionRouteChangeReason(rawValue: intValue) {
+                    let error = ErrorEvent(eventType: .AudioRouteChange(reason))
+                    _ = self.listeners.map { $0.newError(error) }
                 }
             }
-            // stop algorithm on all route changes
+            // Stop algorithm on all route changes
             self.stop()
-            let error = ErrorEvent("Audio route has changed and the measurement has been stopped")
-            self.listeners.map { $0.newWindDirection(Result(error)) }
-            self.listeners.map { $0.newWindSpeed(Result(error)) }
         }
         observers.append(routeObserver)
     
-        var mediaObserver = nc.addObserverForName(AVAudioSessionMediaServicesWereResetNotification, object: sessionInstance, queue: mainQueue) {
+        let mediaObserver = nc.addObserverForName(AVAudioSessionMediaServicesWereResetNotification, object: sessionInstance, queue: mainQueue) {
             [unowned self] notification in
-            // if we've received this notification, the media server has been reset
-            // re-wire all the connections and start the engine
-            println("Media services have been reset!")
-            println("Re-wiring connections and starting once again")
+            // If we've received this notification, the media server has been reset
+            // Re-wire all the connections and start the engine
+            print("Media services have been reset!")
+            print("Re-wiring connections and starting once again")
             
             self.resetAudio()
             self.createEngineAttachNodesConnect()
-            self.startEngine()
+            
+            // Fixme: do something else? Retry recursively?
+            do { try self.startEngine() }
+            catch { return }
+
             self.startOutput()
         }
-        observers.append(mediaObserver)
         
-        return nil
+        observers.append(mediaObserver)
     }
     
-    func newHeading(result: Result<HeadingEvent>) {
-        if let event = result.value { heading = Float(event.heading) }
+    func newHeading(event: HeadingEvent) {
+        heading = Float(event.heading)
+    }
+    
+    func newError(error: ErrorEvent) {
+        _ = listeners.map { $0.newError(error) }
     }
     
     private static func rotationFrequencyToWindspeed(freq: Double) -> Double {
@@ -442,8 +399,7 @@ class WindController: NSObject, LocationListener {
     }
     
     deinit {
-        // perform the deinitialization
-        stop() // remove observers if accedentially deinitialize before calling stop
-        println("DEINIT WindController")
+        stop() // Remove observers if accedentially deinitialized before calling stop
+        print("DEINIT WindController")
     }
 }

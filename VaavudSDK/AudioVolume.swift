@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AudioResponse {
+struct AudioResponse: CustomStringConvertible {
     let diff20: Int
     let rotations: Int
     let detectionErrors: Int
@@ -19,49 +19,49 @@ struct AudioResponse {
     }
 }
 
-// find the correct Volume
+// Find the correct Volume
 let volSteps = 101
 
-enum searchType {
+enum SearchType {
     case Diff
     case SequentialSearch
-    case SteepestAccent
+    case SteepestAssent
 }
 
-enum ExpState: Int {
+enum ExpState {
     case Top
     case Explore
 }
 
-enum ExpDirection: Int {
-    case Left = -1
-    case Right = 1
+// fixme: ask
+enum ExpDirection {
+    case Left
+    case Right
 }
 
-struct VolumeTest{
+func volumeSetting(volume: Int) -> Float {
+    return Float(volume)/Float(volSteps - 1)
+}
+
+struct VolumeTest: CustomStringConvertible {
     var volume = 0
     var sN = [Double](count: volSteps, repeatedValue: 0.0)
     var diff20 = [Int](count: volSteps, repeatedValue: 0)
     var counter = 0
     var description: String {
-        return "Vol (volume: " + String(format: "%0.3f", getVolume()) + ")"
+        return String(format: "Vol (volume: %0.3f)", volumeSetting(volume))
     }
     
     init() {}
     
-    func getVolume() -> Float {
-        return Float(volume)/Float(volSteps-1)
-    }
-    
-    mutating func newVolume(resp: AudioResponse) -> Float{
-        
-        self.sN[volume] = resp.sN
-        self.diff20[volume] = resp.diff20
+    mutating func newVolume(resp: AudioResponse) -> Float {
+        sN[volume] = resp.sN
+        diff20[volume] = resp.diff20
         
         counter++
-        volume = counter%volSteps
+        volume = counter % volSteps
         
-        return getVolume()
+        return volumeSetting(volume)
     }
     
     func testDictionary() -> [String: AnyObject] {
@@ -69,50 +69,43 @@ struct VolumeTest{
     }
 }
 
-
-
-struct Volume{
+struct Volume: CustomStringConvertible {
     let noiseThreshold = 1100
     var volume = Int(volSteps/2)
     var sN = [Double](count: volSteps, repeatedValue: 0.0)
     var counter = 0
     
-    var volState = searchType.Diff
+    var volState = SearchType.Diff
     var expState = ExpState.Top
     var expDirection = ExpDirection.Left
     
     var description: String {
-        return "Vol (volume: " + String(format: "%0.3f", getVolume()) + ", volState: \(volState.hashValue))"
+        return "Vol (volume: " + String(format: "%0.3f", volumeSetting(volume)) + ", volState: \(volState.hashValue))"
     }
     
     init() {
-        // load save state
+        // Load save state
         if let volume = NSUserDefaults.standardUserDefaults().valueForKey("vaavud_volume") as? Int {
             self.volume = volume
         }
         
-        if let sNData = NSUserDefaults.standardUserDefaults().objectForKey("vaavud_sn") as? NSData {
-            if let sN = NSKeyedUnarchiver.unarchiveObjectWithData(sNData) as? [Double] {
+        if let sNData = NSUserDefaults.standardUserDefaults().objectForKey("vaavud_sn") as? NSData,
+            sN = NSKeyedUnarchiver.unarchiveObjectWithData(sNData) as? [Double] {
                 self.sN = sN
-                volState = .SteepestAccent
-            }
+                volState = .SteepestAssent
         }
-    }
-    
-    func getVolume() -> Float {
-        return Float(volume)/Float(volSteps-1)
     }
     
     func save() {
-        if volState == .SteepestAccent {
-            let userDefaults = NSUserDefaults.standardUserDefaults()
-            userDefaults.setValue(volume, forKey: "vaavud_volume")
-            
-            let sNData = NSKeyedArchiver.archivedDataWithRootObject(sN)
-            NSUserDefaults.standardUserDefaults().setObject(sNData, forKey: "vaavud_sn")
-            
-            userDefaults.synchronize() // don't forget this!!!!
-        }
+        guard volState == .SteepestAssent else { return }
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setValue(volume, forKey: "vaavud_volume")
+        
+        let sNData = NSKeyedArchiver.archivedDataWithRootObject(sN)
+        userDefaults.setObject(sNData, forKey: "vaavud_sn")
+        
+        userDefaults.synchronize()
     }
     
     mutating func returnToDiffState() {
@@ -121,22 +114,22 @@ struct Volume{
         sN = [Double](count: volSteps, repeatedValue: 0.0)
     }
     
-    mutating func newVolume(resp: AudioResponse) -> Float{
-        
+    mutating func newVolume(resp: AudioResponse) -> Float {
         counter++
         
         if resp.sN > 6 && resp.rotations >= 1 {
-            volState = searchType.SteepestAccent
+            volState = .SteepestAssent
         }
         
         switch volState {
         case .Diff:
-            var noiseDiff = abs(resp.diff20-noiseThreshold)
-            var volumeChange: Int!
+            let noiseDiff = abs(resp.diff20 - noiseThreshold)
+            // fixme: show
+            let volumeChange: Int
             if resp.diff20 >= noiseThreshold {
                 volumeChange = volSteps*(-noiseDiff)/50000
             }
-            if resp.diff20 < noiseThreshold {
+            else {
                 volumeChange = volSteps*noiseDiff/10000
             }
             volume = volume + volumeChange
@@ -150,31 +143,33 @@ struct Volume{
                 returnToDiffState()
                 break
             }
-            volume = counter%20*(volSteps/20)+volSteps/40 // 5, 15, 25 ... 95
+            volume = counter % 20*(volSteps/20) + volSteps/40 // 5, 15, 25 ... 95
             
-        case .SteepestAccent:
+        case .SteepestAssent:
             let signalIsGood = resp.sN > 1.2 && resp.rotations >= 1
+            
             if signalIsGood {
-                self.sN[volume] = self.sN[volume] == 0 ? resp.sN : self.sN[volume]*0.7 + 0.3*resp.sN
+                sN[volume] = sN[volume] == 0 ? resp.sN : sN[volume]*0.7 + 0.3*resp.sN
                 counter = 0
-            } else {
-                if counter > 40 {
-                    returnToDiffState()
-                    break
-                }
+            }
+            else if counter > 40 {
+                returnToDiffState()
+                break
             }
             
             switch expState {
             case .Top:
                 let bestSNVol = bestSNVolume()
-                if self.sN[bestSNVol] < 6 {
+                
+                if sN[bestSNVol] < 6 {
                     returnToDiffState()
                     break
                 }
                 
-                var volChange = bestSNVol - volume;
-                volChange = (volChange >= 1 && volChange < 5) ? 1 : (volChange <= -1 && volChange > -5) ? -1 : volChange
+                var volChange = bestSNVol - volume
+                volChange = (volChange > 0 && volChange < 5) ? 1 : (volChange < 0 && volChange > -5) ? -1 : volChange
                 volume = volume + volChange
+                
                 if volChange == 0 {
                     expState = .Explore
                 }
@@ -182,30 +177,36 @@ struct Volume{
             case .Explore:
                 switch expDirection {
                 case .Left:
-                    volume = volume-1
+                    volume = volume - 1
                     expDirection = .Right
                 case .Right:
-                    volume = volume+1
+                    volume = volume + 1
                     expDirection = .Left
                 }
                 expState = .Top
             }
         }
-        volume = min(max(0,volume), volSteps-1)
+        volume = min(max(0, volume), volSteps - 1)
         
-        return getVolume()
+        return volumeSetting(volume)
     }
     
     func bestSNVolume() -> Int {
         var max = 0.0
         var maxi = 0
-        for i in 0..<self.sN.count {
-            if self.sN[i] > max {
+        for i in 0..<sN.count {
+            if sN[i] > max {
                 maxi = i
-                max = self.sN[i]
+                max = sN[i]
             }
         }
+
+        // fixme: check
+        for i in 0..<sN.count where sN[i] > max {
+            maxi = i
+            max = sN[i]
+        }
+
         return maxi
     }
-    
 }
