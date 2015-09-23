@@ -10,34 +10,6 @@ import Foundation
 import AVFoundation
 import CoreLocation
 
-public class Box<T> {
-    public let unbox: T
-    
-    init(_ value: T) {
-        self.unbox = value
-    }
-}
-
-public enum Result<T> {
-    case Value(Box<T>)
-    case Error(ErrorEvent)
-    
-    public init(_ value: T) {
-        self = .Value(Box(value))
-    }
-    
-    init(_ error: ErrorEvent) {
-        self = .Error(error)
-    }
-
-    public var value: T? {
-        switch self {
-        case let .Value(val): return val.unbox
-        case .Error: return nil
-        }
-    }
-}
-
 protocol Event {
     var time: NSDate { get }
 }
@@ -53,11 +25,6 @@ public struct WindSpeedEvent: Event, Dictionarifiable {
     var dict: [String : AnyObject] {
         return ["time" : time.timeIntervalSince1970, "speed" : speed]
     }
-    
-    public init(time: NSDate, speed: Double) {
-        self.time = time
-        self.speed = speed
-    }
 }
 
 public struct WindDirectionEvent: Event, Dictionarifiable {
@@ -66,6 +33,15 @@ public struct WindDirectionEvent: Event, Dictionarifiable {
 
     var dict: [String : AnyObject] {
         return ["time" : time.timeIntervalSince1970, "globalDirection" : globalDirection]
+    }
+}
+
+public struct PressureEvent: Event, Dictionarifiable {
+    public let time = NSDate()
+    public let pressure: Double
+    
+    var dict: [String : AnyObject] {
+        return ["time" : time.timeIntervalSince1970, "pressure" : pressure]
     }
 }
 
@@ -87,22 +63,69 @@ public struct HeadingEvent: Event, Dictionarifiable {
     }
 }
 
-public enum VaavudError: ErrorType {
+public struct LocationEvent: Event, Dictionarifiable {
+    public let time = NSDate()
+    public let latitude: CLLocationDegrees
+    public let longitude: CLLocationDegrees
+    public let altitude: CLLocationDistance
+    
+    public var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    
+    var dict: [String : AnyObject] {
+        return ["time" : time.timeIntervalSince1970, "latitude" : latitude, "longitude" : longitude, "altitude" : altitude]
+    }
+}
+
+public struct CourseEvent: Event, Dictionarifiable {
+    public let time = NSDate()
+    public let course: CLLocationDirection
+    
+    var dict: [String : AnyObject] {
+        return ["time" : time.timeIntervalSince1970, "course" : course]
+    }
+}
+
+public struct SpeedEvent: Event, Dictionarifiable {
+    public let time = NSDate()
+    public let speed: CLLocationSpeed
+    
+    var dict: [String : AnyObject] {
+        return ["time" : time.timeIntervalSince1970, "speed" : speed]
+    }
+}
+
+public enum VaavudAudioError: ErrorType, CustomStringConvertible {
     case Unplugged
     case MultipleStart
     case AudioEngine(NSError)
     case AudioSessionCategory(NSError)
+    case AudioInputUnavailable
     case AudioSessionSampleRate(NSError)
     case AudioSessionBufferDuration(NSError)
-    case LocationAuthorisation(CLAuthorizationStatus)
+    
+    public var description: String {
+        return "Error"
+    }
 }
 
-public struct ErrorEvent: Event, Dictionarifiable {
+public enum VaavudOtherError: ErrorType, CustomStringConvertible {
+    case LocationAuthorisation(CLAuthorizationStatus)
+    
+    public var description: String {
+        return "Error"
+    }
+}
+
+public struct ErrorEvent: Event, Dictionarifiable, CustomStringConvertible {
     public enum ErrorEventType {
+        case TemperatureReadingFailure
         case AudioInterruption(AVAudioSessionInterruptionType)
         case AudioRouteChange(AVAudioSessionRouteChangeReason)
-        case TemperatureReadingFailure
+        case AudioReconfigurationFailure(VaavudAudioError)
         case LocationManagerFailure(NSError)
+        case HeadingUnavailable(NSError)
     }
     
     public let time = NSDate()
@@ -120,49 +143,54 @@ public struct ErrorEvent: Event, Dictionarifiable {
         type = eventType
         
         switch type {
-        case .AudioInterruption, .AudioRouteChange:
+        case .AudioInterruption, .AudioRouteChange, .AudioReconfigurationFailure:
             domain = .WindReading
         case .TemperatureReadingFailure:
             domain = .Temperature
-        case .LocationManagerFailure:
+        case .LocationManagerFailure, .HeadingUnavailable:
             domain = .Location
         }
     }
     
     var dict: [String : AnyObject] {
-        let description: String
-        
+        return ["time" : time.timeIntervalSince1970, "description" : description]
+    }
+    
+    public var description: String {
         switch type {
         case let .AudioInterruption(interruptionType):
-            description = "AudioSession interrupted (\(interruptionType))"
+            return "AudioSession interrupted (\(interruptionType))"
         case let .AudioRouteChange(routeChangeReason):
-            description = "Audio route change (\(routeChangeReason))"
+            return "Audio route change (\(routeChangeReason))"
         case .TemperatureReadingFailure:
-            description = "Temperature reading failed"
+            return "Temperature reading failed"
         case let .LocationManagerFailure(error):
-            description = "Temperature reading failed with error: \(error.localizedDescription)"
+            return "Temperature reading failed with error: \(error.localizedDescription)"
+        case let .AudioReconfigurationFailure(audioError):
+            return "Audio reconfiguration failed with error: \(audioError)"
+        case let .HeadingUnavailable(error):
+            return "Heading unavailable, failed with error: \(error.localizedDescription)"
         }
-        
-        return ["time" : time.timeIntervalSince1970, "description" : description]
     }
 }
 
-//public protocol VaavudListener: WindListener, TemperatureListener { }
-
 protocol WindListener: class {
-    func newError(error: ErrorEvent)
-    func newWindSpeed(result: WindSpeedEvent)
-    func newWindDirection(result: WindDirectionEvent)
+    func newError(event: ErrorEvent)
+    func newWindSpeed(event: WindSpeedEvent)
+    func newWindDirection(event: WindDirectionEvent)
     
     func debugPlot(pointss: [[CGFloat]])
 }
 
 protocol LocationListener: class {
-    func newError(error: ErrorEvent)
-    func newHeading(result: HeadingEvent)
+    func newError(event: ErrorEvent)
+    func newHeading(event: HeadingEvent)
+    func newLocation(event: LocationEvent)
+    func newCourse(event: CourseEvent)
+    func newSpeed(event: SpeedEvent)
 }
 
 protocol TemperatureListener: class {
-    func newError(error: ErrorEvent)
-    func newTemperature(result: TemperatureEvent)
+    func newError(event: ErrorEvent)
+    func newTemperature(event: TemperatureEvent)
 }

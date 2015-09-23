@@ -122,7 +122,6 @@ struct Volume: CustomStringConvertible {
         
         switch volState {
         case .Diff:
-            // fixme: check
             let noiseDiff = abs(resp.diff20 - noiseThreshold)
             let divisor = resp.diff20 >= noiseThreshold ? -50000 : 10000
             volume += volSteps*noiseDiff/divisor
@@ -152,7 +151,6 @@ struct Volume: CustomStringConvertible {
             
             switch expState {
             case .Top:
-                // fixme: test
                 let bestSNVol = findMax(sN)
                 
                 if sN[bestSNVol] < 6 {

@@ -26,6 +26,9 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     public var windDirectionCallback: (WindDirectionEvent -> Void)?
     public var temperatureCallback: (TemperatureEvent -> Void)?
     public var headingCallback: (HeadingEvent -> Void)?
+    public var locationCallback: (LocationEvent -> Void)?
+    public var courseCallback: (CourseEvent -> Void)?
+    public var speedCallback: (SpeedEvent -> Void)?
     public var errorCallback: (ErrorEvent -> Void)?
 
     public var debugPlotCallback: ([[CGFloat]] -> Void)?
@@ -37,14 +40,9 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
         locationController.addListener(self)
     }
     
-    // fixme: ask: need to be stopped always?
     public func sleipnirAvailable() -> Bool {
-        defer { locationController.stop() }
-
         do { try locationController.start() }
         catch { return false }
-        
-        defer { windController.stop() }
         
         do { try windController.start() }
         catch { return false }
@@ -58,15 +56,13 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     
     public func start() throws {
         reset()
-        defer { locationController.stop() }
         try locationController.start()
-        
-        defer { windController.stop() }
         try windController.start()
     }
 
     public func stop() {
         windController.stop()
+        locationController.stop()
     }
     
     public func resetWindDirectionCalibration() {
@@ -79,6 +75,12 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
         errorCallback?(error)
     }
     
+    // MARK: Pressure listener
+    
+    func newPressure(event: TemperatureEvent) {
+        temperatureCallback?(event)
+    }
+
     // MARK: Temperature listener
     
     func newTemperature(event: TemperatureEvent) {
@@ -90,6 +92,21 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     func newHeading(event: HeadingEvent) {
         headingCallback?(event)
         session.addHeading(event)
+    }
+    
+    func newLocation(event: LocationEvent) {
+        locationCallback?(event)
+        session.addLocation(event)
+    }
+    
+    func newCourse(event: CourseEvent) {
+        courseCallback?(event)
+        session.addCourse(event)
+    }
+    
+    func newSpeed(event: SpeedEvent) {
+        speedCallback?(event)
+        session.addSpeed(event)
     }
     
     // MARK: Wind listener
@@ -109,7 +126,6 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     }
     
     deinit {
-        // perform the deinitialization
         print("DEINIT VaavudSDK")
     }
 }
@@ -122,12 +138,33 @@ public struct VaavudSession {
     public private(set) var windSpeeds = [WindSpeedEvent]()
     public private(set) var windDirections = [WindDirectionEvent]()
     public private(set) var headings = [HeadingEvent]()
+    public private(set) var locations = [LocationEvent]()
+    public private(set) var courses = [CourseEvent]()
+    public private(set) var speeds = [SpeedEvent]()
+    public private(set) var temperatures = [TemperatureEvent]()
+    public private(set) var pressures = [PressureEvent]()
     
     private var windSpeedSum: Double = 0
 
+    // Location data
+    
     mutating func addHeading(event: HeadingEvent) {
         headings.append(event)
     }
+    
+    mutating func addLocation(event: LocationEvent) {
+        locations.append(event)
+    }
+
+    mutating func addCourse(event: CourseEvent) {
+        courses.append(event)
+    }
+
+    mutating func addSpeed(event: SpeedEvent) {
+        speeds.append(event)
+    }
+
+    // Wind data
     
     mutating func addWindSpeed(event: WindSpeedEvent) {
         windSpeeds.append(event)
@@ -137,6 +174,18 @@ public struct VaavudSession {
     
     mutating func addWindDirection(event: WindDirectionEvent) {
         windDirections.append(event)
+    }
+    
+    // Temprature data
+
+    mutating func addTemperature(event: TemperatureEvent) {
+        temperatures.append(event)
+    }
+    
+    // Pressure data
+
+    mutating func addPressure(event: PressureEvent) {
+        pressures.append(event)
     }
     
     public func relativeTime(measurement: WindSpeedEvent) -> NSTimeInterval {

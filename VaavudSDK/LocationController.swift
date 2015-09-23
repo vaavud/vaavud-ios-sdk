@@ -23,7 +23,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     func start() throws {
         let status = CLLocationManager.authorizationStatus()
         if status == .Denied || status == .Restricted {
-            throw VaavudError.LocationAuthorisation(status)
+            throw VaavudOtherError.LocationAuthorisation(status)
         }
         
         locationManager.requestWhenInUseAuthorization()
@@ -44,30 +44,29 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingHeading()
     }
     
-    // fixme
-//    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        _ = locations.map { loc in
-//            print("LC: latitude: \(loc.coordinate.latitude) and longitude: \(loc.coordinate.longitude)")
-//        }
-//    }
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let loc = locations.last!
+        let locationEvent = LocationEvent(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude, altitude: loc.altitude)
+        _ = listeners.map { $0.newLocation(locationEvent) }
+        
+        if loc.course >= 0 {
+            _ = listeners.map { $0.newCourse(CourseEvent(course: loc.course)) }
+        }
+        
+        if loc.speed >= 0 {
+            _ = listeners.map { $0.newSpeed(SpeedEvent(speed: loc.speed)) }
+        }
+    }
     
     func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         _ = listeners.map { $0.newHeading(HeadingEvent(heading: newHeading.trueHeading)) }
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-//        print(error.debugDescription)
-        // fixme: send error event?
         _ = listeners.map { $0.newError(ErrorEvent(eventType: .LocationManagerFailure(error))) }
     }
     
-    // fixme
     deinit {
-        // perform the deinitialization
         print("DEINIT Location Controller")
     }
 }
-
-
-
-

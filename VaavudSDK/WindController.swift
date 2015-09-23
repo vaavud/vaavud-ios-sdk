@@ -47,7 +47,9 @@ class WindController: NSObject, LocationListener {
         // initialize remaining variables
         outputBuffer = WindController.createBuffer(AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 2))
         super.init()
-        createEngineAttachNodesConnect()
+        
+        // fixme: Andreas: move to start if possible
+        _ = try? createEngineAttachNodesConnect()
     }
 
     func addListener(listener: WindListener) {
@@ -71,14 +73,12 @@ class WindController: NSObject, LocationListener {
         player = AVAudioPlayerNode()
     }
     
-    private func createEngineAttachNodesConnect() {
+    private func createEngineAttachNodesConnect() throws {
         audioEngine.attachNode(player)
         audioEngine.connect(player, to: audioEngine.mainMixerNode, format: outputBuffer.format)
         
-        // setup input
         guard let inputNode = audioEngine.inputNode else {
-            // fixme: throw error
-            return
+            throw VaavudAudioError.AudioInputUnavailable
         }
         
         inputNode.installTapOnBus(0, bufferSize: 16537, format: inputFormat) {
@@ -90,16 +90,11 @@ class WindController: NSObject, LocationListener {
     }
 
     func start() throws {
-        guard audioEngine.running == false else {
-            throw VaavudError.MultipleStart
-        }
-        
-        // Setup volume
         audioEngine.mainMixerNode.outputVolume = volumeSetting(vol.volume)
         setVolumeToMax()
         
-        // Initialize AVAudioSession
         do {
+            try checkEngineAlreadyRunning()
             try initAVAudioSession()
             try checkCurrentRoute()
             try startEngine()
@@ -109,40 +104,20 @@ class WindController: NSObject, LocationListener {
             throw error
         }
         
+        setupObservers()
         startOutput()
     }
     
     func stop() {
-        _ = observers.map(NSNotificationCenter.defaultCenter().removeObserver) // TODO: check
+        _ = observers.map(NSNotificationCenter.defaultCenter().removeObserver) // fixme: check
         vol.save()
         rotationProcessor.save()
-        audioEngine.pause() // the other options (stop/reset) does ocationally cause a BAD_ACCESS CAStreamBasicDescription
+        audioEngine.pause() // The other options (stop/reset) does occasionally cause a BAD_ACCESS CAStreamBasicDescription
         reset()
     }
     
     func resetCalibration() {
         rotationProcessor.resetCalibration()
-    }
-    
-    private func startEngine() throws {
-        // start the engine and play
-        
-        /*  startAndReturnError: calls prepare if it has not already been called since stop.
-        
-        Starts the audio hardware via the AVAudioInputNode and/or AVAudioOutputNode instances in
-        the engine. Audio begins flowing through the engine.
-        
-        Reasons for potential failure include:
-        
-        1. There is problem in the structure of the graph. Input can't be routed to output or to a
-        recording tap through converter type nodes.
-        2. An AVAudioSession error.
-        3. The driver failed to start the hardware. */
-        
-        // fixme
-        
-        do { try audioEngine.start() }
-        catch let error as NSError { throw VaavudError.AudioEngine(error) }
     }
     
     private func startOutput() {
@@ -219,7 +194,7 @@ class WindController: NSObject, LocationListener {
     
     private class func createBuffer(outputFormat: AVAudioFormat) -> AVAudioPCMBuffer {
         let buffer = AVAudioPCMBuffer(PCMFormat: outputFormat, frameCapacity: 99)
-        buffer.frameLength = 99 // Should end in 3
+        buffer.frameLength = 99 // Should divisible by 3
         
         let leftChannel = buffer.floatChannelData[0]
         let rightChannel = buffer.floatChannelData[1]
@@ -289,20 +264,12 @@ class WindController: NSObject, LocationListener {
         return (diffValues[19], sN)
     }
     
-    // fixme: check logic
-    private func checkCurrentRoute() throws {
-        return // Fixme: Debugging
-
-        // Configure the audio session
-        let currentRoute = AVAudioSession.sharedInstance().currentRoute
-        
-        guard currentRoute.inputs.first?.portType == AVAudioSessionPortHeadsetMic &&
-            currentRoute.outputs.first?.portType == AVAudioSessionPortHeadphones else {
-                throw VaavudError.Unplugged
+    private func checkEngineAlreadyRunning() throws {
+        guard audioEngine.running == false else {
+            throw VaavudAudioError.MultipleStart
         }
     }
-    
-    // fixme: check logic
+
     private func initAVAudioSession() throws {
         // For complete details regarding the use of AVAudioSession see the AVAudioSession Programming Guide
         // https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Introduction/Introduction.html
@@ -310,19 +277,53 @@ class WindController: NSObject, LocationListener {
         // Configure the audio session
         let sessionInstance = AVAudioSession.sharedInstance()
         do { try sessionInstance.setCategory(AVAudioSessionCategoryPlayAndRecord) }
-        catch let error as NSError { throw VaavudError.AudioSessionCategory(error) }
+        catch let error as NSError { throw VaavudAudioError.AudioSessionCategory(error) }
         
         let hsSampleRate = 44100.0
         do { try sessionInstance.setPreferredSampleRate(hsSampleRate) }
-        catch let error as NSError { throw VaavudError.AudioSessionSampleRate(error) }
+        catch let error as NSError { throw VaavudAudioError.AudioSessionSampleRate(error) }
         
         let ioBufferDuration = 0.0029
         do { try sessionInstance.setPreferredIOBufferDuration(ioBufferDuration) }
-        catch let error as NSError { throw VaavudError.AudioSessionBufferDuration(error) }
+        catch let error as NSError { throw VaavudAudioError.AudioSessionBufferDuration(error) }
+    }
+    
+    private func checkCurrentRoute() throws {
+        return // Fixme: Debugging
         
+        // Configure the audio session
+        let currentRoute = AVAudioSession.sharedInstance().currentRoute
+        
+        guard currentRoute.inputs.first?.portType == AVAudioSessionPortHeadsetMic &&
+            currentRoute.outputs.first?.portType == AVAudioSessionPortHeadphones else {
+                throw VaavudAudioError.Unplugged
+        }
+    }
+
+    private func startEngine() throws {
+        // start the engine and play
+        
+        /*  startAndReturnError: calls prepare if it has not already been called since stop.
+        
+        Starts the audio hardware via the AVAudioInputNode and/or AVAudioOutputNode instances in
+        the engine. Audio begins flowing through the engine.
+        
+        Reasons for potential failure include:
+        
+        1. There is problem in the structure of the graph. Input can't be routed to output or to a
+        recording tap through converter type nodes.
+        2. An AVAudioSession error.
+        3. The driver failed to start the hardware. */
+        
+        do { try audioEngine.start() }
+        catch let error as NSError { throw VaavudAudioError.AudioEngine(error) }
+    }
+
+    private func setupObservers() {
         let nc = NSNotificationCenter.defaultCenter()
         let mainQueue = NSOperationQueue.mainQueue()
-        
+        let sessionInstance = AVAudioSession.sharedInstance()
+
         let interuptionObserver = nc.addObserverForName(AVAudioSessionInterruptionNotification, object:sessionInstance, queue:mainQueue) {
             [unowned self] notification in
             if let info = notification.userInfo {
@@ -347,10 +348,9 @@ class WindController: NSObject, LocationListener {
                 if let reason = AVAudioSessionRouteChangeReason(rawValue: intValue) {
                     let error = ErrorEvent(eventType: .AudioRouteChange(reason))
                     _ = self.listeners.map { $0.newError(error) }
+                    self.stop()
                 }
             }
-            // Stop algorithm on all route changes
-            self.stop()
         }
         observers.append(routeObserver)
     
@@ -362,11 +362,18 @@ class WindController: NSObject, LocationListener {
             print("Re-wiring connections and starting once again")
             
             self.resetAudio()
-            self.createEngineAttachNodesConnect()
             
-            // Fixme: do something else? Retry recursively?
-            do { try self.startEngine() }
-            catch { return }
+            do {
+                try self.createEngineAttachNodesConnect()
+                try self.startEngine()
+            }
+            catch let audioError as VaavudAudioError {
+                let error = ErrorEvent(eventType: .AudioReconfigurationFailure(audioError))
+                _ = self.listeners.map { $0.newError(error) }
+
+                return
+            }
+            catch { }
 
             self.startOutput()
         }
@@ -374,12 +381,29 @@ class WindController: NSObject, LocationListener {
         observers.append(mediaObserver)
     }
     
+    // MARK: Location listener
+    
     func newHeading(event: HeadingEvent) {
         heading = Float(event.heading)
     }
     
+    func newLocation(event: LocationEvent) {
+        
+    }
+    
+    func newSpeed(event: SpeedEvent) {
+        
+    }
+    
+    func newCourse(event: CourseEvent) {
+        
+    }
+    
+    // Fixme: send wind heading error
     func newError(error: ErrorEvent) {
-        _ = listeners.map { $0.newError(error) }
+        if case .LocationManagerFailure(let locationError) = error.type {
+            _ = listeners.map { $0.newError(ErrorEvent(eventType: .HeadingUnavailable(locationError))) }
+        }
     }
     
     private static func rotationFrequencyToWindspeed(freq: Double) -> Double {

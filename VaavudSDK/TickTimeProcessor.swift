@@ -27,35 +27,27 @@ public struct TickTimeProcessor {
         var time = 0
         var timeLast = 0
         var startLocated = false
-        var largeTeeth = false
+        var largeTooth = false
         
         mutating func updateProperties(newTime: Int) {
-            counter = counter + 1
+            counter++
             timeLast = time
             time = newTime
-            largeTeeth = isLargeTeeth()
-            startLocated = detectStart()
+            largeTooth = isLargeTooth
+            startLocated = detectStart
         }
         
-        func restart() -> Bool {
-            if largeTeeth {
-                return (counter % TPR != 0 || counter > 2*TPR)
-            }
-            
-            return false
+        private var restart: Bool {
+            return largeTooth && (counter % TPR != 0 || counter > 2*TPR)
         }
         
-        private func detectStart() -> Bool {
-            if largeTeeth {
-                return (counter == 2*TPR)
-            }
-            
-            return false
+        private var detectStart: Bool {
+            return largeTooth && counter == 2*TPR
         }
         
-        private func isLargeTeeth() -> Bool {
+        private var isLargeTooth: Bool {
             // Check if time is between 120% and 140 % of last time
-            let ratio = Float(time) / Float(timeLast)
+            let ratio = Float(time)/Float(timeLast)
             return ratio > 1.2 && ratio < 1.4
         }
     }
@@ -82,21 +74,21 @@ public struct TickTimeProcessor {
                 timeOneRotationLast = timeOneRotation // At this time timeOneRotation Still reflect the rotationTimeAtIndex 14
             }
             
-            timeOneRotation -= times[index];
-            times[index] = time;
-            timeOneRotation += times[index];
+            timeOneRotation -= times[index]
+            times[index] = time
+            timeOneRotation += times[index]
             velocity = velocity(index)
             
             let avgVelocity = 360/Float(timeOneRotation)
             relVelocities[processIndex] = velocity(processIndex)/avgVelocity - 1
         }
         
-        func velocity(i:Int) -> Float {
-            return TickTimeProcessor.teethSize[i]/Float(times[i])
+        func velocity(i: Int) -> Float {
+            return TickTimeProcessor.toothSize[i]/Float(times[i])
         }
         
         func velocityInRange() -> Bool {
-            return fabs(velocity/velocityLast-1) < 0.3
+            return fabs(velocity/velocityLast - 1) < 0.3
         }
         
         func relRotaionTime() -> Double {
@@ -112,7 +104,7 @@ public struct TickTimeProcessor {
     var nextOutputSample: Int64 = 0
     var outputInterval: Int64 = 0
     
-    static let teethSize: [Float] = (1...TPR).map {$0 < TPR ? 23.5 : 31}
+    static let toothSize: [Float] = (1...TPR).map {$0 < TPR ? 23.5 : 31}
 
     //    mutating func checkIfOutput(sampleTime: Int64) -> Bool {
     //        if sampleTime > nextOutputSample {
@@ -155,7 +147,8 @@ public struct TickTimeProcessor {
                 if sp.startLocated {
                     addRotation(tick)
                 }
-                if sp.restart() {
+                
+                if sp.restart {
                     reset()
                 }
             }
