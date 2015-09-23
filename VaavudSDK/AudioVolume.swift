@@ -33,7 +33,6 @@ enum ExpState {
     case Explore
 }
 
-// fixme: ask
 enum ExpDirection {
     case Left
     case Right
@@ -64,7 +63,7 @@ struct VolumeTest: CustomStringConvertible {
         return volumeSetting(volume)
     }
     
-    func testDictionary() -> [String: AnyObject] {
+    func debugDictionary() -> [String: AnyObject] {
         return ["sN" : sN, "diff20": diff20]
     }
 }
@@ -80,7 +79,7 @@ struct Volume: CustomStringConvertible {
     var expDirection = ExpDirection.Left
     
     var description: String {
-        return "Vol (volume: " + String(format: "%0.3f", volumeSetting(volume)) + ", volState: \(volState.hashValue))"
+        return String(format: "Vol (volume:  %0.3f", volumeSetting(volume)) + ", volState: \(volState.hashValue))"
     }
     
     init() {
@@ -111,7 +110,7 @@ struct Volume: CustomStringConvertible {
     mutating func returnToDiffState() {
         volState = .Diff
         counter = 0
-        sN = [Double](count: volSteps, repeatedValue: 0.0)
+        sN = [Double](count: volSteps, repeatedValue: 0)
     }
     
     mutating func newVolume(resp: AudioResponse) -> Float {
@@ -123,16 +122,10 @@ struct Volume: CustomStringConvertible {
         
         switch volState {
         case .Diff:
+            // fixme: check
             let noiseDiff = abs(resp.diff20 - noiseThreshold)
-            // fixme: show
-            let volumeChange: Int
-            if resp.diff20 >= noiseThreshold {
-                volumeChange = volSteps*(-noiseDiff)/50000
-            }
-            else {
-                volumeChange = volSteps*noiseDiff/10000
-            }
-            volume = volume + volumeChange
+            let divisor = resp.diff20 >= noiseThreshold ? -50000 : 10000
+            volume += volSteps*noiseDiff/divisor
             
             if counter > 15 {
                 volState = .SequentialSearch
@@ -159,7 +152,8 @@ struct Volume: CustomStringConvertible {
             
             switch expState {
             case .Top:
-                let bestSNVol = bestSNVolume()
+                // fixme: test
+                let bestSNVol = findMax(sN)
                 
                 if sN[bestSNVol] < 6 {
                     returnToDiffState()
@@ -190,23 +184,16 @@ struct Volume: CustomStringConvertible {
         
         return volumeSetting(volume)
     }
+}
+
+func findMax<T: Comparable>(array: [T]) -> Int {
+    var max = array[0]
+    var maxi = 0
     
-    func bestSNVolume() -> Int {
-        var max = 0.0
-        var maxi = 0
-        for i in 0..<sN.count {
-            if sN[i] > max {
-                maxi = i
-                max = sN[i]
-            }
-        }
-
-        // fixme: check
-        for i in 0..<sN.count where sN[i] > max {
-            maxi = i
-            max = sN[i]
-        }
-
-        return maxi
+    for i in 0..<array.count where array[i] > max {
+        maxi = i
+        max = array[i]
     }
+    
+    return maxi
 }

@@ -90,7 +90,7 @@ class WindController: NSObject, LocationListener {
     }
 
     func start() throws {
-        guard !audioEngine.running else {
+        guard audioEngine.running == false else {
             throw VaavudError.MultipleStart
         }
         
@@ -98,21 +98,10 @@ class WindController: NSObject, LocationListener {
         audioEngine.mainMixerNode.outputVolume = volumeSetting(vol.volume)
         setVolumeToMax()
         
-        // initialize AVAudioSession
+        // Initialize AVAudioSession
         do {
             try initAVAudioSession()
-        }
-        catch {
-            stop()
-            throw error
-        }
-        
-        guard checkCurrentRoute() else {
-            stop()
-            throw VaavudError.Unplugged
-        }
-        
-        do {
+            try checkCurrentRoute()
             try startEngine()
         }
         catch {
@@ -301,14 +290,16 @@ class WindController: NSObject, LocationListener {
     }
     
     // fixme: check logic
-    private func checkCurrentRoute() -> Bool {
-        return true // Fixme: Debugging
+    private func checkCurrentRoute() throws {
+        return // Fixme: Debugging
 
         // Configure the audio session
         let currentRoute = AVAudioSession.sharedInstance().currentRoute
         
-        return currentRoute.inputs.first?.portType == AVAudioSessionPortHeadsetMic &&
-            currentRoute.outputs.first?.portType == AVAudioSessionPortHeadphones
+        guard currentRoute.inputs.first?.portType == AVAudioSessionPortHeadsetMic &&
+            currentRoute.outputs.first?.portType == AVAudioSessionPortHeadphones else {
+                throw VaavudError.Unplugged
+        }
     }
     
     // fixme: check logic
@@ -318,17 +309,14 @@ class WindController: NSObject, LocationListener {
         
         // Configure the audio session
         let sessionInstance = AVAudioSession.sharedInstance()
-        
         do { try sessionInstance.setCategory(AVAudioSessionCategoryPlayAndRecord) }
         catch let error as NSError { throw VaavudError.AudioSessionCategory(error) }
         
         let hsSampleRate = 44100.0
-        
         do { try sessionInstance.setPreferredSampleRate(hsSampleRate) }
         catch let error as NSError { throw VaavudError.AudioSessionSampleRate(error) }
         
         let ioBufferDuration = 0.0029
-        
         do { try sessionInstance.setPreferredIOBufferDuration(ioBufferDuration) }
         catch let error as NSError { throw VaavudError.AudioSessionBufferDuration(error) }
         

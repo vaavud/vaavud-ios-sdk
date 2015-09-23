@@ -322,8 +322,7 @@ public struct RotationProcessor {
         var fSum = [Float](count: TPR, repeatedValue: 0)
         vDSP_mmul(sumVector, 1, d, 1, &dSum, 1, vDSP_Length(1), vDSP_Length(TPR),vDSP_Length(relVels.count))
         vDSP_mmul(sumVector, 1, f, 1, &fSum, 1, vDSP_Length(1), vDSP_Length(TPR),vDSP_Length(relVels.count))
-        // fixme: test
-        // fixme: why not use something like vDSP_vsub?
+
         return zip(dSum, fSum).map(-)
     }
     
