@@ -22,6 +22,11 @@ public struct WindSpeedEvent: Event, Dictionarifiable {
     public let time: NSDate
     public let speed: Double
     
+    public init(time: NSDate, speed: Double) {
+        self.time = time
+        self.speed = speed
+    }
+    
     var dict: [String : AnyObject] {
         return ["time" : time.timeIntervalSince1970, "speed" : speed]
     }
