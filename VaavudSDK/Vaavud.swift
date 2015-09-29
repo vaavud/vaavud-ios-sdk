@@ -10,12 +10,12 @@ import Foundation
 
 public class VaavudSleipnirAvailability: NSObject {
     public class func available() -> Bool {
-        return VaavudSDK.sharedInstance.sleipnirAvailable()
+        return VaavudSDK.shared.sleipnirAvailable()
     }
 }
 
 public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
-    public static let sharedInstance = VaavudSDK()
+    public static let shared = VaavudSDK()
     
     private var windController = WindController()
     private var locationController = LocationController()
