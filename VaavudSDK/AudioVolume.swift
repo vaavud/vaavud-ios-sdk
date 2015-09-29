@@ -83,7 +83,7 @@ struct Volume: CustomStringConvertible {
     }
     
     init() {
-        // Load save state
+        // Load saved state
         if let volume = NSUserDefaults.standardUserDefaults().valueForKey("vaavud_volume") as? Int {
             self.volume = volume
         }
