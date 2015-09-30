@@ -22,6 +22,10 @@ struct AudioResponse: CustomStringConvertible {
 // Find the correct Volume
 let volSteps = 101
 
+func volumeSetting(volume: Int) -> Float {
+    return Float(volume)/Float(volSteps - 1)
+}
+
 enum SearchType {
     case Diff
     case SequentialSearch
@@ -36,10 +40,6 @@ enum ExpState {
 enum ExpDirection {
     case Left
     case Right
-}
-
-func volumeSetting(volume: Int) -> Float {
-    return Float(volume)/Float(volSteps - 1)
 }
 
 struct VolumeTest: CustomStringConvertible {
@@ -79,7 +79,7 @@ struct Volume: CustomStringConvertible {
     var expDirection = ExpDirection.Left
     
     var description: String {
-        return String(format: "Vol (volume:  %0.3f", volumeSetting(volume)) + ", volState: \(volState.hashValue))"
+        return String(format: "Vol (volume: %0.3f", volumeSetting(volume)) + ", volState: \(volState.hashValue))"
     }
     
     init() {

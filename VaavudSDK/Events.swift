@@ -131,6 +131,8 @@ public struct ErrorEvent: Event, Dictionarifiable, CustomStringConvertible {
         case AudioReconfigurationFailure(VaavudAudioError)
         case LocationManagerFailure(NSError)
         case HeadingUnavailable(NSError)
+//        case ThrownAudioError(VaavudAudioError)
+//        case ThrownOtherError(VaavudOtherError)
     }
     
     public let time = NSDate()

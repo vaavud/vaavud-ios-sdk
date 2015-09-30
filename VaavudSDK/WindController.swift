@@ -289,8 +289,6 @@ class WindController: NSObject, LocationListener {
     }
     
     private func checkCurrentRoute() throws {
-        return // Fixme: Debugging
-        
         // Configure the audio session
         let currentRoute = AVAudioSession.sharedInstance().currentRoute
         

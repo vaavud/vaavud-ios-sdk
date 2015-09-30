@@ -33,7 +33,7 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
 
     public var debugPlotCallback: ([[CGFloat]] -> Void)?
 
-    init() {
+    private init() {
         windController.addListener(self)
         
         locationController.addListener(windController)
@@ -45,7 +45,9 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
         catch { return false }
         
         do { try windController.start() }
-        catch { return false }
+        catch { return false; }
+        
+        stop()
 
         return true
     }
@@ -56,8 +58,14 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     
     public func start() throws {
         reset()
-        try locationController.start()
-        try windController.start()
+        do {
+            try locationController.start()
+            try windController.start()
+        }
+        catch {
+//            newError(ErrorEvent(eventType: <#T##ErrorEvent.ErrorEventType#>))
+            throw error
+        }
     }
 
     public func stop() {

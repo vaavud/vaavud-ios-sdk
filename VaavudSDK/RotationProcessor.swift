@@ -89,13 +89,13 @@ public struct RotationProcessor {
         if let relVelData = NSUserDefaults.standardUserDefaults().objectForKey("vaavud_relVelsStore") as? NSData,
             relVelsStore = NSKeyedUnarchiver.unarchiveObjectWithData(relVelData) as? [[Float]] {
                 self.relVelsStore = relVelsStore
-                print("Calibration store loaded, completion: \(calibrationCompletionPercentage(relVelsStore))")
+//                print("Calibration store loaded, completion: \(calibrationCompletionPercentage(relVelsStore))")
         }
         
         if let t15Data = NSUserDefaults.standardUserDefaults().objectForKey("vaavud_t15") as? NSData,
             t15 = NSKeyedUnarchiver.unarchiveObjectWithData(t15Data) as? [Float] {
                 self.t15 = t15
-                print("Calibration coefficients loaded: \(self.t15)")
+//                print("Calibration coefficients loaded: \(self.t15)")
         }
     }
     
@@ -361,7 +361,7 @@ public struct RotationProcessor {
         NSUserDefaults.standardUserDefaults().setObject(relVelStoreData, forKey: "vaavud_relVelsStore")
         userDefaults.synchronize()
         
-        print("Calibration completion: \(calibrationCompletionPercentage(relVelsStore))")
+//        print("Calibration completion: \(calibrationCompletionPercentage(relVelsStore))")
     }
     
     mutating func resetCalibration() {
