@@ -47,9 +47,6 @@ class WindController: NSObject, LocationListener {
         // initialize remaining variables
         outputBuffer = WindController.createBuffer(AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 2))
         super.init()
-        
-        // fixme: Andreas: move to start if possible
-        _ = try? createEngineAttachNodesConnect()
     }
 
     func addListener(listener: WindListener) {
@@ -97,6 +94,7 @@ class WindController: NSObject, LocationListener {
             try checkEngineAlreadyRunning()
             try initAVAudioSession()
             try checkCurrentRoute()
+            try createEngineAttachNodesConnect()
             try startEngine()
         }
         catch {
@@ -114,6 +112,7 @@ class WindController: NSObject, LocationListener {
         rotationProcessor.save()
         audioEngine.pause() // The other options (stop/reset) does occasionally cause a BAD_ACCESS CAStreamBasicDescription
         reset()
+        resetAudio()
     }
     
     func resetCalibration() {
