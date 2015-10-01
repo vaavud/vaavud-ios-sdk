@@ -11,7 +11,7 @@ import VaavudSDK
 
 class ViewController: UIViewController {
 
-    let sdk = VaavudSDK.sharedInstance
+    let sdk = VaavudSDK.shared
     
     @IBOutlet weak var labelWindSpeed: UILabel!
     
@@ -26,17 +26,20 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func windspeed(result: Result<WindSpeedEvent>) {
-        if let event = result.value {
-            labelWindSpeed.text = String(format: "%0.1f", event.speed)
-        }
+    func windspeed(event: WindSpeedEvent) {
+        labelWindSpeed.text = String(format: "%0.1f", event.speed)
     }
     @IBAction func measure(sender: UISwitch) {
         if sender.on {
-            if let error = sdk.start() {
-                sender.on = false
-                createAlert(error.userDescription)
+            
+            do {
+                try sdk.start()
             }
+            catch {
+                sender.on = false
+                createAlert("Start failed")
+            }
+            
         }
         else {
             sdk.stop()
@@ -45,7 +48,7 @@ class ViewController: UIViewController {
     }
     
     func createAlert(message: String) {
-        var alert = UIAlertController(title: "Sleipnir not available!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Sleipnir not available!", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         presentViewController(alert, animated: true, completion: nil)
     }
@@ -54,8 +57,8 @@ class ViewController: UIViewController {
         return true
     }
     
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue) | Int(UIInterfaceOrientationMask.PortraitUpsideDown.rawValue)
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return [.Portrait, .PortraitUpsideDown]
     }
 }
 
