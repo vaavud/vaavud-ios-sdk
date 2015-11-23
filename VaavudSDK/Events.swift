@@ -15,12 +15,22 @@ protocol Event {
 }
 
 protocol Dictionarifiable {
+//    init?(dict: [String : AnyObject])
     var dict: [String : AnyObject] { get }
 }
 
 public struct WindSpeedEvent: Event, Dictionarifiable {
     public let time: NSDate
     public let speed: Double
+    
+//    public init?(dict: [String : AnyObject]) {
+//        guard let time = dict["time"] as? NSTimeInterval, speed = dict["speed"] as? Double else {
+//            return nil
+//        }
+//        
+//        self.time = NSDate(timeIntervalSince1970: time)
+//        self.speed = speed
+//    }
     
     public init(time: NSDate, speed: Double) {
         self.time = time
