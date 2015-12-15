@@ -10,104 +10,220 @@ import Foundation
 import AVFoundation
 import CoreLocation
 
+public extension NSDate {
+    convenience init(ms: NSNumber) {
+        self.init(timeIntervalSince1970: Double(ms.longLongValue)/1000)
+    }
+    
+    var ms: NSNumber {
+        return NSNumber(longLong: Int64(round(timeIntervalSince1970*1000)))
+    }
+}
+
 protocol Event {
     var time: NSDate { get }
 }
 
-protocol Dictionarifiable {
-//    init?(dict: [String : AnyObject])
-    var dict: [String : AnyObject] { get }
+protocol Firebaseable {
+    init?(dict: [String : AnyObject])
+    var fireDict: [String : AnyObject] { get }
 }
 
-public struct WindSpeedEvent: Event, Dictionarifiable {
+public struct WindSpeedEvent: Event, Firebaseable {
     public let time: NSDate
     public let speed: Double
     
-//    public init?(dict: [String : AnyObject]) {
-//        guard let time = dict["time"] as? NSTimeInterval, speed = dict["speed"] as? Double else {
-//            return nil
-//        }
-//        
-//        self.time = NSDate(timeIntervalSince1970: time)
-//        self.speed = speed
-//    }
-    
-    public init(time: NSDate, speed: Double) {
+    public init(time: NSDate = NSDate(), speed: Double) {
         self.time = time
         self.speed = speed
     }
+
+    public init?(dict: [String : AnyObject]) {
+        guard let time = dict["time"] as? NSNumber, speed = dict["speed"] as? Double else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.speed = speed
+    }
     
-    var dict: [String : AnyObject] {
-        return ["time" : time.timeIntervalSince1970, "speed" : speed]
+    var fireDict: [String : AnyObject] {
+        return ["time" : time.ms, "speed" : speed]
     }
 }
 
-public struct WindDirectionEvent: Event, Dictionarifiable {
+public struct WindDirectionEvent: Event, Firebaseable {
     public let time: NSDate
     public let globalDirection: Double
 
-    var dict: [String : AnyObject] {
-        return ["time" : time.timeIntervalSince1970, "globalDirection" : globalDirection]
+    public init(time: NSDate = NSDate(), globalDirection: Double) {
+        self.time = time
+        self.globalDirection = globalDirection
+    }
+
+    public init?(dict: [String : AnyObject]) {
+        guard let time = dict["time"] as? NSNumber, globalDirection = dict["globalDirection"] as? Double else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.globalDirection = globalDirection
+    }
+    
+    var fireDict: [String : AnyObject] {
+        return ["time" : time.ms, "globalDirection" : globalDirection]
     }
 }
 
-public struct PressureEvent: Event, Dictionarifiable {
-    public let time = NSDate()
+public struct PressureEvent: Event, Firebaseable {
+    public let time: NSDate
     public let pressure: Double
     
-    var dict: [String : AnyObject] {
-        return ["time" : time.timeIntervalSince1970, "pressure" : pressure]
+    public init(time: NSDate = NSDate(), pressure: Double) {
+        self.time = time
+        self.pressure = pressure
+    }
+
+    public init?(dict: [String : AnyObject]) {
+        guard let time = dict["time"] as? NSNumber, pressure = dict["pressure"] as? Double else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.pressure = pressure
+    }
+    
+    var fireDict: [String : AnyObject] {
+        return ["time" : time.ms, "pressure" : pressure]
     }
 }
 
-public struct TemperatureEvent: Event, Dictionarifiable {
-    public let time = NSDate()
+public struct TemperatureEvent: Event, Firebaseable {
+    public let time: NSDate
     public let temperature: Double
     
-    var dict: [String : AnyObject] {
-        return ["time" : time.timeIntervalSince1970, "temperature" : temperature]
+    public init(time: NSDate = NSDate(), temperature: Double) {
+        self.time = time
+        self.temperature = temperature
+    }
+
+    public init?(dict: [String : AnyObject]) {
+        guard let time = dict["time"] as? NSNumber, temperature = dict["temperature"] as? Double else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.temperature = temperature
+    }
+    
+    var fireDict: [String : AnyObject] {
+        return ["time" : time.ms, "temperature" : temperature]
     }
 }
 
-public struct HeadingEvent: Event, Dictionarifiable {
-    public let time = NSDate()
+public struct HeadingEvent: Event, Firebaseable {
+    public let time: NSDate
     public let heading: Double
     
-    var dict: [String : AnyObject] {
-        return ["time" : time.timeIntervalSince1970, "heading" : heading]
+    public init(time: NSDate = NSDate(), heading: Double) {
+        self.time = time
+        self.heading = heading
+    }
+
+    public init?(dict: [String : AnyObject]) {
+        guard let time = dict["time"] as? NSNumber, heading = dict["heading"] as? Double else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.heading = heading
+    }
+
+    var fireDict: [String : AnyObject] {
+        return ["time" : time.ms, "heading" : heading]
     }
 }
 
-public struct LocationEvent: Event, Dictionarifiable {
-    public let time = NSDate()
+public struct LocationEvent: Event, Firebaseable {
+    public let time: NSDate
     public let latitude: CLLocationDegrees
     public let longitude: CLLocationDegrees
     public let altitude: CLLocationDistance
+    
+    public init(time: NSDate = NSDate(), latitude: CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDegrees) {
+        self.time = time
+        self.latitude = latitude
+        self.longitude = longitude
+        self.altitude = altitude
+    }
+
+    public init?(dict: [String : AnyObject]) {
+        guard let time = dict["time"] as? NSNumber,
+            latitude = dict["latitude"] as? CLLocationDegrees,
+            longitude = dict["longitude"] as? CLLocationDegrees,
+            altitude = dict["altitude"] as? CLLocationDistance
+            else {
+                return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.latitude = latitude
+        self.longitude = longitude
+        self.altitude = altitude
+    }
     
     public var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    var dict: [String : AnyObject] {
-        return ["time" : time.timeIntervalSince1970, "latitude" : latitude, "longitude" : longitude, "altitude" : altitude]
+    var fireDict: [String : AnyObject] {
+        return ["time" : time.ms, "latitude" : latitude, "longitude" : longitude, "altitude" : altitude]
     }
 }
 
-public struct CourseEvent: Event, Dictionarifiable {
-    public let time = NSDate()
+public struct CourseEvent: Event, Firebaseable {
+    public let time: NSDate
     public let course: CLLocationDirection
     
-    var dict: [String : AnyObject] {
-        return ["time" : time.timeIntervalSince1970, "course" : course]
+    public init(time: NSDate = NSDate(), course: CLLocationDirection) {
+        self.time = time
+        self.course = course
+    }
+
+    public init?(dict: [String : AnyObject]) {
+        guard let time = dict["time"] as? NSNumber, course = dict["course"] as? CLLocationDirection else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.course = course
+    }
+
+    var fireDict: [String : AnyObject] {
+        return ["time" : time.ms, "course" : course]
     }
 }
 
-public struct SpeedEvent: Event, Dictionarifiable {
-    public let time = NSDate()
+public struct SpeedEvent: Event, Firebaseable {
+    public let time: NSDate
     public let speed: CLLocationSpeed
     
-    var dict: [String : AnyObject] {
-        return ["time" : time.timeIntervalSince1970, "speed" : speed]
+    public init(time: NSDate = NSDate(), speed: CLLocationSpeed) {
+        self.time = time
+        self.speed = speed
+    }
+
+    public init?(dict: [String : AnyObject]) {
+        guard let time = dict["time"] as? NSNumber, speed = dict["speed"] as? CLLocationSpeed else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.speed = speed
+    }
+
+    var fireDict: [String : AnyObject] {
+        return ["time" : time.ms, "speed" : speed]
     }
 }
 
@@ -133,7 +249,7 @@ public enum VaavudOtherError: ErrorType, CustomStringConvertible {
     }
 }
 
-public struct ErrorEvent: Event, Dictionarifiable, CustomStringConvertible {
+public struct ErrorEvent: Event, Firebaseable, CustomStringConvertible {
     public enum ErrorEventType {
         case TemperatureReadingFailure
         case AudioInterruption(AVAudioSessionInterruptionType)
@@ -169,8 +285,13 @@ public struct ErrorEvent: Event, Dictionarifiable, CustomStringConvertible {
         }
     }
     
-    var dict: [String : AnyObject] {
-        return ["time" : time.timeIntervalSince1970, "description" : description]
+    init?(dict: [String : AnyObject]) {
+        
+        return nil
+    }
+    
+    var fireDict: [String : AnyObject] {
+        return ["time" : time.ms, "description" : description]
     }
     
     public var description: String {
