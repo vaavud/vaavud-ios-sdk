@@ -24,9 +24,11 @@ protocol Event {
     var time: NSDate { get }
 }
 
-protocol Firebaseable {
-    init?(dict: [String : AnyObject])
-    var fireDict: [String : AnyObject] { get }
+public typealias FirebaseDictionary = [String : AnyObject]
+
+public protocol Firebaseable {
+    init?(dict: FirebaseDictionary)
+    var fireDict: FirebaseDictionary { get }
 }
 
 public struct WindSpeedEvent: Event, Firebaseable {
@@ -38,7 +40,7 @@ public struct WindSpeedEvent: Event, Firebaseable {
         self.speed = speed
     }
 
-    public init?(dict: [String : AnyObject]) {
+    public init?(dict: FirebaseDictionary) {
         guard let time = dict["time"] as? NSNumber, speed = dict["speed"] as? Double else {
             return nil
         }
@@ -47,7 +49,7 @@ public struct WindSpeedEvent: Event, Firebaseable {
         self.speed = speed
     }
     
-    var fireDict: [String : AnyObject] {
+    public var fireDict: FirebaseDictionary {
         return ["time" : time.ms, "speed" : speed]
     }
 }
@@ -61,7 +63,7 @@ public struct WindDirectionEvent: Event, Firebaseable {
         self.direction = direction
     }
 
-    public init?(dict: [String : AnyObject]) {
+    public init?(dict: FirebaseDictionary) {
         guard let time = dict["time"] as? NSNumber, direction = dict["direction"] as? Double else {
             return nil
         }
@@ -70,7 +72,7 @@ public struct WindDirectionEvent: Event, Firebaseable {
         self.direction = direction
     }
     
-    var fireDict: [String : AnyObject] {
+    public var fireDict: FirebaseDictionary {
         return ["time" : time.ms, "direction" : direction]
     }
 }
@@ -84,7 +86,7 @@ public struct PressureEvent: Event, Firebaseable {
         self.pressure = pressure
     }
 
-    public init?(dict: [String : AnyObject]) {
+    public init?(dict: FirebaseDictionary) {
         guard let time = dict["time"] as? NSNumber, pressure = dict["pressure"] as? Double else {
             return nil
         }
@@ -93,7 +95,7 @@ public struct PressureEvent: Event, Firebaseable {
         self.pressure = pressure
     }
     
-    var fireDict: [String : AnyObject] {
+    public var fireDict: FirebaseDictionary {
         return ["time" : time.ms, "pressure" : pressure]
     }
 }
@@ -107,7 +109,7 @@ public struct TemperatureEvent: Event, Firebaseable {
         self.temperature = temperature
     }
 
-    public init?(dict: [String : AnyObject]) {
+    public init?(dict: FirebaseDictionary) {
         guard let time = dict["time"] as? NSNumber, temperature = dict["temperature"] as? Double else {
             return nil
         }
@@ -116,7 +118,7 @@ public struct TemperatureEvent: Event, Firebaseable {
         self.temperature = temperature
     }
     
-    var fireDict: [String : AnyObject] {
+    public var fireDict: FirebaseDictionary {
         return ["time" : time.ms, "temperature" : temperature]
     }
 }
@@ -130,7 +132,7 @@ public struct HeadingEvent: Event, Firebaseable {
         self.heading = heading
     }
 
-    public init?(dict: [String : AnyObject]) {
+    public init?(dict: FirebaseDictionary) {
         guard let time = dict["time"] as? NSNumber, heading = dict["heading"] as? Double else {
             return nil
         }
@@ -139,7 +141,7 @@ public struct HeadingEvent: Event, Firebaseable {
         self.heading = heading
     }
 
-    var fireDict: [String : AnyObject] {
+    public var fireDict: FirebaseDictionary {
         return ["time" : time.ms, "heading" : heading]
     }
 }
@@ -157,7 +159,7 @@ public struct LocationEvent: Event, Firebaseable {
         self.altitude = altitude
     }
 
-    public init?(dict: [String : AnyObject]) {
+    public init?(dict: FirebaseDictionary) {
         guard let time = dict["time"] as? NSNumber,
             lat = dict["lat"] as? CLLocationDegrees,
             lon = dict["lon"] as? CLLocationDegrees,
@@ -176,7 +178,7 @@ public struct LocationEvent: Event, Firebaseable {
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
     
-    var fireDict: [String : AnyObject] {
+    public var fireDict: FirebaseDictionary {
         return ["time" : time.ms, "lat" : lat, "lon" : lon, "altitude" : altitude]
     }
 }
@@ -192,7 +194,7 @@ public struct VelocityEvent: Event, Firebaseable {
         self.course = course
     }
     
-    public init?(dict: [String : AnyObject]) {
+    public init?(dict: FirebaseDictionary) {
         guard let time = dict["time"] as? NSNumber,
             course = dict["course"] as? CLLocationDirection,
             speed = dict["speed"] as? CLLocationSpeed
@@ -205,8 +207,8 @@ public struct VelocityEvent: Event, Firebaseable {
         self.course = course
     }
     
-    var fireDict: [String : AnyObject] {
-        return ["time" : time.ms, "course" : course, "speed" : speed]
+    public var fireDict: FirebaseDictionary {
+        return ["time" : time.ms, "speed" : speed, "course" : course]
     }
 }
 
@@ -268,12 +270,11 @@ public struct ErrorEvent: Event, Firebaseable, CustomStringConvertible {
         }
     }
     
-    init?(dict: [String : AnyObject]) {
-        
+    public init?(dict: FirebaseDictionary) {
         return nil
     }
     
-    var fireDict: [String : AnyObject] {
+    public var fireDict: FirebaseDictionary {
         return ["time" : time.ms, "description" : description]
     }
     

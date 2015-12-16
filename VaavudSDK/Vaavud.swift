@@ -24,7 +24,9 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     
     public var windSpeedCallback: (WindSpeedEvent -> Void)?
     public var windDirectionCallback: (WindDirectionEvent -> Void)?
+    public var trueWindDirectionCallback: (WindDirectionEvent -> Void)?
     public var temperatureCallback: (TemperatureEvent -> Void)?
+    public var pressureCallback: (PressureEvent -> Void)?
     public var headingCallback: (HeadingEvent -> Void)?
     public var locationCallback: (LocationEvent -> Void)?
     public var velocityCallback: (VelocityEvent -> Void)?
@@ -62,7 +64,7 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
             try windController.start()
         }
         catch {
-//            newError(ErrorEvent(eventType: <#T##ErrorEvent.ErrorEventType#>))
+//            newError(ErrorEvent(eventType: ErrorEvent.ErrorEventType))
             throw error
         }
     }
@@ -84,8 +86,8 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     
     // MARK: Pressure listener
     
-    func newPressure(event: TemperatureEvent) {
-        temperatureCallback?(event)
+    func newPressure(event: PressureEvent) {
+        pressureCallback?(event)
     }
 
     // MARK: Temperature listener
@@ -106,14 +108,9 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
         session.addLocation(event)
     }
     
-    func newCourse(event: CourseEvent) {
-        courseCallback?(event)
-        session.addCourse(event)
-    }
-    
-    func newSpeed(event: SpeedEvent) {
-        speedCallback?(event)
-        session.addSpeed(event)
+    func newVelocity(event: VelocityEvent) {
+        velocityCallback?(event)
+        session.addVelocity(event)
     }
     
     // MARK: Wind listener
@@ -126,6 +123,11 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     func newWindDirection(event: WindDirectionEvent) {
         windDirectionCallback?(event)
         session.addWindDirection(event)
+    }
+    
+    func newTrueWindDirection(event: WindDirectionEvent) {
+        trueWindDirectionCallback?(event)
+        session.addTrueWindDirection(event)
     }
     
     func debugPlot(valuess: [[CGFloat]]) {
@@ -144,10 +146,10 @@ public struct VaavudSession {
     public private(set) var meanDirection: Double = 0
     public private(set) var windSpeeds = [WindSpeedEvent]()
     public private(set) var windDirections = [WindDirectionEvent]()
+    public private(set) var trueWindDirections = [WindDirectionEvent]()
     public private(set) var headings = [HeadingEvent]()
     public private(set) var locations = [LocationEvent]()
-    public private(set) var courses = [CourseEvent]()
-    public private(set) var speeds = [SpeedEvent]()
+    public private(set) var velocities = [VelocityEvent]()
     public private(set) var temperatures = [TemperatureEvent]()
     public private(set) var pressures = [PressureEvent]()
     
@@ -163,12 +165,8 @@ public struct VaavudSession {
         locations.append(event)
     }
 
-    mutating func addCourse(event: CourseEvent) {
-        courses.append(event)
-    }
-
-    mutating func addSpeed(event: SpeedEvent) {
-        speeds.append(event)
+    mutating func addVelocity(event: VelocityEvent) {
+        velocities.append(event)
     }
 
     // Wind data
@@ -181,6 +179,10 @@ public struct VaavudSession {
     
     mutating func addWindDirection(event: WindDirectionEvent) {
         windDirections.append(event)
+    }
+    
+    mutating func addTrueWindDirection(event: WindDirectionEvent) {
+        trueWindDirections.append(event)
     }
     
     // Temprature data
