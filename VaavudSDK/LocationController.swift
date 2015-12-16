@@ -47,15 +47,11 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let loc = locations.last!
         
-        let locationEvent = LocationEvent(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude, altitude: loc.altitude)
+        let locationEvent = LocationEvent(time: loc.timestamp, lat: loc.coordinate.latitude, lon: loc.coordinate.longitude, altitude: loc.altitude)
         _ = listeners.map { $0.newLocation(locationEvent) }
         
-        if loc.course >= 0 {
-            _ = listeners.map { $0.newCourse(CourseEvent(course: loc.course)) }
-        }
-        
-        if loc.speed >= 0 {
-            _ = listeners.map { $0.newSpeed(SpeedEvent(speed: loc.speed)) }
+        if loc.course >= 0 && loc.speed >= 0 {
+            _ = listeners.map { $0.newVelocity(VelocityEvent(time: loc.timestamp, speed: loc.speed, course: loc.course)) }
         }
         
         print("LOC: X" + (loc.course >= 0 ? "X" : "-") + (loc.speed >= 0 ? "X" : "-"))

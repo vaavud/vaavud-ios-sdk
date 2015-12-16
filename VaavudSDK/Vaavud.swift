@@ -27,8 +27,7 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     public var temperatureCallback: (TemperatureEvent -> Void)?
     public var headingCallback: (HeadingEvent -> Void)?
     public var locationCallback: (LocationEvent -> Void)?
-    public var courseCallback: (CourseEvent -> Void)?
-    public var speedCallback: (SpeedEvent -> Void)?
+    public var velocityCallback: (VelocityEvent -> Void)?
     public var errorCallback: (ErrorEvent -> Void)?
 
     public var debugPlotCallback: ([[CGFloat]] -> Void)?

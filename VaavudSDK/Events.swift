@@ -146,38 +146,38 @@ public struct HeadingEvent: Event, Firebaseable {
 
 public struct LocationEvent: Event, Firebaseable {
     public let time: NSDate
-    public let latitude: CLLocationDegrees
-    public let longitude: CLLocationDegrees
+    public let lat: CLLocationDegrees
+    public let lon: CLLocationDegrees
     public let altitude: CLLocationDistance
     
-    public init(time: NSDate = NSDate(), latitude: CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDegrees) {
+    public init(time: NSDate = NSDate(), lat: CLLocationDegrees, lon: CLLocationDegrees, altitude: CLLocationDegrees) {
         self.time = time
-        self.latitude = latitude
-        self.longitude = longitude
+        self.lat = lat
+        self.lon = lon
         self.altitude = altitude
     }
 
     public init?(dict: [String : AnyObject]) {
         guard let time = dict["time"] as? NSNumber,
-            latitude = dict["lat"] as? CLLocationDegrees,
-            longitude = dict["lon"] as? CLLocationDegrees,
+            lat = dict["lat"] as? CLLocationDegrees,
+            lon = dict["lon"] as? CLLocationDegrees,
             altitude = dict["altitude"] as? CLLocationDistance
             else {
                 return nil
         }
         
         self.time = NSDate(ms: time)
-        self.latitude = latitude
-        self.longitude = longitude
+        self.lat = lat
+        self.lon = lon
         self.altitude = altitude
     }
     
     public var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
     
     var fireDict: [String : AnyObject] {
-        return ["time" : time.ms, "lat" : latitude, "lon" : longitude, "altitude" : altitude]
+        return ["time" : time.ms, "lat" : lat, "lon" : lon, "altitude" : altitude]
     }
 }
 
@@ -186,8 +186,9 @@ public struct VelocityEvent: Event, Firebaseable {
     public let speed: CLLocationSpeed
     public let course: CLLocationDirection
     
-    public init(time: NSDate = NSDate(), course: CLLocationDirection) {
+    public init(time: NSDate = NSDate(), speed: CLLocationSpeed, course: CLLocationDirection) {
         self.time = time
+        self.speed = speed
         self.course = course
     }
     
@@ -306,8 +307,7 @@ protocol LocationListener: class {
     func newError(event: ErrorEvent)
     func newHeading(event: HeadingEvent)
     func newLocation(event: LocationEvent)
-    func newCourse(event: CourseEvent)
-    func newSpeed(event: SpeedEvent)
+    func newVelocity(event: VelocityEvent)
 }
 
 protocol TemperatureListener: class {
