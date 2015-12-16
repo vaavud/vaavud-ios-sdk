@@ -46,6 +46,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let loc = locations.last!
+        
         let locationEvent = LocationEvent(latitude: loc.coordinate.latitude, longitude: loc.coordinate.longitude, altitude: loc.altitude)
         _ = listeners.map { $0.newLocation(locationEvent) }
         
@@ -56,6 +57,8 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         if loc.speed >= 0 {
             _ = listeners.map { $0.newSpeed(SpeedEvent(speed: loc.speed)) }
         }
+        
+        print("LOC: X" + (loc.course >= 0 ? "X" : "-") + (loc.speed >= 0 ? "X" : "-"))
     }
     
     func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {

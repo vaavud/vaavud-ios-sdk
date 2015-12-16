@@ -54,24 +54,24 @@ public struct WindSpeedEvent: Event, Firebaseable {
 
 public struct WindDirectionEvent: Event, Firebaseable {
     public let time: NSDate
-    public let globalDirection: Double
+    public let direction: Double
 
-    public init(time: NSDate = NSDate(), globalDirection: Double) {
+    public init(time: NSDate = NSDate(), direction: Double) {
         self.time = time
-        self.globalDirection = globalDirection
+        self.direction = direction
     }
 
     public init?(dict: [String : AnyObject]) {
-        guard let time = dict["time"] as? NSNumber, globalDirection = dict["globalDirection"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, direction = dict["direction"] as? Double else {
             return nil
         }
         
         self.time = NSDate(ms: time)
-        self.globalDirection = globalDirection
+        self.direction = direction
     }
     
     var fireDict: [String : AnyObject] {
-        return ["time" : time.ms, "globalDirection" : globalDirection]
+        return ["time" : time.ms, "direction" : direction]
     }
 }
 
@@ -159,8 +159,8 @@ public struct LocationEvent: Event, Firebaseable {
 
     public init?(dict: [String : AnyObject]) {
         guard let time = dict["time"] as? NSNumber,
-            latitude = dict["latitude"] as? CLLocationDegrees,
-            longitude = dict["longitude"] as? CLLocationDegrees,
+            latitude = dict["lat"] as? CLLocationDegrees,
+            longitude = dict["lon"] as? CLLocationDegrees,
             altitude = dict["altitude"] as? CLLocationDistance
             else {
                 return nil
@@ -177,53 +177,35 @@ public struct LocationEvent: Event, Firebaseable {
     }
     
     var fireDict: [String : AnyObject] {
-        return ["time" : time.ms, "latitude" : latitude, "longitude" : longitude, "altitude" : altitude]
+        return ["time" : time.ms, "lat" : latitude, "lon" : longitude, "altitude" : altitude]
     }
 }
 
-public struct CourseEvent: Event, Firebaseable {
+public struct VelocityEvent: Event, Firebaseable {
     public let time: NSDate
+    public let speed: CLLocationSpeed
     public let course: CLLocationDirection
     
     public init(time: NSDate = NSDate(), course: CLLocationDirection) {
         self.time = time
         self.course = course
     }
-
+    
     public init?(dict: [String : AnyObject]) {
-        guard let time = dict["time"] as? NSNumber, course = dict["course"] as? CLLocationDirection else {
-            return nil
+        guard let time = dict["time"] as? NSNumber,
+            course = dict["course"] as? CLLocationDirection,
+            speed = dict["speed"] as? CLLocationSpeed
+            else {
+                return nil
         }
         
         self.time = NSDate(ms: time)
+        self.speed = speed
         self.course = course
     }
-
-    var fireDict: [String : AnyObject] {
-        return ["time" : time.ms, "course" : course]
-    }
-}
-
-public struct SpeedEvent: Event, Firebaseable {
-    public let time: NSDate
-    public let speed: CLLocationSpeed
     
-    public init(time: NSDate = NSDate(), speed: CLLocationSpeed) {
-        self.time = time
-        self.speed = speed
-    }
-
-    public init?(dict: [String : AnyObject]) {
-        guard let time = dict["time"] as? NSNumber, speed = dict["speed"] as? CLLocationSpeed else {
-            return nil
-        }
-        
-        self.time = NSDate(ms: time)
-        self.speed = speed
-    }
-
     var fireDict: [String : AnyObject] {
-        return ["time" : time.ms, "speed" : speed]
+        return ["time" : time.ms, "course" : course, "speed" : speed]
     }
 }
 

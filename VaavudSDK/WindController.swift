@@ -151,7 +151,7 @@ class WindController: NSObject, LocationListener {
             
             for direction in directions {
                 let measurementTime = self.sampleTimeToUnixTime(direction.sampleTime)
-                let event = WindDirectionEvent(time: measurementTime, globalDirection: Double(direction.globalDirection))
+                let event = WindDirectionEvent(time: measurementTime, direction: Double(direction.globalDirection))
                 _ = self.listeners.map { $0.newWindDirection(event) }
             }
             
