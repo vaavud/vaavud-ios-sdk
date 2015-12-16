@@ -14,7 +14,7 @@ public class VaavudSleipnirAvailability: NSObject {
     }
 }
 
-public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
+public class VaavudSDK: WindListener, LocationListener {
     public static let shared = VaavudSDK()
     
     private var windController = WindController()
@@ -23,9 +23,9 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     public private(set) var session = VaavudSession()
     
     public var windSpeedCallback: (WindSpeedEvent -> Void)?
-    public var windDirectionCallback: (WindDirectionEvent -> Void)?
-    public var trueWindDirectionCallback: (WindDirectionEvent -> Void)?
-    public var temperatureCallback: (TemperatureEvent -> Void)?
+    public var windDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
+    public var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
+    public var temperatureCallback: (TemperatureEvent -> Void)? // fixme: implement
     public var pressureCallback: (PressureEvent -> Void)?
     public var headingCallback: (HeadingEvent -> Void)?
     public var locationCallback: (LocationEvent -> Void)?
@@ -56,7 +56,7 @@ public class VaavudSDK: WindListener, TemperatureListener, LocationListener {
     func reset() {
         session = VaavudSession()
     }
-    
+        
     public func start() throws {
         reset()
         do {
