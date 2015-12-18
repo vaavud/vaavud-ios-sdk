@@ -154,6 +154,7 @@ public struct VaavudSession {
     public private(set) var pressures = [PressureEvent]()
     
     private var windSpeedSum: Double = 0
+//    private var windSpeedSquaredSum: Double = 0
 
     // Location data
     
@@ -174,6 +175,7 @@ public struct VaavudSession {
     mutating func addWindSpeed(event: WindSpeedEvent) {
         windSpeeds.append(event)
         windSpeedSum += event.speed
+//        windSpeedSquaredSum += event.speed*event.speed
         // Update frequency should be considered! (sum should be speed*timeDelta)
     }
     
