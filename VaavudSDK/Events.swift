@@ -9,7 +9,7 @@
 import Foundation
 import AVFoundation
 import CoreLocation
-import Firebase
+//import Firebase
 
 public extension NSDate {
     convenience init(ms: NSNumber) {
@@ -35,9 +35,9 @@ public protocol FirebaseEntity {
     init?(dict: FirebaseDictionary)
 }
 
-public protocol FirebaseTopEntity {
-    init?(snapshot: FDataSnapshot)
-}
+//public protocol FirebaseTopEntity {
+//    init?(snapshot: FDataSnapshot)
+//}
 
 public struct WindSpeedEvent: Event, Firebaseable {
     public let time: NSDate
