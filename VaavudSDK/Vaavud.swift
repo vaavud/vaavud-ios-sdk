@@ -45,7 +45,7 @@ public class VaavudSDK: WindListener, LocationListener {
         do { try locationController.start() }
         catch { return false }
         
-        do { try windController.start() }
+        do { try windController.start(false) }
         catch { return false; }
         
         stop()
@@ -57,11 +57,11 @@ public class VaavudSDK: WindListener, LocationListener {
         session = VaavudSession()
     }
         
-    public func start() throws {
+    public func start(flipped: Bool) throws {
         reset()
         do {
             try locationController.start()
-            try windController.start()
+            try windController.start(flipped)
         }
         catch {
 //            newError(ErrorEvent(eventType: ErrorEvent.ErrorEventType))
