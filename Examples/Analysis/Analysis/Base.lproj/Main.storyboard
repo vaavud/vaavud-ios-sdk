@@ -125,6 +125,49 @@
             </objects>
             <point key="canvasLocation" x="750" y="372"/>
         </scene>
+        <!--Stats View Controller-->
+        <scene sceneID="ojh-cS-huV">
+            <objects>
+                <viewController id="9SW-oc-Ng3" customClass="StatsViewController" customModule="Analysis" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pya-zH-ASj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Unt-Xc-TSP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0JM-r5-tTy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGM-Ba-DdU">
+                                <rect key="frame" x="242" y="28" width="117" height="30"/>
+                                <state key="normal" title="Reset Calibration"/>
+                                <connections>
+                                    <action selector="reset:" destination="9SW-oc-Ng3" eventType="touchUpInside" id="zXr-Eh-zoA"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calibration completion:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrf-wu-5Eu">
+                                <rect key="frame" x="212" y="66" width="177" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EGM-Ba-DdU" firstAttribute="top" secondItem="pya-zH-ASj" secondAttribute="bottom" constant="8" id="8cr-D1-RHq"/>
+                            <constraint firstItem="EGM-Ba-DdU" firstAttribute="centerX" secondItem="0JM-r5-tTy" secondAttribute="centerX" id="AiQ-jh-R6W"/>
+                            <constraint firstItem="wrf-wu-5Eu" firstAttribute="top" secondItem="EGM-Ba-DdU" secondAttribute="bottom" constant="8" id="Jyb-gf-VnS"/>
+                            <constraint firstItem="wrf-wu-5Eu" firstAttribute="centerX" secondItem="0JM-r5-tTy" secondAttribute="centerX" id="zgl-kd-JE9"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="30f-Ni-sRg"/>
+                    <connections>
+                        <outlet property="label" destination="wrf-wu-5Eu" id="BZu-dQ-fsH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YOw-JU-Qah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="1099"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -138,6 +181,7 @@
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="9SW-oc-Ng3" kind="relationship" relationship="viewControllers" id="VjP-mu-O7p"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>

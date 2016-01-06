@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F139A331C3D477F00E1103C /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F139A321C3D477F00E1103C /* StatsViewController.swift */; };
 		9FA607631C3C4C59008F03B2 /* simplePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA607621C3C4BD1008F03B2 /* simplePlot.framework */; };
 		9FA607641C3C4C59008F03B2 /* simplePlot.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA607621C3C4BD1008F03B2 /* simplePlot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FA607681C3C5E34008F03B2 /* ATabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA607671C3C5E34008F03B2 /* ATabBarController.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9F139A321C3D477F00E1103C /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		9FA6075D1C3C4BD1008F03B2 /* simplePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = simplePlot.xcodeproj; path = ../../../../../lung/simplePlot/simplePlot.xcodeproj; sourceTree = "<group>"; };
 		9FA607671C3C5E34008F03B2 /* ATabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATabBarController.swift; sourceTree = "<group>"; };
 		9FEE92E11C3C057200E48792 /* Analysis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Analysis.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +138,7 @@
 				9FEE92EF1C3C057200E48792 /* LaunchScreen.storyboard */,
 				9FEE92F21C3C057200E48792 /* Info.plist */,
 				9FA607671C3C5E34008F03B2 /* ATabBarController.swift */,
+				9F139A321C3D477F00E1103C /* StatsViewController.swift */,
 			);
 			path = Analysis;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				9FEE92E91C3C057200E48792 /* SecondViewController.swift in Sources */,
 				9FEE92E51C3C057200E48792 /* AppDelegate.swift in Sources */,
 				9FEE92E71C3C057200E48792 /* FirstViewController.swift in Sources */,
+				9F139A331C3D477F00E1103C /* StatsViewController.swift in Sources */,
 				9FA607681C3C5E34008F03B2 /* ATabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
