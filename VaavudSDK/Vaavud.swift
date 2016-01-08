@@ -134,6 +134,10 @@ public class VaavudSDK: WindListener, LocationListener {
         debugPlotCallback?(valuess)
     }
     
+    public func test() {
+        windSpeedCallback?(WindSpeedEvent(time: NSDate(), speed: 123))
+    }
+    
     deinit {
         print("DEINIT VaavudSDK")
     }
@@ -205,5 +209,39 @@ public struct VaavudSession {
     
     func description(measurement: WindSpeedEvent) -> String {
         return "WindSpeedEvent (time rel:" + String(format: "% 5.2f", relativeTime(measurement)) + " speed:" + String(format: "% 5.2f", measurement.speed) + " UnixTime: \(measurement.time.timeIntervalSince1970))"
+    }
+}
+
+public class VaavudLegacySDK: NSObject {
+    public static let shared = VaavudLegacySDK()
+    
+    public var windSpeedCallback: (Double -> Void)?
+    public var windDirectionCallback: (Double -> Void)?
+    
+    private override init() {
+        super.init()
+        
+        VaavudSDK.shared.windSpeedCallback = { self.windSpeedCallback?($0.speed) }
+        VaavudSDK.shared.windDirectionCallback = { self.windDirectionCallback?($0.direction) }
+    }
+    
+    public func start() {
+        do {
+            try VaavudSDK.shared.start();
+        } catch {}
+    }
+    
+    public func stop() {
+     VaavudSDK.shared.stop();
+
+    }
+
+    
+    public func test() {
+        VaavudSDK.shared.test()
+    }
+    
+    public func sleipnirAvailable() -> Bool {
+        return VaavudSDK.shared.sleipnirAvailable()
     }
 }
