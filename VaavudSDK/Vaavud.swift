@@ -153,6 +153,10 @@ public struct VaavudSession {
     public private(set) var temperatures = [TemperatureEvent]()
     public private(set) var pressures = [PressureEvent]()
     
+    public var gustiness: Float {
+        return 0
+    }
+    
     private var windSpeedSum: Double = 0
 //    private var windSpeedSquaredSum: Double = 0
 
