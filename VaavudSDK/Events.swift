@@ -35,10 +35,6 @@ public protocol FirebaseEntity {
     init?(dict: FirebaseDictionary)
 }
 
-//public protocol FirebaseTopEntity {
-//    init?(snapshot: FDataSnapshot)
-//}
-
 public struct WindSpeedEvent: Event, Firebaseable {
     public let time: NSDate
     public let speed: Double

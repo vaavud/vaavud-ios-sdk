@@ -88,12 +88,14 @@ public class VaavudSDK: WindListener, LocationListener {
     
     func newPressure(event: PressureEvent) {
         pressureCallback?(event)
+        session.addPressure(event)
     }
 
     // MARK: Temperature listener
     
     func newTemperature(event: TemperatureEvent) {
         temperatureCallback?(event)
+        session.addTemperature(event)
     }
     
     // MARK: Location listener
@@ -141,7 +143,6 @@ public class VaavudSDK: WindListener, LocationListener {
 
 public struct VaavudSession {
     public let time = NSDate()
-    public var meanSpeed: Double { return windSpeedSum/Double(windSpeeds.count) }
     
     public private(set) var meanDirection: Double = 0
     public private(set) var windSpeeds = [WindSpeedEvent]()
@@ -153,12 +154,20 @@ public struct VaavudSession {
     public private(set) var temperatures = [TemperatureEvent]()
     public private(set) var pressures = [PressureEvent]()
     
-    public var gustiness: Float {
-        return 0
+    public var meanSpeed: Double { return windSpeeds.count > 0 ? windSpeedSum/Double(windSpeeds.count) : 0 }
+
+    public var maxSpeed: Double = 0
+
+    public var turbulence: Double? {
+        print(" - - - - turbulence")
+        return gustiness(windSpeeds.map { $0.speed })
+//        return (windSpeedSquaredSum - windSpeedSum*windSpeedSum)/meanSpeed
     }
     
+    // Private variables
+    
     private var windSpeedSum: Double = 0
-//    private var windSpeedSquaredSum: Double = 0
+    private var windSpeedSquaredSum: Double = 0
 
     // Location data
     
@@ -178,9 +187,18 @@ public struct VaavudSession {
     
     mutating func addWindSpeed(event: WindSpeedEvent) {
         windSpeeds.append(event)
-        windSpeedSum += event.speed
-//        windSpeedSquaredSum += event.speed*event.speed
-        // Update frequency should be considered! (sum should be speed*timeDelta)
+
+        let speed = event.speed
+        windSpeedSum += speed
+        windSpeedSquaredSum += speed*speed
+        
+        if speed > maxSpeed {
+            maxSpeed = speed
+        }
+        
+        print("Session addWindSpeed \(event.speed) -> \(meanSpeed)")
+
+        // Fixme: Changing update frequency should be considered
     }
     
     mutating func addWindDirection(event: WindDirectionEvent) {
@@ -203,6 +221,8 @@ public struct VaavudSession {
         pressures.append(event)
     }
     
+    // Helper function
+
     public func relativeTime(measurement: WindSpeedEvent) -> NSTimeInterval {
         return measurement.time.timeIntervalSinceDate(time)
     }
@@ -211,3 +231,23 @@ public struct VaavudSession {
         return "WindSpeedEvent (time rel:" + String(format: "% 5.2f", relativeTime(measurement)) + " speed:" + String(format: "% 5.2f", measurement.speed) + " UnixTime: \(measurement.time.timeIntervalSince1970))"
     }
 }
+
+func gustiness(speeds: [Double]) -> Double? {
+    let n = Double(speeds.count)
+    
+    guard n > 0 else {
+        return nil
+    }
+
+    let mean = speeds.reduce(0, combine: +)/n
+    let squares = speeds.map { ($0 - mean)*($0 - mean) }
+    let variance = squares.reduce(0, combine: +)/(n - 1)
+    
+//    let variance: Double = speeds.reduce(0) { $0 + ($1 - mean)*($1 - mean) }/(n - 1)
+    
+    return variance/mean
+}
+
+
+
+
