@@ -23,7 +23,7 @@ class WindController: NSObject, LocationListener {
     
     private var heading: Float? // Floats are thread safe
     
-    // there is a memory management bug / leak for these input/output formats. fix later.
+    // fixme: there is a memory management bug / leak for these input/output formats. fix later.
     private let inputFormat = AVAudioFormat(commonFormat: AVAudioCommonFormat.PCMFormatInt16, sampleRate: 44100.0, channels: 1, interleaved: false)
     private let outputFormat = AVAudioFormat(standardFormatWithSampleRate: 44100.0, channels: 2)
     

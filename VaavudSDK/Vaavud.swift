@@ -23,13 +23,14 @@ public class VaavudSDK: WindListener, LocationListener {
     public private(set) var session = VaavudSession()
     
     public var windSpeedCallback: (WindSpeedEvent -> Void)?
-    public var windDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
+    public var trueWindSpeedCallback: (WindSpeedEvent -> Void)?
+    public var windDirectionCallback: (WindDirectionEvent -> Void)?
     public var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
     public var temperatureCallback: (TemperatureEvent -> Void)? // fixme: implement
-    public var pressureCallback: (PressureEvent -> Void)?
-    public var headingCallback: (HeadingEvent -> Void)?
-    public var locationCallback: (LocationEvent -> Void)?
-    public var velocityCallback: (VelocityEvent -> Void)?
+    public var pressureCallback: (PressureEvent -> Void)? // fixme: implement
+    public var headingCallback: (HeadingEvent -> Void)? // fixme: implement
+    public var locationCallback: (LocationEvent -> Void)? // fixme: implement
+    public var velocityCallback: (VelocityEvent -> Void)? // fixme: implement
     public var errorCallback: (ErrorEvent -> Void)?
 
     public var debugPlotCallback: ([[CGFloat]] -> Void)?
@@ -87,49 +88,54 @@ public class VaavudSDK: WindListener, LocationListener {
     // MARK: Pressure listener
     
     func newPressure(event: PressureEvent) {
-        pressureCallback?(event)
         session.addPressure(event)
+        pressureCallback?(event)
     }
 
     // MARK: Temperature listener
     
     func newTemperature(event: TemperatureEvent) {
-        temperatureCallback?(event)
         session.addTemperature(event)
+        temperatureCallback?(event)
     }
     
     // MARK: Location listener
 
     func newHeading(event: HeadingEvent) {
-        headingCallback?(event)
         session.addHeading(event)
+        headingCallback?(event)
     }
     
     func newLocation(event: LocationEvent) {
-        locationCallback?(event)
         session.addLocation(event)
+        locationCallback?(event)
     }
     
     func newVelocity(event: VelocityEvent) {
-        velocityCallback?(event)
         session.addVelocity(event)
+        velocityCallback?(event)
     }
     
     // MARK: Wind listener
     
-    func newWindSpeed(event: WindSpeedEvent) {
-        windSpeedCallback?(event)
+    public func newWindSpeed(event: WindSpeedEvent) {
         session.addWindSpeed(event)
+        windSpeedCallback?(event)
     }
     
+    func newTrueWindWindSpeed(event: WindSpeedEvent) {
+        session.addTrueWindSpeed(event)
+        trueWindSpeedCallback?(event)
+    }
+
     func newWindDirection(event: WindDirectionEvent) {
-        windDirectionCallback?(event)
         session.addWindDirection(event)
+        windDirectionCallback?(event)
     }
     
     func newTrueWindDirection(event: WindDirectionEvent) {
-        trueWindDirectionCallback?(event)
         session.addTrueWindDirection(event)
+        trueWindDirectionCallback?(event)
     }
     
     func debugPlot(valuess: [[CGFloat]]) {
@@ -146,6 +152,7 @@ public struct VaavudSession {
     
     public private(set) var meanDirection: Double = 0
     public private(set) var windSpeeds = [WindSpeedEvent]()
+    public private(set) var trueWindSpeeds = [WindSpeedEvent]()
     public private(set) var windDirections = [WindDirectionEvent]()
     public private(set) var trueWindDirections = [WindDirectionEvent]()
     public private(set) var headings = [HeadingEvent]()
@@ -196,9 +203,13 @@ public struct VaavudSession {
             maxSpeed = speed
         }
         
-        print("Session addWindSpeed \(event.speed) -> \(meanSpeed)")
+//        print("Session addWindSpeed \(event.speed) mean: \(meanSpeed)")
 
         // Fixme: Changing update frequency should be considered
+    }
+    
+    mutating func addTrueWindSpeed(event: WindSpeedEvent) {
+        trueWindSpeeds.append(event)
     }
     
     mutating func addWindDirection(event: WindDirectionEvent) {
