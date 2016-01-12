@@ -20,6 +20,8 @@ public struct RotationProcessor {
     public var t15: [Float]
     let ea15: [Float]
     
+    let sleipnirFlipped: Bool
+    
     let rotationNMax: Int
     let anglesN: Int
     let length: Int
@@ -64,9 +66,10 @@ public struct RotationProcessor {
         let merge: Bool
     }
     
-    public init() {
+    public init(flipped: Bool) {
         t15 = [Float](count: TPR, repeatedValue: 0)
         ea15 = [0,23.5,47.0,70.5,94.0,117.5,141.0,164.5,188.0,211.5,235.0,258.5,282.0,305.5,332.75]
+        sleipnirFlipped = flipped
         
         rotationNMax = 150
         anglesN = 20
@@ -257,7 +260,10 @@ public struct RotationProcessor {
         }
 
         vDSP_vgathr(tCor, indicesTeeth, 1, &t, 1, lengthDSP)
-        vDSP_vgathr(ea15, indicesTeeth, 1, &ea, 1, lengthDSP)
+        
+        let ea15mightBeFlipped = sleipnirFlipped ? ea15.map {$0+180} : ea15
+        
+        vDSP_vgathr(ea15mightBeFlipped, indicesTeeth, 1, &ea, 1, lengthDSP)
         
         // find angle for f
         vDSP_vsub(wd, 1, v360, 1, &a, 1, lengthDSP)
