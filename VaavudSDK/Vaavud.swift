@@ -166,7 +166,6 @@ public struct VaavudSession {
     public var maxSpeed: Double = 0
 
     public var turbulence: Double? {
-        print(" - - - - turbulence")
         return gustiness(windSpeeds.map { $0.speed })
 //        return (windSpeedSquaredSum - windSpeedSum*windSpeedSum)/meanSpeed
     }
