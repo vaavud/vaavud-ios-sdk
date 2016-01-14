@@ -23,7 +23,7 @@ public class VaavudSDK: WindListener, LocationListener {
     public private(set) var session = VaavudSession()
     
     public var windSpeedCallback: (WindSpeedEvent -> Void)?
-    public var trueWindSpeedCallback: (WindSpeedEvent -> Void)?
+    public var trueWindSpeedCallback: (WindSpeedEvent -> Void)? // fixme: implement
     public var windDirectionCallback: (WindDirectionEvent -> Void)?
     public var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
     public var temperatureCallback: (TemperatureEvent -> Void)? // fixme: implement
