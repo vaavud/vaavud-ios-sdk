@@ -291,7 +291,7 @@ public struct ErrorEvent: Event, Firebaseable, CustomStringConvertible {
         case .TemperatureReadingFailure:
             return "Temperature reading failed"
         case let .LocationManagerFailure(error):
-            return "Temperature reading failed with error: \(error.localizedDescription)"
+            return "Location manager failed with error: \(error.localizedDescription)"
         case let .AudioReconfigurationFailure(audioError):
             return "Audio reconfiguration failed with error: \(audioError)"
         case let .HeadingUnavailable(error):

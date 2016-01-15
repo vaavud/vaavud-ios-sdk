@@ -44,6 +44,10 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingHeading()
     }
     
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        
+    }
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let loc = locations.last!
         

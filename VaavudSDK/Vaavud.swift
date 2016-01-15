@@ -47,7 +47,7 @@ public class VaavudSDK: WindListener, LocationListener {
         catch { return false }
         
         do { try windController.start(false) }
-        catch { return false; }
+        catch { return false }
         
         stop()
 
@@ -65,11 +65,16 @@ public class VaavudSDK: WindListener, LocationListener {
             try windController.start(flipped)
         }
         catch {
-//            newError(ErrorEvent(eventType: ErrorEvent.ErrorEventType))
+//            newError(ErrorEvent(eventType: xx))
             throw error
         }
     }
-
+    
+    public func startLocationOnly() throws {
+        reset()
+        try locationController.start()
+    }
+    
     public func stop() {
         windController.stop()
         locationController.stop()
