@@ -36,7 +36,7 @@ class WindController: NSObject, LocationListener {
     private var startTime : NSDate!
     private var audioSampleProcessor = AudioSampleProcessor()
     private var tickTimeProcessor = TickTimeProcessor()
-    private var rotationProcessor = RotationProcessor()
+    private var rotationProcessor = RotationProcessor(flipped: false) // not going to be used
     private var vol = Volume()
     
     private var observers = [NSObjectProtocol]()
@@ -88,7 +88,7 @@ class WindController: NSObject, LocationListener {
     func start(flipped: Bool) throws {
         audioEngine.mainMixerNode.outputVolume = volumeSetting(vol.volume)
         setVolumeToMax()
-        rotationProcessor = RotationProcessor() // fixme: flip when needed
+        rotationProcessor = RotationProcessor(flipped: flipped)
 
         do {
             try checkEngineAlreadyRunning()
