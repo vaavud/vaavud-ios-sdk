@@ -23,13 +23,14 @@ public class VaavudSDK: WindListener, LocationListener {
     public private(set) var session = VaavudSession()
     
     public var windSpeedCallback: (WindSpeedEvent -> Void)?
-    public var windDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
+    public var trueWindSpeedCallback: (WindSpeedEvent -> Void)?
+    public var windDirectionCallback: (WindDirectionEvent -> Void)?
     public var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
     public var temperatureCallback: (TemperatureEvent -> Void)? // fixme: implement
-    public var pressureCallback: (PressureEvent -> Void)?
-    public var headingCallback: (HeadingEvent -> Void)?
-    public var locationCallback: (LocationEvent -> Void)?
-    public var velocityCallback: (VelocityEvent -> Void)?
+    public var pressureCallback: (PressureEvent -> Void)? // fixme: implement
+    public var headingCallback: (HeadingEvent -> Void)? // fixme: implement
+    public var locationCallback: (LocationEvent -> Void)? // fixme: implement
+    public var velocityCallback: (VelocityEvent -> Void)? // fixme: implement
     public var errorCallback: (ErrorEvent -> Void)?
 
     public var debugPlotCallback: ([[CGFloat]] -> Void)?
@@ -45,7 +46,7 @@ public class VaavudSDK: WindListener, LocationListener {
         do { try locationController.start() }
         catch { return false }
         
-        do { try windController.start() }
+        do { try windController.start(false) }
         catch { return false; }
         
         stop()
@@ -57,11 +58,11 @@ public class VaavudSDK: WindListener, LocationListener {
         session = VaavudSession()
     }
         
-    public func start() throws {
+    public func start(flipped: Bool) throws {
         reset()
         do {
             try locationController.start()
-            try windController.start()
+            try windController.start(flipped)
         }
         catch {
 //            newError(ErrorEvent(eventType: ErrorEvent.ErrorEventType))
@@ -87,47 +88,54 @@ public class VaavudSDK: WindListener, LocationListener {
     // MARK: Pressure listener
     
     func newPressure(event: PressureEvent) {
+        session.addPressure(event)
         pressureCallback?(event)
     }
 
     // MARK: Temperature listener
     
     func newTemperature(event: TemperatureEvent) {
+        session.addTemperature(event)
         temperatureCallback?(event)
     }
     
     // MARK: Location listener
 
     func newHeading(event: HeadingEvent) {
-        headingCallback?(event)
         session.addHeading(event)
+        headingCallback?(event)
     }
     
     func newLocation(event: LocationEvent) {
-        locationCallback?(event)
         session.addLocation(event)
+        locationCallback?(event)
     }
     
     func newVelocity(event: VelocityEvent) {
-        velocityCallback?(event)
         session.addVelocity(event)
+        velocityCallback?(event)
     }
     
     // MARK: Wind listener
     
-    func newWindSpeed(event: WindSpeedEvent) {
-        windSpeedCallback?(event)
+    public func newWindSpeed(event: WindSpeedEvent) {
         session.addWindSpeed(event)
+        windSpeedCallback?(event)
     }
     
+    func newTrueWindWindSpeed(event: WindSpeedEvent) {
+        session.addTrueWindSpeed(event)
+        trueWindSpeedCallback?(event)
+    }
+
     func newWindDirection(event: WindDirectionEvent) {
-        windDirectionCallback?(event)
         session.addWindDirection(event)
+        windDirectionCallback?(event)
     }
     
     func newTrueWindDirection(event: WindDirectionEvent) {
-        trueWindDirectionCallback?(event)
         session.addTrueWindDirection(event)
+        trueWindDirectionCallback?(event)
     }
     
     func debugPlot(valuess: [[CGFloat]]) {
@@ -145,10 +153,10 @@ public class VaavudSDK: WindListener, LocationListener {
 
 public struct VaavudSession {
     public let time = NSDate()
-    public var meanSpeed: Double { return windSpeedSum/Double(windSpeeds.count) }
     
     public private(set) var meanDirection: Double = 0
     public private(set) var windSpeeds = [WindSpeedEvent]()
+    public private(set) var trueWindSpeeds = [WindSpeedEvent]()
     public private(set) var windDirections = [WindDirectionEvent]()
     public private(set) var trueWindDirections = [WindDirectionEvent]()
     public private(set) var headings = [HeadingEvent]()
@@ -157,8 +165,20 @@ public struct VaavudSession {
     public private(set) var temperatures = [TemperatureEvent]()
     public private(set) var pressures = [PressureEvent]()
     
+    public var meanSpeed: Double { return windSpeeds.count > 0 ? windSpeedSum/Double(windSpeeds.count) : 0 }
+
+    public var maxSpeed: Double = 0
+
+    public var turbulence: Double? {
+        print(" - - - - turbulence")
+        return gustiness(windSpeeds.map { $0.speed })
+//        return (windSpeedSquaredSum - windSpeedSum*windSpeedSum)/meanSpeed
+    }
+    
+    // Private variables
+    
     private var windSpeedSum: Double = 0
-//    private var windSpeedSquaredSum: Double = 0
+    private var windSpeedSquaredSum: Double = 0
 
     // Location data
     
@@ -178,9 +198,22 @@ public struct VaavudSession {
     
     mutating func addWindSpeed(event: WindSpeedEvent) {
         windSpeeds.append(event)
-        windSpeedSum += event.speed
-//        windSpeedSquaredSum += event.speed*event.speed
-        // Update frequency should be considered! (sum should be speed*timeDelta)
+
+        let speed = event.speed
+        windSpeedSum += speed
+        windSpeedSquaredSum += speed*speed
+        
+        if speed > maxSpeed {
+            maxSpeed = speed
+        }
+        
+//        print("Session addWindSpeed \(event.speed) mean: \(meanSpeed)")
+
+        // Fixme: Changing update frequency should be considered
+    }
+    
+    mutating func addTrueWindSpeed(event: WindSpeedEvent) {
+        trueWindSpeeds.append(event)
     }
     
     mutating func addWindDirection(event: WindDirectionEvent) {
@@ -203,6 +236,8 @@ public struct VaavudSession {
         pressures.append(event)
     }
     
+    // Helper function
+
     public func relativeTime(measurement: WindSpeedEvent) -> NSTimeInterval {
         return measurement.time.timeIntervalSinceDate(time)
     }
@@ -212,22 +247,31 @@ public struct VaavudSession {
     }
 }
 
+
 public class VaavudLegacySDK: NSObject {
     public static let shared = VaavudLegacySDK()
     
-    public var windSpeedCallback: (Double -> Void)?
+    public var windSpeedCallback: ((Double, NSDate) -> Void)?
     public var windDirectionCallback: (Double -> Void)?
+    public var trueWindSpeedCallback: (WindSpeedEvent -> Void)?
+    public var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
+    public var temperatureCallback: (TemperatureEvent -> Void)? // fixme: implement
+    public var pressureCallback: (PressureEvent -> Void)? // fixme: implement
+    public var headingCallback: (HeadingEvent -> Void)? // fixme: implement
+    public var locationCallback: (LocationEvent -> Void)? // fixme: implement
+    public var velocityCallback: (VelocityEvent -> Void)? // fixme: implement
+    public var errorCallback: (ErrorEvent -> Void)?
     
     private override init() {
         super.init()
         
-        VaavudSDK.shared.windSpeedCallback = { self.windSpeedCallback?($0.speed) }
+        VaavudSDK.shared.windSpeedCallback = { self.windSpeedCallback?($0.speed, $0.time) }
         VaavudSDK.shared.windDirectionCallback = { self.windDirectionCallback?($0.direction) }
     }
     
     public func start() {
         do {
-            try VaavudSDK.shared.start();
+            try VaavudSDK.shared.start(false);
         } catch {}
     }
     
@@ -245,3 +289,21 @@ public class VaavudLegacySDK: NSObject {
         return VaavudSDK.shared.sleipnirAvailable()
     }
 }
+
+func gustiness(speeds: [Double]) -> Double? {
+    let n = Double(speeds.count)
+    
+    guard n > 0 else {
+        return nil
+    }
+
+    let mean = speeds.reduce(0, combine: +)/n
+    let squares = speeds.map { ($0 - mean)*($0 - mean) }
+    let variance = squares.reduce(0, combine: +)/(n - 1)
+    
+//    let variance: Double = speeds.reduce(0) { $0 + ($1 - mean)*($1 - mean) }/(n - 1)
+    
+    return variance/mean
+}
+
+

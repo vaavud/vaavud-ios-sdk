@@ -23,7 +23,7 @@ class WindController: NSObject, LocationListener {
     
     private var heading: Float? // Floats are thread safe
     
-    // there is a memory management bug / leak for these input/output formats. fix later.
+    // fixme: there is a memory management bug / leak for these input/output formats. fix later.
     private let inputFormat = AVAudioFormat(commonFormat: AVAudioCommonFormat.PCMFormatInt16, sampleRate: 44100.0, channels: 1, interleaved: false)
     private let outputFormat = AVAudioFormat(standardFormatWithSampleRate: 44100.0, channels: 2)
     
@@ -42,7 +42,7 @@ class WindController: NSObject, LocationListener {
     private var observers = [NSObjectProtocol]()
     private var lastWindSpeedEvent: WindSpeedEvent?
     private var debugStartTime = NSDate()
-
+    
     override init() {
         // initialize remaining variables
         outputBuffer = WindController.createBuffer(AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 2))
@@ -59,7 +59,6 @@ class WindController: NSObject, LocationListener {
         sampleTimeStart = AVAudioFramePosition(-1)
         audioSampleProcessor = AudioSampleProcessor()
         tickTimeProcessor = TickTimeProcessor()
-        rotationProcessor = RotationProcessor()
         vol = Volume()
         observers = [NSObjectProtocol]()
         lastWindSpeedEvent = nil
@@ -86,10 +85,11 @@ class WindController: NSObject, LocationListener {
         }
     }
 
-    func start() throws {
+    func start(flipped: Bool) throws {
         audioEngine.mainMixerNode.outputVolume = volumeSetting(vol.volume)
         setVolumeToMax()
-        
+        rotationProcessor = RotationProcessor() // fixme: flip when needed
+
         do {
             try checkEngineAlreadyRunning()
             try initAVAudioSession()
