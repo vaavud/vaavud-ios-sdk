@@ -154,9 +154,16 @@ public struct LocationEvent: Event, Firebaseable {
     public let time: NSDate
     public let lat: CLLocationDegrees
     public let lon: CLLocationDegrees
-    public let altitude: CLLocationDistance
+    public let altitude: CLLocationDistance?
     
-    public init(time: NSDate = NSDate(), lat: CLLocationDegrees, lon: CLLocationDegrees, altitude: CLLocationDegrees) {
+    public init(location: CLLocation) {
+        self.time = location.timestamp
+        self.lat = location.coordinate.latitude
+        self.lon = location.coordinate.longitude
+        self.altitude = location.verticalAccuracy >= 0 ? location.altitude : nil
+    }
+    
+    public init(time: NSDate = NSDate(), lat: CLLocationDegrees, lon: CLLocationDegrees, altitude: CLLocationDegrees?) {
         self.time = time
         self.lat = lat
         self.lon = lon
@@ -182,8 +189,14 @@ public struct LocationEvent: Event, Firebaseable {
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
     }
     
+    public var location: CLLocation {
+        return CLLocation(latitude: lat, longitude: lon)
+    }
+    
     public var fireDict: FirebaseDictionary {
-        return ["time" : time.ms, "lat" : lat, "lon" : lon, "altitude" : altitude]
+        var dict = ["time" : time.ms, "lat" : lat, "lon" : lon]
+        dict["altitude"] = altitude
+        return dict
     }
 }
 

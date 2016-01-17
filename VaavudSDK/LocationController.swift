@@ -45,20 +45,17 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        
+        guard status != .Denied && status != .NotDetermined && status != .Restricted else { return }
+        locationManager.startUpdatingHeading()
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let loc = locations.last!
-        
-        let locationEvent = LocationEvent(time: loc.timestamp, lat: loc.coordinate.latitude, lon: loc.coordinate.longitude, altitude: loc.altitude)
-        _ = listeners.map { $0.newLocation(locationEvent) }
+        _ = listeners.map { $0.newLocation(LocationEvent(location: loc)) }
         
         if loc.course >= 0 && loc.speed >= 0 {
             _ = listeners.map { $0.newVelocity(VelocityEvent(time: loc.timestamp, speed: loc.speed, course: loc.course)) }
         }
-        
-        print("LOC: X" + (loc.course >= 0 ? "X" : "-") + (loc.speed >= 0 ? "X" : "-"))
     }
     
     func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
