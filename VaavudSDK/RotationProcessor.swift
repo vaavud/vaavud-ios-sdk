@@ -394,6 +394,10 @@ public func mod(angle: Float) -> Float {
     return ((angle % 360) + 360) % 360
 }
 
+public func mod(angle: Double) -> Double {
+    return ((angle % 360) + 360) % 360
+}
+
 public func getAngles(N: Int, stride: Int, center: Float) -> [Float] {
     let range = N*stride
     let offset = range/2

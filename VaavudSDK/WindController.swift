@@ -392,11 +392,12 @@ class WindController: NSObject, LocationListener {
         
     }
     
-    // Fixme: send wind heading error
     func newError(error: ErrorEvent) {
-        if case .LocationManagerFailure(let locationError) = error.type {
-            _ = listeners.map { $0.newError(ErrorEvent(eventType: .HeadingUnavailable(locationError))) }
-        }
+        _ = listeners.map { $0.newError(error) }
+
+        //        if case .LocationManagerFailure(let locationError) = error.type {
+        //            _ = listeners.map { $0.newError(ErrorEvent(eventType: .HeadingUnavailable(locationError))) }
+        //        }
     }
     
     private static func rotationFrequencyToWindspeed(freq: Double) -> Double {

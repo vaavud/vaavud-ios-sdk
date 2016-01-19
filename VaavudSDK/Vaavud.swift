@@ -26,11 +26,13 @@ public class VaavudSDK: WindListener, LocationListener {
     public var trueWindSpeedCallback: (WindSpeedEvent -> Void)? // fixme: implement
     public var windDirectionCallback: (WindDirectionEvent -> Void)?
     public var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
+    
     public var temperatureCallback: (TemperatureEvent -> Void)? // fixme: implement
     public var pressureCallback: (PressureEvent -> Void)? // fixme: implement
-    public var headingCallback: (HeadingEvent -> Void)? // fixme: implement
-    public var locationCallback: (LocationEvent -> Void)? // fixme: implement
-    public var velocityCallback: (VelocityEvent -> Void)? // fixme: implement
+
+    public var headingCallback: (HeadingEvent -> Void)?
+    public var locationCallback: (LocationEvent -> Void)?
+    public var velocityCallback: (VelocityEvent -> Void)?
     public var errorCallback: (ErrorEvent -> Void)?
 
     public var debugPlotCallback: ([[CGFloat]] -> Void)?
@@ -46,10 +48,12 @@ public class VaavudSDK: WindListener, LocationListener {
         do { try locationController.start() }
         catch { return false }
         
-        do { try windController.start(false) }
-        catch { return false; }
+        locationController.stop()
         
-        stop()
+        do { try windController.start(false) }
+        catch { return false }
+        
+        windController.stop()
 
         return true
     }
@@ -65,11 +69,16 @@ public class VaavudSDK: WindListener, LocationListener {
             try windController.start(flipped)
         }
         catch {
-//            newError(ErrorEvent(eventType: ErrorEvent.ErrorEventType))
+//            newError(ErrorEvent(eventType: xx))
             throw error
         }
     }
-
+    
+    public func startLocationOnly() throws {
+        reset()
+        try locationController.start()
+    }
+    
     public func stop() {
         windController.stop()
         locationController.stop()
@@ -154,7 +163,7 @@ public class VaavudSDK: WindListener, LocationListener {
 public struct VaavudSession {
     public let time = NSDate()
     
-    public private(set) var meanDirection: Double = 0
+    public private(set) var meanDirection: Double?
     public private(set) var windSpeeds = [WindSpeedEvent]()
     public private(set) var trueWindSpeeds = [WindSpeedEvent]()
     public private(set) var windDirections = [WindDirectionEvent]()
@@ -216,6 +225,7 @@ public struct VaavudSession {
     }
     
     mutating func addWindDirection(event: WindDirectionEvent) {
+        meanDirection = mod(event.direction)
         windDirections.append(event)
     }
     
