@@ -79,7 +79,7 @@ public class VaavudSDK: WindListener, LocationListener {
         pressureController?.startRelativeAltitudeUpdatesToQueue(.mainQueue()) {
             altitudeData, error in
             if let kpa = altitudeData?.pressure.doubleValue {
-                self.newPressure(PressureEvent(pressure: kpa*10))
+                self.newPressure(PressureEvent(pressure: kpa*1000))
             }
             else {
                 print("CMAltimeter error")
