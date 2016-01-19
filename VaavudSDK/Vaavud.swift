@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreMotion
 
 public class VaavudSleipnirAvailability: NSObject {
     public class func available() -> Bool {
@@ -19,6 +20,7 @@ public class VaavudSDK: WindListener, LocationListener {
     
     private var windController = WindController()
     private var locationController = LocationController()
+    private var pressureController: CMAltimeter? = { return CMAltimeter.isRelativeAltitudeAvailable() ? CMAltimeter() : nil }()
     
     public private(set) var session = VaavudSession()
     
@@ -27,9 +29,7 @@ public class VaavudSDK: WindListener, LocationListener {
     public var windDirectionCallback: (WindDirectionEvent -> Void)?
     public var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
     
-    public var temperatureCallback: (TemperatureEvent -> Void)? // fixme: implement
-    public var pressureCallback: (PressureEvent -> Void)? // fixme: implement
-
+    public var pressureCallback: (PressureEvent -> Void)?
     public var headingCallback: (HeadingEvent -> Void)?
     public var locationCallback: (LocationEvent -> Void)?
     public var velocityCallback: (VelocityEvent -> Void)?
@@ -67,10 +67,23 @@ public class VaavudSDK: WindListener, LocationListener {
         do {
             try locationController.start()
             try windController.start(flipped)
+            startPressure()
         }
         catch {
 //            newError(ErrorEvent(eventType: xx))
             throw error
+        }
+    }
+    
+    private func startPressure() {
+        pressureController?.startRelativeAltitudeUpdatesToQueue(.mainQueue()) {
+            altitudeData, error in
+            if let kpa = altitudeData?.pressure.doubleValue {
+                self.newPressure(PressureEvent(pressure: kpa*10))
+            }
+            else {
+                print("CMAltimeter error")
+            }
         }
     }
     
@@ -82,6 +95,7 @@ public class VaavudSDK: WindListener, LocationListener {
     public func stop() {
         windController.stop()
         locationController.stop()
+        pressureController?.stopRelativeAltitudeUpdates()
     }
     
     public func resetWindDirectionCalibration() {
@@ -99,13 +113,6 @@ public class VaavudSDK: WindListener, LocationListener {
     func newPressure(event: PressureEvent) {
         session.addPressure(event)
         pressureCallback?(event)
-    }
-
-    // MARK: Temperature listener
-    
-    func newTemperature(event: TemperatureEvent) {
-        session.addTemperature(event)
-        temperatureCallback?(event)
     }
     
     // MARK: Location listener
@@ -206,12 +213,7 @@ public struct VaavudSession {
         let speed = event.speed
         windSpeedSum += speed
         windSpeedSquaredSum += speed*speed
-        
-        if speed > maxSpeed {
-            maxSpeed = speed
-        }
-        
-//        print("Session addWindSpeed \(event.speed) mean: \(meanSpeed)")
+        maxSpeed = max(speed, maxSpeed)
 
         // Fixme: Changing update frequency should be considered
     }
