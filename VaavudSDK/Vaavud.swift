@@ -21,18 +21,20 @@ public class VaavudSDK: WindListener, LocationListener {
     private var locationController = LocationController()
     
     public private(set) var session = VaavudSession()
+    // For now we make the callbacks static functions as weird stuff is happening when they are instance variables.
+    // E.g. assigning even an empty callback to any of them causes location and heading services to stop working ???
+    // We should understand the root cause, but for now we need the quick fix to support the sailor app.
+    public static var windSpeedCallback: (WindSpeedEvent -> Void)?
+    public static var trueWindSpeedCallback: (WindSpeedEvent -> Void)? // fixme: implement
+    public static var windDirectionCallback: (WindDirectionEvent -> Void)?
+    public static var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
     
-    public var windSpeedCallback: (WindSpeedEvent -> Void)?
-    public var trueWindSpeedCallback: (WindSpeedEvent -> Void)? // fixme: implement
-    public var windDirectionCallback: (WindDirectionEvent -> Void)?
-    public var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
-    
-    public var temperatureCallback: (TemperatureEvent -> Void)? // fixme: implement
-    public var pressureCallback: (PressureEvent -> Void)? // fixme: implement
+    public static var temperatureCallback: (TemperatureEvent -> Void)? // fixme: implement
+    public static var pressureCallback: (PressureEvent -> Void)? // fixme: implement
 
-    public var headingCallback: (HeadingEvent -> Void)?
-    public var locationCallback: (LocationEvent -> Void)?
-    public var velocityCallback: (VelocityEvent -> Void)?
+    public static var headingCallback: (HeadingEvent -> Void)?
+    public static var locationCallback: (LocationEvent -> Void)?
+    public static var velocityCallback: (VelocityEvent -> Void)?
     public var errorCallback: (ErrorEvent -> Void)?
 
     public var debugPlotCallback: ([[CGFloat]] -> Void)?
@@ -98,53 +100,53 @@ public class VaavudSDK: WindListener, LocationListener {
     
     func newPressure(event: PressureEvent) {
         session.addPressure(event)
-        pressureCallback?(event)
+        VaavudSDK.pressureCallback?(event)
     }
 
     // MARK: Temperature listener
     
     func newTemperature(event: TemperatureEvent) {
         session.addTemperature(event)
-        temperatureCallback?(event)
+        VaavudSDK.temperatureCallback?(event)
     }
     
     // MARK: Location listener
 
     func newHeading(event: HeadingEvent) {
         session.addHeading(event)
-        headingCallback?(event)
+        VaavudSDK.headingCallback?(event)
     }
     
     func newLocation(event: LocationEvent) {
         session.addLocation(event)
-        locationCallback?(event)
+        VaavudSDK.locationCallback?(event)
     }
     
     func newVelocity(event: VelocityEvent) {
         session.addVelocity(event)
-        velocityCallback?(event)
+        VaavudSDK.velocityCallback?(event)
     }
     
     // MARK: Wind listener
     
     public func newWindSpeed(event: WindSpeedEvent) {
         session.addWindSpeed(event)
-        windSpeedCallback?(event)
+        VaavudSDK.windSpeedCallback?(event)
     }
     
     func newTrueWindWindSpeed(event: WindSpeedEvent) {
         session.addTrueWindSpeed(event)
-        trueWindSpeedCallback?(event)
+        VaavudSDK.trueWindSpeedCallback?(event)
     }
 
     func newWindDirection(event: WindDirectionEvent) {
         session.addWindDirection(event)
-        windDirectionCallback?(event)
+        VaavudSDK.windDirectionCallback?(event)
     }
     
     func newTrueWindDirection(event: WindDirectionEvent) {
         session.addTrueWindDirection(event)
-        trueWindDirectionCallback?(event)
+        VaavudSDK.trueWindDirectionCallback?(event)
     }
     
     func debugPlot(valuess: [[CGFloat]]) {
@@ -152,7 +154,7 @@ public class VaavudSDK: WindListener, LocationListener {
     }
     
     public func test() {
-        windSpeedCallback?(WindSpeedEvent(time: NSDate(), speed: 123))
+        VaavudSDK.windSpeedCallback?(WindSpeedEvent(time: NSDate(), speed: 123))
     }
     
     deinit {
@@ -258,34 +260,47 @@ public struct VaavudSession {
 
 
 public class VaavudLegacySDK: NSObject {
-    public static let shared = VaavudLegacySDK()
-    
+    //public static let shared = VaavudLegacySDK()
+
     public var windSpeedCallback: ((Double, NSDate) -> Void)?
-    public var windDirectionCallback: (Double -> Void)?
+    public var windDirectionCallback: ((Double, NSDate) -> Void)?
     public var trueWindSpeedCallback: (WindSpeedEvent -> Void)?
     public var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
     public var temperatureCallback: (TemperatureEvent -> Void)? // fixme: implement
     public var pressureCallback: (PressureEvent -> Void)? // fixme: implement
-    public var headingCallback: (HeadingEvent -> Void)? // fixme: implement
-    public var locationCallback: (LocationEvent -> Void)? // fixme: implement
-    public var velocityCallback: (VelocityEvent -> Void)? // fixme: implement
+    public var headingCallback: ((Double, NSDate) -> Void)?
+    public var locationCallback: ((Double, Double, NSDate) -> Void)?
+    public var velocityCallback: ((Double, Double, NSDate) -> Void)?
     public var errorCallback: (ErrorEvent -> Void)?
-    
+    public var foo: Double = 10;
+
     private override init() {
         super.init()
-        
-        VaavudSDK.shared.windSpeedCallback = { self.windSpeedCallback?($0.speed, $0.time) }
-        VaavudSDK.shared.windDirectionCallback = { self.windDirectionCallback?($0.direction) }
+
+        VaavudSDK.windSpeedCallback = { self.windSpeedCallback?($0.speed, $0.time) }
+        VaavudSDK.windDirectionCallback = { self.windDirectionCallback?($0.direction, $0.time) }
+        // VaavudSDK.shared.headingCallback = { self.headingCallback?($0.heading, $0.time) }
+        // VaavudSDK.shared.locationCallback = { self.locationCallback?($0.lat, $0.lon, $0.time) }
+        //VaavudSDK.shared.velocityCallback = { self.velocityCallback?($0.speed, $0.course, $0.time) }
+
+
     }
     
     public func start() {
-        do {
-            try VaavudSDK.shared.start(false);
-        } catch {}
+        dispatch_async(dispatch_get_main_queue()) {
+            do {
+                try VaavudSDK.shared.start(false);
+            } catch _ {
+                print("Error starting sdk")
+            }
+        }
+        sleep(1)
     }
     
     public func stop() {
-     VaavudSDK.shared.stop();
+        dispatch_async(dispatch_get_main_queue()) {
+            VaavudSDK.shared.stop();
+        }
 
     }
 
@@ -295,6 +310,7 @@ public class VaavudLegacySDK: NSObject {
     }
     
     public func sleipnirAvailable() -> Bool {
+        return true;
         return VaavudSDK.shared.sleipnirAvailable()
     }
 }
