@@ -279,9 +279,9 @@ public class VaavudLegacySDK: NSObject {
 
         VaavudSDK.windSpeedCallback = { self.windSpeedCallback?($0.speed, $0.time) }
         VaavudSDK.windDirectionCallback = { self.windDirectionCallback?($0.direction, $0.time) }
-        // VaavudSDK.shared.headingCallback = { self.headingCallback?($0.heading, $0.time) }
-        // VaavudSDK.shared.locationCallback = { self.locationCallback?($0.lat, $0.lon, $0.time) }
-        //VaavudSDK.shared.velocityCallback = { self.velocityCallback?($0.speed, $0.course, $0.time) }
+        VaavudSDK.headingCallback = { self.headingCallback?($0.heading, $0.time) }
+        VaavudSDK.locationCallback = { self.locationCallback?($0.lat, $0.lon, $0.time) }
+        VaavudSDK.velocityCallback = { self.velocityCallback?($0.speed, $0.course, $0.time) }
 
 
     }
