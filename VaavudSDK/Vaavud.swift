@@ -98,6 +98,19 @@ public class VaavudSDK: WindListener, LocationListener {
         pressureController?.stopRelativeAltitudeUpdates()
     }
     
+    public func removeAllCallbacks() {
+        windSpeedCallback = nil
+        trueWindSpeedCallback = nil
+        windDirectionCallback = nil
+        trueWindDirectionCallback = nil
+        
+        pressureCallback = nil
+        headingCallback = nil
+        locationCallback = nil
+        velocityCallback = nil
+        errorCallback = nil
+    }
+    
     public func resetWindDirectionCalibration() {
         windController.resetCalibration()
     }
