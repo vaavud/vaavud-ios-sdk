@@ -245,6 +245,7 @@ public enum VaavudAudioError: ErrorType, CustomStringConvertible {
 
 public enum VaavudOtherError: ErrorType, CustomStringConvertible {
     case LocationAuthorisation(CLAuthorizationStatus)
+    case Altimeter
     
     public var description: String {
         return "Error"

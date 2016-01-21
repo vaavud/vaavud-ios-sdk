@@ -87,9 +87,10 @@ public class VaavudSDK: WindListener, LocationListener {
         }
     }
     
-    public func startLocationOnly() throws {
+    public func startLocationAndPressureOnly() throws {
         reset()
         try locationController.start()
+        startPressure()
     }
     
     public func stop() {
