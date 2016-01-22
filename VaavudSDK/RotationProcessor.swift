@@ -153,7 +153,7 @@ public struct RotationProcessor {
             let dir = self.fitAngle( rotations.map { $0.relVelocities }, headings: rotations.map { $0.heading! })
             // Debug
             debugLastLocalAngle = (dir - rotations.last!.heading! + 360) % 360
-            print("H: \(rotations.last!.heading!), L: \(self.debugLastLocalAngle), G: \(dir)")
+//            print("H: \(rotations.last!.heading!), L: \(self.debugLastLocalAngle), G: \(dir)")
             return Direction(sampleTime: rotations.last!.sampleTime, globalDirection: dir, heading: rotations.last!.heading!) // There will always be at least one rotations in a group
         }
     }
