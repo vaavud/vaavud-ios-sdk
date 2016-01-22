@@ -229,7 +229,7 @@ public struct VaavudSession {
         windSpeedSquaredSum += speed*speed
         maxSpeed = max(speed, maxSpeed)
 
-        // Fixme: Changing update frequency should be considered
+        // Fixme: variable update frequency should be considered
     }
     
     mutating func addTrueWindSpeed(event: WindSpeedEvent) {

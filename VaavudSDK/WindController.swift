@@ -107,7 +107,7 @@ class WindController: NSObject, LocationListener {
     }
     
     func stop() {
-        _ = observers.map(NSNotificationCenter.defaultCenter().removeObserver) // fixme: check
+        _ = observers.map(NSNotificationCenter.defaultCenter().removeObserver)
         vol.save()
         rotationProcessor.save()
         audioEngine.pause() // The other options (stop/reset) does occasionally cause a BAD_ACCESS CAStreamBasicDescription
