@@ -274,7 +274,7 @@ public class VaavudLegacySDK: NSObject {
     public var errorCallback: (ErrorEvent -> Void)?
     public var foo: Double = 10;
 
-    private override init() {
+    public override init() {
         super.init()
 
         VaavudSDK.windSpeedCallback = { self.windSpeedCallback?($0.speed, $0.time) }
@@ -282,8 +282,6 @@ public class VaavudLegacySDK: NSObject {
         VaavudSDK.headingCallback = { self.headingCallback?($0.heading, $0.time) }
         VaavudSDK.locationCallback = { self.locationCallback?($0.lat, $0.lon, $0.time) }
         VaavudSDK.velocityCallback = { self.velocityCallback?($0.speed, $0.course, $0.time) }
-
-
     }
     
     public func start() {
