@@ -81,6 +81,37 @@ public struct WindDirectionEvent: Event, Firebaseable {
     }
 }
 
+
+public struct CurseEvent: Event, Firebaseable {
+    
+    
+    public let time: NSDate
+    public let curse: Double
+    
+    
+    public init(time: NSDate = NSDate(), curse: Double){
+        self.time = time
+        self.curse = curse
+    }
+    
+    public init?(dict: FirebaseDictionary) {
+        guard let time = dict["time"] as? NSNumber, pressure = dict["curse"] as? Double else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.curse = pressure
+    }
+    
+    public var fireDict: FirebaseDictionary {
+        return ["time" : time.ms, "pressure" : curse]
+    }
+    
+    
+    
+    
+}
+
 public struct PressureEvent: Event, Firebaseable {
     public let time: NSDate
     public let pressure: Double
@@ -229,6 +260,29 @@ public struct VelocityEvent: Event, Firebaseable {
     }
 }
 
+public struct AltitudeEvent: Event, Firebaseable {
+    public let time: NSDate
+    public let altitude: Double
+    
+    public init(time: NSDate = NSDate(), altitude: Double){
+        self.time = time
+        self.altitude = altitude
+    }
+    
+    public init?(dict: FirebaseDictionary){
+        guard let time = dict["time"] as? NSNumber, altitude  = dict["altitude"] as? Double else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.altitude = altitude
+    }
+    
+    public var fireDict: FirebaseDictionary{
+        return ["time": time.ms, "altitude": altitude]
+    }
+}
+
 public enum VaavudAudioError: ErrorType, CustomStringConvertible {
     case Unplugged
     case MultipleStart
@@ -327,6 +381,8 @@ protocol LocationListener: class {
     func newHeading(event: HeadingEvent)
     func newLocation(event: LocationEvent)
     func newVelocity(event: VelocityEvent)
+    func newAltitude(event: AltitudeEvent)
+    func newCurse(event: CurseEvent)
 }
 
 protocol TemperatureListener: class {

@@ -33,11 +33,14 @@ public class VaavudSDK: WindListener, LocationListener {
     public var headingCallback: (HeadingEvent -> Void)?
     public var locationCallback: (LocationEvent -> Void)?
     public var velocityCallback: (VelocityEvent -> Void)?
+    public var altitudeCallback: (AltitudeEvent -> Void)?
+    public var curseCallback: (CurseEvent -> Void)?
+    
     public var errorCallback: (ErrorEvent -> Void)?
 
     public var debugPlotCallback: ([[CGFloat]] -> Void)?
 
-    private init() {
+    public init() {
         windController.addListener(self)
         
         locationController.addListener(windController)
@@ -51,7 +54,9 @@ public class VaavudSDK: WindListener, LocationListener {
         locationController.stop()
         
         do { try windController.start(false) }
-        catch { return false }
+        catch {
+            return false
+        }
         
         windController.stop()
 
@@ -146,6 +151,12 @@ public class VaavudSDK: WindListener, LocationListener {
         velocityCallback?(event)
     }
     
+    func newAltitude(event: AltitudeEvent) {
+        print("entro")
+        session.addAltitude(event)
+        altitudeCallback?(event)
+    }
+    
     // MARK: Wind listener
     
     public func newWindSpeed(event: WindSpeedEvent) {
@@ -190,6 +201,9 @@ public struct VaavudSession {
     public private(set) var velocities = [VelocityEvent]()
     public private(set) var temperatures = [TemperatureEvent]()
     public private(set) var pressures = [PressureEvent]()
+    public private(set) var altitud = [AltitudeEvent]()
+    public private(set) var curse = [CurseEvent]()
+    
     
     public var meanSpeed: Double { return windSpeeds.count > 0 ? windSpeedSum/Double(windSpeeds.count) : 0 }
 
@@ -217,6 +231,14 @@ public struct VaavudSession {
 
     mutating func addVelocity(event: VelocityEvent) {
         velocities.append(event)
+    }
+    
+    mutating func addAltitude(event: AltitudeEvent) {
+        altitud.append(event)
+    }
+    
+    mutating func addAltitude(event: CurseEvent) {
+        curse.append(event)
     }
 
     // Wind data

@@ -388,6 +388,10 @@ class WindController: NSObject, LocationListener {
         
     }
     
+    func newAltitude(event: AltitudeEvent) {
+        
+    }
+    
     func newVelocity(event: VelocityEvent) {
         
     }
