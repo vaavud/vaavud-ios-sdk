@@ -34,7 +34,7 @@ public class VaavudSDK: WindListener, LocationListener {
     public var locationCallback: (LocationEvent -> Void)?
     public var velocityCallback: (VelocityEvent -> Void)?
     public var altitudeCallback: (AltitudeEvent -> Void)?
-    public var curseCallback: (CurseEvent -> Void)?
+    public var courseCallback: (CourseEvent -> Void)?
     
     public var errorCallback: (ErrorEvent -> Void)?
 
@@ -151,9 +151,9 @@ public class VaavudSDK: WindListener, LocationListener {
         velocityCallback?(event)
     }
     
-    func newCurse(event: CurseEvent) {
-        session.addCurse(event)
-        curseCallback?(event)
+    func newCourse(event: CourseEvent) {
+        session.addCourse(event)
+        courseCallback?(event)
     }
     
     func newAltitude(event: AltitudeEvent) {
@@ -206,7 +206,7 @@ public struct VaavudSession {
     public private(set) var temperatures = [TemperatureEvent]()
     public private(set) var pressures = [PressureEvent]()
     public private(set) var altitud = [AltitudeEvent]()
-    public private(set) var curse = [CurseEvent]()
+    public private(set) var course = [CourseEvent]()
     
     
     public var meanSpeed: Double { return windSpeeds.count > 0 ? windSpeedSum/Double(windSpeeds.count) : 0 }
@@ -241,8 +241,8 @@ public struct VaavudSession {
         altitud.append(event)
     }
     
-    mutating func addCurse(event: CurseEvent) {
-        curse.append(event)
+    mutating func addCourse(event: CourseEvent) {
+        course.append(event)
     }
     
 

@@ -82,16 +82,16 @@ public struct WindDirectionEvent: Event, Firebaseable {
 }
 
 
-public struct CurseEvent: Event, Firebaseable {
+public struct CourseEvent: Event, Firebaseable {
     
     
     public let time: NSDate
-    public let curse: Double
+    public let course: Double
     
     
-    public init(time: NSDate = NSDate(), curse: Double){
+    public init(time: NSDate = NSDate(), course: Double){
         self.time = time
-        self.curse = curse
+        self.course = course
     }
     
     public init?(dict: FirebaseDictionary) {
@@ -100,11 +100,11 @@ public struct CurseEvent: Event, Firebaseable {
         }
         
         self.time = NSDate(ms: time)
-        self.curse = pressure
+        self.course = pressure
     }
     
     public var fireDict: FirebaseDictionary {
-        return ["time" : time.ms, "pressure" : curse]
+        return ["time" : time.ms, "course" : course]
     }
     
     
@@ -382,7 +382,7 @@ protocol LocationListener: class {
     func newLocation(event: LocationEvent)
     func newVelocity(event: VelocityEvent)
     func newAltitude(event: AltitudeEvent)
-    func newCurse(event: CurseEvent)
+    func newCourse(event: CourseEvent)
 }
 
 protocol TemperatureListener: class {

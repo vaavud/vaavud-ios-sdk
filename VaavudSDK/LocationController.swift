@@ -64,8 +64,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         }
         
         if loc.course >= 0 {
-            print(loc.course)
-            //_ = listeners.map {$0.newAltitude(AltitudeEvent(altitude: loc.altitude))}
+            _ = listeners.map {$0.newCourse(CourseEvent(course: loc.course))}
         }
         
         

@@ -392,7 +392,7 @@ class WindController: NSObject, LocationListener {
         
     }
     
-    func newCurse(event: CurseEvent) {
+    func newCourse(event: CourseEvent) {
         
     }
     
