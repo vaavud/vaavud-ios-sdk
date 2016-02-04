@@ -151,8 +151,12 @@ public class VaavudSDK: WindListener, LocationListener {
         velocityCallback?(event)
     }
     
+    func newCurse(event: CurseEvent) {
+        session.addCurse(event)
+        curseCallback?(event)
+    }
+    
     func newAltitude(event: AltitudeEvent) {
-        print("entro")
         session.addAltitude(event)
         altitudeCallback?(event)
     }
@@ -237,9 +241,10 @@ public struct VaavudSession {
         altitud.append(event)
     }
     
-    mutating func addAltitude(event: CurseEvent) {
+    mutating func addCurse(event: CurseEvent) {
         curse.append(event)
     }
+    
 
     // Wind data
     
