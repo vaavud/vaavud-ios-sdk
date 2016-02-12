@@ -217,6 +217,43 @@ public struct VaavudSession {
         return gustiness(windSpeeds.map { $0.speed })
 //        return (windSpeedSquaredSum - windSpeedSum*windSpeedSum)/meanSpeed
     }
+
+    public var fireDict : FirebaseDictionary {
+            return [//"meanDirection" : meanDirection,
+                    "meanSpeed": meanSpeed,
+                    "maxSpeed": maxSpeed,
+                    "windSpeeds": windSpeeds.flatMap {
+                        $0.fireDict
+                    },
+                    "trueWindSpeeds": trueWindSpeeds.flatMap {
+                        $0.fireDict
+                    },
+                    "windDirections": windDirections.flatMap {
+                        $0.fireDict
+                    },
+                    "headings": headings.flatMap {
+                        $0.fireDict
+                    },
+                    "locations": locations.flatMap {
+                        $0.fireDict
+                    },
+                    "velocities": velocities.flatMap {
+                        $0.fireDict
+                    },
+                    "temperatures": temperatures.flatMap {
+                        $0.fireDict
+                    },
+                    "pressures": pressures.flatMap {
+                        $0.fireDict
+                    },
+                    "altitude": altitud.flatMap {
+                        $0.fireDict
+                    },
+                    "course": course.flatMap {
+                        $0.fireDict
+                    }
+            ]
+    }
     
     // Private variables
     
