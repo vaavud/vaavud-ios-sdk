@@ -26,12 +26,12 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             throw VaavudOtherError.LocationAuthorisation(status)
         }
         
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
-        locationManager.distanceFilter = 10
+        locationManager.distanceFilter = 0
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
-        locationManager.headingFilter = 5
+        locationManager.headingFilter = 0
         
         if UIDevice.currentDevice().orientation == .PortraitUpsideDown {
             locationManager.headingOrientation = .PortraitUpsideDown
@@ -51,11 +51,23 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let loc = locations.last!
+        
         _ = listeners.map { $0.newLocation(LocationEvent(location: loc)) }
         
         if loc.course >= 0 && loc.speed >= 0 {
             _ = listeners.map { $0.newVelocity(VelocityEvent(time: loc.timestamp, speed: loc.speed, course: loc.course)) }
         }
+        
+        if loc.altitude >= 0 {
+            print(loc.altitude)
+            _ = listeners.map {$0.newAltitude(AltitudeEvent(altitude: loc.altitude))}
+        }
+        
+        if loc.course >= 0 {
+            _ = listeners.map {$0.newCourse(CourseEvent(course: loc.course))}
+        }
+        
+        
     }
     
     func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
