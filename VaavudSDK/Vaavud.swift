@@ -103,9 +103,11 @@ public class VaavudSDK: WindListener, LocationListener {
     public func start(flipped: Bool) throws {
         reset()
         do {
+            session.setWindMeter(sleipnirAvailable())
             try locationController.start()
             try windController.start(flipped)
             startPressure()
+            
         }
         catch {
 //            newError(ErrorEvent(eventType: xx))
@@ -240,7 +242,7 @@ public struct VaavudSession {
     public private(set) var pressures = [PressureEvent]()
     public private(set) var altitud = [AltitudeEvent]()
     public private(set) var course = [CourseEvent]()
-    
+    public private(set) var windMeter = "Sleipnir"
     
     public var meanSpeed: Double { return windSpeeds.count > 0 ? windSpeedSum/Double(windSpeeds.count) : 0 }
 
@@ -277,6 +279,11 @@ public struct VaavudSession {
     mutating func addCourse(event: CourseEvent) {
         course.append(event)
     }
+    
+    mutating func setWindMeter(isSleipnir: Bool){
+        windMeter = isSleipnir ? "Sleipnir" : "Mjolnir"
+    }
+    
     
 
     // Wind data
@@ -329,7 +336,48 @@ public struct VaavudSession {
     
     
     public var dict: FirebaseDictionary {
-        return ["something":"something"]
+        
+        var session:FirebaseDictionary = [:]
+        
+        if let windSpeed = windSpeeds.last {
+            session["windMean"] = windSpeed.speed
+        }
+    
+        if let headings = headings.last {
+            session["headings"] = headings.heading
+        }
+        
+        if let locations = locations.last {
+            session["locations"] = locations.fireDict
+        }
+        
+        if let velocities = velocities.last {
+            session["velocities"] = velocities.speed
+        }
+        
+        if let temperatures = temperatures.last {
+            session["temperatures"] = temperatures.temperature
+        }
+        
+        if let pressures = pressures.last {
+            session["pressures"] = pressures.pressure
+        }
+        
+        if let altitud = altitud.last {
+            session["altitud"] = altitud.altitude
+        }
+        
+        if let course = course.last {
+            session["course"] = course.course
+        }
+        
+        
+        session["timeStart"] = time.ms
+        session["timeEnd"] = NSDate().ms
+        session["windDirection"] = meanDirection
+        session["windMeter"] = windMeter
+        
+        return session
     }
 }
 
