@@ -24,6 +24,7 @@ public class VaavudSDK: WindListener, LocationListener {
     
     public private(set) var session = VaavudSession()
     
+    
     public var windSpeedCallback: (WindSpeedEvent -> Void)?
     public var trueWindSpeedCallback: (WindSpeedEvent -> Void)? // fixme: implement
     public var windDirectionCallback: (WindDirectionEvent -> Void)?
@@ -324,6 +325,11 @@ public struct VaavudSession {
     
     func description(measurement: WindSpeedEvent) -> String {
         return "WindSpeedEvent (time rel:" + String(format: "% 5.2f", relativeTime(measurement)) + " speed:" + String(format: "% 5.2f", measurement.speed) + " UnixTime: \(measurement.time.timeIntervalSince1970))"
+    }
+    
+    
+    public var dict: FirebaseDictionary {
+        return ["something":"something"]
     }
 }
 
