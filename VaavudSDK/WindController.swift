@@ -153,6 +153,7 @@ class WindController: NSObject, LocationListener {
                 let measurementTime = self.sampleTimeToUnixTime(direction.sampleTime)
                 let event = WindDirectionEvent(time: measurementTime, direction: Double(direction.globalDirection))
                 _ = self.listeners.map { $0.newWindDirection(event) }
+                
             }
             
             let dirAvgs = self.rotationProcessor.debugLastDirectionAverage.map { CGFloat($0) }
