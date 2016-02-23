@@ -26,9 +26,9 @@ public class VaavudSDK: WindListener, LocationListener {
     
     
     public var windSpeedCallback: (WindSpeedEvent -> Void)?
-    public var trueWindSpeedCallback: (WindSpeedEvent -> Void)? // fixme: implement
+    public var trueWindSpeedCallback: (TureWindSpeedEvent -> Void)? // fixme: implement
     public var windDirectionCallback: (WindDirectionEvent -> Void)?
-    public var trueWindDirectionCallback: (WindDirectionEvent -> Void)? // fixme: implement
+    public var trueWindDirectionCallback: (TrueWindDirectionEvent -> Void)? // fixme: implement
     
     public var pressureCallback: (PressureEvent -> Void)?
     public var headingCallback: (HeadingEvent -> Void)?
@@ -36,6 +36,13 @@ public class VaavudSDK: WindListener, LocationListener {
     public var velocityCallback: (VelocityEvent -> Void)?
     public var altitudeCallback: (AltitudeEvent -> Void)?
     public var courseCallback: (CourseEvent -> Void)?
+    
+    
+    private var lastDirection: WindDirectionEvent?
+    private var lastSpeed: WindSpeedEvent?
+    private var lastCourse: CourseEvent?
+    
+    
     
     public var errorCallback: (ErrorEvent -> Void)?
 
@@ -65,36 +72,42 @@ public class VaavudSDK: WindListener, LocationListener {
     }
     
     
-//    func estimateTrueWind(velocity: VelocityEvent){
-//        var direction: WindDirectionEvent?
-//        var speed: WindSpeedEvent?
-//        var course: CourseEvent?
-//        
-//        let alpha = direction!.direction - course!.course
-//        let rad = CGFloat(alpha) * CGFloat(M_PI) / 180.0 //Radias
-//        
-//        let trueSpeed = sqrt(pow(speed!.speed,2.0) + pow(velocity.speed,2) - 2.0 * speed!.speed * velocity.speed * Double(cos(rad)) )
-//        
-//        if trueSpeed >= 0 {
-//            let trusSpeed = WindDirectionEvent(direction: trueSpeed)
-//        }
-//        
-//        var trueDirection: Double
-//        if(0 < rad && M_PI > Double(rad)) {
-//            trueDirection = acos(speed!.speed * Double(cos(rad)) - velocity.speed) / Double(CGFloat(trueSpeed))
-//        }
-//        else{
-//            trueDirection = (-1) * acos(speed!.speed * Double(cos(rad)) - velocity.speed / trueSpeed)
-//        }
-//        
-//        trueDirection = trueDirection * M_PI
-//        
-//        if trueDirection != -1 {
-//            //let directionEvent = DirectionEvent(trueDirection)
-//            //Send it
-//        }
-//    }
-    
+    func estimateTrueWind(velocity: VelocityEvent){
+        
+        let direction: Double? = lastDirection?.direction
+        let speed: Double? = lastSpeed?.speed
+        let course: Double? = lastCourse?.course
+        
+        if let direction = direction, speed = speed, course = course {
+            
+            let alpha = direction - course
+            let rad = alpha * M_PI / 180.0 //Radias
+            
+            let trueSpeed = sqrt(pow(speed,2.0) + pow(velocity.speed,2) - 2.0 * speed * velocity.speed * Double(cos(rad)) )
+            
+            if trueSpeed >= 0 {
+                let trueSpeed = TureWindSpeedEvent(speed: trueSpeed)
+                trueWindSpeedCallback?(trueSpeed)
+            }
+            
+            var trueDirection: Double
+            if(0 < rad && M_PI > rad) {
+                let temp = ((speed * cos(rad)) - velocity.speed) / trueSpeed
+                trueDirection = acos(temp)
+            }
+            else{
+                trueDirection = (-1) * acos(speed * Double(cos(rad)) - velocity.speed / trueSpeed)
+            }
+            
+            trueDirection = trueDirection * 180 / M_PI
+            
+            if trueDirection != -1 {
+                let directionEvent = TrueWindDirectionEvent(direction: trueDirection)
+                trueWindDirectionCallback?(directionEvent)
+            }
+        }
+    }
+
     
     func reset() {
         session = VaavudSession()
@@ -184,11 +197,13 @@ public class VaavudSDK: WindListener, LocationListener {
     func newVelocity(event: VelocityEvent) {
         session.addVelocity(event)
         velocityCallback?(event)
+        estimateTrueWind(event)
     }
     
     func newCourse(event: CourseEvent) {
         session.addCourse(event)
         courseCallback?(event)
+        lastCourse = event
     }
     
     func newAltitude(event: AltitudeEvent) {
@@ -201,21 +216,23 @@ public class VaavudSDK: WindListener, LocationListener {
     public func newWindSpeed(event: WindSpeedEvent) {
         session.addWindSpeed(event)
         windSpeedCallback?(event)
+        lastSpeed = event
     }
     
     func newTrueWindWindSpeed(event: WindSpeedEvent) {
         session.addTrueWindSpeed(event)
-        trueWindSpeedCallback?(event)
+//        trueWindSpeedCallback?(event)
     }
 
     func newWindDirection(event: WindDirectionEvent) {
         session.addWindDirection(event)
         windDirectionCallback?(event)
+        lastDirection = event
     }
     
     func newTrueWindDirection(event: WindDirectionEvent) {
         session.addTrueWindDirection(event)
-        trueWindDirectionCallback?(event)
+//        trueWindDirectionCallback?(event)
     }
     
     func debugPlot(valuess: [[CGFloat]]) {
