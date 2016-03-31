@@ -26,7 +26,7 @@ public class VaavudSDK: WindListener, LocationListener {
     
     
     public var windSpeedCallback: (WindSpeedEvent -> Void)?
-    public var trueWindSpeedCallback: (TureWindSpeedEvent -> Void)? // fixme: implement
+    public var trueWindSpeedCallback: (TrueWindSpeedEvent -> Void)? // fixme: implement
     public var windDirectionCallback: (WindDirectionEvent -> Void)?
     public var trueWindDirectionCallback: (TrueWindDirectionEvent -> Void)? // fixme: implement
     
@@ -86,7 +86,7 @@ public class VaavudSDK: WindListener, LocationListener {
             let trueSpeed = sqrt(pow(speed,2.0) + pow(velocity.speed,2) - 2.0 * speed * velocity.speed * Double(cos(rad)) )
             
             if trueSpeed >= 0 {
-                let trueSpeed = TureWindSpeedEvent(speed: trueSpeed)
+                let trueSpeed = TrueWindSpeedEvent(speed: trueSpeed)
                 trueWindSpeedCallback?(trueSpeed)
             }
             
@@ -356,10 +356,9 @@ public struct VaavudSession {
         
         var session:FirebaseDictionary = [:]
         
-        if let windSpeed = windSpeeds.last {
-            session["windMean"] = windSpeed.speed
-        }
-    
+
+        session["windMean"] = meanSpeed
+
         if let headings = headings.last {
             session["headings"] = headings.heading
         }
@@ -381,7 +380,7 @@ public struct VaavudSession {
         }
         
         if let altitud = altitud.last {
-            session["altitud"] = altitud.altitude
+            session["altitude"] = altitud.altitude
         }
         
         if let course = course.last {
@@ -393,6 +392,7 @@ public struct VaavudSession {
         session["timeEnd"] = NSDate().ms
         session["windDirection"] = meanDirection
         session["windMeter"] = windMeter
+        session["windMax"] = maxSpeed
         
         return session
     }
