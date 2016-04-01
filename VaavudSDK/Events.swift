@@ -45,7 +45,7 @@ public struct TrueWindSpeedEvent: Event, Firebaseable {
     }
     
     public init?(dict: FirebaseDictionary) {
-        guard let time = dict["time"] as? NSNumber, speed = dict["speed"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, speed = dict["trueSpeed"] as? Double else {
             return nil
         }
         
@@ -92,7 +92,7 @@ public struct TrueWindDirectionEvent: Event, Firebaseable {
     }
     
     public init?(dict: FirebaseDictionary) {
-        guard let time = dict["time"] as? NSNumber, direction = dict["direction"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, direction = dict["trueDirection"] as? Double else {
             return nil
         }
         

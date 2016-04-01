@@ -85,9 +85,9 @@ public class VaavudSDK: WindListener, LocationListener {
             
             let trueSpeed = sqrt(pow(speed,2.0) + pow(velocity.speed,2) - 2.0 * speed * velocity.speed * Double(cos(rad)) )
             
-            if trueSpeed >= 0 {
-                let trueSpeed = TrueWindSpeedEvent(speed: trueSpeed)
-                trueWindSpeedCallback?(trueSpeed)
+            if (trueSpeed >= 0) && !trueSpeed.isNaN {
+                let trueSpeedEvent = TrueWindSpeedEvent(speed: trueSpeed)
+                trueWindSpeedCallback?(trueSpeedEvent)
             }
             
             var trueDirection: Double
@@ -101,7 +101,7 @@ public class VaavudSDK: WindListener, LocationListener {
             
             trueDirection = trueDirection * 180 / M_PI
             
-            if trueDirection != -1 {
+            if (trueDirection != -1) && !trueDirection.isNaN {
                 let directionEvent = TrueWindDirectionEvent(direction: trueDirection)
                 trueWindDirectionCallback?(directionEvent)
             }
