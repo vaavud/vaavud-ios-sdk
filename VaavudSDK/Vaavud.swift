@@ -363,24 +363,24 @@ public struct VaavudSession {
             session["headings"] = headings.heading
         }
         
-        if let locations = locations.last {
-            session["locations"] = locations.fireDict
+        if let location = locations.last {
+            session["location"] = location.fireDict
         }
         
-        if let velocities = velocities.last {
-            session["velocities"] = velocities.speed
+        if let velocity = velocities.last {
+            session["velocity"] = velocity.speed
         }
         
-        if let temperatures = temperatures.last {
-            session["temperatures"] = temperatures.temperature
+        if let temperature = temperatures.last {
+            session["temperature"] = temperature.temperature
         }
         
-        if let pressures = pressures.last {
-            session["pressures"] = pressures.pressure
+        if let pressure = pressures.last {
+            session["pressure"] = pressure.pressure
         }
         
-        if let altitud = altitud.last {
-            session["altitude"] = altitud.altitude
+        if let altitude = altitud.last {
+            session["altitude"] = altitude.altitude
         }
         
         if let course = course.last {
