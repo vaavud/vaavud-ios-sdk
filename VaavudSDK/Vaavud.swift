@@ -26,9 +26,9 @@ public class VaavudSDK: WindListener, LocationListener {
     
     
     public var windSpeedCallback: (WindSpeedEvent -> Void)?
-    public var trueWindSpeedCallback: (TrueWindSpeedEvent -> Void)? // fixme: implement
+    public var trueWindSpeedCallback: (TrueWindSpeedEvent -> Void)?
     public var windDirectionCallback: (WindDirectionEvent -> Void)?
-    public var trueWindDirectionCallback: (TrueWindDirectionEvent -> Void)? // fixme: implement
+    public var trueWindDirectionCallback: (TrueWindDirectionEvent -> Void)?
     
     public var pressureCallback: (PressureEvent -> Void)?
     public var headingCallback: (HeadingEvent -> Void)?
@@ -81,11 +81,7 @@ public class VaavudSDK: WindListener, LocationListener {
         let velocity: Double? = lastVelocity?.speed
         
         if let direction = direction, speed = speed, course = course, velocity = velocity {
-            
 
-            
-            
-            
             let alpha = direction - course
             let rad = alpha * M_PI / 180.0 //Radias
             
@@ -94,6 +90,10 @@ public class VaavudSDK: WindListener, LocationListener {
             if (trueSpeed >= 0) && !trueSpeed.isNaN {
                 let trueSpeedEvent = TrueWindSpeedEvent(speed: trueSpeed)
                 trueWindSpeedCallback?(trueSpeedEvent)
+            } else {
+                let trueSpeedEvent = TrueWindSpeedEvent(speed: speed)
+                trueWindSpeedCallback?(trueSpeedEvent)
+
             }
             
             var trueDirection: Double
@@ -126,6 +126,12 @@ public class VaavudSDK: WindListener, LocationListener {
 //                +						return true;
 //                +				}
             
+        } else {
+            if(speed != nil) {
+                let trueSpeedEvent = TrueWindSpeedEvent(speed: speed!)
+                trueWindSpeedCallback?(trueSpeedEvent)
+                session.addTrueWindSpeed(TrueWindSpeedEvent(speed: speed!))
+            }
         }
     }
 
@@ -428,7 +434,9 @@ public struct VaavudSession {
         session["timeStart"] = time.ms
         session["timeEnd"] = NSDate().ms
         session["windDirection"] = meanDirection
-        session["trueWindDirection"] = meanTrueDirection
+        if (meanTrueDirection != nil) && (!meanTrueDirection!.isNaN){
+            session["trueWindDirection"] = meanTrueDirection
+        }
         session["windMeter"] = windMeter
         session["windMax"] = maxSpeed
         session["trueWindMax"] = trueMaxSpeed
