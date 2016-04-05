@@ -271,6 +271,7 @@ public struct VaavudSession {
     public let time = NSDate()
     
     public private(set) var meanDirection: Double?
+    public private(set) var meanTrueDirection: Double?
     public private(set) var windSpeeds = [WindSpeedEvent]()
     public private(set) var trueWindSpeeds = [TrueWindSpeedEvent]()
     public private(set) var windDirections = [WindDirectionEvent]()
@@ -285,8 +286,10 @@ public struct VaavudSession {
     public private(set) var windMeter = "Sleipnir"
     
     public var meanSpeed: Double { return windSpeeds.count > 0 ? windSpeedSum/Double(windSpeeds.count) : 0 }
+    public var meanTrueSpeed: Double { return trueWindSpeeds.count > 0 ? trueWindSpeedSum/Double(trueWindSpeeds.count) : 0 }
 
     public var maxSpeed: Double = 0
+    public var trueMaxSpeed: Double = 0
 
     public var turbulence: Double? {
         return gustiness(windSpeeds.map { $0.speed })
@@ -295,6 +298,9 @@ public struct VaavudSession {
     
     // Private variables
     
+    private var trueWindSpeedSum: Double = 0
+    private var trueWindSpeedSquaredSum: Double = 0
+
     private var windSpeedSum: Double = 0
     private var windSpeedSquaredSum: Double = 0
 
@@ -341,6 +347,11 @@ public struct VaavudSession {
     
     mutating func addTrueWindSpeed(event: TrueWindSpeedEvent) {
         trueWindSpeeds.append(event)
+
+        let speed = event.speed
+        trueWindSpeedSum += speed
+        trueWindSpeedSquaredSum += speed*speed
+        trueMaxSpeed = max(speed, trueMaxSpeed)
     }
     
     mutating func addWindDirection(event: WindDirectionEvent) {
@@ -349,6 +360,7 @@ public struct VaavudSession {
     }
     
     mutating func addTrueWindDirection(event: TrueWindDirectionEvent) {
+        meanTrueDirection = mod(event.direction)
         trueWindDirections.append(event)
     }
     
@@ -378,9 +390,11 @@ public struct VaavudSession {
     public var dict: FirebaseDictionary {
         
         var session:FirebaseDictionary = [:]
-        
+
 
         session["windMean"] = meanSpeed
+        session["trueWindMean"] = meanTrueSpeed
+
 
         if let headings = headings.last {
             session["headings"] = headings.heading
@@ -414,8 +428,10 @@ public struct VaavudSession {
         session["timeStart"] = time.ms
         session["timeEnd"] = NSDate().ms
         session["windDirection"] = meanDirection
+        session["trueWindDirection"] = meanTrueDirection
         session["windMeter"] = windMeter
         session["windMax"] = maxSpeed
+        session["trueWindMax"] = trueMaxSpeed
         
         return session
     }
