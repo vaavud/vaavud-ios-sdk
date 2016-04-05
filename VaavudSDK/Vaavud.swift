@@ -73,7 +73,7 @@ public class VaavudSDK: WindListener, LocationListener {
     }
     
     
-    func estimateTrueWind() {
+    func estimateTrueWind(time: NSDate) {
         
         let direction: Double? = lastDirection?.direction
         let speed: Double? = lastSpeed?.speed
@@ -88,10 +88,10 @@ public class VaavudSDK: WindListener, LocationListener {
             let trueSpeed = sqrt(pow(speed,2.0) + pow(velocity,2) - 2.0 * speed * velocity * Double(cos(rad)) )
             
             if (trueSpeed >= 0) && !trueSpeed.isNaN {
-                let trueSpeedEvent = TrueWindSpeedEvent(speed: trueSpeed)
+                let trueSpeedEvent = TrueWindSpeedEvent(time: time, speed: trueSpeed)
                 trueWindSpeedCallback?(trueSpeedEvent)
             } else {
-                let trueSpeedEvent = TrueWindSpeedEvent(speed: speed)
+                let trueSpeedEvent = TrueWindSpeedEvent(time: time, speed: speed)
                 trueWindSpeedCallback?(trueSpeedEvent)
 
             }
@@ -114,7 +114,7 @@ public class VaavudSDK: WindListener, LocationListener {
             
             if let lastSpeed = lastSpeed, lastDirection = lastDirection {
                 session.addTrueWindDirection(TrueWindDirectionEvent(direction: trueDirection))
-                session.addTrueWindSpeed(TrueWindSpeedEvent(speed: trueSpeed))
+                session.addTrueWindSpeed(TrueWindSpeedEvent(time: time, speed: trueSpeed))
             }
             
             
@@ -128,9 +128,9 @@ public class VaavudSDK: WindListener, LocationListener {
             
         } else {
             if(speed != nil) {
-                let trueSpeedEvent = TrueWindSpeedEvent(speed: speed!)
+                let trueSpeedEvent = TrueWindSpeedEvent(time: time, speed: speed!)
                 trueWindSpeedCallback?(trueSpeedEvent)
-                session.addTrueWindSpeed(TrueWindSpeedEvent(speed: speed!))
+                session.addTrueWindSpeed(trueSpeedEvent)
             }
         }
     }
@@ -244,7 +244,7 @@ public class VaavudSDK: WindListener, LocationListener {
         session.addWindSpeed(event)
         windSpeedCallback?(event)
         lastSpeed = event
-        estimateTrueWind()
+        estimateTrueWind(event.time)
     }
     
     func newTrueWindWindSpeed(event: TrueWindSpeedEvent) {
@@ -256,7 +256,7 @@ public class VaavudSDK: WindListener, LocationListener {
         session.addWindDirection(event)
         windDirectionCallback?(event)
         lastDirection = event
-        estimateTrueWind()
+        estimateTrueWind(event.time)
     }
     
     func newTrueWindDirection(event: TrueWindDirectionEvent) {
