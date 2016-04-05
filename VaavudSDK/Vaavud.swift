@@ -26,7 +26,7 @@ public class VaavudSDK: WindListener, LocationListener {
     
     
     public var windSpeedCallback: (WindSpeedEvent -> Void)?
-    public var trueWindSpeedCallback: (TureWindSpeedEvent -> Void)? // fixme: implement
+    public var trueWindSpeedCallback: (TrueWindSpeedEvent -> Void)? // fixme: implement
     public var windDirectionCallback: (WindDirectionEvent -> Void)?
     public var trueWindDirectionCallback: (TrueWindDirectionEvent -> Void)? // fixme: implement
     
@@ -91,9 +91,9 @@ public class VaavudSDK: WindListener, LocationListener {
             
             let trueSpeed = sqrt(pow(speed,2.0) + pow(velocity,2) - 2.0 * speed * velocity * Double(cos(rad)) )
             
-            if trueSpeed >= 0 {
-                let trueSpeed = TureWindSpeedEvent(speed: trueSpeed)
-                trueWindSpeedCallback?(trueSpeed)
+            if (trueSpeed >= 0) && !trueSpeed.isNaN {
+                let trueSpeedEvent = TrueWindSpeedEvent(speed: trueSpeed)
+                trueWindSpeedCallback?(trueSpeedEvent)
             }
             
             var trueDirection: Double
@@ -107,7 +107,7 @@ public class VaavudSDK: WindListener, LocationListener {
             
             trueDirection = trueDirection * 180 / M_PI
             
-            if trueDirection != -1 {
+            if (trueDirection != -1) && !trueDirection.isNaN {
                 let directionEvent = TrueWindDirectionEvent(direction: trueDirection)
                 trueWindDirectionCallback?(directionEvent)
             }
@@ -379,32 +379,31 @@ public struct VaavudSession {
         
         var session:FirebaseDictionary = [:]
         
-        if let windSpeed = windSpeeds.last {
-            session["windMean"] = windSpeed.speed
-        }
-    
+
+        session["windMean"] = meanSpeed
+
         if let headings = headings.last {
             session["headings"] = headings.heading
         }
         
-        if let locations = locations.last {
-            session["locations"] = locations.fireDict
+        if let location = locations.last {
+            session["location"] = location.fireDict
         }
         
-        if let velocities = velocities.last {
-            session["velocities"] = velocities.speed
+        if let velocity = velocities.last {
+            session["velocity"] = velocity.speed
         }
         
-        if let temperatures = temperatures.last {
-            session["temperatures"] = temperatures.temperature
+        if let temperature = temperatures.last {
+            session["temperature"] = temperature.temperature
         }
         
-        if let pressures = pressures.last {
-            session["pressures"] = pressures.pressure
+        if let pressure = pressures.last {
+            session["pressure"] = pressure.pressure
         }
         
-        if let altitud = altitud.last {
-            session["altitud"] = altitud.altitude
+        if let altitude = altitud.last {
+            session["altitude"] = altitude.altitude
         }
         
         if let course = course.last {
@@ -416,6 +415,7 @@ public struct VaavudSession {
         session["timeEnd"] = NSDate().ms
         session["windDirection"] = meanDirection
         session["windMeter"] = windMeter
+        session["windMax"] = maxSpeed
         
         return session
     }

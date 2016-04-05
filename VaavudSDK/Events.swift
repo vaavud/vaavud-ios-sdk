@@ -35,7 +35,7 @@ public protocol FirebaseEntity {
     init?(dict: FirebaseDictionary)
 }
 
-public struct TureWindSpeedEvent: Event, Firebaseable {
+public struct TrueWindSpeedEvent: Event, Firebaseable {
     public let time: NSDate
     public let speed: Double
     
@@ -45,7 +45,7 @@ public struct TureWindSpeedEvent: Event, Firebaseable {
     }
     
     public init?(dict: FirebaseDictionary) {
-        guard let time = dict["time"] as? NSNumber, speed = dict["speed"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, speed = dict["trueSpeed"] as? Double else {
             return nil
         }
         
@@ -54,7 +54,7 @@ public struct TureWindSpeedEvent: Event, Firebaseable {
     }
     
     public var fireDict: FirebaseDictionary {
-        return ["time" : time.ms, "speed" : speed]
+        return ["time" : time.ms, "trueSpeed" : speed]
     }
 }
 
@@ -92,7 +92,7 @@ public struct TrueWindDirectionEvent: Event, Firebaseable {
     }
     
     public init?(dict: FirebaseDictionary) {
-        guard let time = dict["time"] as? NSNumber, direction = dict["direction"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, direction = dict["trueDirection"] as? Double else {
             return nil
         }
         
@@ -101,7 +101,7 @@ public struct TrueWindDirectionEvent: Event, Firebaseable {
     }
     
     public var fireDict: FirebaseDictionary {
-        return ["time" : time.ms, "direction" : direction]
+        return ["time" : time.ms, "trueDirection" : direction]
     }
 }
 
