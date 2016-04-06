@@ -256,7 +256,10 @@ public class VaavudSDK: WindListener, LocationListener {
         session.addWindDirection(event)
         windDirectionCallback?(event)
         lastDirection = event
-        estimateTrueWind(event.time)
+        if lastSpeed != nil {
+            estimateTrueWind(lastSpeed!.time)
+        }
+
     }
     
     func newTrueWindDirection(event: TrueWindDirectionEvent) {
