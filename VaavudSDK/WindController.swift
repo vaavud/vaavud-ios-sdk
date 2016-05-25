@@ -155,10 +155,14 @@ class WindController: NSObject, LocationListener {
                 _ = self.listeners.map { $0.newWindDirection(event) }
             }
             
-            let dirAvgs = self.rotationProcessor.debugLastDirectionAverage.map { CGFloat($0) }
-            let dirAvgsCorrected = zip(self.rotationProcessor.debugLastDirectionAverage, self.rotationProcessor.t15).map { CGFloat($0 - $1) }
-            let correctionCoeffs = self.rotationProcessor.t15.map { CGFloat($0) }
-            let localAngle: [CGFloat] = self.rotationProcessor.fitcurveForAngle(-self.rotationProcessor.debugLastLocalAngle).map { CGFloat($0) }
+            let dirAvgs = self.rotationProcessor.debugLastDirectionAverage.enumerate()
+                .map { CGPoint(x: CGFloat($0), y: CGFloat($1)) }
+            let dirAvgsCorrected = zip(self.rotationProcessor.debugLastDirectionAverage, self.rotationProcessor.t15).enumerate()
+                .map { CGPoint(x: CGFloat($0), y: CGFloat($1.0 - $1.1)) }
+            let correctionCoeffs = self.rotationProcessor.t15.enumerate()
+                .map { CGPoint(x: CGFloat($0), y: CGFloat($1)) }
+            let localAngle = self.rotationProcessor.fitcurveForAngle(-self.rotationProcessor.debugLastLocalAngle).enumerate()
+                .map { CGPoint(x: CGFloat($0), y: CGFloat($1)) }
             
             let plotData = [dirAvgs, dirAvgsCorrected, correctionCoeffs, localAngle]
             

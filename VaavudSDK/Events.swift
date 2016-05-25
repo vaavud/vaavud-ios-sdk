@@ -319,7 +319,7 @@ protocol WindListener: class {
     func newWindSpeed(event: WindSpeedEvent)
     func newWindDirection(event: WindDirectionEvent)
     
-    func debugPlot(pointss: [[CGFloat]])
+    func debugPlot(pointss: [[CGPoint]])
 }
 
 protocol LocationListener: class {

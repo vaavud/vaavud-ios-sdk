@@ -39,30 +39,30 @@ class SecondViewController: UIViewController {
     }
     
     @IBAction func on(sender: UISwitch) {
-        if sender.on {
-            do {
-                try self.sdk.start()
-            } catch {
-                label.text = "didnt start"
-                sender.on = false
-            }
-        } else {
-            self.sdk.stop()
-        }
+//        if sender.on {
+//            do {
+//                try self.sdk.start()
+//            } catch {
+//                label.text = "didnt start"
+//                sender.on = false
+//            }
+//        } else {
+//            self.sdk.stop()
+//        }
         
     }
     
     @IBAction func plot(sender: UISegmentedControl) {
-        plot.clear()
-        if sender.selectedSegmentIndex != 0 {
-            plot.addLine(sdk.debugT15.map { CGFloat($0) })
-        }
-        
-        if sender.selectedSegmentIndex != 1 {
-            _ = sdk.debugVelStore.map { plot.addLine($0.map { CGFloat($0) } ) }
-        }
-        
-        plot.display()
+//        plot.clear()
+//        if sender.selectedSegmentIndex != 0 {
+//            plot.addLine(sdk.debugT15.map { CGFloat($0) })
+//        }
+//        
+//        if sender.selectedSegmentIndex != 1 {
+//            _ = sdk.debugVelStore.map { plot.addLine($0.map { CGFloat($0) } ) }
+//        }
+//        
+//        plot.display()
     }
     
     func windSpeed(e: WindSpeedEvent) {
