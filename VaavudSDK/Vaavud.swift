@@ -47,7 +47,7 @@ public class VaavudSDK: WindListener, LocationListener {
     
     public var errorCallback: (ErrorEvent -> Void)?
 
-    public var debugPlotCallback: ([[CGFloat]] -> Void)?
+    public var debugPlotCallback: ([[CGPoint]] -> Void)?
 
     public init() {
         
@@ -267,7 +267,7 @@ public class VaavudSDK: WindListener, LocationListener {
 //        trueWindDirectionCallback?(event)
     }
     
-    func debugPlot(valuess: [[CGFloat]]) {
+    func debugPlot(valuess: [[CGPoint]]) {
         debugPlotCallback?(valuess)
     }
     
