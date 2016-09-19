@@ -92,7 +92,7 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
         // next buffer index
         bufferIndex = (bufferIndex + 1) % 3
         
-        tp.samplesSinceTick++
+        tp.samplesSinceTick += 1
         
         // updating max/min values for current tick
         tp.avgMax = max(tp.avgMax, avg)
