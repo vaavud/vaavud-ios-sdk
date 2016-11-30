@@ -443,6 +443,7 @@ public struct VaavudSession {
         session["windMeter"] = windMeter
         session["windMax"] = maxSpeed
         session["trueWindMax"] = trueMaxSpeed
+        session["turbulence"] = turbulence
         
         return session
     }
