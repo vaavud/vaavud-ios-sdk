@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>VaavudSDK.xcscheme_^#shared#^_</key>
+		<key>Analysis.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,12 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9F0409B01BA5DC22009FFBD4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9F0409BB1BA5DC22009FFBD4</key>
+		<key>9FEE92E01C3C057200E48792</key>
 		<dict>
 			<key>primary</key>
 			<true/>

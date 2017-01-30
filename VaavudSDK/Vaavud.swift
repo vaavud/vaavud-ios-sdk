@@ -47,7 +47,7 @@ public class VaavudSDK: WindListener, LocationListener {
     
     public var errorCallback: (ErrorEvent -> Void)?
 
-    public var debugPlotCallback: ([[CGFloat]] -> Void)?
+    public var debugPlotCallback: ([[CGPoint]] -> Void)?
 
     public init() {
         
@@ -112,19 +112,10 @@ public class VaavudSDK: WindListener, LocationListener {
                 trueWindDirectionCallback?(directionEvent)
             }
             
-            if let lastSpeed = lastSpeed, lastDirection = lastDirection {
+            if let _ = lastSpeed, _ = lastDirection {
                 session.addTrueWindDirection(TrueWindDirectionEvent(direction: trueDirection))
                 session.addTrueWindSpeed(TrueWindSpeedEvent(time: time, speed: trueSpeed))
             }
-            
-            
-//            if (speedEvent != null && directionEvent != null) {
-//                +						session.addTrueSpeedEvent(speedEvent);
-//                +						session.addTrueDirectionEvent(directionEvent);
-//                +						vaavudSpeed.trueSpeedChanged(speedEvent);
-//                +						vaavudDirection.trueDirectionEvent(directionEvent);
-//                +						return true;
-//                +				}
             
         } else {
             if(speed != nil) {
@@ -267,7 +258,7 @@ public class VaavudSDK: WindListener, LocationListener {
 //        trueWindDirectionCallback?(event)
     }
     
-    func debugPlot(valuess: [[CGFloat]]) {
+    func debugPlot(valuess: [[CGPoint]]) {
         debugPlotCallback?(valuess)
     }
     
@@ -443,6 +434,7 @@ public struct VaavudSession {
         session["windMeter"] = windMeter
         session["windMax"] = maxSpeed
         session["trueWindMax"] = trueMaxSpeed
+        session["turbulence"] = turbulence
         
         return session
     }

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2231156D31C86B4488CA7553CC99CA9909AD6945",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "2231156D31C86B4488CA7553CC99CA9909AD6945" : 0,
+    "AD14D14A3DDED8C23C632AFAEAC1E6DECB9E818A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C8FF2DB3-64D6-4495-AB61-62478B66DB31",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "2231156D31C86B4488CA7553CC99CA9909AD6945" : "vaavud-ios-sdk\/",
+    "AD14D14A3DDED8C23C632AFAEAC1E6DECB9E818A" : "..\/lung\/simplePlot"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Analysis",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Examples\/Analysis\/Analysis.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/vaavud\/vaavud-ios-sdk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2231156D31C86B4488CA7553CC99CA9909AD6945"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:aokholm\/simpleplot.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AD14D14A3DDED8C23C632AFAEAC1E6DECB9E818A"
+    }
+  ]
+}

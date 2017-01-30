@@ -57,7 +57,7 @@ struct VolumeTest: CustomStringConvertible {
         sN[volume] = resp.sN
         diff20[volume] = resp.diff20
         
-        counter++
+        counter += 1
         volume = counter % volSteps
         
         return volumeSetting(volume)
@@ -114,7 +114,7 @@ struct Volume: CustomStringConvertible {
     }
     
     mutating func newVolume(resp: AudioResponse) -> Float {
-        counter++
+        counter += 1
         
         if resp.sN > 6 && resp.rotations >= 1 {
             volState = .SteepestAssent
