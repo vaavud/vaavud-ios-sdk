@@ -36,7 +36,7 @@ class FirstViewController: UIViewController {
     @IBAction func on(sender: UISwitch) {
         if sender.on {
             do {
-                try self.sdk.start()
+                try self.sdk.start(false)
             } catch {
                 label.text = "didn't start"
                 sender.on = false
@@ -52,6 +52,8 @@ class FirstViewController: UIViewController {
     }
     
     func debug(pss: [[CGPoint]]) {
+        
+        
         plot.clear()
         plot.addLines(pss)
         plot.display()

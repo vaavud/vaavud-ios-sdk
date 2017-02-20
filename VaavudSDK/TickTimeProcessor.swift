@@ -30,7 +30,7 @@ public struct TickTimeProcessor {
         var largeTooth = false
         
         mutating func updateProperties(newTime: Int) {
-            counter++
+            counter += 1
             timeLast = time
             time = newTime
             largeTooth = isLargeTooth
@@ -133,7 +133,7 @@ public struct TickTimeProcessor {
         }
         
         func reset() {
-            detectionErrors++
+            detectionErrors += 1
             sp = StartProperties()
             rp = RotationProperties()
         }

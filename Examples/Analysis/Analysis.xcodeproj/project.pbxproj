@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9F139A331C3D477F00E1103C /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F139A321C3D477F00E1103C /* StatsViewController.swift */; };
-		9FA607631C3C4C59008F03B2 /* simplePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA607621C3C4BD1008F03B2 /* simplePlot.framework */; };
-		9FA607641C3C4C59008F03B2 /* simplePlot.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA607621C3C4BD1008F03B2 /* simplePlot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9F3460BF1CF5A72400C201CD /* simplePlot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3460BB1CF59EE900C201CD /* simplePlot.framework */; };
+		9F3460C01CF5A72400C201CD /* simplePlot.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3460BB1CF59EE900C201CD /* simplePlot.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9F3460C51CF5A72A00C201CD /* VaavudSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3460B41CF59DC000C201CD /* VaavudSDK.framework */; };
+		9F3460C61CF5A72A00C201CD /* VaavudSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3460B41CF59DC000C201CD /* VaavudSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9FA607681C3C5E34008F03B2 /* ATabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA607671C3C5E34008F03B2 /* ATabBarController.swift */; };
 		9FEE92E51C3C057200E48792 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE92E41C3C057200E48792 /* AppDelegate.swift */; };
 		9FEE92E71C3C057200E48792 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEE92E61C3C057200E48792 /* FirstViewController.swift */; };
@@ -17,40 +19,38 @@
 		9FEE92EC1C3C057200E48792 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FEE92EA1C3C057200E48792 /* Main.storyboard */; };
 		9FEE92EE1C3C057200E48792 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FEE92ED1C3C057200E48792 /* Assets.xcassets */; };
 		9FEE92F11C3C057200E48792 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FEE92EF1C3C057200E48792 /* LaunchScreen.storyboard */; };
-		9FEE93031C3C0AC400E48792 /* VaavudSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEE92FF1C3C068E00E48792 /* VaavudSDK.framework */; };
-		9FEE93041C3C0AC400E48792 /* VaavudSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9FEE92FF1C3C068E00E48792 /* VaavudSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9FA607611C3C4BD1008F03B2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9FA6075D1C3C4BD1008F03B2 /* simplePlot.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9FA6074E1C3C4B4C008F03B2;
-			remoteInfo = simplePlot;
-		};
-		9FA607651C3C4C5A008F03B2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9FA6075D1C3C4BD1008F03B2 /* simplePlot.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9FA6074D1C3C4B4C008F03B2;
-			remoteInfo = simplePlot;
-		};
-		9FEE92FE1C3C068E00E48792 /* PBXContainerItemProxy */ = {
+		9F3460B31CF59DC000C201CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9FEE92F91C3C068E00E48792 /* VaavudSDK.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9F0409B11BA5DC22009FFBD4;
 			remoteInfo = VaavudSDK;
 		};
-		9FEE93001C3C068E00E48792 /* PBXContainerItemProxy */ = {
+		9F3460B51CF59DC000C201CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9FEE92F91C3C068E00E48792 /* VaavudSDK.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9F0409BC1BA5DC22009FFBD4;
 			remoteInfo = VaavudSDKTests;
 		};
-		9FEE93051C3C0AC400E48792 /* PBXContainerItemProxy */ = {
+		9F3460BA1CF59EE900C201CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FA6075D1C3C4BD1008F03B2 /* simplePlot.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9FA6074E1C3C4B4C008F03B2;
+			remoteInfo = simplePlot;
+		};
+		9F3460C11CF5A72400C201CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9FA6075D1C3C4BD1008F03B2 /* simplePlot.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9FA6074D1C3C4B4C008F03B2;
+			remoteInfo = simplePlot;
+		};
+		9F3460C71CF5A72A00C201CD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9FEE92F91C3C068E00E48792 /* VaavudSDK.xcodeproj */;
 			proxyType = 1;
@@ -66,8 +66,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9FEE93041C3C0AC400E48792 /* VaavudSDK.framework in Embed Frameworks */,
-				9FA607641C3C4C59008F03B2 /* simplePlot.framework in Embed Frameworks */,
+				9F3460C61CF5A72A00C201CD /* VaavudSDK.framework in Embed Frameworks */,
+				9F3460C01CF5A72400C201CD /* simplePlot.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,7 +76,7 @@
 
 /* Begin PBXFileReference section */
 		9F139A321C3D477F00E1103C /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
-		9FA6075D1C3C4BD1008F03B2 /* simplePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = simplePlot.xcodeproj; path = ../../../../../lung/simplePlot/simplePlot.xcodeproj; sourceTree = "<group>"; };
+		9FA6075D1C3C4BD1008F03B2 /* simplePlot.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = simplePlot.xcodeproj; path = ../../../../simpleplot/simplePlot.xcodeproj; sourceTree = "<group>"; };
 		9FA607671C3C5E34008F03B2 /* ATabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATabBarController.swift; sourceTree = "<group>"; };
 		9FEE92E11C3C057200E48792 /* Analysis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Analysis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FEE92E41C3C057200E48792 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		9FEE92ED1C3C057200E48792 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9FEE92F01C3C057200E48792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9FEE92F21C3C057200E48792 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9FEE92F91C3C068E00E48792 /* VaavudSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VaavudSDK.xcodeproj; path = "../../../../../vaavud-ios-sdk/VaavudSDK.xcodeproj"; sourceTree = "<group>"; };
+		9FEE92F91C3C068E00E48792 /* VaavudSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VaavudSDK.xcodeproj; path = ../../../VaavudSDK.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,18 +94,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FEE93031C3C0AC400E48792 /* VaavudSDK.framework in Frameworks */,
-				9FA607631C3C4C59008F03B2 /* simplePlot.framework in Frameworks */,
+				9F3460C51CF5A72A00C201CD /* VaavudSDK.framework in Frameworks */,
+				9F3460BF1CF5A72400C201CD /* simplePlot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9FA6075E1C3C4BD1008F03B2 /* Products */ = {
+		9F3460AF1CF59DC000C201CD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9FA607621C3C4BD1008F03B2 /* simplePlot.framework */,
+				9F3460B41CF59DC000C201CD /* VaavudSDK.framework */,
+				9F3460B61CF59DC000C201CD /* VaavudSDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F3460B71CF59EE900C201CD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9F3460BB1CF59EE900C201CD /* simplePlot.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,15 +162,6 @@
 			path = Analysis;
 			sourceTree = "<group>";
 		};
-		9FEE92FA1C3C068E00E48792 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9FEE92FF1C3C068E00E48792 /* VaavudSDK.framework */,
-				9FEE93011C3C068E00E48792 /* VaavudSDKTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -177,8 +177,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				9FEE93061C3C0AC400E48792 /* PBXTargetDependency */,
-				9FA607661C3C4C5A008F03B2 /* PBXTargetDependency */,
+				9F3460C21CF5A72400C201CD /* PBXTargetDependency */,
+				9F3460C81CF5A72A00C201CD /* PBXTargetDependency */,
 			);
 			name = Analysis;
 			productName = Analysis;
@@ -213,11 +213,11 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9FA6075E1C3C4BD1008F03B2 /* Products */;
+					ProductGroup = 9F3460B71CF59EE900C201CD /* Products */;
 					ProjectRef = 9FA6075D1C3C4BD1008F03B2 /* simplePlot.xcodeproj */;
 				},
 				{
-					ProductGroup = 9FEE92FA1C3C068E00E48792 /* Products */;
+					ProductGroup = 9F3460AF1CF59DC000C201CD /* Products */;
 					ProjectRef = 9FEE92F91C3C068E00E48792 /* VaavudSDK.xcodeproj */;
 				},
 			);
@@ -229,25 +229,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9FA607621C3C4BD1008F03B2 /* simplePlot.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = simplePlot.framework;
-			remoteRef = 9FA607611C3C4BD1008F03B2 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9FEE92FF1C3C068E00E48792 /* VaavudSDK.framework */ = {
+		9F3460B41CF59DC000C201CD /* VaavudSDK.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = VaavudSDK.framework;
-			remoteRef = 9FEE92FE1C3C068E00E48792 /* PBXContainerItemProxy */;
+			remoteRef = 9F3460B31CF59DC000C201CD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9FEE93011C3C068E00E48792 /* VaavudSDKTests.xctest */ = {
+		9F3460B61CF59DC000C201CD /* VaavudSDKTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = VaavudSDKTests.xctest;
-			remoteRef = 9FEE93001C3C068E00E48792 /* PBXContainerItemProxy */;
+			remoteRef = 9F3460B51CF59DC000C201CD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9F3460BB1CF59EE900C201CD /* simplePlot.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = simplePlot.framework;
+			remoteRef = 9F3460BA1CF59EE900C201CD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -281,15 +281,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9FA607661C3C4C5A008F03B2 /* PBXTargetDependency */ = {
+		9F3460C21CF5A72400C201CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = simplePlot;
-			targetProxy = 9FA607651C3C4C5A008F03B2 /* PBXContainerItemProxy */;
+			targetProxy = 9F3460C11CF5A72400C201CD /* PBXContainerItemProxy */;
 		};
-		9FEE93061C3C0AC400E48792 /* PBXTargetDependency */ = {
+		9F3460C81CF5A72A00C201CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = VaavudSDK;
-			targetProxy = 9FEE93051C3C0AC400E48792 /* PBXContainerItemProxy */;
+			targetProxy = 9F3460C71CF5A72A00C201CD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

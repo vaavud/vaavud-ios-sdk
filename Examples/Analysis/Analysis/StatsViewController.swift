@@ -27,10 +27,10 @@ class StatsViewController: UIViewController {
     }
     
     func cal() {
-        let n = Float(sdk.debugVelStore.count)
-        let completion = Float(sdk.debugVelStore.filter { $0[0] != 0 }.count)/n
-        
-        label.text = String("Completion \(completion)")
+//        let n = Float(sdk.debugVelStore.count)
+//        let completion = Float(sdk.debugVelStore.filter { $0[0] != 0 }.count)/n
+//        
+//        label.text = String("Completion \(completion)")
     }
     
     @IBAction func reset(sender: UIButton) {

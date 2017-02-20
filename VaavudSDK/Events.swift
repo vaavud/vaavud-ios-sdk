@@ -35,6 +35,30 @@ public protocol FirebaseEntity {
     init?(dict: FirebaseDictionary)
 }
 
+public struct TrueWindSpeedEvent: Event, Firebaseable {
+    public let time: NSDate
+    public let speed: Double
+    
+    public init(time: NSDate = NSDate(), speed: Double) {
+        self.time = time
+        self.speed = speed
+    }
+    
+    public init?(dict: FirebaseDictionary) {
+        guard let time = dict["time"] as? NSNumber, let speed = dict["trueSpeed"] as? Double else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.speed = speed
+    }
+    
+    public var fireDict: FirebaseDictionary {
+        return ["time" : time.ms, "trueSpeed" : speed]
+    }
+}
+
+
 public struct WindSpeedEvent: Event, Firebaseable {
     public let time: NSDate
     public let speed: Double
@@ -45,7 +69,7 @@ public struct WindSpeedEvent: Event, Firebaseable {
     }
 
     public init?(dict: FirebaseDictionary) {
-        guard let time = dict["time"] as? NSNumber, speed = dict["speed"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, let speed = dict["speed"] as? Double else {
             return nil
         }
         
@@ -55,6 +79,29 @@ public struct WindSpeedEvent: Event, Firebaseable {
     
     public var fireDict: FirebaseDictionary {
         return ["time" : time.ms, "speed" : speed]
+    }
+}
+
+public struct TrueWindDirectionEvent: Event, Firebaseable {
+    public let time: NSDate
+    public let direction: Double
+    
+    public init(time: NSDate = NSDate(), direction: Double) {
+        self.time = time
+        self.direction = direction
+    }
+    
+    public init?(dict: FirebaseDictionary) {
+        guard let time = dict["time"] as? NSNumber, let direction = dict["trueDirection"] as? Double else {
+            return nil
+        }
+        
+        self.time = NSDate(ms: time)
+        self.direction = direction
+    }
+    
+    public var fireDict: FirebaseDictionary {
+        return ["time" : time.ms, "trueDirection" : direction]
     }
 }
 
@@ -68,7 +115,7 @@ public struct WindDirectionEvent: Event, Firebaseable {
     }
 
     public init?(dict: FirebaseDictionary) {
-        guard let time = dict["time"] as? NSNumber, direction = dict["direction"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, let direction = dict["direction"] as? Double else {
             return nil
         }
         
@@ -95,7 +142,7 @@ public struct CourseEvent: Event, Firebaseable {
     }
     
     public init?(dict: FirebaseDictionary) {
-        guard let time = dict["time"] as? NSNumber, pressure = dict["curse"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, let pressure = dict["curse"] as? Double else {
             return nil
         }
         
@@ -122,7 +169,7 @@ public struct PressureEvent: Event, Firebaseable {
     }
 
     public init?(dict: FirebaseDictionary) {
-        guard let time = dict["time"] as? NSNumber, pressure = dict["pressure"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, let pressure = dict["pressure"] as? Double else {
             return nil
         }
         
@@ -145,7 +192,7 @@ public struct TemperatureEvent: Event, Firebaseable {
     }
 
     public init?(dict: FirebaseDictionary) {
-        guard let time = dict["time"] as? NSNumber, temperature = dict["temperature"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, let temperature = dict["temperature"] as? Double else {
             return nil
         }
         
@@ -168,7 +215,7 @@ public struct HeadingEvent: Event, Firebaseable {
     }
 
     public init?(dict: FirebaseDictionary) {
-        guard let time = dict["time"] as? NSNumber, heading = dict["heading"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, let heading = dict["heading"] as? Double else {
             return nil
         }
         
@@ -203,9 +250,9 @@ public struct LocationEvent: Event, Firebaseable {
 
     public init?(dict: FirebaseDictionary) {
         guard let time = dict["time"] as? NSNumber,
-            lat = dict["lat"] as? CLLocationDegrees,
-            lon = dict["lon"] as? CLLocationDegrees,
-            altitude = dict["altitude"] as? CLLocationDistance
+            let lat = dict["lat"] as? CLLocationDegrees,
+            let lon = dict["lon"] as? CLLocationDegrees,
+            let altitude = dict["altitude"] as? CLLocationDistance
             else {
                 return nil
         }
@@ -244,8 +291,8 @@ public struct VelocityEvent: Event, Firebaseable {
     
     public init?(dict: FirebaseDictionary) {
         guard let time = dict["time"] as? NSNumber,
-            course = dict["course"] as? CLLocationDirection,
-            speed = dict["speed"] as? CLLocationSpeed
+            let course = dict["course"] as? CLLocationDirection,
+            let speed = dict["speed"] as? CLLocationSpeed
             else {
                 return nil
         }
@@ -270,7 +317,7 @@ public struct AltitudeEvent: Event, Firebaseable {
     }
     
     public init?(dict: FirebaseDictionary){
-        guard let time = dict["time"] as? NSNumber, altitude  = dict["altitude"] as? Double else {
+        guard let time = dict["time"] as? NSNumber, let altitude  = dict["altitude"] as? Double else {
             return nil
         }
         
@@ -372,7 +419,7 @@ protocol WindListener: class {
     func newError(event: ErrorEvent)
     func newWindSpeed(event: WindSpeedEvent)
     func newWindDirection(event: WindDirectionEvent)
-    func debugPlot(pointss: [[CGFloat]])
+    func debugPlot(pointss: [[CGPoint]])
 }
 
 protocol LocationListener: class {
