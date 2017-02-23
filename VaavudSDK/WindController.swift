@@ -24,16 +24,16 @@ class WindController: NSObject, LocationListener {
     private var heading: Float? // Floats are thread safe
     
     // fixme: there is a memory management bug / leak for these input/output formats. fix later.
-    private let inputFormat = AVAudioFormat(commonFormat: AVAudioCommonFormat.PCMFormatInt16, sampleRate: 44100.0, channels: 1, interleaved: false)
+    private let inputFormat = AVAudioFormat(commonFormat: AVAudioCommonFormat.pcmFormatInt16, sampleRate: 44100.0, channels: 1, interleaved: false)
     private let outputFormat = AVAudioFormat(standardFormatWithSampleRate: 44100.0, channels: 2)
     
-    private var data = [Int16](count: 16537, repeatedValue: 0)
+    private var data = [Int16](repeating: 0, count: 16537)
     
     private let zeroEventThreshold = 1.5 // seconds
     
     private var sampleTimeLast = AVAudioFramePosition(0)
     private var sampleTimeStart = AVAudioFramePosition(-1)
-    private var startTime : NSDate!
+    private var startTime : Date!
     private var audioSampleProcessor = AudioSampleProcessor()
     private var tickTimeProcessor = TickTimeProcessor()
     private var rotationProcessor = RotationProcessor(flipped: false) // not going to be used
@@ -45,7 +45,7 @@ class WindController: NSObject, LocationListener {
     
     override init() {
         // initialize remaining variables
-        outputBuffer = WindController.createBuffer(AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 2))
+        outputBuffer = WindController.createBuffer(outputFormat: AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 2))
         super.init()
     }
 
@@ -70,23 +70,23 @@ class WindController: NSObject, LocationListener {
     }
     
     private func createEngineAttachNodesConnect() throws {
-        audioEngine.attachNode(player)
+        audioEngine.attach(player)
         audioEngine.connect(player, to: audioEngine.mainMixerNode, format: outputBuffer.format)
         
         guard let inputNode = audioEngine.inputNode else {
             throw VaavudAudioError.AudioInputUnavailable
         }
         
-        inputNode.installTapOnBus(0, bufferSize: 16537, format: inputFormat) {
+        inputNode.installTap(onBus: 0, bufferSize: 16537, format: inputFormat) {
             [weak self] (buffer: AVAudioPCMBuffer!, time: AVAudioTime!) in
             if let strongSelf = self {
-                strongSelf.inputHandler(buffer, time: time)
+                strongSelf.inputHandler(buffer: buffer, time: time)
             }
         }
     }
 
     func start(flipped: Bool) throws {
-        audioEngine.mainMixerNode.outputVolume = volumeSetting(vol.volume)
+        audioEngine.mainMixerNode.outputVolume = volumeSetting(volume: vol.volume)
         setVolumeToMax()
         rotationProcessor = RotationProcessor(flipped: flipped)
 
@@ -107,7 +107,7 @@ class WindController: NSObject, LocationListener {
     }
     
     func stop() {
-        _ = observers.map(NSNotificationCenter.defaultCenter().removeObserver)
+        _ = observers.map(NotificationCenter.default.removeObserver)
         vol.save()
         rotationProcessor.save()
         audioEngine.pause() // The other options (stop/reset) does occasionally cause a BAD_ACCESS CAStreamBasicDescription
@@ -121,58 +121,60 @@ class WindController: NSObject, LocationListener {
     
     private func startOutput() {
         player.play()
-        player.scheduleBuffer(outputBuffer, atTime: nil, options: .Loops, completionHandler: nil)
+        player.scheduleBuffer(outputBuffer, at: nil, options: .loops, completionHandler: nil)
     }
     
     private func inputHandler(buffer: AVAudioPCMBuffer!, time: AVAudioTime!) {
         let sampleTimeBufferStart = time.sampleTime - Int64(buffer.frameLength)
-        updateTime(sampleTimeBufferStart, bufferLength: buffer.frameLength)
-        copyData(buffer)
+        updateTime(sampleTime: sampleTimeBufferStart, bufferLength: buffer.frameLength)
+        copyData(buffer: buffer)
         
-        let ticks = audioSampleProcessor.processSamples(data, sampleTime: sampleTimeBufferStart)
-        let (rotations, detectionErrors) = tickTimeProcessor.processTicks(ticks, heading: heading)
-        let directions = rotationProcessor.processRotations(rotations)
+        let ticks = audioSampleProcessor.processSamples(samples: data, sampleTime: sampleTimeBufferStart)
+        let (rotations, detectionErrors) = tickTimeProcessor.processTicks(ticks: ticks, heading: heading)
+        let directions = rotationProcessor.processRotations(rotations: rotations)
         
         // find the correct audio volume
-        let noise = noiseEstimator(data)
+        let noise = noiseEstimator(samples: data)
         let resp = AudioResponse(diff20: noise.diff20, rotations: rotations.count, detectionErrors: detectionErrors, sN: noise.sN)
-        audioEngine.mainMixerNode.outputVolume = vol.newVolume(resp)
+        audioEngine.mainMixerNode.outputVolume = vol.newVolume(resp: resp)
         
-        dispatch_async(dispatch_get_main_queue()) {
+//        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             let windSpeedEvents = rotations.map {
                 (rotation: Rotation) -> WindSpeedEvent in
-                let measurementTime = self.sampleTimeToUnixTime(rotation.sampleTime)
-                let windspeed = WindController.rotationFrequencyToWindspeed(44100/Double(rotation.timeOneRotaion))
+                let measurementTime = self.sampleTimeToUnixTime(sampleTime: rotation.sampleTime)
+                let windspeed = WindController.rotationFrequencyToWindspeed(freq: 44100/Double(rotation.timeOneRotaion))
                 return WindSpeedEvent(time: measurementTime, speed: windspeed)
             }
             
-            let windSpeedEventsWithZeros = self.addZeroSpeedEvents(windSpeedEvents, endTime: self.sampleTimeToUnixTime(time.sampleTime))
-            _ = windSpeedEventsWithZeros.map { event in self.listeners.map { listener in listener.newWindSpeed(event) } }
+            let windSpeedEventsWithZeros = self.addZeroSpeedEvents(speedEvents: windSpeedEvents, endTime: self.sampleTimeToUnixTime(sampleTime: time.sampleTime))
+            _ = windSpeedEventsWithZeros.map { event in self.listeners.map { listener in listener.newWindSpeed(event: event) } }
             
             for direction in directions {
-                let measurementTime = self.sampleTimeToUnixTime(direction.sampleTime)
+                let measurementTime = self.sampleTimeToUnixTime(sampleTime: direction.sampleTime)
                 let event = WindDirectionEvent(time: measurementTime, direction: Double(direction.globalDirection))
-                _ = self.listeners.map { $0.newWindDirection(event) }
+                _ = self.listeners.map { $0.newWindDirection(event: event) }
                 
             }
             
-            let dirAvgs = self.rotationProcessor.debugLastDirectionAverage.enumerate()
+            let dirAvgs = self.rotationProcessor.debugLastDirectionAverage.enumerated()
                 .map { CGPoint(x: CGFloat($0), y: CGFloat($1)) }
-            let dirAvgsCorrected = zip(self.rotationProcessor.debugLastDirectionAverage, self.rotationProcessor.t15).enumerate()
+            let dirAvgsCorrected = zip(self.rotationProcessor.debugLastDirectionAverage, self.rotationProcessor.t15).enumerated()
                 .map { CGPoint(x: CGFloat($0), y: CGFloat($1.0 - $1.1)) }
-            let correctionCoeffs = self.rotationProcessor.t15.enumerate()
+            let correctionCoeffs = self.rotationProcessor.t15.enumerated()
                 .map { CGPoint(x: CGFloat($0), y: CGFloat($1)) }
-            let localAngle = self.rotationProcessor.fitcurveForAngle(-self.rotationProcessor.debugLastLocalAngle).enumerate()
+            let localAngle = self.rotationProcessor.fitcurveForAngle(angle: -self.rotationProcessor.debugLastLocalAngle).enumerated()
                 .map { CGPoint(x: CGFloat($0), y: CGFloat($1)) }
             
             let plotData = [dirAvgs, dirAvgsCorrected, correctionCoeffs, localAngle]
             
-            _ = self.listeners.map { $0.debugPlot(plotData) }
+            _ = self.listeners.map { $0.debugPlot(pointss: plotData) }
         }
     }
     
     private func setVolumeToMax() {
-        for view in MPVolumeView().subviews where view.description.rangeOfString("MPVolumeSlider") != nil {
+        
+        for view in MPVolumeView().subviews where view.description.range(of:"MPVolumeSlider") != nil {
             let mpVolumeSilder = (view as! UISlider)
             mpVolumeSilder.value = 1
         }
@@ -181,7 +183,7 @@ class WindController: NSObject, LocationListener {
     private func updateTime(sampleTime: AVAudioFramePosition, bufferLength: AVAudioFrameCount) {
         if sampleTimeStart == -1 {
             sampleTimeStart = sampleTime
-            startTime = NSDate()
+            startTime = Date()
         }
         else if sampleTimeLast + AVAudioFramePosition(bufferLength) != sampleTime {
             print("Oops. Samples Lost at time: \(sampleTime)")
@@ -190,18 +192,18 @@ class WindController: NSObject, LocationListener {
     }
     
     private func copyData(buffer: AVAudioPCMBuffer) {
-        let channel = buffer.int16ChannelData[0]
+        let channel = buffer.int16ChannelData?[0]
         for i in 0..<Int(buffer.frameLength) {
-            data[i] = channel[i]
+            data[i] = channel![i]
         }
     }
     
     private class func createBuffer(outputFormat: AVAudioFormat) -> AVAudioPCMBuffer {
-        let buffer = AVAudioPCMBuffer(PCMFormat: outputFormat, frameCapacity: 99)
+        let buffer = AVAudioPCMBuffer(pcmFormat: outputFormat, frameCapacity: 99)
         buffer.frameLength = 99 // Should divisible by 3
         
-        let leftChannel = buffer.floatChannelData[0]
-        let rightChannel = buffer.floatChannelData[1]
+        let leftChannel = buffer.floatChannelData![0]
+        let rightChannel = buffer.floatChannelData![1]
         
         for i in 0..<Int(buffer.frameLength) {
             leftChannel[i] = sinf(Float(i)*2*Float(M_PI)/3) // One 3rd of the sample frequency
@@ -210,11 +212,11 @@ class WindController: NSObject, LocationListener {
         return buffer
     }
     
-    private func sampleTimeToUnixTime(sampleTime: Int64) -> NSDate {
-        return startTime.dateByAddingTimeInterval(Double(sampleTime - sampleTimeStart)/44100)
+    private func sampleTimeToUnixTime(sampleTime: Int64) -> Date {
+        return startTime.addingTimeInterval(Double(sampleTime - sampleTimeStart)/44100)
     }
     
-    private func addZeroSpeedEvents(speedEvents: [WindSpeedEvent], endTime: NSDate) -> [WindSpeedEvent] {
+    private func addZeroSpeedEvents(speedEvents: [WindSpeedEvent], endTime: Date) -> [WindSpeedEvent] {
         var newEvents = [WindSpeedEvent]()
         
         if lastWindSpeedEvent == nil, let event = speedEvents.first {
@@ -224,15 +226,15 @@ class WindController: NSObject, LocationListener {
         if let lastEvent = lastWindSpeedEvent {
             var lEvent = lastEvent
             for event in speedEvents {
-                if lEvent.speed != 0 && event.time.timeIntervalSinceDate(lEvent.time) > zeroEventThreshold {
-                    newEvents.append(WindSpeedEvent(time: lEvent.time.dateByAddingTimeInterval(zeroEventThreshold), speed: 0))
+                if lEvent.speed != 0 && event.time.timeIntervalSince(lEvent.time) > zeroEventThreshold {
+                    newEvents.append(WindSpeedEvent(time: lEvent.time.addingTimeInterval(zeroEventThreshold), speed: 0))
                 }
                 newEvents.append(event)
                 lEvent = event
             }
             
-            if lEvent.speed != 0 && endTime.timeIntervalSinceDate(lEvent.time) > zeroEventThreshold {
-                newEvents.append(WindSpeedEvent(time: lEvent.time.dateByAddingTimeInterval(zeroEventThreshold), speed: 0))
+            if lEvent.speed != 0 && endTime.timeIntervalSince(lEvent.time) > zeroEventThreshold {
+                newEvents.append(WindSpeedEvent(time: lEvent.time.addingTimeInterval(zeroEventThreshold), speed: 0))
             }
             
             if let newLastEvent = newEvents.last {
@@ -251,16 +253,16 @@ class WindController: NSObject, LocationListener {
 
         for _ in 0..<nSamples {
             let index = Int(arc4random_uniform(UInt32(samples.count - skipSamples - 3))) + skipSamples
-            var diff = 0
+            var diff : Int16 = 0
             
             for j in 0..<3 {
                 diff = diff + abs(samples[index + j] - samples[index + j + 1])
             }
             
-            diffValues.append(diff)
+            diffValues.append(Int(diff))
         }
 
-        diffValues.sortInPlace(<)
+        diffValues.sort(by: <)
         
         let preSN = Double(diffValues[79])/Double(diffValues[39])
         let sN = preSN == Double.infinity ? 0 : preSN
@@ -269,7 +271,7 @@ class WindController: NSObject, LocationListener {
     }
     
     private func checkEngineAlreadyRunning() throws {
-        guard audioEngine.running == false else {
+        guard audioEngine.isRunning == false else {
             throw VaavudAudioError.MultipleStart
         }
     }
@@ -322,26 +324,26 @@ class WindController: NSObject, LocationListener {
     }
 
     private func setupObservers() {
-        let nc = NSNotificationCenter.defaultCenter()
-        let mainQueue = NSOperationQueue.mainQueue()
+        let nc = NotificationCenter.default
+        let mainQueue = OperationQueue.main
         let sessionInstance = AVAudioSession.sharedInstance()
 
-        let interuptionObserver = nc.addObserverForName(AVAudioSessionInterruptionNotification, object:sessionInstance, queue:mainQueue) {
+        let interuptionObserver = nc.addObserver(forName: NSNotification.Name.AVAudioSessionInterruption, object:sessionInstance, queue:mainQueue) {
             [unowned self] notification in
             if let info = notification.userInfo {
                 var intValue: UInt = 0
                 (info[AVAudioSessionInterruptionTypeKey] as! NSValue).getValue(&intValue)
-                if let type = AVAudioSessionInterruptionType(rawValue: intValue) where type == .Began {
+                if let type = AVAudioSessionInterruptionType(rawValue: intValue), type == .began {
                     self.stop()
                     let error = ErrorEvent(eventType: .AudioInterruption(type))
-                    _ = self.listeners.map { $0.newError(error) }
+                    _ = self.listeners.map { $0.newError(event: error) }
                 }
             }
         }
         
         observers.append(interuptionObserver)
         
-        let routeObserver = nc.addObserverForName(AVAudioSessionRouteChangeNotification, object:sessionInstance, queue:mainQueue) {
+        let routeObserver = nc.addObserver(forName: NSNotification.Name.AVAudioSessionRouteChange, object:sessionInstance, queue:mainQueue) {
             [unowned self] notification in
             if let info = notification.userInfo {
                 var intValue: UInt = 0
@@ -349,14 +351,14 @@ class WindController: NSObject, LocationListener {
                 
                 if let reason = AVAudioSessionRouteChangeReason(rawValue: intValue) {
                     let error = ErrorEvent(eventType: .AudioRouteChange(reason))
-                    _ = self.listeners.map { $0.newError(error) }
+                    _ = self.listeners.map { $0.newError(event: error) }
                     self.stop()
                 }
             }
         }
         observers.append(routeObserver)
     
-        let mediaObserver = nc.addObserverForName(AVAudioSessionMediaServicesWereResetNotification, object: sessionInstance, queue: mainQueue) {
+        let mediaObserver = nc.addObserver(forName: NSNotification.Name.AVAudioSessionMediaServicesWereReset, object: sessionInstance, queue: mainQueue) {
             [unowned self] notification in
             // If we've received this notification, the media server has been reset
             // Re-wire all the connections and start the engine
@@ -371,7 +373,7 @@ class WindController: NSObject, LocationListener {
             }
             catch let audioError as VaavudAudioError {
                 let error = ErrorEvent(eventType: .AudioReconfigurationFailure(audioError))
-                _ = self.listeners.map { $0.newError(error) }
+                _ = self.listeners.map { $0.newError(event: error) }
 
                 return
             }
@@ -405,8 +407,8 @@ class WindController: NSObject, LocationListener {
         
     }
     
-    func newError(error: ErrorEvent) {
-        _ = listeners.map { $0.newError(error) }
+    func newError(event error: ErrorEvent) {
+        _ = listeners.map { $0.newError(event: error) }
 
         //        if case .LocationManagerFailure(let locationError) = error.type {
         //            _ = listeners.map { $0.newError(ErrorEvent(eventType: .HeadingUnavailable(locationError))) }

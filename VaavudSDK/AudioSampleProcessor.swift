@@ -58,15 +58,15 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
         var avgOpenMin = Int(INT16_MIN/2)
         var avgClosedMax = Int(0)
         
-        static func updateVal(inout val: Int, newVal: Int) {
+        static func updateVal( val: inout Int, newVal: Int) {
             val = (7*val + 3*newVal)/10
         }
     }
     
     // Primary running variables
-    var avgBuffer = [Int](count: 3, repeatedValue: 0)
+    var avgBuffer = [Int](repeating: 0, count: 3)
     var avg = 0
-    var diffBuffer = [Int](count: 3, repeatedValue: 0)
+    var diffBuffer = [Int](repeating: 0, count: 3)
     var diff = 0
     var bufferIndex = 0
     
@@ -108,10 +108,10 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
     }
     
     mutating func updateFilteredValues() {
-        FilteredValues.updateVal(&tf.avgMax, newVal: tp.avgMax)
-        FilteredValues.updateVal(&tf.diffMax, newVal: tp.diffMax)
-        FilteredValues.updateVal(&tf.avgOpenMin, newVal: tp.avgOpenMin)
-        FilteredValues.updateVal(&tf.avgClosedMax, newVal: tp.avgGapMax)
+        FilteredValues.updateVal(val: &tf.avgMax, newVal: tp.avgMax)
+        FilteredValues.updateVal(val: &tf.diffMax, newVal: tp.diffMax)
+        FilteredValues.updateVal(val: &tf.avgOpenMin, newVal: tp.avgOpenMin)
+        FilteredValues.updateVal(val: &tf.avgClosedMax, newVal: tp.avgGapMax)
     }
     
     mutating func updateStateAvg() -> Bool {
@@ -167,7 +167,7 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
             if tp.samplesSinceTick > tp.gapBlock {
                 tp.diffState = .DetectDrop
                 
-                FilteredValues.updateVal(&tf.diffGap, newVal: diff)
+                FilteredValues.updateVal(val: &tf.diffGap, newVal: diff)
                 tp.diffRiseThreshold = (10*tf.diffGap + (tf.diffMax - tf.diffGap))/10
                 
                 tp.avgDropHalf = (tf.avgClosedMax - tp.avgOpenMin)/2
@@ -187,7 +187,7 @@ public struct AudioSampleProcessor { // Audio Sample Processor State
         
         for sample in samples {
             let sampleInt = Int(sample)
-            updateRunningStats(sampleInt)
+            updateRunningStats(sample: sampleInt)
             if (updateStateAvg() || updateStateDiff() || tp.samplesSinceTick == 7000) {
                 // start of new gap detected
                 runningSampleTime = runningSampleTime + tp.samplesSinceTick

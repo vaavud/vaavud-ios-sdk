@@ -15,27 +15,29 @@ public class VaavudSleipnirAvailability: NSObject {
     }
 }
 
-public class VaavudSDK: WindListener, LocationListener {
+public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     public static let shared = VaavudSDK()
     
     private var windController = WindController()
     private var locationController = LocationController()
+    private var bluetoothController = BluetoothController()
     private var pressureController: CMAltimeter? = { return CMAltimeter.isRelativeAltitudeAvailable() ? CMAltimeter() : nil }()
     
     public private(set) var session = VaavudSession()
     
     
-    public var windSpeedCallback: (WindSpeedEvent -> Void)?
-    public var trueWindSpeedCallback: (TrueWindSpeedEvent -> Void)?
-    public var windDirectionCallback: (WindDirectionEvent -> Void)?
-    public var trueWindDirectionCallback: (TrueWindDirectionEvent -> Void)?
+    public var windSpeedCallback: ((WindSpeedEvent) -> Void)?
+    public var trueWindSpeedCallback: ((TrueWindSpeedEvent) -> Void)?
+    public var windDirectionCallback: ((WindDirectionEvent) -> Void)?
+    public var trueWindDirectionCallback: ((TrueWindDirectionEvent) -> Void)?
+    public var bluetoothCallback: ((BluetoothEvent) -> Void)?
     
-    public var pressureCallback: (PressureEvent -> Void)?
-    public var headingCallback: (HeadingEvent -> Void)?
-    public var locationCallback: (LocationEvent -> Void)?
-    public var velocityCallback: (VelocityEvent -> Void)?
-    public var altitudeCallback: (AltitudeEvent -> Void)?
-    public var courseCallback: (CourseEvent -> Void)?
+    public var pressureCallback: ((PressureEvent) -> Void)?
+    public var headingCallback: ((HeadingEvent) -> Void)?
+    public var locationCallback: ((LocationEvent) -> Void)?
+    public var velocityCallback: ((VelocityEvent) -> Void)?
+    public var altitudeCallback: ((AltitudeEvent) -> Void)?
+    public var courseCallback: ((CourseEvent) -> Void)?
     
     
     private var lastDirection: WindDirectionEvent?
@@ -45,15 +47,16 @@ public class VaavudSDK: WindListener, LocationListener {
     
     
     
-    public var errorCallback: (ErrorEvent -> Void)?
+    public var errorCallback: ((ErrorEvent) -> Void)?
 
-    public var debugPlotCallback: ([[CGPoint]] -> Void)?
+    public var debugPlotCallback: (([[CGPoint]]) -> Void)?
 
     public init() {
         
-        windController.addListener(self)
-        locationController.addListener(windController)
-        locationController.addListener(self)
+        windController.addListener(listener: self)
+        locationController.addListener(listener: windController)
+        locationController.addListener(listener: self)
+        bluetoothController.addListener(listener: self)
     }
     
     public func sleipnirAvailable() -> Bool {
@@ -62,7 +65,7 @@ public class VaavudSDK: WindListener, LocationListener {
         
         locationController.stop()
         
-        do { try windController.start(false) }
+        do { try windController.start(flipped: false) }
         catch {
             return false
         }
@@ -73,14 +76,14 @@ public class VaavudSDK: WindListener, LocationListener {
     }
     
     
-    func estimateTrueWind(time: NSDate) {
+    func estimateTrueWind(time: Date) {
         
         let direction: Double? = lastDirection?.direction
         let speed: Double? = lastSpeed?.speed
         let course: Double? = lastCourse?.course
         let velocity: Double? = lastVelocity?.speed
         
-        if let direction = direction, speed = speed, course = course, velocity = velocity {
+        if let direction = direction, let speed = speed, let course = course, let velocity = velocity {
 
             let alpha = direction - course
             let rad = alpha * M_PI / 180.0 //Radias
@@ -112,16 +115,16 @@ public class VaavudSDK: WindListener, LocationListener {
                 trueWindDirectionCallback?(directionEvent)
             }
             
-            if let _ = lastSpeed, _ = lastDirection {
-                session.addTrueWindDirection(TrueWindDirectionEvent(direction: trueDirection))
-                session.addTrueWindSpeed(TrueWindSpeedEvent(time: time, speed: trueSpeed))
+            if let _ = lastSpeed, let _ = lastDirection {
+                session.addTrueWindDirection(event: TrueWindDirectionEvent(direction: trueDirection))
+                session.addTrueWindSpeed(event: TrueWindSpeedEvent(time: time, speed: trueSpeed))
             }
             
         } else {
             if(speed != nil) {
                 let trueSpeedEvent = TrueWindSpeedEvent(time: time, speed: speed!)
                 trueWindSpeedCallback?(trueSpeedEvent)
-                session.addTrueWindSpeed(trueSpeedEvent)
+                session.addTrueWindSpeed(event: trueSpeedEvent)
             }
         }
     }
@@ -130,13 +133,28 @@ public class VaavudSDK: WindListener, LocationListener {
     func reset() {
         session = VaavudSession()
     }
+    
+    
+    public func startWithBluetooth(listener: IBluetoothManager) {
+        reset()
+        do {
+            try locationController.start()
+            bluetoothController.addBleListener(listener: listener)
+            bluetoothController.start()
+            startPressure()
+        }
+        catch {
+            print("error")
+        }
+    }
+    
         
     public func start(flipped: Bool) throws {
         reset()
         do {
-            session.setWindMeter(sleipnirAvailable())
+            session.setWindMeter(isSleipnir: sleipnirAvailable())
             try locationController.start()
-            try windController.start(flipped)
+            try windController.start(flipped: flipped)
             startPressure()
             
         }
@@ -147,10 +165,10 @@ public class VaavudSDK: WindListener, LocationListener {
     }
     
     private func startPressure() {
-        pressureController?.startRelativeAltitudeUpdatesToQueue(.mainQueue()) {
+        pressureController?.startRelativeAltitudeUpdates(to: .main) {
             altitudeData, error in
             if let kpa = altitudeData?.pressure.doubleValue {
-                self.newPressure(PressureEvent(pressure: kpa*1000))
+                self.newPressure(event: PressureEvent(pressure: kpa*1000))
             }
             else {
                 print("CMAltimeter error")
@@ -167,6 +185,7 @@ public class VaavudSDK: WindListener, LocationListener {
     public func stop() {
         windController.stop()
         locationController.stop()
+        bluetoothController.stop()
         pressureController?.stopRelativeAltitudeUpdates()
     }
     
@@ -175,6 +194,7 @@ public class VaavudSDK: WindListener, LocationListener {
         trueWindSpeedCallback = nil
         windDirectionCallback = nil
         trueWindDirectionCallback = nil
+        bluetoothCallback = nil
         
         pressureCallback = nil
         headingCallback = nil
@@ -189,76 +209,96 @@ public class VaavudSDK: WindListener, LocationListener {
     
     // MARK: Common error event handling
     
-    func newError(error: ErrorEvent) {
+    func newError(event error: ErrorEvent) {
         errorCallback?(error)
     }
     
     // MARK: Pressure listener
     
     func newPressure(event: PressureEvent) {
-        session.addPressure(event)
+        session.addPressure(event: event)
         pressureCallback?(event)
     }
     
     // MARK: Location listener
 
     func newHeading(event: HeadingEvent) {
-        session.addHeading(event)
+        session.addHeading(event: event)
         headingCallback?(event)
     }
     
     func newLocation(event: LocationEvent) {
-        session.addLocation(event)
+        session.addLocation(event: event)
         locationCallback?(event)
     }
     
     func newVelocity(event: VelocityEvent) {
-        session.addVelocity(event)
+        session.addVelocity(event: event)
         velocityCallback?(event)
         lastVelocity = event
     }
     
     func newCourse(event: CourseEvent) {
-        session.addCourse(event)
+        session.addCourse(event: event)
         courseCallback?(event)
         lastCourse = event
     }
     
     func newAltitude(event: AltitudeEvent) {
-        session.addAltitude(event)
+        session.addAltitude(event: event)
         altitudeCallback?(event)
     }
+    
+    
+    // MARK: bluetooth listener
+    
+    
+    func newReading(event: BluetoothEvent) {
+        let windSpeedE = WindSpeedEvent(speed: event.windSpeed)
+        let windDirectionE = WindDirectionEvent(direction: Double(event.windDirection))
+        
+        session.addWindSpeed(event: windSpeedE)
+        session.addWindDirection(event: windDirectionE)
+        
+        lastSpeed = windSpeedE
+        lastDirection = windDirectionE
+        
+        estimateTrueWind(time: event.time)
+        bluetoothCallback?(event)
+    }
+
+    
     
     // MARK: Wind listener
     
     public func newWindSpeed(event: WindSpeedEvent) {
-        session.addWindSpeed(event)
+        session.addWindSpeed(event: event)
         windSpeedCallback?(event)
         lastSpeed = event
-        estimateTrueWind(event.time)
+        estimateTrueWind(time: event.time)
     }
     
     func newTrueWindWindSpeed(event: TrueWindSpeedEvent) {
-        session.addTrueWindSpeed(event)
+        session.addTrueWindSpeed(event: event)
 //        trueWindSpeedCallback?(event)
     }
 
     func newWindDirection(event: WindDirectionEvent) {
-        session.addWindDirection(event)
+        session.addWindDirection(event: event)
         windDirectionCallback?(event)
         lastDirection = event
         if lastSpeed != nil {
-            estimateTrueWind(lastSpeed!.time)
+            estimateTrueWind(time: lastSpeed!.time)
         }
 
     }
     
     func newTrueWindDirection(event: TrueWindDirectionEvent) {
-        session.addTrueWindDirection(event)
+        session.addTrueWindDirection(event: event)
 //        trueWindDirectionCallback?(event)
     }
     
-    func debugPlot(valuess: [[CGPoint]]) {
+    func debugPlot(pointss valuess: [[CGPoint]]) {
         debugPlotCallback?(valuess)
     }
     
@@ -268,7 +308,7 @@ public class VaavudSDK: WindListener, LocationListener {
 }
 
 public struct VaavudSession {
-    public let time = NSDate()
+    public let time = Date()
     
     public private(set) var meanDirection: Double?
     public private(set) var meanTrueDirection: Double?
@@ -292,7 +332,7 @@ public struct VaavudSession {
     public var trueMaxSpeed: Double = 0
 
     public var turbulence: Double? {
-        return gustiness(windSpeeds.map { $0.speed })
+        return gustiness(speeds: windSpeeds.map { $0.speed })
 //        return (windSpeedSquaredSum - windSpeedSum*windSpeedSum)/meanSpeed
     }
     
@@ -355,12 +395,12 @@ public struct VaavudSession {
     }
     
     mutating func addWindDirection(event: WindDirectionEvent) {
-        meanDirection = mod(event.direction)
+        meanDirection = mod(angle: event.direction)
         windDirections.append(event)
     }
     
     mutating func addTrueWindDirection(event: TrueWindDirectionEvent) {
-        meanTrueDirection = mod(event.direction)
+        meanTrueDirection = mod(angle: event.direction)
         trueWindDirections.append(event)
     }
     
@@ -378,12 +418,12 @@ public struct VaavudSession {
     
     // Helper function
 
-    public func relativeTime(measurement: WindSpeedEvent) -> NSTimeInterval {
-        return measurement.time.timeIntervalSinceDate(time)
+    public func relativeTime(measurement: WindSpeedEvent) -> TimeInterval {
+        return measurement.time.timeIntervalSince(time)
     }
     
     func description(measurement: WindSpeedEvent) -> String {
-        return "WindSpeedEvent (time rel:" + String(format: "% 5.2f", relativeTime(measurement)) + " speed:" + String(format: "% 5.2f", measurement.speed) + " UnixTime: \(measurement.time.timeIntervalSince1970))"
+        return "WindSpeedEvent (time rel:" + String(format: "% 5.2f", relativeTime(measurement: measurement)) + " speed:" + String(format: "% 5.2f", measurement.speed) + " UnixTime: \(measurement.time.timeIntervalSince1970))"
     }
     
     
@@ -426,9 +466,9 @@ public struct VaavudSession {
         
         
         session["timeStart"] = time.ms
-        session["timeEnd"] = NSDate().ms
+        session["timeEnd"] = Date().ms
         session["windDirection"] = meanDirection
-        if (meanTrueDirection != nil) && (!meanTrueDirection!.isNaN){
+        if meanTrueDirection != nil && !meanTrueDirection!.isNaN {
             session["trueWindDirection"] = meanTrueDirection
         }
         session["windMeter"] = windMeter
@@ -447,9 +487,9 @@ func gustiness(speeds: [Double]) -> Double? {
         return nil
     }
 
-    let mean = speeds.reduce(0, combine: +)/n
+    let mean = speeds.reduce(0, +)/n
     let squares = speeds.map { ($0 - mean)*($0 - mean) }
-    let variance = squares.reduce(0, combine: +)/(n - 1)
+    let variance = squares.reduce(0, +)/(n - 1)
     
 //    let variance: Double = speeds.reduce(0) { $0 + ($1 - mean)*($1 - mean) }/(n - 1)
     

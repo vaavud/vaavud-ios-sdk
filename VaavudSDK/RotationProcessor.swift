@@ -53,9 +53,9 @@ public struct RotationProcessor {
     }
     
     var calibrationScheduler = Scheduler(time: 0, delta: 2*44100)
-    var relVelsStore = [[Float]](count: 360, repeatedValue: [Float](count: TPR, repeatedValue: 0))
+    var relVelsStore = [[Float]](repeating: [Float](repeating: 0, count: TPR), count: 360)
     
-    var debugLastDirectionAverage = [Float](count: TPR, repeatedValue: 0)
+    var debugLastDirectionAverage = [Float](repeating: 0, count: TPR)
     var debugLastLocalAngle: Float = 0
     
     struct FitAngleCapsule {
@@ -67,7 +67,7 @@ public struct RotationProcessor {
     }
     
     public init(flipped: Bool) {
-        t15 = [Float](count: TPR, repeatedValue: 0)
+        t15 = [Float](repeating: 0, count: TPR)
         ea15 = [0,23.5,47.0,70.5,94.0,117.5,141.0,164.5,188.0,211.5,235.0,258.5,282.0,305.5,332.75]
         sleipnirFlipped = flipped
         
@@ -75,28 +75,28 @@ public struct RotationProcessor {
         anglesN = 20
         length = anglesN * TPR * rotationNMax
         
-        d = [Float](count: length, repeatedValue: 0)
-        t = [Float](count: length, repeatedValue: 0)
-        b = [Float](count: length, repeatedValue: 0)
-        c = [Float](count: length, repeatedValue: 0)
-        f = [Float](count: length, repeatedValue: 0)
-        ea = [Float](count: length, repeatedValue: 0)
-        h = [Float](count: length, repeatedValue: 0)
-        wd = [Float](count: length, repeatedValue: 0)
-        a = [Float](count: length, repeatedValue: 0)
-        v360 = [Float](count: length, repeatedValue: 360)
+        d = [Float](repeating: 0, count: length)
+        t = [Float](repeating: 0, count: length)
+        b = [Float](repeating: 0, count: length)
+        c = [Float](repeating: 0, count: length)
+        f = [Float](repeating: 0, count: length)
+        ea = [Float](repeating: 0, count: length)
+        h = [Float](repeating: 0, count: length)
+        wd = [Float](repeating: 0, count: length)
+        a = [Float](repeating: 0, count: length)
+        v360 = [Float](repeating: 360, count: length)
 
-        indicesTeeth = getIndicesTeeth(length)
-        indicesWD = getIndicesWD(anglesN, length: length)
+        indicesTeeth = getIndicesTeeth(length: length)
+        indicesWD = getIndicesWD(anglesN: anglesN, length: length)
         
-        if let relVelData = NSUserDefaults.standardUserDefaults().objectForKey("vaavud_relVelsStore") as? NSData,
-            relVelsStore = NSKeyedUnarchiver.unarchiveObjectWithData(relVelData) as? [[Float]] {
+        if let relVelData = UserDefaults.standard.object(forKey: "vaavud_relVelsStore") as? NSData,
+            let relVelsStore = NSKeyedUnarchiver.unarchiveObject(with: relVelData as Data) as? [[Float]] {
                 self.relVelsStore = relVelsStore
 //                print("Calibration store loaded, completion: \(calibrationCompletionPercentage(relVelsStore))")
         }
         
-        if let t15Data = NSUserDefaults.standardUserDefaults().objectForKey("vaavud_t15") as? NSData,
-            t15 = NSKeyedUnarchiver.unarchiveObjectWithData(t15Data) as? [Float] {
+        if let t15Data = UserDefaults.standard.object(forKey: "vaavud_t15") as? NSData,
+            let t15 = NSKeyedUnarchiver.unarchiveObject(with: t15Data as Data) as? [Float] {
                 self.t15 = t15
 //                print("Calibration coefficients loaded: \(self.t15)")
         }
@@ -108,14 +108,14 @@ public struct RotationProcessor {
         }
         
         func validForCoempensation(rotation: Rotation) -> Bool {
-            return steadyRotation(rotation) && (rotation.timeOneRotaion > 700 && rotation.timeOneRotaion < 3600)
+            return steadyRotation(rotation: rotation) && (rotation.timeOneRotaion > 700 && rotation.timeOneRotaion < 3600)
         }
         
         func validForDirection(rotation: Rotation) -> Bool {
-            return steadyRotation(rotation) && (rotation.heading != nil)
+            return steadyRotation(rotation: rotation) && (rotation.heading != nil)
         }
         
-        func timeForCalibration(inout schedular: Scheduler, time: Int64) -> Bool {
+        func timeForCalibration( schedular: inout Scheduler, time: Int64) -> Bool {
             if time > schedular.time {
                 schedular.time += time
                 if time < schedular.time {
@@ -128,37 +128,37 @@ public struct RotationProcessor {
             return false
         }
         
-        let groupCalibration = groupRotations(&calibrationRotations, rotations: rotations.filter (validForCoempensation))
-        let groupDirection = groupRotations(&directionRotations, rotations: rotations.filter(validForDirection))
+        let groupCalibration = groupRotations(group: &calibrationRotations, rotations: rotations.filter (validForCoempensation))
+        let groupDirection = groupRotations(group: &directionRotations, rotations: rotations.filter(validForDirection))
         
         // Update correction coefficients
-        let relVelsMean = groupCalibration.map { self.averageVectors($0.map { $0.relVelocities }) }
+        let relVelsMean = groupCalibration.map { self.averageVectors(vectors: $0.map { $0.relVelocities }) }
         
-        insertIntoStore(relVelsMean, relVelsStore: &relVelsStore)
+        insertIntoStore(relVels: relVelsMean, relVelsStore: &relVelsStore)
         
-        if let rotation = rotations.first where timeForCalibration(&calibrationScheduler, time: rotation.sampleTime) {
+        if let rotation = rotations.first, timeForCalibration(schedular: &calibrationScheduler, time: rotation.sampleTime) {
             let angles = Array(0..<360).filter({ self.relVelsStore[$0][0] != 0 }).map { Float($0) }
-            if angleDifferenceMax(angles) > 60 {
-                t15 = estimateCoefficients(relVelsStore.filter { $0[0] != 0 }, windD: angles) // Only use data in the store with values
+            if angleDifferenceMax(angles: angles) > 60 {
+                t15 = estimateCoefficients(relVels: relVelsStore.filter { $0[0] != 0 }, windD: angles) // Only use data in the store with values
             }
         }
         
         if let group = groupDirection.last {
-            debugLastDirectionAverage = averageVectors(group.map { $0.relVelocities })
+            debugLastDirectionAverage = averageVectors(vectors: group.map { $0.relVelocities })
         }
         
         // Calculate winddirections
         return groupDirection.map {
             rotations in
-            let dir = self.fitAngle( rotations.map { $0.relVelocities }, headings: rotations.map { $0.heading! })
+            let dir = self.fitAngle( relVels: rotations.map { $0.relVelocities }, headings: rotations.map { $0.heading! })
             // Debug
-            debugLastLocalAngle = (dir - rotations.last!.heading! + 360) % 360
+            debugLastLocalAngle = (dir - rotations.last!.heading! + 360).truncatingRemainder(dividingBy: 360)
             //print("H: \(rotations.last!.heading!), L: \(self.debugLastLocalAngle), G: \(dir)")
             return Direction(sampleTime: rotations.last!.sampleTime, globalDirection: dir, heading: rotations.last!.heading!) // There will always be at least one rotations in a group
         }
     }
     
-    func groupRotations(inout group: RotationGroup, rotations: [Rotation]) -> [[Rotation]] {
+    func groupRotations( group: inout RotationGroup, rotations: [Rotation]) -> [[Rotation]] {
         var groups = [[Rotation]]()
         
         for rotation in rotations {
@@ -174,7 +174,7 @@ public struct RotationProcessor {
     }
     
     func averageVectors(vectors: [[Float]]) -> [Float] {
-        var b = [Float](count: vectors[0].count, repeatedValue: 0)
+        var b = [Float](repeating: 0, count: vectors[0].count)
         for vector in vectors {
             b = zip(vector, b).map(+)
         }
@@ -183,49 +183,49 @@ public struct RotationProcessor {
     
     mutating func fitAngle(relVels: [[Float]], headings: [Float]) -> Float {
         let fc = FitAngleCapsule(revN: relVels.count, relVels: relVels, headings: headings, tCor: t15, merge: true)
-        return fitAngles(360, centers: [Float](count: relVels.count, repeatedValue: 0), c: fc).last!
+        return fitAngles(range: 360, centers: [Float](repeating: 0, count: relVels.count), c: fc).last!
     }
     
     mutating func fitAngles(relVels: [[Float]]) -> [Float] {
-        let fc = FitAngleCapsule(revN: relVels.count, relVels: relVels, headings: [Float](count: relVels.count, repeatedValue: 0), tCor: t15, merge: false)
-        return fitAngles(360, centers: [Float](count: relVels.count, repeatedValue: 0), c: fc)
+        let fc = FitAngleCapsule(revN: relVels.count, relVels: relVels, headings: [Float](repeating: 0, count: relVels.count), tCor: t15, merge: false)
+        return fitAngles(range: 360, centers: [Float](repeating: 0, count: relVels.count), c: fc)
     }
     
     mutating func fitAngles(range: Int, centers: [Float], c: FitAngleCapsule) -> [Float] {
         let stride = range/anglesN
-        let angless = centers.map { getAngles(self.anglesN, stride: stride, center: $0) }
-        let rmsAngleRotation = rmsForAngleForRotation(c.relVels, headings: c.headings, tCor: c.tCor, angless: angless)
+        let angless = centers.map { getAngles(N: self.anglesN, stride: stride, center: $0) }
+        let rmsAngleRotation = rmsForAngleForRotation(relVels: c.relVels, headings: c.headings, tCor: c.tCor, angless: angless)
         
         let angle: [Float]
         
         if c.merge {
             // Sum every angle (1 x rotationsN) (rotationsN x anglesN)
-            let sumVector = [Float](count: c.revN, repeatedValue: 1/Float(c.revN))
-            var rmsAngle = [Float](count: anglesN, repeatedValue: 0)
+            let sumVector = [Float](repeating: 1/Float(c.revN), count: c.revN)
+            var rmsAngle = [Float](repeating: 0, count: anglesN)
             vDSP_mmul(sumVector, 1, rmsAngleRotation, 1, &rmsAngle, 1, vDSP_Length(1), vDSP_Length(anglesN),vDSP_Length(c.revN))
-            angle = [Float](count: c.revN, repeatedValue: angless[0][minIndex(rmsAngle, advanceBy: anglesN).first!])
+            angle = [Float](repeating: angless[0][minIndex(data: rmsAngle, advanceBy: anglesN).first!], count: c.revN)
         }
         else {
-            angle = zip(angless, minIndex(rmsAngleRotation, advanceBy: anglesN)).map { $0[$1] }
+            angle = zip(angless, minIndex(data: rmsAngleRotation, advanceBy: anglesN)).map { $0[$1] }
         }
         
         if stride > 1 {
             let newStride = stride/anglesN + 1
             let newRange = newStride*anglesN
-            return fitAngles(newRange, centers: angle, c: c)
+            return fitAngles(range: newRange, centers: angle, c: c)
         }
         
         return angle
     }
     
     func minIndex(data: [Float], advanceBy: Int) -> [Int] {
-        var indexes = [Int](count: data.count/advanceBy, repeatedValue: 0)
+        var indexes = [Int](repeating: 0, count: data.count/advanceBy)
         
-        var minValue = [Float](count: 1, repeatedValue: 0)
-        var minIndex = [vDSP_Length](count: 1, repeatedValue: 0)
+        var minValue = [Float](repeating: 0, count: 1)
+        var minIndex = [vDSP_Length](repeating: 0, count: 1)
         
         for i in 0..<indexes.count {
-            vDSP_minvi(UnsafePointer(data).advancedBy(i*advanceBy), 1, &minValue, &minIndex, vDSP_Length(advanceBy))
+            vDSP_minvi(UnsafePointer(data).advanced(by: i*advanceBy), 1, &minValue, &minIndex, vDSP_Length(advanceBy))
             indexes[i] = Int(minIndex[0])
         }
         return indexes
@@ -249,14 +249,14 @@ public struct RotationProcessor {
         let length = anglesN*TPR*rotaN
         let lengthDSP = vDSP_Length(length)
         
-        for (i, relVel) in relVels.enumerate() {
+        for (i, relVel) in relVels.enumerated() {
             // populate data array
-            vDSP_vgathr(relVel, indicesTeeth, 1, UnsafeMutablePointer(d).advancedBy(i*anglesN * TPR), 1, vDSP_Length(anglesN * TPR))
+            vDSP_vgathr(relVel, indicesTeeth, 1, UnsafeMutablePointer(mutating: d).advanced(by: i*anglesN * TPR), 1, vDSP_Length(anglesN * TPR))
             // load h into h ... not verefied to be working yet! (relVels x angles)
-            vDSP_vfill([headings[i]], UnsafeMutablePointer(h).advancedBy(i*anglesN*TPR), 1, vDSP_Length(anglesN * TPR))
+            vDSP_vfill([headings[i]], UnsafeMutablePointer(mutating: h).advanced(by: i*anglesN*TPR), 1, vDSP_Length(anglesN * TPR))
             
             // load wind direction
-            vDSP_vgathr(angless[i], indicesWD, 1, UnsafeMutablePointer(wd).advancedBy(i*anglesN * TPR), 1, vDSP_Length(anglesN * TPR)) // was lengthDSP
+            vDSP_vgathr(angless[i], indicesWD, 1, UnsafeMutablePointer(mutating: wd).advanced(by: i*anglesN * TPR), 1, vDSP_Length(anglesN * TPR)) // was lengthDSP
         }
 
         vDSP_vgathr(tCor, indicesTeeth, 1, &t, 1, lengthDSP)
@@ -282,8 +282,8 @@ public struct RotationProcessor {
         vDSP_vmul(c, 1, c, 1, &c, 1, lengthDSP)
         
         // sum every single rotation (anglesN*rotationsN x TPR) * (TPR x 1)
-        let sumVector = [Float](count: TPR, repeatedValue: 1)
-        var rmsAngleRotation = [Float](count: anglesN*rotaN, repeatedValue: 0)
+        let sumVector = [Float](repeating: 1, count: TPR)
+        var rmsAngleRotation = [Float](repeating: 0, count: anglesN*rotaN)
         vDSP_mmul(c, 1, sumVector, 1, &rmsAngleRotation, 1, vDSP_Length(anglesN*rotaN), vDSP_Length(1),vDSP_Length(TPR))
         return rmsAngleRotation
     }
@@ -306,13 +306,13 @@ public struct RotationProcessor {
         let lengthDSP = vDSP_Length(length)
         
         // load data into d
-        for (i, relvel) in relVels.enumerate() {
-            memcpy(UnsafeMutablePointer<Float>(d).advancedBy(i*TPR), relvel, sizeof(Float)*TPR)
+        for (i, relvel) in relVels.enumerated() {
+            memcpy(UnsafeMutablePointer<Float>(mutating: d).advanced(by:i*TPR), relvel, MemoryLayout<Float>.size*TPR)
         }
         
         // load wind direction(angles) into wd
         for i in 0..<TPR {
-            vDSP_mmov(windD, UnsafeMutablePointer<Float>(wd).advancedBy(i), vDSP_Length(1), vDSP_Length(relVels.count), vDSP_Length(1), vDSP_Length(TPR))
+            vDSP_mmov(windD, UnsafeMutablePointer<Float>(mutating: wd).advanced(by:i), vDSP_Length(1), vDSP_Length(relVels.count), vDSP_Length(1), vDSP_Length(TPR))
         }
         // estimate angles to find f
         // load encoder angles
@@ -323,9 +323,9 @@ public struct RotationProcessor {
         vDSP_vindex(fitcurve, a, 1, &f, 1, lengthDSP)
         
         // sum d and f per teeth basis
-        let sumVector = [Float](count: relVels.count, repeatedValue: 1/Float(relVels.count))
-        var dSum = [Float](count: TPR, repeatedValue: 0)
-        var fSum = [Float](count: TPR, repeatedValue: 0)
+        let sumVector = [Float](repeating: 1/Float(relVels.count), count: relVels.count)
+        var dSum = [Float](repeating: 0, count: TPR)
+        var fSum = [Float](repeating: 0, count: TPR)
         vDSP_mmul(sumVector, 1, d, 1, &dSum, 1, vDSP_Length(1), vDSP_Length(TPR),vDSP_Length(relVels.count))
         vDSP_mmul(sumVector, 1, f, 1, &fSum, 1, vDSP_Length(1), vDSP_Length(TPR),vDSP_Length(relVels.count))
 
@@ -338,15 +338,15 @@ public struct RotationProcessor {
         }
         
         let deltas = (0..<angles.count).map {
-            i in dist(angles[i], b: angles[(i + 1) % angles.count])
+            i in dist(a: angles[i], b: angles[(i + 1) % angles.count])
         }
         
-        return deltas.reduce(0, combine: +)/2
+        return deltas.reduce(0, +)/2
     }
     
-    mutating func insertIntoStore(relVels: [[Float]], inout relVelsStore: [[Float]]) {
+    mutating func insertIntoStore(relVels: [[Float]], relVelsStore: inout [[Float]]) {
         if relVels.count > 0 {
-            var angles = fitAngles(relVels)
+            var angles = fitAngles(relVels: relVels)
             
             for i in 0..<angles.count {
                 relVelsStore[Int(angles[i])] = relVels[i]
@@ -355,24 +355,24 @@ public struct RotationProcessor {
     }
     
     func fitcurveForAngle(angle: Float) -> [Float] {
-        return ea15.map { fitcurve[Int(mod(angle + $0))] }
+        return ea15.map { fitcurve[Int(mod(angle:angle + $0))] }
     }
     
     func save() {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let t15Store = NSKeyedArchiver.archivedDataWithRootObject(t15)
-        NSUserDefaults.standardUserDefaults().setObject(t15Store, forKey: "vaavud_t15")
+        let userDefaults = UserDefaults.standard
+        let t15Store = NSKeyedArchiver.archivedData(withRootObject: t15)
+        UserDefaults.standard.set(t15Store, forKey: "vaavud_t15")
         
-        let relVelStoreData = NSKeyedArchiver.archivedDataWithRootObject(relVelsStore)
-        NSUserDefaults.standardUserDefaults().setObject(relVelStoreData, forKey: "vaavud_relVelsStore")
+        let relVelStoreData = NSKeyedArchiver.archivedData(withRootObject: relVelsStore)
+        UserDefaults.standard.set(relVelStoreData, forKey: "vaavud_relVelsStore")
         userDefaults.synchronize()
         
 //        print("Calibration completion: \(calibrationCompletionPercentage(relVelsStore))")
     }
     
     mutating func resetCalibration() {
-        relVelsStore = [[Float]](count: 360, repeatedValue: [Float](count: TPR, repeatedValue: 0))
-        t15 = [Float](count: TPR, repeatedValue: 0)
+        relVelsStore = [[Float]](repeating: [Float](repeating: 0, count: TPR), count: 360)
+        t15 = [Float](repeating: 0, count: TPR)
         save()
     }
 }
@@ -390,19 +390,23 @@ public func getIndicesWD(anglesN: Int, length: Int) -> [vDSP_Length] {
     return (0..<length).map { vDSP_Length(($0/TPR) % anglesN + 1) }
 }
 
+
 public func mod(angle: Float) -> Float {
-    return ((angle % 360) + 360) % 360
+    return (angle.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
+    //  return ((i % n) + n) % n
+    //    return ((angle % 360) + 360) % 360
 }
 
 public func mod(angle: Double) -> Double {
-    return ((angle % 360) + 360) % 360
+    return (angle.truncatingRemainder(dividingBy: 360) + 360).truncatingRemainder(dividingBy: 360)
+//    return ((angle % 360) + 360) % 360
 }
 
 public func getAngles(N: Int, stride: Int, center: Float) -> [Float] {
     let range = N*stride
     let offset = range/2
-    let start = (center - Float(offset) + 360) % 360
-    return (0..<N).map { (Float($0)*Float(stride) + start) % 360 }
+    let start = (center - Float(offset) + 360).truncatingRemainder(dividingBy: 360)
+    return (0..<N).map { (Float($0)*Float(stride) + start).truncatingRemainder(dividingBy: 360) }
 }
 
 public func calibrationCompletionPercentage(relValss: [[Float]]) -> Float {

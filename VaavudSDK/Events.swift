@@ -11,21 +11,21 @@ import AVFoundation
 import CoreLocation
 //import Firebase
 
-public extension NSDate {
-    convenience init(ms: NSNumber) {
-        self.init(timeIntervalSince1970: Double(ms.longLongValue)/1000)
+public extension Date {
+    init(ms: NSNumber) {
+        self.init(timeIntervalSince1970: Double(ms.int64Value)/1000)
     }
     
     var ms: NSNumber {
-        return NSNumber(longLong: Int64(round(timeIntervalSince1970*1000)))
+        return NSNumber(value: Int64(round(timeIntervalSince1970*1000)))
     }
 }
 
 protocol Event {
-    var time: NSDate { get }
+    var time: Date { get }
 }
 
-public typealias FirebaseDictionary = [String : AnyObject]
+public typealias FirebaseDictionary = [String : Any]
 
 public protocol Firebaseable {
     var fireDict: FirebaseDictionary { get }
@@ -35,11 +35,64 @@ public protocol FirebaseEntity {
     init?(dict: FirebaseDictionary)
 }
 
+
+//Bluetooth
+
+extension Data {
+    func hexEncodedString() -> String {
+        return map { String(format: "%02hhx", $0) }.joined()
+    }
+}
+
+extension String {
+    func substring(from: Int?, to: Int?) -> String {
+        if let start = from {
+            guard start < self.characters.count else {
+                return ""
+            }
+        }
+        
+        if let end = to {
+            guard end >= 0 else {
+                return ""
+            }
+        }
+        
+        if let start = from, let end = to {
+            guard end - start >= 0 else {
+                return ""
+            }
+        }
+        
+        let startIndex: String.Index
+        if let start = from, start >= 0 {
+            startIndex = self.index(self.startIndex, offsetBy: start)
+        } else {
+            startIndex = self.startIndex
+        }
+        
+        let endIndex: String.Index
+        if let end = to, end >= 0, end < self.characters.count {
+            endIndex = self.index(self.startIndex, offsetBy: end + 1)
+        } else {
+            endIndex = self.endIndex
+        }
+        
+        return self[startIndex ..< endIndex]
+    }
+}
+
+
+
+
+///
+
+
 public struct TrueWindSpeedEvent: Event, Firebaseable {
-    public let time: NSDate
+    public let time: Date
     public let speed: Double
     
-    public init(time: NSDate = NSDate(), speed: Double) {
+    public init(time: Date = Date(), speed: Double) {
         self.time = time
         self.speed = speed
     }
@@ -49,7 +102,7 @@ public struct TrueWindSpeedEvent: Event, Firebaseable {
             return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.speed = speed
     }
     
@@ -60,10 +113,10 @@ public struct TrueWindSpeedEvent: Event, Firebaseable {
 
 
 public struct WindSpeedEvent: Event, Firebaseable {
-    public let time: NSDate
+    public let time: Date
     public let speed: Double
     
-    public init(time: NSDate = NSDate(), speed: Double) {
+    public init(time: Date = Date(), speed: Double) {
         self.time = time
         self.speed = speed
     }
@@ -73,7 +126,7 @@ public struct WindSpeedEvent: Event, Firebaseable {
             return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.speed = speed
     }
     
@@ -83,10 +136,10 @@ public struct WindSpeedEvent: Event, Firebaseable {
 }
 
 public struct TrueWindDirectionEvent: Event, Firebaseable {
-    public let time: NSDate
+    public let time: Date
     public let direction: Double
     
-    public init(time: NSDate = NSDate(), direction: Double) {
+    public init(time: Date = Date(), direction: Double) {
         self.time = time
         self.direction = direction
     }
@@ -96,7 +149,7 @@ public struct TrueWindDirectionEvent: Event, Firebaseable {
             return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.direction = direction
     }
     
@@ -106,10 +159,10 @@ public struct TrueWindDirectionEvent: Event, Firebaseable {
 }
 
 public struct WindDirectionEvent: Event, Firebaseable {
-    public let time: NSDate
+    public let time: Date
     public let direction: Double
 
-    public init(time: NSDate = NSDate(), direction: Double) {
+    public init(time: Date = Date(), direction: Double) {
         self.time = time
         self.direction = direction
     }
@@ -119,7 +172,7 @@ public struct WindDirectionEvent: Event, Firebaseable {
             return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.direction = direction
     }
     
@@ -132,11 +185,11 @@ public struct WindDirectionEvent: Event, Firebaseable {
 public struct CourseEvent: Event, Firebaseable {
     
     
-    public let time: NSDate
+    public let time: Date
     public let course: Double
     
     
-    public init(time: NSDate = NSDate(), course: Double){
+    public init(time: Date = Date(), course: Double){
         self.time = time
         self.course = course
     }
@@ -146,7 +199,7 @@ public struct CourseEvent: Event, Firebaseable {
             return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.course = pressure
     }
     
@@ -160,10 +213,10 @@ public struct CourseEvent: Event, Firebaseable {
 }
 
 public struct PressureEvent: Event, Firebaseable {
-    public let time: NSDate
+    public let time: Date
     public let pressure: Double
     
-    public init(time: NSDate = NSDate(), pressure: Double) {
+    public init(time: Date = Date(), pressure: Double) {
         self.time = time
         self.pressure = pressure
     }
@@ -173,7 +226,7 @@ public struct PressureEvent: Event, Firebaseable {
             return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.pressure = pressure
     }
     
@@ -183,10 +236,10 @@ public struct PressureEvent: Event, Firebaseable {
 }
 
 public struct TemperatureEvent: Event, Firebaseable {
-    public let time: NSDate
+    public let time: Date
     public let temperature: Double
     
-    public init(time: NSDate = NSDate(), temperature: Double) {
+    public init(time: Date = Date(), temperature: Double) {
         self.time = time
         self.temperature = temperature
     }
@@ -196,7 +249,7 @@ public struct TemperatureEvent: Event, Firebaseable {
             return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.temperature = temperature
     }
     
@@ -205,11 +258,29 @@ public struct TemperatureEvent: Event, Firebaseable {
     }
 }
 
+public struct BluetoothEvent: Event, Firebaseable {
+    public let windSpeed: Double
+    public let time: Date
+    public let windDirection: Int
+    
+    public init(time: Date = Date(), windSpeed: Double, windDirection: Int){
+        self.time = time
+        self.windSpeed = windSpeed
+        self.windDirection = windDirection
+    }
+    
+    public var fireDict: FirebaseDictionary{
+        return ["time" : time.ms, "windSpeed" : windSpeed, "windDirection": windDirection]
+    }
+    
+}
+
+
 public struct HeadingEvent: Event, Firebaseable {
-    public let time: NSDate
+    public let time: Date
     public let heading: Double
     
-    public init(time: NSDate = NSDate(), heading: Double) {
+    public init(time: Date = Date(), heading: Double) {
         self.time = time
         self.heading = heading
     }
@@ -219,7 +290,7 @@ public struct HeadingEvent: Event, Firebaseable {
             return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.heading = heading
     }
 
@@ -229,7 +300,7 @@ public struct HeadingEvent: Event, Firebaseable {
 }
 
 public struct LocationEvent: Event, Firebaseable {
-    public let time: NSDate
+    public let time: Date
     public let lat: CLLocationDegrees
     public let lon: CLLocationDegrees
     public let altitude: CLLocationDistance?
@@ -241,7 +312,7 @@ public struct LocationEvent: Event, Firebaseable {
         self.altitude = location.verticalAccuracy >= 0 ? location.altitude : nil
     }
     
-    public init(time: NSDate = NSDate(), lat: CLLocationDegrees, lon: CLLocationDegrees, altitude: CLLocationDegrees?) {
+    public init(time: Date = Date(), lat: CLLocationDegrees, lon: CLLocationDegrees, altitude: CLLocationDegrees?) {
         self.time = time
         self.lat = lat
         self.lon = lon
@@ -257,7 +328,7 @@ public struct LocationEvent: Event, Firebaseable {
                 return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.lat = lat
         self.lon = lon
         self.altitude = altitude
@@ -272,18 +343,18 @@ public struct LocationEvent: Event, Firebaseable {
     }
     
     public var fireDict: FirebaseDictionary {
-        var dict = ["time" : time.ms, "lat" : lat, "lon" : lon]
+        var dict : FirebaseDictionary = ["time" : time.ms, "lat" : lat, "lon" : lon]
         dict["altitude"] = altitude
         return dict
     }
 }
 
 public struct VelocityEvent: Event, Firebaseable {
-    public let time: NSDate
+    public let time: Date
     public let speed: CLLocationSpeed
     public let course: CLLocationDirection
     
-    public init(time: NSDate = NSDate(), speed: CLLocationSpeed, course: CLLocationDirection) {
+    public init(time: Date = Date(), speed: CLLocationSpeed, course: CLLocationDirection) {
         self.time = time
         self.speed = speed
         self.course = course
@@ -297,7 +368,7 @@ public struct VelocityEvent: Event, Firebaseable {
                 return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.speed = speed
         self.course = course
     }
@@ -308,10 +379,10 @@ public struct VelocityEvent: Event, Firebaseable {
 }
 
 public struct AltitudeEvent: Event, Firebaseable {
-    public let time: NSDate
+    public let time: Date
     public let altitude: Double
     
-    public init(time: NSDate = NSDate(), altitude: Double){
+    public init(time: Date = Date(), altitude: Double){
         self.time = time
         self.altitude = altitude
     }
@@ -321,7 +392,7 @@ public struct AltitudeEvent: Event, Firebaseable {
             return nil
         }
         
-        self.time = NSDate(ms: time)
+        self.time = Date(ms: time)
         self.altitude = altitude
     }
     
@@ -330,7 +401,7 @@ public struct AltitudeEvent: Event, Firebaseable {
     }
 }
 
-public enum VaavudAudioError: ErrorType, CustomStringConvertible {
+public enum VaavudAudioError: Error, CustomStringConvertible {
     case Unplugged
     case MultipleStart
     case AudioEngine(NSError)
@@ -344,7 +415,7 @@ public enum VaavudAudioError: ErrorType, CustomStringConvertible {
     }
 }
 
-public enum VaavudOtherError: ErrorType, CustomStringConvertible {
+public enum VaavudOtherError: Error, CustomStringConvertible {
     case LocationAuthorisation(CLAuthorizationStatus)
     case Altimeter
     
@@ -365,7 +436,7 @@ public struct ErrorEvent: Event, Firebaseable, CustomStringConvertible {
 //        case ThrownOtherError(VaavudOtherError)
     }
     
-    public let time = NSDate()
+    public let time = Date()
     public let type: ErrorEventType
 
     public enum ErrorEventDomain {
@@ -420,6 +491,10 @@ protocol WindListener: class {
     func newWindSpeed(event: WindSpeedEvent)
     func newWindDirection(event: WindDirectionEvent)
     func debugPlot(pointss: [[CGPoint]])
+}
+
+protocol BluetoothListener: class {
+    func newReading(event: BluetoothEvent)
 }
 
 protocol LocationListener: class {

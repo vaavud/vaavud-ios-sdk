@@ -22,7 +22,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
     
     func start() throws {
         let status = CLLocationManager.authorizationStatus()
-        if status == .Denied || status == .Restricted {
+        if status == .denied || status == .restricted {
             throw VaavudOtherError.LocationAuthorisation(status)
         }
         
@@ -33,8 +33,8 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         locationManager.headingFilter = 1
         
-        if UIDevice.currentDevice().orientation == .PortraitUpsideDown {
-            locationManager.headingOrientation = .PortraitUpsideDown
+        if UIDevice.current.orientation == .portraitUpsideDown {
+            locationManager.headingOrientation = .portraitUpsideDown
         }
         locationManager.startUpdatingHeading()
     }
@@ -44,41 +44,40 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingHeading()
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        guard status != .Denied && status != .NotDetermined && status != .Restricted else { return }
+
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        guard status != .denied && status != .notDetermined && status != .restricted else { return }
         locationManager.startUpdatingHeading()
     }
     
-    
-    
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let loc = locations.last!
         
-        _ = listeners.map { $0.newLocation(LocationEvent(location: loc)) }
+        _ = listeners.map { $0.newLocation(event: LocationEvent(location: loc)) }
         
         
-//        if  loc.course >= 0 && loc.speed >= 0 {
-            _ = listeners.map { $0.newVelocity(VelocityEvent(time: loc.timestamp, speed: locationManager.location!.speed, course: locationManager.location!.course)) }
-//        }
-    
+        //        if  loc.course >= 0 && loc.speed >= 0 {
+        _ = listeners.map { $0.newVelocity(event: VelocityEvent(time: loc.timestamp, speed: locationManager.location!.speed, course: locationManager.location!.course)) }
+        //        }
+        
         if loc.altitude >= 0 {
-            _ = listeners.map {$0.newAltitude(AltitudeEvent(altitude: loc.altitude))}
+            _ = listeners.map {$0.newAltitude(event: AltitudeEvent(altitude: loc.altitude))}
         }
         
-//        if loc.course >= 0 {
-            _ = listeners.map {$0.newCourse(CourseEvent(course: loc.course))}
-//        }
-        
-        
+        //        if loc.course >= 0 {
+        _ = listeners.map {$0.newCourse(event: CourseEvent(course: loc.course))}
+        //        }
+
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        _ = listeners.map { $0.newHeading(HeadingEvent(heading: newHeading.trueHeading)) }
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        _ = listeners.map { $0.newHeading(event: HeadingEvent(heading: newHeading.trueHeading)) }
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        _ = listeners.map { $0.newError(ErrorEvent(eventType: .LocationManagerFailure(error))) }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        _ = listeners.map { $0.newError(event: ErrorEvent(eventType: .LocationManagerFailure(error as NSError))) }
+
     }
     
     deinit {

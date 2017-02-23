@@ -44,11 +44,11 @@ enum ExpDirection {
 
 struct VolumeTest: CustomStringConvertible {
     var volume = 0
-    var sN = [Double](count: volSteps, repeatedValue: 0.0)
-    var diff20 = [Int](count: volSteps, repeatedValue: 0)
+    var sN = [Double](repeating: 0.0, count: volSteps)
+    var diff20 = [Int](repeating: 0, count: volSteps)
     var counter = 0
     var description: String {
-        return String(format: "Vol (volume: %0.3f)", volumeSetting(volume))
+        return String(format: "Vol (volume: %0.3f)", volumeSetting(volume: volume))
     }
     
     init() {}
@@ -60,10 +60,10 @@ struct VolumeTest: CustomStringConvertible {
         counter += 1
         volume = counter % volSteps
         
-        return volumeSetting(volume)
+        return volumeSetting(volume: volume)
     }
     
-    func debugDictionary() -> [String: AnyObject] {
+    func debugDictionary() -> [String: Any] {
         return ["sN" : sN, "diff20": diff20]
     }
 }
@@ -71,7 +71,7 @@ struct VolumeTest: CustomStringConvertible {
 struct Volume: CustomStringConvertible {
     let noiseThreshold = 1100
     var volume = Int(volSteps/2)
-    var sN = [Double](count: volSteps, repeatedValue: 0.0)
+    var sN = [Double](repeating: 0.0, count: volSteps)
     var counter = 0
     
     var volState = SearchType.Diff
@@ -79,17 +79,17 @@ struct Volume: CustomStringConvertible {
     var expDirection = ExpDirection.Left
     
     var description: String {
-        return String(format: "Vol (volume: %0.3f", volumeSetting(volume)) + ", volState: \(volState.hashValue))"
+        return String(format: "Vol (volume: %0.3f", volumeSetting(volume: volume)) + ", volState: \(volState.hashValue))"
     }
     
     init() {
         // Load saved state
-        if let volume = NSUserDefaults.standardUserDefaults().valueForKey("vaavud_volume") as? Int {
+        if let volume = UserDefaults.standard.value(forKey: "vaavud_volume") as? Int {
             self.volume = volume
         }
         
-        if let sNData = NSUserDefaults.standardUserDefaults().objectForKey("vaavud_sn") as? NSData,
-            sN = NSKeyedUnarchiver.unarchiveObjectWithData(sNData) as? [Double] {
+        if let sNData = UserDefaults.standard.object(forKey: "vaavud_sn") as? NSData,
+            let sN = NSKeyedUnarchiver.unarchiveObject(with: sNData as Data) as? [Double] {
                 self.sN = sN
                 volState = .SteepestAssent
         }
@@ -98,11 +98,11 @@ struct Volume: CustomStringConvertible {
     func save() {
         guard volState == .SteepestAssent else { return }
         
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults = UserDefaults.standard
         userDefaults.setValue(volume, forKey: "vaavud_volume")
         
-        let sNData = NSKeyedArchiver.archivedDataWithRootObject(sN)
-        userDefaults.setObject(sNData, forKey: "vaavud_sn")
+        let sNData = NSKeyedArchiver.archivedData(withRootObject: sN)
+        userDefaults.set(sNData, forKey: "vaavud_sn")
         
         userDefaults.synchronize()
     }
@@ -110,7 +110,7 @@ struct Volume: CustomStringConvertible {
     mutating func returnToDiffState() {
         volState = .Diff
         counter = 0
-        sN = [Double](count: volSteps, repeatedValue: 0)
+        sN = [Double](repeating: 0, count: volSteps)
     }
     
     mutating func newVolume(resp: AudioResponse) -> Float {
@@ -151,7 +151,7 @@ struct Volume: CustomStringConvertible {
             
             switch expState {
             case .Top:
-                let bestSNVol = findMax(sN)
+                let bestSNVol = findMax(array: sN)
                 
                 if sN[bestSNVol] < 6 {
                     returnToDiffState()
@@ -180,7 +180,7 @@ struct Volume: CustomStringConvertible {
         }
         volume = min(max(0, volume), volSteps - 1)
         
-        return volumeSetting(volume)
+        return volumeSetting(volume: volume)
     }
 }
 

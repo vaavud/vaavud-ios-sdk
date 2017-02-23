@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1EE56A1E5B176700C9561C /* BluetoothController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1EE5691E5B176700C9561C /* BluetoothController .swift */; };
 		9F0409B71BA5DC22009FFBD4 /* VaavudSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F0409B61BA5DC22009FFBD4 /* VaavudSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F0409BD1BA5DC22009FFBD4 /* VaavudSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0409B11BA5DC22009FFBD4 /* VaavudSDK.framework */; };
 		9F0409C41BA5DC22009FFBD4 /* VaavudSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409C31BA5DC22009FFBD4 /* VaavudSDKTests.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B1EE5691E5B176700C9561C /* BluetoothController .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BluetoothController .swift"; sourceTree = "<group>"; };
 		9F0409B11BA5DC22009FFBD4 /* VaavudSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VaavudSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0409B51BA5DC22009FFBD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F0409B61BA5DC22009FFBD4 /* VaavudSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VaavudSDK.h; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				9F0409D51BA5DD18009FFBD4 /* WindController.swift */,
 				9F0409D21BA5DD18009FFBD4 /* RotationProcessor.swift */,
 				9F0409D31BA5DD18009FFBD4 /* TickTimeProcessor.swift */,
+				2B1EE5691E5B176700C9561C /* BluetoothController .swift */,
 			);
 			name = Internal;
 			sourceTree = "<group>";
@@ -200,6 +203,8 @@
 					};
 					9F0409BB1BA5DC22009FFBD4 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = X5DMTGX3GW;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -243,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B1EE56A1E5B176700C9561C /* BluetoothController .swift in Sources */,
 				9F0409D91BA5DD18009FFBD4 /* LocationController.swift in Sources */,
 				9F0409D81BA5DD18009FFBD4 /* Events.swift in Sources */,
 				9F0409D71BA5DD18009FFBD4 /* AudioVolume.swift in Sources */,
@@ -381,7 +387,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -400,13 +406,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vaavud.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		9F0409CB1BA5DC22009FFBD4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = X5DMTGX3GW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -419,12 +426,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vaavud.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		9F0409CC1BA5DC22009FFBD4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = X5DMTGX3GW;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -433,6 +442,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vaavud.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

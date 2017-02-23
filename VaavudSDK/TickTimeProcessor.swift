@@ -37,7 +37,7 @@ public struct TickTimeProcessor {
             startLocated = detectStart
         }
         
-        private var restart: Bool {
+        public var restart: Bool {
             return largeTooth && (counter % TPR != 0 || counter > 2*TPR)
         }
         
@@ -57,8 +57,8 @@ public struct TickTimeProcessor {
         // Process the tick on the opposite side of current index in order
         // for the speed of one rotation to be a good average
         var processIndex = 6
-        var times = [Int](count: TPR, repeatedValue: 0)
-        var relVelocities = [Float](count: TPR, repeatedValue: 0)
+        var times = [Int](repeating: 0, count: TPR)
+        var relVelocities = [Float](repeating: 0, count: TPR)
         
         var timeOneRotation = 0
         var timeOneRotationLast = 0
@@ -77,10 +77,10 @@ public struct TickTimeProcessor {
             timeOneRotation -= times[index]
             times[index] = time
             timeOneRotation += times[index]
-            velocity = velocity(index)
+            velocity = velocity(i: index)
             
             let avgVelocity = 360/Float(timeOneRotation)
-            relVelocities[processIndex] = velocity(processIndex)/avgVelocity - 1
+            relVelocities[processIndex] = velocity(i:processIndex)/avgVelocity - 1
         }
         
         func velocity(i: Int) -> Float {
@@ -139,13 +139,13 @@ public struct TickTimeProcessor {
         }
         
         for tick in ticks {
-            rp.updateProperties(tick.deltaTime)
+            rp.updateProperties(time: tick.deltaTime)
             
             if !sp.startLocated {
-                sp.updateProperties(tick.deltaTime)
+                sp.updateProperties(newTime: tick.deltaTime)
                 
                 if sp.startLocated {
-                    addRotation(tick)
+                    addRotation(tick: tick)
                 }
                 
                 if sp.restart {
@@ -155,11 +155,11 @@ public struct TickTimeProcessor {
             else {
                 if rp.velocityInRange() {
                     if rp.index == TPR - 1 {
-                        addRotation(tick)
+                        addRotation(tick: tick)
                     }
                 }
                 else if tick.deltaTime == 7000 {
-                    addRotation(tick)
+                    addRotation(tick: tick)
                     reset()
                 }
                 else {
