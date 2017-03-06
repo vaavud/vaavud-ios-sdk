@@ -233,8 +233,8 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
                 
                 
                 if let l = listener {
-                    l.newReading(event: BluetoothEvent(windSpeed: _h1, windDirection: h2))
-                    l.extraInfo(event: BluetoothExtraEvent(compass: h7, battery: h3))
+                    l.newReading(event: BluetoothEvent(windSpeed: _h1, windDirection: h2,battery:h3))
+//                    l.extraInfo(event: BluetoothExtraEvent(compass: h7, battery: h3))
                 }
                 
 //                if let _loc = lastLocation {
