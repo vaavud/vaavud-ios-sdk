@@ -272,7 +272,24 @@ public struct BluetoothEvent: Event, Firebaseable {
     public var fireDict: FirebaseDictionary{
         return ["time" : time.ms, "windSpeed" : windSpeed, "windDirection": windDirection]
     }
+}
+
+
+public struct BluetoothExtraEvent: Event, Firebaseable{
+    public let battery: Int
+    public let compass: Int
+    public let time: Date
+    ///TODO add the rest when need it
     
+    public init(time: Date = Date(), compass: Int, battery: Int){
+        self.time = time
+        self.battery = battery
+        self.compass = compass
+    }
+    
+    public var fireDict: FirebaseDictionary{
+        return ["time" : time.ms, "compass" : compass, "battery": battery]
+    }
 }
 
 
@@ -495,6 +512,7 @@ protocol WindListener: class {
 
 protocol BluetoothListener: class {
     func newReading(event: BluetoothEvent)
+    func extraInfo(event: BluetoothExtraEvent)
 }
 
 protocol LocationListener: class {

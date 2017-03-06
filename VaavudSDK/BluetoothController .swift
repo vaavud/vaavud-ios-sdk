@@ -133,29 +133,6 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         
-//        peripheral.setNotifyValue(true,for: service.characteristics.)
-//        bluetoothListner.onBleReadyToWork()
-        
-        for characteristic in service.characteristics! {
-            
-            print("characteristic \(characteristic.uuid) error = \(error)")
-            
-//            if characteristic.uuid == BEAN_DATA_UUID {
-//                self.peripheral!.setNotifyValue(true,for: characteristic)
-//                bluetoothListner.onBleReadyToWork()
-//                print("characteristic data found ")
-//            }
-//            else
-            if characteristic.uuid == BEAN_ENABLE_SERVICES_UUID {
-                let data = "1".data(using: String.Encoding.utf8)!
-                print(data)
-                peripheral.writeValue(data, for: characteristic,type: .withoutResponse)
-            }
-        }
-        
-        
-        
-        
         for characteristic in service.characteristics! {
             
             if characteristic.uuid == BEAN_DATA_UUID {
@@ -163,13 +140,14 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
                 bluetoothListner.onBleReadyToWork()
                 print("characteristic data found ")
             }
-//            else if characteristic.uuid == BEAN_ENABLE_SERVICES_UUID {
-//                let data = "1".data(using: String.Encoding.utf8)!
+            else if characteristic.uuid == BEAN_ENABLE_SERVICES_UUID {
+//                let bytes : [UInt8] = [ 0x01 ]
+//                let data = Data(bytes:bytes)
 //                print(data)
+//        
 //                peripheral.writeValue(data, for: characteristic,type: .withResponse)
-//            }
+            }
         }
-        
         
     }
   
@@ -177,8 +155,6 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         print("didWriteValueForCharacteristic \(characteristic.uuid) error = \(error)")
     }
-    
-
     
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
@@ -204,14 +180,12 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
     
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         
-        print("speed: \(error)")
-        
         if characteristic.uuid == BEAN_DATA_UUID {
             
             if let v = characteristic.value {
                 let val = v.hexEncodedString()
                 
-                print(val)
+//                print(val)
                 
                 //Speed
                 let s10 = val.substring(from: 0, to: 1)
@@ -219,54 +193,54 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
                 let h1 = Int(s11.appending(s10), radix: 16)
                 let _h1 = Double(h1!) / 100
                 
-                print("speed: \(_h1)")
+//                print("speed: \(_h1)")
                 
                 
                 //Direction
                 let s20 = val.substring(from: 4, to: 5)
                 let s21 = val.substring(from: 6, to: 7)
                 let h2 = Int(s21.appending(s20), radix: 16)!
-                print("Direction: \(h2)")
+//                print("Direction: \(h2)")
                 
                 //Battery
                 let s30 = val.substring(from: 8, to: 9)
                 let h3 = Int(s30, radix: 16)! * 10
-                print("Battery: \(h3)")
+//                print("Battery: \(h3)")
                 
                 //Temperature
                 let s40 = val.substring(from: 10, to: 11)
                 let h4 = Int(s40, radix: 16)! - 100
-                print("Temperature: \(h4)")
+//                print("Temperature: \(h4)")
                 
                 
                 //Escora
                 let s50 = val.substring(from: 12, to: 13)
                 let h5 = Int(s50, radix: 16)! - 90
-                print("Escora: \(h5)")
+//                print("Escora: \(h5)")
                 
                 
                 //Cabeceo
                 let s60 = val.substring(from: 14, to: 15)
                 let h6 = Int(s60, radix: 16)! - 90
-                print("Cabeceo: \(h6)")
+//                print("Cabeceo: \(h6)")
                 
                 
                 //Compass
                 let s70 = val.substring(from: 16, to: 17)
                 let h7 = Int(s70, radix: 16)! * 2
-                print("Compass: \(h7)")
-                print(Date().ms)
+//                print("Compass: \(h7)")
+//                print(Date().ms)
                 
                 
-                if let l = listener{
+                if let l = listener {
                     l.newReading(event: BluetoothEvent(windSpeed: _h1, windDirection: h2))
+                    l.extraInfo(event: BluetoothExtraEvent(compass: h7, battery: h3))
                 }
                 
 //                if let _loc = lastLocation {
 //                    let point = MeasurementPoint(speed: _h1, direction: h2, location: _loc, timestamp: Date().ticks)
 //                    measurementPoints.insert(point, at: 0)
 //                }
-                
 //                self.sendEvent(withName: "onNewRead", body: ["windSpeed":_h1, "windDirection": h2, "battery": h3, "temperature": h4, "escora":h5, "cabeceo":h6, "compass":h7] )
             }
         }

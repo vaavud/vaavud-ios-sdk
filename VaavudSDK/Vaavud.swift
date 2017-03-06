@@ -31,6 +31,8 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     public var windDirectionCallback: ((WindDirectionEvent) -> Void)?
     public var trueWindDirectionCallback: ((TrueWindDirectionEvent) -> Void)?
     public var bluetoothCallback: ((BluetoothEvent) -> Void)?
+    public var bluetoothExtraCallback: ((BluetoothExtraEvent) -> Void)?
+    
     
     public var pressureCallback: ((PressureEvent) -> Void)?
     public var headingCallback: ((HeadingEvent) -> Void)?
@@ -265,6 +267,11 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
         
         estimateTrueWind(time: event.time)
         bluetoothCallback?(event)
+    }
+    
+    
+    func extraInfo(event: BluetoothExtraEvent) {
+        bluetoothExtraCallback?(event)
     }
 
     
