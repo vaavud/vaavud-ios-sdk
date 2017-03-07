@@ -443,33 +443,33 @@ public struct VaavudSession {
         session["trueWindMean"] = meanTrueSpeed
 
 
-        if let headings = headings.last {
-            session["headings"] = headings.heading
-        }
+//        if let headings = headings.last {
+//            session["headings"] = headings.heading
+//        }
         
         if let location = locations.last {
             session["location"] = location.fireDict
         }
-        
-        if let velocity = velocities.last {
-            session["velocity"] = velocity.speed
-        }
-        
-        if let temperature = temperatures.last {
-            session["temperature"] = temperature.temperature
-        }
-        
-        if let pressure = pressures.last {
-            session["pressure"] = pressure.pressure
-        }
-        
-        if let altitude = altitud.last {
-            session["altitude"] = altitude.altitude
-        }
-        
-        if let course = course.last {
-            session["course"] = course.course
-        }
+
+//        if let velocity = velocities.last {
+//            session["velocity"] = velocity.speed
+//        }
+//        
+//        if let temperature = temperatures.last {
+//            session["temperature"] = temperature.temperature
+//        }
+//        
+//        if let pressure = pressures.last {
+//            session["pressure"] = pressure.pressure
+//        }
+//        
+//        if let altitude = altitud.last {
+//            session["altitude"] = altitude.altitude
+//        }
+//        
+//        if let course = course.last {
+//            session["course"] = course.course
+//        }
         
         
         session["timeStart"] = time.ms
@@ -478,7 +478,7 @@ public struct VaavudSession {
         if meanTrueDirection != nil && !meanTrueDirection!.isNaN {
             session["trueWindDirection"] = meanTrueDirection
         }
-        session["windMeter"] = windMeter
+        session["windMeter"] = "sleipnir"
         session["windMax"] = maxSpeed
         session["trueWindMax"] = trueMaxSpeed
         session["turbulence"] = turbulence

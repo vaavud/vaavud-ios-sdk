@@ -362,7 +362,7 @@ public struct LocationEvent: Event, Firebaseable {
     }
     
     public var fireDict: FirebaseDictionary {
-        var dict : FirebaseDictionary = ["time" : time.ms, "lat" : lat, "lon" : lon]
+        var dict : FirebaseDictionary = ["lat" : lat, "lon" : lon]
         dict["altitude"] = altitude
         return dict
     }
