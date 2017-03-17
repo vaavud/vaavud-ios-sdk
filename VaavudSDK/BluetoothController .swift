@@ -91,8 +91,6 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
         }
     }
     
-    
-    
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("didDisconnectPeripheral error = \(error)")
         central.scanForPeripherals(withServices: [BEAN_SERVICE_UUID], options: nil)

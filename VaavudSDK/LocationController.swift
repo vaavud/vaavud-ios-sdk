@@ -29,7 +29,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.delegate = self
         locationManager.distanceFilter = 1
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.startUpdatingLocation()
         locationManager.headingFilter = 1
         
@@ -44,12 +44,12 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         locationManager.stopUpdatingHeading()
     }
     
-
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         guard status != .denied && status != .notDetermined && status != .restricted else { return }
         locationManager.startUpdatingHeading()
     }
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let loc = locations.last!
@@ -57,16 +57,16 @@ class LocationController: NSObject, CLLocationManagerDelegate {
         _ = listeners.map { $0.newLocation(event: LocationEvent(location: loc)) }
         
         
-        //        if  loc.course >= 0 && loc.speed >= 0 {
-        _ = listeners.map { $0.newVelocity(event: VelocityEvent(time: loc.timestamp, speed: locationManager.location!.speed, course: locationManager.location!.course)) }
-        //        }
-        
+        if  loc.course >= 0 && loc.speed >= 0 {
+            _ = listeners.map { $0.newVelocity(event: VelocityEvent(time: loc.timestamp, speed: locationManager.location!.speed, course: locationManager.location!.course)) }
+        }
+    
         if loc.altitude >= 0 {
             _ = listeners.map {$0.newAltitude(event: AltitudeEvent(altitude: loc.altitude))}
         }
         
-        //        if loc.course >= 0 {
-        _ = listeners.map {$0.newCourse(event: CourseEvent(course: loc.course))}
+//                if loc.course >= 0 {
+        _ = listeners.map {$0.newCourse(event: CourseEvent(course: locationManager.location!.course))}
         //        }
 
     }

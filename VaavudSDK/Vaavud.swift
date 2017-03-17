@@ -111,6 +111,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
             }
             
             trueDirection = trueDirection * 180 / M_PI
+            print(trueDirection)
             
             if (trueDirection != -1) && !trueDirection.isNaN {
                 let directionEvent = TrueWindDirectionEvent(direction: trueDirection)
