@@ -49,6 +49,7 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
     let BEAN_DATA_UUID = CBUUID(string: "00002a39-0000-1000-8000-00805f9b34fb") // Datos
     let BEAN_BATTERY_STATUS_UUID = CBUUID(string: "0000a001-0000-1000-8000-00805f9b34fb") // Nivel de bateria 0) Standby 1)Low power 2)Normal
     let BEAN_ENABLE_SERVICES_UUID = CBUUID(string: "0000a003-0000-1000-8000-00805f9b34fb") // Activar 1
+    let BEAN_ENABLE_COMPASS_UUID = CBUUID(string: "0000a008-0000-1000-8000-00805f9b34fb")
 //    let BEAN_SCRATCH_UUID = CBUUID(string: "0000a007-0000-1000-8000-00805f9b34fb") // Offset 
     
     
@@ -74,34 +75,64 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
     
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
+        
+        
         if let device = (advertisementData as NSDictionary).object(forKey: CBAdvertisementDataLocalNameKey)as? NSString {
             
-             print("device = \(device)")
             
             if device.contains(BEAN_NAME) == true {
-                self.manager.stopScan()
+                //2958CC31-1E64-484A-AC59-F52D4A0536C4
                 
-                print("Connected")
+                //"D87D2A8B-2F36-46D5-8623-E057E836CC8F"
+                //"1FF5DE2F-284E-49A4-BEFA-234A8D34908A"
+                if peripheral.identifier == UUID(uuidString:"D87D2A8B-2F36-46D5-8623-E057E836CC8F") {
+                    
+                    self.manager.stopScan()
+                    
+                                    print("Connected")
+                    
+                                    self.peripheral = peripheral
+                                    self.peripheral!.delegate = self
+                                    
+                                    manager.connect(peripheral, options: nil)
                 
-                self.peripheral = peripheral
-                self.peripheral!.delegate = self
+                }
                 
-                manager.connect(peripheral, options: nil)
+                print("device = \(device)")
+                
+//                if Int(RSSI) > -40 {
+                    print(peripheral.identifier)
+                    print(RSSI)
+                    print("--------")
+//                }
+                
+                
+                
+                
+                
+//                self.manager.stopScan()
+//                
+//                print("Connected")
+//                
+//                self.peripheral = peripheral
+//                self.peripheral!.delegate = self
+//                
+//                manager.connect(peripheral, options: nil)
             }
         }
     }
     
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("didDisconnectPeripheral error = \(error)")
+        print("didDisconnectPeripheral error = \(String(describing: error))")
         central.scanForPeripherals(withServices: [BEAN_SERVICE_UUID], options: nil)
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverIncludedServicesFor service: CBService, error: Error?) {
-        print("didDiscoverIncludedServicesFor error = \(error)")
+        print("didDiscoverIncludedServicesFor error = \(String(describing: error))")
     }
     
     public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        print("didFailToConnect error = \(error)")
+        print("didFailToConnect error = \(String(describing: error))")
     }
     
     
@@ -113,9 +144,9 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         
-        print("Service connected, try to caracteristics : \(peripheral.services![0].uuid.uuidString) error = \(error)")
+        print("Service connected, try to caracteristics : \(peripheral.services![0].uuid.uuidString) error = \(String(describing: error))")
         
-        peripheral.discoverCharacteristics([BEAN_DATA_UUID,BEAN_ENABLE_SERVICES_UUID],for: peripheral.services![0])
+        peripheral.discoverCharacteristics([BEAN_DATA_UUID,BEAN_ENABLE_SERVICES_UUID,BEAN_ENABLE_COMPASS_UUID],for: peripheral.services![0])
         
         //        for service in peripheral.services! {
         //            let thisService = service as CBService
@@ -139,19 +170,41 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
                 print("characteristic data found ")
             }
             else if characteristic.uuid == BEAN_ENABLE_SERVICES_UUID {
+                let bytes : [UInt8] = [ 0x01 ]
+                let data = Data(bytes:bytes)
+                print(data)
+        
+                peripheral.writeValue(data, for: characteristic,type: .withResponse)
+            }
+            else if characteristic.uuid == BEAN_ENABLE_COMPASS_UUID {
 //                let bytes : [UInt8] = [ 0x01 ]
 //                let data = Data(bytes:bytes)
-//                print(data)
-//        
+//                print("Compass!!")
+//                
 //                peripheral.writeValue(data, for: characteristic,type: .withResponse)
+//                
+//                
+//                DispatchQueue.main.async(execute: {
+//                    Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.timeBack), userInfo: nil, repeats: false)
+//                })
             }
         }
         
     }
+    
+    
+    func timeBack() {
+        
+        let bytes : [UInt8] = [ 0x00 ]
+        let data = Data(bytes:bytes)
+        print("Tourning off")
+        
+//        peripheral.writeValue(data, for: characteristic,type: .withResponse)
+    }
   
     
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("didWriteValueForCharacteristic \(characteristic.uuid) error = \(error)")
+        print("didWriteValueForCharacteristic \(characteristic.uuid) error = \(String(describing: error))")
     }
     
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -170,7 +223,7 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
     
     public func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         print("---")
-        print("speed: \(error)")
+        print("speed: \(String(describing: error))")
         print("speed: \(characteristic.uuid)")
         print("---")
     }
@@ -193,7 +246,6 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
                 
 //                print("speed: \(_h1)")
                 
-                
                 //Direction
                 let s20 = val.substring(from: 4, to: 5)
                 let s21 = val.substring(from: 6, to: 7)
@@ -203,35 +255,37 @@ public class BluetoothController: NSObject, CBCentralManagerDelegate, CBPeripher
                 //Battery
                 let s30 = val.substring(from: 8, to: 9)
                 let h3 = Int(s30, radix: 16)! * 10
-//                print("Battery: \(h3)")
+                print("Battery: \(h3)")
                 
                 //Temperature
                 let s40 = val.substring(from: 10, to: 11)
                 let h4 = Int(s40, radix: 16)! - 100
-//                print("Temperature: \(h4)")
+                print("Temperataure: \(h4)")
                 
                 
                 //Escora
                 let s50 = val.substring(from: 12, to: 13)
                 let h5 = Int(s50, radix: 16)! - 90
-//                print("Escora: \(h5)")
+                print("Escora: \(h5)")
                 
                 
                 //Cabeceo
                 let s60 = val.substring(from: 14, to: 15)
                 let h6 = Int(s60, radix: 16)! - 90
-//                print("Cabeceo: \(h6)")
+                print("Cabeceo: \(h6)")
                 
                 
                 //Compass
                 let s70 = val.substring(from: 16, to: 17)
-                let h7 = Int(s70, radix: 16)! * 2
-//                print("Compass: \(h7)")
+                let s71 = val.substring(from: 18, to: 19)
+
+                let h7 = Int(s71.appending(s70) , radix: 16)!
+                print("Compass: \(val)")
 //                print(Date().ms)
                 
                 
                 if let l = listener {
-                    l.newReading(event: BluetoothEvent(windSpeed: _h1, windDirection: h2,battery:h3))
+                    l.newReading(event: BluetoothEvent(windSpeed: _h1, windDirection: h2,battery:h3, compass: Double(h7)))
 //                    l.extraInfo(event: BluetoothExtraEvent(compass: h7, battery: h3))
                 }
                 

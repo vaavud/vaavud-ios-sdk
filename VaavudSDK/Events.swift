@@ -263,16 +263,18 @@ public struct BluetoothEvent: Event, Firebaseable {
     public let time: Date
     public let windDirection: Int
     public let battery: Int
+    public let compass: Double
     
-    public init(time: Date = Date(), windSpeed: Double, windDirection:Int, battery: Int){
+    public init(time: Date = Date(), windSpeed: Double, windDirection:Int, battery: Int, compass: Double){
         self.time = time
         self.windSpeed = windSpeed
         self.windDirection = windDirection
         self.battery = battery
+        self.compass = compass
     }
     
     public var fireDict: FirebaseDictionary{
-        return ["time" : time.ms, "windSpeed" : windSpeed, "windDirection": windDirection]
+        return ["time" : time.ms, "windSpeed" : windSpeed, "windDirection": windDirection,"compass": compass]
     }
 }
 
