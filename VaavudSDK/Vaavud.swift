@@ -18,6 +18,7 @@ public class VaavudSleipnirAvailability: NSObject {
 public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     public static let shared = VaavudSDK()
     
+    private var medianFilter = MedianFilter()
     private var windController = WindController()
     private var locationController = LocationController()
     private var bluetoothController = BluetoothController()
@@ -144,6 +145,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
             try locationController.start()
             bluetoothController.addBleListener(listener: listener)
             bluetoothController.start()
+            medianFilter.clear()
             startPressure()
         }
         catch {
@@ -259,6 +261,10 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     func newReading(event: BluetoothEvent) {
         let windSpeedE = WindSpeedEvent(speed: event.windSpeed)
         let windDirectionE = WindDirectionEvent(direction: Double(event.windDirection))
+        medianFilter.addValues(newValue: windSpeedE.speed, newDirection: Int(windDirectionE.direction))
+        
+        windSpeedE.speed = medianFilter.evaluateSpeedFilter()
+        windDirectionE.direction = medianFilter.evaluateDirectionFilter()
         
         session.addWindSpeed(event: windSpeedE)
         session.addWindDirection(event: windDirectionE)
