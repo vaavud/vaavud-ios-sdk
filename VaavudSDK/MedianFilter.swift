@@ -12,11 +12,11 @@ import GLKit
 class MedianFilter {
     
     private var values = [Double]()
-    private var directionX = [Double]()
-    private var directionY = [Double]()
+    private var directionX = [Float]()
+    private var directionY = [Float]()
     private var sortedValues = [Double]()
-    private var sortedDirectionX = [Double]()
-    private var sortedDirectionY = [Double]()
+    private var sortedDirectionX = [Float]()
+    private var sortedDirectionY = [Float]()
     private var medianValue : Double = -1.0
     private var directionMedianValue : Int = -1
     
@@ -37,8 +37,8 @@ class MedianFilter {
         //        Log.d(TAG,"Adding Value "+newValue + this.toString())
         
         values.append(newValue)
-        directionX.append((newValue * cos( GLKMathDegreesToRadians(Float(newDirection)) )))
-        directionY.append((newValue * sin( GLKMathDegreesToRadians(Float(newDirection)) )))
+        directionX.append((Float(newValue) * cos( GLKMathDegreesToRadians(Float(newDirection)) )))
+        directionY.append((Float(newValue) * sin( GLKMathDegreesToRadians(Float(newDirection)) )))
     }
     
     func evaluateSpeedFilter() -> Double  {
@@ -60,9 +60,9 @@ class MedianFilter {
     }
     
     func evaluateDirectionFilter()-> Int  {
-        var medianX:Double = 0.0
-        var medianY:Double = 0.0
-        var tan:Double = 0.0
+        var medianX:Float = 0.0
+        var medianY:Float = 0.0
+        var tan:Float = 0.0
         
         if (directionX.count > 5){
             

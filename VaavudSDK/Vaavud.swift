@@ -89,7 +89,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
         if let direction = direction, let speed = speed, let course = course, let velocity = velocity {
 
             let alpha = direction - course
-            let rad = alpha * M_PI / 180.0 //Radias
+            let rad = alpha * Double.pi / 180.0 //Radias
             
             let trueSpeed = sqrt(pow(speed,2.0) + pow(velocity,2) - 2.0 * speed * velocity * Double(cos(rad)) )
             
@@ -103,7 +103,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
             }
             
             var trueDirection: Double
-            if(0 < rad && M_PI > rad) {
+            if(0 < rad && Double.pi > rad) {
                 let temp = ((speed * cos(rad)) - velocity) / trueSpeed
                 trueDirection = acos(temp)
             }
@@ -111,7 +111,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
                 trueDirection = (-1) * acos(speed * Double(cos(rad)) - velocity / trueSpeed)
             }
             
-            trueDirection = trueDirection * 180 / M_PI
+            trueDirection = trueDirection * 180 / Double.pi
             print(trueDirection)
             
             if (trueDirection != -1) && !trueDirection.isNaN {
@@ -259,12 +259,11 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     
     
     func newReading(event: BluetoothEvent) {
-        let windSpeedE = WindSpeedEvent(speed: event.windSpeed)
-        let windDirectionE = WindDirectionEvent(direction: Double(event.windDirection))
-        medianFilter.addValues(newValue: windSpeedE.speed, newDirection: Int(windDirectionE.direction))
         
-        windSpeedE.speed = medianFilter.evaluateSpeedFilter()
-        windDirectionE.direction = medianFilter.evaluateDirectionFilter()
+        medianFilter.addValues(newValue: event.windSpeed, newDirection: Int(event.windDirection))
+        
+        let windSpeedE = WindSpeedEvent(speed: medianFilter.evaluateSpeedFilter())
+        let windDirectionE = WindDirectionEvent(direction: Double(medianFilter.evaluateDirectionFilter()))
         
         session.addWindSpeed(event: windSpeedE)
         session.addWindDirection(event: windDirectionE)
