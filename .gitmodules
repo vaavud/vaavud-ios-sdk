@@ -1,0 +1,6 @@
+[submodule "RxSwift"]
+	path = RxSwift
+	url = git@github.com:ReactiveX/RxSwift.git
+[submodule "RxBluetoothKit"]
+	path = RxBluetoothKit
+	url = git@github.com:Polidea/RxBluetoothKit.git

@@ -1,0 +1,1127 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "Event"
+- "FirebaseDictionary"
+- "Firebaseable"
+- "FirebaseEntity"
+- "TrueWindSpeedEvent"
+- "WindSpeedEvent"
+- "TrueWindDirectionEvent"
+- "WindDirectionEvent"
+- "CourseEvent"
+- "PressureEvent"
+- "TemperatureEvent"
+- "BluetoothEvent"
+- "BluetoothExtraEvent"
+- "HeadingEvent"
+- "LocationEvent"
+- "VelocityEvent"
+- "AltitudeEvent"
+- "VaavudAudioError"
+- "VaavudOtherError"
+- "ErrorEvent"
+- "WindListener"
+- "BluetoothListener"
+- "LocationListener"
+- "TemperatureListener"
+- "=="
+provides-nominal:
+- "P13RxTestProject5Event"
+- "P13RxTestProject12Firebaseable"
+- "P13RxTestProject14FirebaseEntity"
+- "V13RxTestProject18TrueWindSpeedEvent"
+- "V13RxTestProject14WindSpeedEvent"
+- "V13RxTestProject22TrueWindDirectionEvent"
+- "V13RxTestProject18WindDirectionEvent"
+- "V13RxTestProject11CourseEvent"
+- "V13RxTestProject13PressureEvent"
+- "V13RxTestProject16TemperatureEvent"
+- "V13RxTestProject14BluetoothEvent"
+- "V13RxTestProject19BluetoothExtraEvent"
+- "V13RxTestProject12HeadingEvent"
+- "V13RxTestProject13LocationEvent"
+- "V13RxTestProject13VelocityEvent"
+- "V13RxTestProject13AltitudeEvent"
+- "O13RxTestProject16VaavudAudioError"
+- "O13RxTestProject16VaavudOtherError"
+- "V13RxTestProject10ErrorEvent"
+- "OV13RxTestProject10ErrorEvent14ErrorEventType"
+- "OV13RxTestProject10ErrorEvent16ErrorEventDomain"
+- "P13RxTestProject12WindListener"
+- "P13RxTestProject17BluetoothListener"
+- "P13RxTestProject16LocationListener"
+- "P13RxTestProject19TemperatureListener"
+provides-member:
+- ["V10Foundation4Date", ""]
+- ["P13RxTestProject5Event", ""]
+- ["P13RxTestProject12Firebaseable", ""]
+- ["P13RxTestProject14FirebaseEntity", ""]
+- ["V10Foundation4Data", ""]
+- ["SS", ""]
+- ["V13RxTestProject18TrueWindSpeedEvent", ""]
+- ["V13RxTestProject14WindSpeedEvent", ""]
+- ["V13RxTestProject22TrueWindDirectionEvent", ""]
+- ["V13RxTestProject18WindDirectionEvent", ""]
+- ["V13RxTestProject11CourseEvent", ""]
+- ["V13RxTestProject13PressureEvent", ""]
+- ["V13RxTestProject16TemperatureEvent", ""]
+- ["V13RxTestProject14BluetoothEvent", ""]
+- ["V13RxTestProject19BluetoothExtraEvent", ""]
+- ["V13RxTestProject12HeadingEvent", ""]
+- ["V13RxTestProject13LocationEvent", ""]
+- ["V13RxTestProject13VelocityEvent", ""]
+- ["V13RxTestProject13AltitudeEvent", ""]
+- ["O13RxTestProject16VaavudAudioError", ""]
+- ["O13RxTestProject16VaavudOtherError", ""]
+- ["V13RxTestProject10ErrorEvent", ""]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", ""]
+- ["OV13RxTestProject10ErrorEvent16ErrorEventDomain", ""]
+- ["P13RxTestProject12WindListener", ""]
+- ["P13RxTestProject17BluetoothListener", ""]
+- ["P13RxTestProject16LocationListener", ""]
+- ["P13RxTestProject19TemperatureListener", ""]
+- ["V10Foundation4Date", "init"]
+- ["V10Foundation4Date", "ms"]
+- ["V10Foundation4Data", "hexEncodedString"]
+- ["SS", "substring"]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "*"
+- !private "+"
+- !private "-"
+- !private "..<"
+- !private "/"
+- !private "<"
+- "=="
+- !private ">="
+- "AVAudioSessionInterruptionType"
+- "AVAudioSessionRouteChangeReason"
+- "AltitudeEvent"
+- "AssignmentPrecedence"
+- "BluetoothEvent"
+- "BluetoothExtraEvent"
+- "BluetoothListener"
+- "CGPoint"
+- "CLAuthorizationStatus"
+- "CLLocation"
+- "CLLocationCoordinate2D"
+- "CLLocationDegrees"
+- "CLLocationDirection"
+- "CLLocationDistance"
+- "CLLocationSpeed"
+- "CastingPrecedence"
+- "CourseEvent"
+- "CustomStringConvertible"
+- "Data"
+- "Date"
+- "Double"
+- "Error"
+- "ErrorEvent"
+- "Event"
+- "FirebaseDictionary"
+- "FirebaseEntity"
+- "Firebaseable"
+- "HeadingEvent"
+- "Int"
+- !private "Int64"
+- "LocationEvent"
+- "LocationListener"
+- "NSError"
+- "NSNumber"
+- "PressureEvent"
+- "String"
+- !private "StringLiteralType"
+- "TemperatureEvent"
+- "TemperatureListener"
+- "TernaryPrecedence"
+- "TrueWindDirectionEvent"
+- "TrueWindSpeedEvent"
+- "VaavudAudioError"
+- "VaavudOtherError"
+- "VelocityEvent"
+- "WindDirectionEvent"
+- "WindListener"
+- "WindSpeedEvent"
+- !private "round"
+depends-member:
+- !private ["Ps16AbsoluteValuable", "init"]
+- ["V13RxTestProject13AltitudeEvent", "Date"]
+- ["V13RxTestProject13AltitudeEvent", "Double"]
+- ["V13RxTestProject13AltitudeEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject13AltitudeEvent", "NSNumber"]
+- ["V13RxTestProject13AltitudeEvent", "altitude"]
+- ["V13RxTestProject13AltitudeEvent", "deinit"]
+- ["V13RxTestProject13AltitudeEvent", "fireDict"]
+- ["V13RxTestProject13AltitudeEvent", "init"]
+- ["V13RxTestProject13AltitudeEvent", "time"]
+- !private ["Ps9AnyObject", "altitude"]
+- !private ["Ps9AnyObject", "characters"]
+- !private ["Ps9AnyObject", "coordinate"]
+- !private ["Ps9AnyObject", "endIndex"]
+- !private ["Ps9AnyObject", "index"]
+- !private ["Ps9AnyObject", "init"]
+- !private ["Ps9AnyObject", "int64Value"]
+- !private ["Ps9AnyObject", "localizedDescription"]
+- !private ["Ps9AnyObject", "startIndex"]
+- !private ["Ps9AnyObject", "subscript"]
+- !private ["Ps9AnyObject", "timestamp"]
+- !private ["Ps9AnyObject", "verticalAccuracy"]
+- !private ["Sa", "joined"]
+- !private ["Ps23BidirectionalCollection", "String"]
+- !private ["Ps23BidirectionalCollection", "count"]
+- !private ["Ps23BidirectionalCollection", "joined"]
+- !private ["Ps23BidirectionalCollection", "map"]
+- !private ["Ps19BinaryFloatingPoint", "init"]
+- !private ["Ps17BitwiseOperations", "hashValue"]
+- !private ["Ps17BitwiseOperations", "init"]
+- ["V13RxTestProject14BluetoothEvent", "Date"]
+- ["V13RxTestProject14BluetoothEvent", "Double"]
+- ["V13RxTestProject14BluetoothEvent", "FirebaseDictionary"]
+- ["V13RxTestProject14BluetoothEvent", "Int"]
+- ["V13RxTestProject14BluetoothEvent", "battery"]
+- ["V13RxTestProject14BluetoothEvent", "compass"]
+- ["V13RxTestProject14BluetoothEvent", "deinit"]
+- ["V13RxTestProject14BluetoothEvent", "fireDict"]
+- ["V13RxTestProject14BluetoothEvent", "init"]
+- ["V13RxTestProject14BluetoothEvent", "time"]
+- ["V13RxTestProject14BluetoothEvent", "windDirection"]
+- ["V13RxTestProject14BluetoothEvent", "windSpeed"]
+- ["V13RxTestProject19BluetoothExtraEvent", "Date"]
+- ["V13RxTestProject19BluetoothExtraEvent", "FirebaseDictionary"]
+- ["V13RxTestProject19BluetoothExtraEvent", "Int"]
+- ["V13RxTestProject19BluetoothExtraEvent", "battery"]
+- ["V13RxTestProject19BluetoothExtraEvent", "compass"]
+- ["V13RxTestProject19BluetoothExtraEvent", "deinit"]
+- ["V13RxTestProject19BluetoothExtraEvent", "fireDict"]
+- ["V13RxTestProject19BluetoothExtraEvent", "init"]
+- ["V13RxTestProject19BluetoothExtraEvent", "time"]
+- ["P13RxTestProject17BluetoothListener", "BluetoothEvent"]
+- ["P13RxTestProject17BluetoothListener", "BluetoothExtraEvent"]
+- ["P13RxTestProject17BluetoothListener", "extraInfo"]
+- ["P13RxTestProject17BluetoothListener", "newReading"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["CSo10CLLocation", "altitude"]
+- !private ["CSo10CLLocation", "coordinate"]
+- !private ["CSo10CLLocation", "init"]
+- !private ["CSo10CLLocation", "timestamp"]
+- !private ["CSo10CLLocation", "verticalAccuracy"]
+- !private ["VSC22CLLocationCoordinate2D", "init"]
+- !private ["VSC22CLLocationCoordinate2D", "latitude"]
+- !private ["VSC22CLLocationCoordinate2D", "longitude"]
+- !private ["Ps7CVarArg", "Index"]
+- !private ["Ps7CVarArg", "altitude"]
+- !private ["Ps7CVarArg", "characters"]
+- !private ["Ps7CVarArg", "coordinate"]
+- !private ["Ps7CVarArg", "endIndex"]
+- !private ["Ps7CVarArg", "hashValue"]
+- !private ["Ps7CVarArg", "index"]
+- !private ["Ps7CVarArg", "init"]
+- !private ["Ps7CVarArg", "int64Value"]
+- !private ["Ps7CVarArg", "joined"]
+- !private ["Ps7CVarArg", "localizedDescription"]
+- !private ["Ps7CVarArg", "startIndex"]
+- !private ["Ps7CVarArg", "subscript"]
+- !private ["Ps7CVarArg", "timestamp"]
+- !private ["Ps7CVarArg", "verticalAccuracy"]
+- !private ["VSS13CharacterView", "count"]
+- !private ["Ps10Collection", "String"]
+- !private ["Ps10Collection", "count"]
+- !private ["Ps10Collection", "joined"]
+- !private ["Ps10Collection", "map"]
+- !private ["Ps10Collection", "subscript"]
+- !private ["Ps10Comparable", "Double"]
+- !private ["Ps10Comparable", "Index"]
+- !private ["Ps10Comparable", "Int64"]
+- !private ["Ps10Comparable", "NSNumber"]
+- !private ["Ps10Comparable", "characters"]
+- !private ["Ps10Comparable", "endIndex"]
+- !private ["Ps10Comparable", "hashValue"]
+- !private ["Ps10Comparable", "index"]
+- ["Ps10Comparable", "init"]
+- !private ["Ps10Comparable", "ms"]
+- !private ["Ps10Comparable", "round"]
+- !private ["Ps10Comparable", "startIndex"]
+- !private ["Ps10Comparable", "subscript"]
+- !private ["Ps10Comparable", "timeIntervalSince1970"]
+- ["V13RxTestProject11CourseEvent", "Date"]
+- ["V13RxTestProject11CourseEvent", "Double"]
+- ["V13RxTestProject11CourseEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject11CourseEvent", "NSNumber"]
+- ["V13RxTestProject11CourseEvent", "course"]
+- ["V13RxTestProject11CourseEvent", "deinit"]
+- ["V13RxTestProject11CourseEvent", "fireDict"]
+- ["V13RxTestProject11CourseEvent", "init"]
+- ["V13RxTestProject11CourseEvent", "time"]
+- !private ["Ps28CustomDebugStringConvertible", "Double"]
+- !private ["Ps28CustomDebugStringConvertible", "Index"]
+- !private ["Ps28CustomDebugStringConvertible", "Int64"]
+- !private ["Ps28CustomDebugStringConvertible", "NSNumber"]
+- !private ["Ps28CustomDebugStringConvertible", "String"]
+- !private ["Ps28CustomDebugStringConvertible", "altitude"]
+- !private ["Ps28CustomDebugStringConvertible", "characters"]
+- !private ["Ps28CustomDebugStringConvertible", "coordinate"]
+- !private ["Ps28CustomDebugStringConvertible", "endIndex"]
+- !private ["Ps28CustomDebugStringConvertible", "index"]
+- ["Ps28CustomDebugStringConvertible", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "int64Value"]
+- !private ["Ps28CustomDebugStringConvertible", "joined"]
+- !private ["Ps28CustomDebugStringConvertible", "localizedDescription"]
+- !private ["Ps28CustomDebugStringConvertible", "map"]
+- !private ["Ps28CustomDebugStringConvertible", "ms"]
+- !private ["Ps28CustomDebugStringConvertible", "round"]
+- !private ["Ps28CustomDebugStringConvertible", "startIndex"]
+- !private ["Ps28CustomDebugStringConvertible", "subscript"]
+- !private ["Ps28CustomDebugStringConvertible", "timeIntervalSince1970"]
+- !private ["Ps28CustomDebugStringConvertible", "timestamp"]
+- !private ["Ps28CustomDebugStringConvertible", "verticalAccuracy"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "Double"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "Index"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "Int64"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "NSNumber"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "characters"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "endIndex"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "hashValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "index"]
+- ["Ps29CustomPlaygroundQuickLookable", "init"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "ms"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "round"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "startIndex"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "subscript"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "timeIntervalSince1970"]
+- !private ["Ps17CustomReflectable", "Double"]
+- !private ["Ps17CustomReflectable", "Index"]
+- !private ["Ps17CustomReflectable", "Int64"]
+- !private ["Ps17CustomReflectable", "NSNumber"]
+- !private ["Ps17CustomReflectable", "String"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "characters"]
+- !private ["Ps17CustomReflectable", "endIndex"]
+- !private ["Ps17CustomReflectable", "hashValue"]
+- !private ["Ps17CustomReflectable", "index"]
+- ["Ps17CustomReflectable", "init"]
+- !private ["Ps17CustomReflectable", "joined"]
+- !private ["Ps17CustomReflectable", "map"]
+- !private ["Ps17CustomReflectable", "ms"]
+- !private ["Ps17CustomReflectable", "round"]
+- !private ["Ps17CustomReflectable", "startIndex"]
+- !private ["Ps17CustomReflectable", "subscript"]
+- !private ["Ps17CustomReflectable", "timeIntervalSince1970"]
+- ["Ps23CustomStringConvertible", "AVAudioSessionInterruptionType"]
+- ["Ps23CustomStringConvertible", "AVAudioSessionRouteChangeReason"]
+- ["Ps23CustomStringConvertible", "Date"]
+- !private ["Ps23CustomStringConvertible", "Double"]
+- !private ["Ps23CustomStringConvertible", "Index"]
+- !private ["Ps23CustomStringConvertible", "Int64"]
+- !private ["Ps23CustomStringConvertible", "NSNumber"]
+- !private ["Ps23CustomStringConvertible", "String"]
+- ["Ps23CustomStringConvertible", "_code"]
+- ["Ps23CustomStringConvertible", "_domain"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- ["Ps23CustomStringConvertible", "_getEmbeddedNSError"]
+- ["Ps23CustomStringConvertible", "_userInfo"]
+- !private ["Ps23CustomStringConvertible", "altitude"]
+- !private ["Ps23CustomStringConvertible", "characters"]
+- !private ["Ps23CustomStringConvertible", "coordinate"]
+- ["Ps23CustomStringConvertible", "description"]
+- !private ["Ps23CustomStringConvertible", "domain"]
+- !private ["Ps23CustomStringConvertible", "endIndex"]
+- ["Ps23CustomStringConvertible", "fireDict"]
+- !private ["Ps23CustomStringConvertible", "hashValue"]
+- !private ["Ps23CustomStringConvertible", "index"]
+- ["Ps23CustomStringConvertible", "init"]
+- !private ["Ps23CustomStringConvertible", "int64Value"]
+- !private ["Ps23CustomStringConvertible", "joined"]
+- !private ["Ps23CustomStringConvertible", "localizedDescription"]
+- !private ["Ps23CustomStringConvertible", "map"]
+- !private ["Ps23CustomStringConvertible", "ms"]
+- !private ["Ps23CustomStringConvertible", "round"]
+- !private ["Ps23CustomStringConvertible", "startIndex"]
+- !private ["Ps23CustomStringConvertible", "subscript"]
+- ["Ps23CustomStringConvertible", "time"]
+- !private ["Ps23CustomStringConvertible", "timeIntervalSince1970"]
+- !private ["Ps23CustomStringConvertible", "timestamp"]
+- !private ["Ps23CustomStringConvertible", "type"]
+- !private ["Ps23CustomStringConvertible", "verticalAccuracy"]
+- ["Ps23CustomStringConvertible", ""]
+- ["V10Foundation4Data", "String"]
+- ["V10Foundation4Data", "hexEncodedString"]
+- !private ["V10Foundation4Data", "map"]
+- !private ["V10Foundation4Date", "Double"]
+- !private ["V10Foundation4Date", "Int64"]
+- ["V10Foundation4Date", "NSNumber"]
+- ["V10Foundation4Date", "init"]
+- ["V10Foundation4Date", "ms"]
+- !private ["V10Foundation4Date", "round"]
+- !private ["V10Foundation4Date", "timeIntervalSince1970"]
+- !private ["Vs10Dictionary", "subscript"]
+- !private ["Sd", "init"]
+- !private ["Ps9Equatable", "Double"]
+- !private ["Ps9Equatable", "Index"]
+- !private ["Ps9Equatable", "Int64"]
+- !private ["Ps9Equatable", "Location"]
+- !private ["Ps9Equatable", "NSNumber"]
+- !private ["Ps9Equatable", "String"]
+- !private ["Ps9Equatable", "Temperature"]
+- !private ["Ps9Equatable", "WindReading"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- ["Ps9Equatable", "_toAnyHashable"]
+- !private ["Ps9Equatable", "altitude"]
+- !private ["Ps9Equatable", "characters"]
+- !private ["Ps9Equatable", "coordinate"]
+- !private ["Ps9Equatable", "endIndex"]
+- ["Ps9Equatable", "hashValue"]
+- !private ["Ps9Equatable", "index"]
+- ["Ps9Equatable", "init"]
+- !private ["Ps9Equatable", "int64Value"]
+- !private ["Ps9Equatable", "localizedDescription"]
+- !private ["Ps9Equatable", "map"]
+- !private ["Ps9Equatable", "ms"]
+- !private ["Ps9Equatable", "round"]
+- !private ["Ps9Equatable", "startIndex"]
+- !private ["Ps9Equatable", "subscript"]
+- !private ["Ps9Equatable", "timeIntervalSince1970"]
+- !private ["Ps9Equatable", "timestamp"]
+- !private ["Ps9Equatable", "verticalAccuracy"]
+- ["Ps9Equatable", ""]
+- ["Ps5Error", "_code"]
+- ["Ps5Error", "_domain"]
+- ["Ps5Error", "_getEmbeddedNSError"]
+- ["Ps5Error", "_userInfo"]
+- ["Ps5Error", "description"]
+- !private ["Ps5Error", "localizedDescription"]
+- ["Ps5Error", ""]
+- ["V13RxTestProject10ErrorEvent", "AVAudioSessionInterruptionType"]
+- ["V13RxTestProject10ErrorEvent", "AVAudioSessionRouteChangeReason"]
+- ["V13RxTestProject10ErrorEvent", "Date"]
+- ["V13RxTestProject10ErrorEvent", "ErrorEventDomain"]
+- ["V13RxTestProject10ErrorEvent", "ErrorEventType"]
+- ["V13RxTestProject10ErrorEvent", "FirebaseDictionary"]
+- ["V13RxTestProject10ErrorEvent", "NSError"]
+- ["V13RxTestProject10ErrorEvent", "String"]
+- ["V13RxTestProject10ErrorEvent", "VaavudAudioError"]
+- ["V13RxTestProject10ErrorEvent", "deinit"]
+- ["V13RxTestProject10ErrorEvent", "description"]
+- ["V13RxTestProject10ErrorEvent", "domain"]
+- ["V13RxTestProject10ErrorEvent", "fireDict"]
+- ["V13RxTestProject10ErrorEvent", "init"]
+- ["V13RxTestProject10ErrorEvent", "time"]
+- ["V13RxTestProject10ErrorEvent", "type"]
+- ["OV13RxTestProject10ErrorEvent16ErrorEventDomain", "=="]
+- ["OV13RxTestProject10ErrorEvent16ErrorEventDomain", "Location"]
+- ["OV13RxTestProject10ErrorEvent16ErrorEventDomain", "Temperature"]
+- ["OV13RxTestProject10ErrorEvent16ErrorEventDomain", "WindReading"]
+- ["OV13RxTestProject10ErrorEvent16ErrorEventDomain", "_toAnyHashable"]
+- ["OV13RxTestProject10ErrorEvent16ErrorEventDomain", "deinit"]
+- ["OV13RxTestProject10ErrorEvent16ErrorEventDomain", "hashValue"]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", "AVAudioSessionInterruptionType"]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", "AVAudioSessionRouteChangeReason"]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", "AudioInterruption"]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", "AudioReconfigurationFailure"]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", "AudioRouteChange"]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", "HeadingUnavailable"]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", "LocationManagerFailure"]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", "NSError"]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", "TemperatureReadingFailure"]
+- ["OV13RxTestProject10ErrorEvent14ErrorEventType", "VaavudAudioError"]
+- ["P13RxTestProject5Event", "AVAudioSessionInterruptionType"]
+- ["P13RxTestProject5Event", "AVAudioSessionRouteChangeReason"]
+- !private ["P13RxTestProject5Event", "CLLocation"]
+- !private ["P13RxTestProject5Event", "CLLocationCoordinate2D"]
+- ["P13RxTestProject5Event", "Date"]
+- !private ["P13RxTestProject5Event", "altitude"]
+- !private ["P13RxTestProject5Event", "battery"]
+- !private ["P13RxTestProject5Event", "compass"]
+- !private ["P13RxTestProject5Event", "course"]
+- ["P13RxTestProject5Event", "description"]
+- !private ["P13RxTestProject5Event", "direction"]
+- !private ["P13RxTestProject5Event", "domain"]
+- ["P13RxTestProject5Event", "fireDict"]
+- !private ["P13RxTestProject5Event", "heading"]
+- !private ["P13RxTestProject5Event", "lat"]
+- !private ["P13RxTestProject5Event", "lon"]
+- !private ["P13RxTestProject5Event", "pressure"]
+- !private ["P13RxTestProject5Event", "speed"]
+- !private ["P13RxTestProject5Event", "temperature"]
+- ["P13RxTestProject5Event", "time"]
+- !private ["P13RxTestProject5Event", "type"]
+- !private ["P13RxTestProject5Event", "windDirection"]
+- !private ["P13RxTestProject5Event", "windSpeed"]
+- ["P13RxTestProject5Event", ""]
+- !private ["Ps25ExpressibleByArrayLiteral", "joined"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "init"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "int64Value"]
+- !private ["Ps30ExpressibleByDictionaryLiteral", "subscript"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "Index"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "characters"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "endIndex"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "index"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "startIndex"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "subscript"]
+- !private ["Ps25ExpressibleByFloatLiteral", "init"]
+- !private ["Ps25ExpressibleByFloatLiteral", "int64Value"]
+- !private ["Ps27ExpressibleByIntegerLiteral", "hashValue"]
+- !private ["Ps27ExpressibleByIntegerLiteral", "init"]
+- !private ["Ps27ExpressibleByIntegerLiteral", "int64Value"]
+- !private ["Ps26ExpressibleByStringLiteral", "Index"]
+- !private ["Ps26ExpressibleByStringLiteral", "characters"]
+- !private ["Ps26ExpressibleByStringLiteral", "endIndex"]
+- !private ["Ps26ExpressibleByStringLiteral", "index"]
+- !private ["Ps26ExpressibleByStringLiteral", "init"]
+- !private ["Ps26ExpressibleByStringLiteral", "startIndex"]
+- !private ["Ps26ExpressibleByStringLiteral", "subscript"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "Index"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "characters"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "endIndex"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "index"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "init"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "startIndex"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "subscript"]
+- ["P13RxTestProject14FirebaseEntity", "FirebaseDictionary"]
+- ["P13RxTestProject14FirebaseEntity", "init"]
+- ["P13RxTestProject12Firebaseable", "AVAudioSessionInterruptionType"]
+- ["P13RxTestProject12Firebaseable", "AVAudioSessionRouteChangeReason"]
+- !private ["P13RxTestProject12Firebaseable", "CLLocation"]
+- !private ["P13RxTestProject12Firebaseable", "CLLocationCoordinate2D"]
+- ["P13RxTestProject12Firebaseable", "Date"]
+- ["P13RxTestProject12Firebaseable", "FirebaseDictionary"]
+- !private ["P13RxTestProject12Firebaseable", "altitude"]
+- !private ["P13RxTestProject12Firebaseable", "battery"]
+- !private ["P13RxTestProject12Firebaseable", "compass"]
+- !private ["P13RxTestProject12Firebaseable", "course"]
+- ["P13RxTestProject12Firebaseable", "description"]
+- !private ["P13RxTestProject12Firebaseable", "direction"]
+- !private ["P13RxTestProject12Firebaseable", "domain"]
+- ["P13RxTestProject12Firebaseable", "fireDict"]
+- !private ["P13RxTestProject12Firebaseable", "heading"]
+- !private ["P13RxTestProject12Firebaseable", "lat"]
+- !private ["P13RxTestProject12Firebaseable", "lon"]
+- !private ["P13RxTestProject12Firebaseable", "pressure"]
+- !private ["P13RxTestProject12Firebaseable", "speed"]
+- !private ["P13RxTestProject12Firebaseable", "temperature"]
+- ["P13RxTestProject12Firebaseable", "time"]
+- !private ["P13RxTestProject12Firebaseable", "type"]
+- !private ["P13RxTestProject12Firebaseable", "windDirection"]
+- !private ["P13RxTestProject12Firebaseable", "windSpeed"]
+- ["P13RxTestProject12Firebaseable", ""]
+- !private ["Ps13FloatingPoint", "init"]
+- !private ["Ps8Hashable", "Double"]
+- !private ["Ps8Hashable", "Index"]
+- !private ["Ps8Hashable", "Int64"]
+- !private ["Ps8Hashable", "Location"]
+- !private ["Ps8Hashable", "NSNumber"]
+- !private ["Ps8Hashable", "String"]
+- !private ["Ps8Hashable", "Temperature"]
+- !private ["Ps8Hashable", "WindReading"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- ["Ps8Hashable", "_toAnyHashable"]
+- !private ["Ps8Hashable", "altitude"]
+- !private ["Ps8Hashable", "characters"]
+- !private ["Ps8Hashable", "coordinate"]
+- !private ["Ps8Hashable", "endIndex"]
+- ["Ps8Hashable", "hashValue"]
+- !private ["Ps8Hashable", "index"]
+- ["Ps8Hashable", "init"]
+- !private ["Ps8Hashable", "int64Value"]
+- !private ["Ps8Hashable", "localizedDescription"]
+- !private ["Ps8Hashable", "map"]
+- !private ["Ps8Hashable", "ms"]
+- !private ["Ps8Hashable", "round"]
+- !private ["Ps8Hashable", "startIndex"]
+- !private ["Ps8Hashable", "subscript"]
+- !private ["Ps8Hashable", "timeIntervalSince1970"]
+- !private ["Ps8Hashable", "timestamp"]
+- !private ["Ps8Hashable", "verticalAccuracy"]
+- ["Ps8Hashable", ""]
+- ["V13RxTestProject12HeadingEvent", "Date"]
+- ["V13RxTestProject12HeadingEvent", "Double"]
+- ["V13RxTestProject12HeadingEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject12HeadingEvent", "NSNumber"]
+- ["V13RxTestProject12HeadingEvent", "deinit"]
+- ["V13RxTestProject12HeadingEvent", "fireDict"]
+- ["V13RxTestProject12HeadingEvent", "heading"]
+- ["V13RxTestProject12HeadingEvent", "init"]
+- ["V13RxTestProject12HeadingEvent", "time"]
+- !private ["Si", "hashValue"]
+- !private ["Vs5Int64", "init"]
+- !private ["Ps7Integer", "hashValue"]
+- !private ["Ps7Integer", "init"]
+- !private ["Ps17IntegerArithmetic", "hashValue"]
+- !private ["Ps17IntegerArithmetic", "init"]
+- ["V13RxTestProject13LocationEvent", "CLLocation"]
+- ["V13RxTestProject13LocationEvent", "CLLocationCoordinate2D"]
+- ["V13RxTestProject13LocationEvent", "CLLocationDegrees"]
+- ["V13RxTestProject13LocationEvent", "CLLocationDistance"]
+- ["V13RxTestProject13LocationEvent", "Date"]
+- ["V13RxTestProject13LocationEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject13LocationEvent", "NSNumber"]
+- ["V13RxTestProject13LocationEvent", "altitude"]
+- ["V13RxTestProject13LocationEvent", "coordinate"]
+- ["V13RxTestProject13LocationEvent", "deinit"]
+- ["V13RxTestProject13LocationEvent", "fireDict"]
+- ["V13RxTestProject13LocationEvent", "init"]
+- ["V13RxTestProject13LocationEvent", "lat"]
+- ["V13RxTestProject13LocationEvent", "location"]
+- ["V13RxTestProject13LocationEvent", "lon"]
+- ["V13RxTestProject13LocationEvent", "time"]
+- ["P13RxTestProject16LocationListener", "AltitudeEvent"]
+- ["P13RxTestProject16LocationListener", "CourseEvent"]
+- ["P13RxTestProject16LocationListener", "ErrorEvent"]
+- ["P13RxTestProject16LocationListener", "HeadingEvent"]
+- ["P13RxTestProject16LocationListener", "LocationEvent"]
+- ["P13RxTestProject16LocationListener", "VelocityEvent"]
+- ["P13RxTestProject16LocationListener", "newAltitude"]
+- ["P13RxTestProject16LocationListener", "newCourse"]
+- ["P13RxTestProject16LocationListener", "newError"]
+- ["P13RxTestProject16LocationListener", "newHeading"]
+- ["P13RxTestProject16LocationListener", "newLocation"]
+- ["P13RxTestProject16LocationListener", "newVelocity"]
+- !private ["Ps25LosslessStringConvertible", "Index"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps25LosslessStringConvertible", "characters"]
+- !private ["Ps25LosslessStringConvertible", "endIndex"]
+- !private ["Ps25LosslessStringConvertible", "index"]
+- !private ["Ps25LosslessStringConvertible", "init"]
+- !private ["Ps25LosslessStringConvertible", "startIndex"]
+- !private ["Ps25LosslessStringConvertible", "subscript"]
+- !private ["Ps10MirrorPath", "Index"]
+- !private ["Ps10MirrorPath", "characters"]
+- !private ["Ps10MirrorPath", "endIndex"]
+- !private ["Ps10MirrorPath", "hashValue"]
+- !private ["Ps10MirrorPath", "index"]
+- !private ["Ps10MirrorPath", "init"]
+- !private ["Ps10MirrorPath", "startIndex"]
+- !private ["Ps10MirrorPath", "subscript"]
+- !private ["Ps17MutableCollection", "String"]
+- !private ["Ps17MutableCollection", "joined"]
+- !private ["Ps17MutableCollection", "map"]
+- !private ["PSo8NSCoding", "altitude"]
+- !private ["PSo8NSCoding", "characters"]
+- !private ["PSo8NSCoding", "coordinate"]
+- !private ["PSo8NSCoding", "endIndex"]
+- !private ["PSo8NSCoding", "index"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo8NSCoding", "int64Value"]
+- !private ["PSo8NSCoding", "localizedDescription"]
+- !private ["PSo8NSCoding", "startIndex"]
+- !private ["PSo8NSCoding", "subscript"]
+- !private ["PSo8NSCoding", "timestamp"]
+- !private ["PSo8NSCoding", "verticalAccuracy"]
+- !private ["PSo9NSCopying", "altitude"]
+- !private ["PSo9NSCopying", "characters"]
+- !private ["PSo9NSCopying", "coordinate"]
+- !private ["PSo9NSCopying", "endIndex"]
+- !private ["PSo9NSCopying", "index"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["PSo9NSCopying", "int64Value"]
+- !private ["PSo9NSCopying", "localizedDescription"]
+- !private ["PSo9NSCopying", "startIndex"]
+- !private ["PSo9NSCopying", "subscript"]
+- !private ["PSo9NSCopying", "timestamp"]
+- !private ["PSo9NSCopying", "verticalAccuracy"]
+- !private ["CSo7NSError", "localizedDescription"]
+- !private ["PSo20NSFetchRequestResult", "init"]
+- !private ["PSo20NSFetchRequestResult", "int64Value"]
+- !private ["PSo16NSMutableCopying", "characters"]
+- !private ["PSo16NSMutableCopying", "endIndex"]
+- !private ["PSo16NSMutableCopying", "index"]
+- !private ["PSo16NSMutableCopying", "init"]
+- !private ["PSo16NSMutableCopying", "startIndex"]
+- !private ["PSo16NSMutableCopying", "subscript"]
+- !private ["CSo8NSNumber", "init"]
+- !private ["CSo8NSNumber", "int64Value"]
+- !private ["CSo8NSObject", "altitude"]
+- !private ["CSo8NSObject", "characters"]
+- !private ["CSo8NSObject", "coordinate"]
+- !private ["CSo8NSObject", "endIndex"]
+- !private ["CSo8NSObject", "index"]
+- !private ["CSo8NSObject", "init"]
+- !private ["CSo8NSObject", "int64Value"]
+- !private ["CSo8NSObject", "localizedDescription"]
+- !private ["CSo8NSObject", "startIndex"]
+- !private ["CSo8NSObject", "subscript"]
+- !private ["CSo8NSObject", "timestamp"]
+- !private ["CSo8NSObject", "verticalAccuracy"]
+- !private ["PSo16NSObjectProtocol", "altitude"]
+- !private ["PSo16NSObjectProtocol", "characters"]
+- !private ["PSo16NSObjectProtocol", "coordinate"]
+- !private ["PSo16NSObjectProtocol", "endIndex"]
+- !private ["PSo16NSObjectProtocol", "index"]
+- !private ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "int64Value"]
+- !private ["PSo16NSObjectProtocol", "localizedDescription"]
+- !private ["PSo16NSObjectProtocol", "startIndex"]
+- !private ["PSo16NSObjectProtocol", "subscript"]
+- !private ["PSo16NSObjectProtocol", "timestamp"]
+- !private ["PSo16NSObjectProtocol", "verticalAccuracy"]
+- !private ["PSo19NSPasteboardReading", "characters"]
+- !private ["PSo19NSPasteboardReading", "endIndex"]
+- !private ["PSo19NSPasteboardReading", "index"]
+- !private ["PSo19NSPasteboardReading", "init"]
+- !private ["PSo19NSPasteboardReading", "startIndex"]
+- !private ["PSo19NSPasteboardReading", "subscript"]
+- !private ["PSo19NSPasteboardWriting", "characters"]
+- !private ["PSo19NSPasteboardWriting", "endIndex"]
+- !private ["PSo19NSPasteboardWriting", "index"]
+- !private ["PSo19NSPasteboardWriting", "init"]
+- !private ["PSo19NSPasteboardWriting", "startIndex"]
+- !private ["PSo19NSPasteboardWriting", "subscript"]
+- !private ["PSo14NSSecureCoding", "altitude"]
+- !private ["PSo14NSSecureCoding", "characters"]
+- !private ["PSo14NSSecureCoding", "coordinate"]
+- !private ["PSo14NSSecureCoding", "endIndex"]
+- !private ["PSo14NSSecureCoding", "index"]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["PSo14NSSecureCoding", "int64Value"]
+- !private ["PSo14NSSecureCoding", "localizedDescription"]
+- !private ["PSo14NSSecureCoding", "startIndex"]
+- !private ["PSo14NSSecureCoding", "subscript"]
+- !private ["PSo14NSSecureCoding", "timestamp"]
+- !private ["PSo14NSSecureCoding", "verticalAccuracy"]
+- !private ["CSo8NSString", "characters"]
+- !private ["CSo8NSString", "endIndex"]
+- !private ["CSo8NSString", "index"]
+- !private ["CSo8NSString", "init"]
+- !private ["CSo8NSString", "startIndex"]
+- !private ["CSo8NSString", "subscript"]
+- !private ["CSo7NSValue", "int64Value"]
+- ["V13RxTestProject13PressureEvent", "Date"]
+- ["V13RxTestProject13PressureEvent", "Double"]
+- ["V13RxTestProject13PressureEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject13PressureEvent", "NSNumber"]
+- ["V13RxTestProject13PressureEvent", "deinit"]
+- ["V13RxTestProject13PressureEvent", "fireDict"]
+- ["V13RxTestProject13PressureEvent", "init"]
+- ["V13RxTestProject13PressureEvent", "pressure"]
+- ["V13RxTestProject13PressureEvent", "time"]
+- !private ["Ps22RandomAccessCollection", "String"]
+- !private ["Ps22RandomAccessCollection", "joined"]
+- !private ["Ps22RandomAccessCollection", "map"]
+- !private ["Ps26RangeReplaceableCollection", "String"]
+- !private ["Ps26RangeReplaceableCollection", "count"]
+- !private ["Ps26RangeReplaceableCollection", "joined"]
+- !private ["Ps26RangeReplaceableCollection", "map"]
+- !private ["P10Foundation20ReferenceConvertible", "Double"]
+- !private ["P10Foundation20ReferenceConvertible", "Int64"]
+- !private ["P10Foundation20ReferenceConvertible", "NSNumber"]
+- !private ["P10Foundation20ReferenceConvertible", "String"]
+- ["P10Foundation20ReferenceConvertible", "init"]
+- !private ["P10Foundation20ReferenceConvertible", "map"]
+- !private ["P10Foundation20ReferenceConvertible", "ms"]
+- !private ["P10Foundation20ReferenceConvertible", "round"]
+- !private ["P10Foundation20ReferenceConvertible", "timeIntervalSince1970"]
+- !private ["Ps8Sequence", "String"]
+- !private ["Ps8Sequence", "count"]
+- !private ["Ps8Sequence", "joined"]
+- !private ["Ps8Sequence", "map"]
+- !private ["Ps8Sequence", "subscript"]
+- !private ["Ps13SignedInteger", "hashValue"]
+- !private ["Ps13SignedInteger", "init"]
+- !private ["Ps12SignedNumber", "hashValue"]
+- !private ["Ps12SignedNumber", "init"]
+- !private ["Ps10Strideable", "hashValue"]
+- !private ["Ps10Strideable", "init"]
+- !private ["SS", "Index"]
+- ["SS", "Int"]
+- ["SS", "String"]
+- !private ["SS", "characters"]
+- !private ["SS", "endIndex"]
+- !private ["SS", "index"]
+- !private ["SS", "init"]
+- !private ["SS", "startIndex"]
+- !private ["SS", "subscript"]
+- ["SS", "substring"]
+- ["V13RxTestProject16TemperatureEvent", "Date"]
+- ["V13RxTestProject16TemperatureEvent", "Double"]
+- ["V13RxTestProject16TemperatureEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject16TemperatureEvent", "NSNumber"]
+- ["V13RxTestProject16TemperatureEvent", "deinit"]
+- ["V13RxTestProject16TemperatureEvent", "fireDict"]
+- ["V13RxTestProject16TemperatureEvent", "init"]
+- ["V13RxTestProject16TemperatureEvent", "temperature"]
+- ["V13RxTestProject16TemperatureEvent", "time"]
+- ["P13RxTestProject19TemperatureListener", "ErrorEvent"]
+- ["P13RxTestProject19TemperatureListener", "TemperatureEvent"]
+- ["P13RxTestProject19TemperatureListener", "newError"]
+- ["P13RxTestProject19TemperatureListener", "newTemperature"]
+- !private ["Ps16TextOutputStream", "Index"]
+- !private ["Ps16TextOutputStream", "characters"]
+- !private ["Ps16TextOutputStream", "endIndex"]
+- !private ["Ps16TextOutputStream", "index"]
+- !private ["Ps16TextOutputStream", "init"]
+- !private ["Ps16TextOutputStream", "startIndex"]
+- !private ["Ps16TextOutputStream", "subscript"]
+- !private ["Ps20TextOutputStreamable", "Index"]
+- !private ["Ps20TextOutputStreamable", "characters"]
+- !private ["Ps20TextOutputStreamable", "endIndex"]
+- !private ["Ps20TextOutputStreamable", "index"]
+- !private ["Ps20TextOutputStreamable", "init"]
+- !private ["Ps20TextOutputStreamable", "startIndex"]
+- !private ["Ps20TextOutputStreamable", "subscript"]
+- ["V13RxTestProject22TrueWindDirectionEvent", "Date"]
+- ["V13RxTestProject22TrueWindDirectionEvent", "Double"]
+- ["V13RxTestProject22TrueWindDirectionEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject22TrueWindDirectionEvent", "NSNumber"]
+- ["V13RxTestProject22TrueWindDirectionEvent", "deinit"]
+- ["V13RxTestProject22TrueWindDirectionEvent", "direction"]
+- ["V13RxTestProject22TrueWindDirectionEvent", "fireDict"]
+- ["V13RxTestProject22TrueWindDirectionEvent", "init"]
+- ["V13RxTestProject22TrueWindDirectionEvent", "time"]
+- ["V13RxTestProject18TrueWindSpeedEvent", "Date"]
+- ["V13RxTestProject18TrueWindSpeedEvent", "Double"]
+- ["V13RxTestProject18TrueWindSpeedEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject18TrueWindSpeedEvent", "NSNumber"]
+- ["V13RxTestProject18TrueWindSpeedEvent", "deinit"]
+- ["V13RxTestProject18TrueWindSpeedEvent", "fireDict"]
+- ["V13RxTestProject18TrueWindSpeedEvent", "init"]
+- ["V13RxTestProject18TrueWindSpeedEvent", "speed"]
+- ["V13RxTestProject18TrueWindSpeedEvent", "time"]
+- ["O13RxTestProject16VaavudAudioError", "AudioEngine"]
+- ["O13RxTestProject16VaavudAudioError", "AudioInputUnavailable"]
+- ["O13RxTestProject16VaavudAudioError", "AudioSessionBufferDuration"]
+- ["O13RxTestProject16VaavudAudioError", "AudioSessionCategory"]
+- ["O13RxTestProject16VaavudAudioError", "AudioSessionSampleRate"]
+- ["O13RxTestProject16VaavudAudioError", "MultipleStart"]
+- ["O13RxTestProject16VaavudAudioError", "NSError"]
+- ["O13RxTestProject16VaavudAudioError", "String"]
+- ["O13RxTestProject16VaavudAudioError", "Unplugged"]
+- ["O13RxTestProject16VaavudAudioError", "_code"]
+- ["O13RxTestProject16VaavudAudioError", "_domain"]
+- ["O13RxTestProject16VaavudAudioError", "_getEmbeddedNSError"]
+- ["O13RxTestProject16VaavudAudioError", "_userInfo"]
+- ["O13RxTestProject16VaavudAudioError", "deinit"]
+- ["O13RxTestProject16VaavudAudioError", "description"]
+- ["O13RxTestProject16VaavudOtherError", "Altimeter"]
+- ["O13RxTestProject16VaavudOtherError", "CLAuthorizationStatus"]
+- ["O13RxTestProject16VaavudOtherError", "LocationAuthorisation"]
+- ["O13RxTestProject16VaavudOtherError", "String"]
+- ["O13RxTestProject16VaavudOtherError", "_code"]
+- ["O13RxTestProject16VaavudOtherError", "_domain"]
+- ["O13RxTestProject16VaavudOtherError", "_getEmbeddedNSError"]
+- ["O13RxTestProject16VaavudOtherError", "_userInfo"]
+- ["O13RxTestProject16VaavudOtherError", "deinit"]
+- ["O13RxTestProject16VaavudOtherError", "description"]
+- ["V13RxTestProject13VelocityEvent", "CLLocationDirection"]
+- ["V13RxTestProject13VelocityEvent", "CLLocationSpeed"]
+- ["V13RxTestProject13VelocityEvent", "Date"]
+- ["V13RxTestProject13VelocityEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject13VelocityEvent", "NSNumber"]
+- ["V13RxTestProject13VelocityEvent", "course"]
+- ["V13RxTestProject13VelocityEvent", "deinit"]
+- ["V13RxTestProject13VelocityEvent", "fireDict"]
+- ["V13RxTestProject13VelocityEvent", "init"]
+- ["V13RxTestProject13VelocityEvent", "speed"]
+- ["V13RxTestProject13VelocityEvent", "time"]
+- ["V13RxTestProject18WindDirectionEvent", "Date"]
+- ["V13RxTestProject18WindDirectionEvent", "Double"]
+- ["V13RxTestProject18WindDirectionEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject18WindDirectionEvent", "NSNumber"]
+- ["V13RxTestProject18WindDirectionEvent", "deinit"]
+- ["V13RxTestProject18WindDirectionEvent", "direction"]
+- ["V13RxTestProject18WindDirectionEvent", "fireDict"]
+- ["V13RxTestProject18WindDirectionEvent", "init"]
+- ["V13RxTestProject18WindDirectionEvent", "time"]
+- ["P13RxTestProject12WindListener", "CGPoint"]
+- ["P13RxTestProject12WindListener", "ErrorEvent"]
+- ["P13RxTestProject12WindListener", "WindDirectionEvent"]
+- ["P13RxTestProject12WindListener", "WindSpeedEvent"]
+- ["P13RxTestProject12WindListener", "debugPlot"]
+- ["P13RxTestProject12WindListener", "newError"]
+- ["P13RxTestProject12WindListener", "newWindDirection"]
+- ["P13RxTestProject12WindListener", "newWindSpeed"]
+- ["V13RxTestProject14WindSpeedEvent", "Date"]
+- ["V13RxTestProject14WindSpeedEvent", "Double"]
+- ["V13RxTestProject14WindSpeedEvent", "FirebaseDictionary"]
+- !private ["V13RxTestProject14WindSpeedEvent", "NSNumber"]
+- ["V13RxTestProject14WindSpeedEvent", "deinit"]
+- ["V13RxTestProject14WindSpeedEvent", "fireDict"]
+- ["V13RxTestProject14WindSpeedEvent", "init"]
+- ["V13RxTestProject14WindSpeedEvent", "speed"]
+- ["V13RxTestProject14WindSpeedEvent", "time"]
+- !private ["Ps14_ArrayProtocol", "joined"]
+- !private ["Ps23_BidirectionalIndexable", "String"]
+- !private ["Ps23_BidirectionalIndexable", "count"]
+- !private ["Ps23_BidirectionalIndexable", "joined"]
+- !private ["Ps23_BidirectionalIndexable", "map"]
+- !private ["Ps15_CVarArgAligned", "init"]
+- !private ["Ps22_CVarArgPassedAsDouble", "init"]
+- !private ["Ps24_DestructorSafeContainer", "joined"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "Index"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "characters"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "endIndex"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "index"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "startIndex"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "subscript"]
+- !private ["Ps33_ExpressibleByBuiltinFloatLiteral", "init"]
+- !private ["Ps35_ExpressibleByBuiltinIntegerLiteral", "hashValue"]
+- !private ["Ps35_ExpressibleByBuiltinIntegerLiteral", "init"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "Index"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "characters"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "endIndex"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "index"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "init"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "startIndex"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "subscript"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "Index"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "characters"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "endIndex"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "index"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "init"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "startIndex"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "subscript"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "Index"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "characters"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "endIndex"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "index"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "init"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "startIndex"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "subscript"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "Index"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "characters"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "endIndex"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "index"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "init"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "startIndex"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "subscript"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "characters"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "endIndex"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "index"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "init"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "int64Value"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "startIndex"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "subscript"]
+- !private ["Ps9_Hashable", "Double"]
+- !private ["Ps9_Hashable", "Index"]
+- !private ["Ps9_Hashable", "Int64"]
+- !private ["Ps9_Hashable", "Location"]
+- !private ["Ps9_Hashable", "NSNumber"]
+- !private ["Ps9_Hashable", "String"]
+- !private ["Ps9_Hashable", "Temperature"]
+- !private ["Ps9_Hashable", "WindReading"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- ["Ps9_Hashable", "_toAnyHashable"]
+- !private ["Ps9_Hashable", "altitude"]
+- !private ["Ps9_Hashable", "characters"]
+- !private ["Ps9_Hashable", "coordinate"]
+- !private ["Ps9_Hashable", "endIndex"]
+- ["Ps9_Hashable", "hashValue"]
+- !private ["Ps9_Hashable", "index"]
+- ["Ps9_Hashable", "init"]
+- !private ["Ps9_Hashable", "int64Value"]
+- !private ["Ps9_Hashable", "localizedDescription"]
+- !private ["Ps9_Hashable", "map"]
+- !private ["Ps9_Hashable", "ms"]
+- !private ["Ps9_Hashable", "round"]
+- !private ["Ps9_Hashable", "startIndex"]
+- !private ["Ps9_Hashable", "subscript"]
+- !private ["Ps9_Hashable", "timeIntervalSince1970"]
+- !private ["Ps9_Hashable", "timestamp"]
+- !private ["Ps9_Hashable", "verticalAccuracy"]
+- ["Ps9_Hashable", ""]
+- !private ["Ps14_Incrementable", "hashValue"]
+- !private ["Ps14_Incrementable", "init"]
+- !private ["Ps10_Indexable", "String"]
+- !private ["Ps10_Indexable", "count"]
+- !private ["Ps10_Indexable", "joined"]
+- !private ["Ps10_Indexable", "map"]
+- !private ["Ps10_Indexable", "subscript"]
+- !private ["Ps14_IndexableBase", "String"]
+- !private ["Ps14_IndexableBase", "count"]
+- !private ["Ps14_IndexableBase", "joined"]
+- !private ["Ps14_IndexableBase", "map"]
+- !private ["Ps14_IndexableBase", "subscript"]
+- !private ["Ps8_Integer", "hashValue"]
+- !private ["Ps8_Integer", "init"]
+- !private ["Ps18_IntegerArithmetic", "hashValue"]
+- !private ["Ps18_IntegerArithmetic", "init"]
+- !private ["Ps17_MutableIndexable", "String"]
+- !private ["Ps17_MutableIndexable", "joined"]
+- !private ["Ps17_MutableIndexable", "map"]
+- !private ["Ps21_ObjectiveCBridgeable", "Double"]
+- !private ["Ps21_ObjectiveCBridgeable", "Index"]
+- !private ["Ps21_ObjectiveCBridgeable", "Int64"]
+- !private ["Ps21_ObjectiveCBridgeable", "NSNumber"]
+- !private ["Ps21_ObjectiveCBridgeable", "String"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "characters"]
+- !private ["Ps21_ObjectiveCBridgeable", "endIndex"]
+- !private ["Ps21_ObjectiveCBridgeable", "hashValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "index"]
+- ["Ps21_ObjectiveCBridgeable", "init"]
+- !private ["Ps21_ObjectiveCBridgeable", "joined"]
+- !private ["Ps21_ObjectiveCBridgeable", "latitude"]
+- !private ["Ps21_ObjectiveCBridgeable", "longitude"]
+- !private ["Ps21_ObjectiveCBridgeable", "map"]
+- !private ["Ps21_ObjectiveCBridgeable", "ms"]
+- !private ["Ps21_ObjectiveCBridgeable", "round"]
+- !private ["Ps21_ObjectiveCBridgeable", "startIndex"]
+- !private ["Ps21_ObjectiveCBridgeable", "subscript"]
+- !private ["Ps21_ObjectiveCBridgeable", "timeIntervalSince1970"]
+- !private ["Ps22_RandomAccessIndexable", "String"]
+- !private ["Ps22_RandomAccessIndexable", "joined"]
+- !private ["Ps22_RandomAccessIndexable", "map"]
+- !private ["Ps26_RangeReplaceableIndexable", "String"]
+- !private ["Ps26_RangeReplaceableIndexable", "count"]
+- !private ["Ps26_RangeReplaceableIndexable", "joined"]
+- !private ["Ps26_RangeReplaceableIndexable", "map"]
+- !private ["Ps14_SignedInteger", "hashValue"]
+- !private ["Ps14_SignedInteger", "init"]
+- !private ["Ps11_Strideable", "hashValue"]
+- !private ["Ps11_Strideable", "init"]
+depends-nominal:
+- !private "Ps16AbsoluteValuable"
+- "V13RxTestProject13AltitudeEvent"
+- !private "Ps9AnyObject"
+- !private "Sa"
+- !private "Ps23BidirectionalCollection"
+- !private "Ps19BinaryFloatingPoint"
+- !private "Ps17BitwiseOperations"
+- "V13RxTestProject14BluetoothEvent"
+- "V13RxTestProject19BluetoothExtraEvent"
+- "P13RxTestProject17BluetoothListener"
+- !private "Sb"
+- !private "CSo10CLLocation"
+- !private "VSC22CLLocationCoordinate2D"
+- !private "Ps7CVarArg"
+- !private "VSS13CharacterView"
+- !private "Ps10Collection"
+- "Ps10Comparable"
+- "V13RxTestProject11CourseEvent"
+- "Ps28CustomDebugStringConvertible"
+- "Ps29CustomPlaygroundQuickLookable"
+- "Ps17CustomReflectable"
+- "Ps23CustomStringConvertible"
+- "V10Foundation4Data"
+- "V10Foundation4Date"
+- !private "Vs10Dictionary"
+- !private "Sd"
+- "Ps9Equatable"
+- "Ps5Error"
+- "V13RxTestProject10ErrorEvent"
+- "OV13RxTestProject10ErrorEvent16ErrorEventDomain"
+- "OV13RxTestProject10ErrorEvent14ErrorEventType"
+- "P13RxTestProject5Event"
+- !private "Ps25ExpressibleByArrayLiteral"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- !private "Ps30ExpressibleByDictionaryLiteral"
+- !private "Ps43ExpressibleByExtendedGraphemeClusterLiteral"
+- !private "Ps25ExpressibleByFloatLiteral"
+- !private "Ps27ExpressibleByIntegerLiteral"
+- !private "Ps26ExpressibleByStringLiteral"
+- !private "Ps33ExpressibleByUnicodeScalarLiteral"
+- "P13RxTestProject14FirebaseEntity"
+- "P13RxTestProject12Firebaseable"
+- !private "Ps13FloatingPoint"
+- "Ps8Hashable"
+- "V13RxTestProject12HeadingEvent"
+- !private "Si"
+- !private "Vs5Int64"
+- !private "Ps7Integer"
+- !private "Ps17IntegerArithmetic"
+- "V13RxTestProject13LocationEvent"
+- "P13RxTestProject16LocationListener"
+- !private "Ps25LosslessStringConvertible"
+- !private "Ps10MirrorPath"
+- !private "Ps17MutableCollection"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "CSo7NSError"
+- !private "PSo20NSFetchRequestResult"
+- !private "PSo16NSMutableCopying"
+- !private "CSo8NSNumber"
+- !private "CSo8NSObject"
+- !private "PSo16NSObjectProtocol"
+- !private "PSo19NSPasteboardReading"
+- !private "PSo19NSPasteboardWriting"
+- !private "PSo14NSSecureCoding"
+- !private "CSo8NSString"
+- !private "CSo7NSValue"
+- "V13RxTestProject13PressureEvent"
+- !private "Ps22RandomAccessCollection"
+- !private "Ps26RangeReplaceableCollection"
+- "P10Foundation20ReferenceConvertible"
+- !private "Ps8Sequence"
+- !private "Ps13SignedInteger"
+- !private "Ps12SignedNumber"
+- !private "Ps10Strideable"
+- "SS"
+- "V13RxTestProject16TemperatureEvent"
+- "P13RxTestProject19TemperatureListener"
+- !private "Ps16TextOutputStream"
+- !private "Ps20TextOutputStreamable"
+- "V13RxTestProject22TrueWindDirectionEvent"
+- "V13RxTestProject18TrueWindSpeedEvent"
+- "O13RxTestProject16VaavudAudioError"
+- "O13RxTestProject16VaavudOtherError"
+- "V13RxTestProject13VelocityEvent"
+- "V13RxTestProject18WindDirectionEvent"
+- "P13RxTestProject12WindListener"
+- "V13RxTestProject14WindSpeedEvent"
+- !private "Ps14_ArrayProtocol"
+- !private "Ps23_BidirectionalIndexable"
+- !private "Ps15_CVarArgAligned"
+- !private "Ps22_CVarArgPassedAsDouble"
+- !private "Ps24_DestructorSafeContainer"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- !private "Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral"
+- !private "Ps33_ExpressibleByBuiltinFloatLiteral"
+- !private "Ps35_ExpressibleByBuiltinIntegerLiteral"
+- !private "Ps34_ExpressibleByBuiltinStringLiteral"
+- !private "Ps39_ExpressibleByBuiltinUTF16StringLiteral"
+- !private "Ps41_ExpressibleByBuiltinUnicodeScalarLiteral"
+- !private "Ps33_ExpressibleByStringInterpolation"
+- !private "Ps35_HasCustomAnyHashableRepresentation"
+- "Ps9_Hashable"
+- !private "Ps14_Incrementable"
+- !private "Ps10_Indexable"
+- !private "Ps14_IndexableBase"
+- !private "Ps8_Integer"
+- !private "Ps18_IntegerArithmetic"
+- !private "Ps17_MutableIndexable"
+- "Ps21_ObjectiveCBridgeable"
+- !private "Ps22_RandomAccessIndexable"
+- !private "Ps26_RangeReplaceableIndexable"
+- !private "Ps14_SignedInteger"
+- !private "Ps11_Strideable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/XPC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreData.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreBluetooth.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Metal.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreLocation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AVFoundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/MediaPlayer.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/GLKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AppKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreText.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AudioToolbox.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/XPC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreMedia.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreData.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/simd.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreLocation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AVFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreAudio.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/GLKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/IOKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AppKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxCocoaRuntime.build/module.modulemap"
+interface-hash: "3491ec4e6551ab36136caf3fe8115b83"

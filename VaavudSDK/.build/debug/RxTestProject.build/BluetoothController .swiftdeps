@@ -1,0 +1,1001 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "BluetoothStatus"
+- "IBluetoothManager"
+- "BluetoothController"
+- "=="
+provides-nominal:
+- "O13RxTestProject15BluetoothStatus"
+- "P13RxTestProject17IBluetoothManager"
+- "C13RxTestProject19BluetoothController"
+provides-member:
+- ["O13RxTestProject15BluetoothStatus", ""]
+- ["P13RxTestProject17IBluetoothManager", ""]
+- ["C13RxTestProject19BluetoothController", ""]
+provides-dynamic-lookup:
+- "BEAN_BATTERY_STATUS_UUID"
+- "BEAN_DATA_UUID"
+- "BEAN_ENABLE_COMPASS_UUID"
+- "BEAN_ENABLE_SERVICES_UUID"
+- "BEAN_NAME"
+- "BEAN_SERVICE_UUID"
+- "centralManager"
+- "centralManagerDidUpdateState"
+- "manager"
+- "peripheral"
+- "start"
+- "stop"
+- "timeBack"
+depends-top-level:
+- !private "*"
+- !private "-"
+- !private "/"
+- "=="
+- !private "Array"
+- "AssignmentPrecedence"
+- "BluetoothController"
+- !private "BluetoothEvent"
+- "BluetoothListener"
+- "BluetoothStatus"
+- !private "BooleanLiteralType"
+- !private "CBAdvertisementDataLocalNameKey"
+- "CBCentralManager"
+- "CBCentralManagerDelegate"
+- "CBCharacteristic"
+- "CBPeripheral"
+- "CBPeripheralDelegate"
+- "CBService"
+- "CBUUID"
+- "CastingPrecedence"
+- !private "Data"
+- !private "Double"
+- "Error"
+- "IBluetoothManager"
+- !private "Int"
+- !private "NSDictionary"
+- "NSNumber"
+- "NSObject"
+- !private "NSString"
+- "String"
+- "StringLiteralType"
+- !private "UInt8"
+- !private "UUID"
+- !private "print"
+depends-member:
+- !private ["Ps16AbsoluteValuable", "init"]
+- !private ["Ps9AnyObject", "BEAN_DATA_UUID"]
+- !private ["Ps9AnyObject", "BEAN_ENABLE_COMPASS_UUID"]
+- !private ["Ps9AnyObject", "BEAN_ENABLE_SERVICES_UUID"]
+- !private ["Ps9AnyObject", "BEAN_NAME"]
+- !private ["Ps9AnyObject", "BEAN_SERVICE_UUID"]
+- !private ["Ps9AnyObject", "BluetoothEvent"]
+- !private ["Ps9AnyObject", "CBAdvertisementDataLocalNameKey"]
+- !private ["Ps9AnyObject", "CBCentralManager"]
+- ["Ps9AnyObject", "CBUUID"]
+- !private ["Ps9AnyObject", "Data"]
+- !private ["Ps9AnyObject", "Double"]
+- !private ["Ps9AnyObject", "Int"]
+- !private ["Ps9AnyObject", "String"]
+- !private ["Ps9AnyObject", "UUID"]
+- !private ["Ps9AnyObject", "appending"]
+- !private ["Ps9AnyObject", "bluetoothListner"]
+- !private ["Ps9AnyObject", "cancelPeripheralConnection"]
+- ["Ps9AnyObject", "centralManager"]
+- ["Ps9AnyObject", "centralManagerDidUpdateState"]
+- !private ["Ps9AnyObject", "characteristics"]
+- !private ["Ps9AnyObject", "connect"]
+- !private ["Ps9AnyObject", "contains"]
+- !private ["Ps9AnyObject", "delegate"]
+- !private ["Ps9AnyObject", "discoverCharacteristics"]
+- !private ["Ps9AnyObject", "discoverServices"]
+- !private ["Ps9AnyObject", "identifier"]
+- ["Ps9AnyObject", "init"]
+- !private ["Ps9AnyObject", "listener"]
+- !private ["Ps9AnyObject", "manager"]
+- !private ["Ps9AnyObject", "object"]
+- ["Ps9AnyObject", "peripheral"]
+- ["Ps9AnyObject", "peripheralDidInvalidateServices"]
+- ["Ps9AnyObject", "peripheralDidUpdateName"]
+- ["Ps9AnyObject", "peripheralDidUpdateRSSI"]
+- !private ["Ps9AnyObject", "print"]
+- !private ["Ps9AnyObject", "scanForPeripherals"]
+- !private ["Ps9AnyObject", "services"]
+- !private ["Ps9AnyObject", "setNotifyValue"]
+- !private ["Ps9AnyObject", "state"]
+- !private ["Ps9AnyObject", "stopScan"]
+- !private ["Ps9AnyObject", "substring"]
+- !private ["Ps9AnyObject", "uuid"]
+- !private ["Ps9AnyObject", "uuidString"]
+- !private ["Ps9AnyObject", "value"]
+- !private ["Ps9AnyObject", "writeValue"]
+- ["Ps9AnyObject", ""]
+- !private ["Sa", "subscript"]
+- !private ["Ps23BidirectionalCollection", "hexEncodedString"]
+- !private ["Ps23BidirectionalCollection", "init"]
+- !private ["Ps23BidirectionalCollection", "subscript"]
+- !private ["Ps19BinaryFloatingPoint", "init"]
+- !private ["Ps17BitwiseOperations", "hashValue"]
+- !private ["Ps17BitwiseOperations", "init"]
+- ["C13RxTestProject19BluetoothController", "BEAN_BATTERY_STATUS_UUID"]
+- ["C13RxTestProject19BluetoothController", "BEAN_DATA_UUID"]
+- ["C13RxTestProject19BluetoothController", "BEAN_ENABLE_COMPASS_UUID"]
+- ["C13RxTestProject19BluetoothController", "BEAN_ENABLE_SERVICES_UUID"]
+- ["C13RxTestProject19BluetoothController", "BEAN_NAME"]
+- ["C13RxTestProject19BluetoothController", "BEAN_SERVICE_UUID"]
+- !private ["C13RxTestProject19BluetoothController", "BluetoothEvent"]
+- ["C13RxTestProject19BluetoothController", "BluetoothListener"]
+- !private ["C13RxTestProject19BluetoothController", "CBAdvertisementDataLocalNameKey"]
+- ["C13RxTestProject19BluetoothController", "CBCentralManager"]
+- ["C13RxTestProject19BluetoothController", "CBCharacteristic"]
+- ["C13RxTestProject19BluetoothController", "CBPeripheral"]
+- ["C13RxTestProject19BluetoothController", "CBService"]
+- ["C13RxTestProject19BluetoothController", "CBUUID"]
+- !private ["C13RxTestProject19BluetoothController", "Data"]
+- !private ["C13RxTestProject19BluetoothController", "Double"]
+- ["C13RxTestProject19BluetoothController", "Error"]
+- ["C13RxTestProject19BluetoothController", "IBluetoothManager"]
+- !private ["C13RxTestProject19BluetoothController", "Int"]
+- !private ["C13RxTestProject19BluetoothController", "NSDictionary"]
+- ["C13RxTestProject19BluetoothController", "NSNumber"]
+- !private ["C13RxTestProject19BluetoothController", "NSString"]
+- ["C13RxTestProject19BluetoothController", "String"]
+- !private ["C13RxTestProject19BluetoothController", "UInt8"]
+- !private ["C13RxTestProject19BluetoothController", "UUID"]
+- ["C13RxTestProject19BluetoothController", "addBleListener"]
+- ["C13RxTestProject19BluetoothController", "addListener"]
+- !private ["C13RxTestProject19BluetoothController", "bluetoothListner"]
+- ["C13RxTestProject19BluetoothController", "centralManager"]
+- ["C13RxTestProject19BluetoothController", "centralManagerDidUpdateState"]
+- ["C13RxTestProject19BluetoothController", "deinit"]
+- ["C13RxTestProject19BluetoothController", "init"]
+- !private ["C13RxTestProject19BluetoothController", "listener"]
+- ["C13RxTestProject19BluetoothController", "manager"]
+- ["C13RxTestProject19BluetoothController", "peripheral"]
+- ["C13RxTestProject19BluetoothController", "peripheralDidInvalidateServices"]
+- ["C13RxTestProject19BluetoothController", "peripheralDidUpdateName"]
+- ["C13RxTestProject19BluetoothController", "peripheralDidUpdateRSSI"]
+- !private ["C13RxTestProject19BluetoothController", "print"]
+- ["C13RxTestProject19BluetoothController", "start"]
+- ["C13RxTestProject19BluetoothController", "stop"]
+- ["C13RxTestProject19BluetoothController", "timeBack"]
+- !private ["V13RxTestProject14BluetoothEvent", "init"]
+- !private ["P13RxTestProject17BluetoothListener", "newReading"]
+- ["O13RxTestProject15BluetoothStatus", "=="]
+- ["O13RxTestProject15BluetoothStatus", "_toAnyHashable"]
+- ["O13RxTestProject15BluetoothStatus", "deinit"]
+- ["O13RxTestProject15BluetoothStatus", "hashValue"]
+- ["O13RxTestProject15BluetoothStatus", "off"]
+- ["O13RxTestProject15BluetoothStatus", "on"]
+- ["O13RxTestProject15BluetoothStatus", "unauthorized"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["CSo16CBCentralManager", "cancelPeripheralConnection"]
+- !private ["CSo16CBCentralManager", "connect"]
+- !private ["CSo16CBCentralManager", "init"]
+- !private ["CSo16CBCentralManager", "scanForPeripherals"]
+- !private ["CSo16CBCentralManager", "state"]
+- !private ["CSo16CBCentralManager", "stopScan"]
+- !private ["PSo24CBCentralManagerDelegate", "BEAN_DATA_UUID"]
+- !private ["PSo24CBCentralManagerDelegate", "BEAN_ENABLE_COMPASS_UUID"]
+- !private ["PSo24CBCentralManagerDelegate", "BEAN_ENABLE_SERVICES_UUID"]
+- !private ["PSo24CBCentralManagerDelegate", "BEAN_NAME"]
+- !private ["PSo24CBCentralManagerDelegate", "BEAN_SERVICE_UUID"]
+- !private ["PSo24CBCentralManagerDelegate", "BluetoothEvent"]
+- !private ["PSo24CBCentralManagerDelegate", "CBAdvertisementDataLocalNameKey"]
+- !private ["PSo24CBCentralManagerDelegate", "CBCentralManager"]
+- ["PSo24CBCentralManagerDelegate", "CBUUID"]
+- !private ["PSo24CBCentralManagerDelegate", "Data"]
+- !private ["PSo24CBCentralManagerDelegate", "Double"]
+- !private ["PSo24CBCentralManagerDelegate", "Int"]
+- !private ["PSo24CBCentralManagerDelegate", "String"]
+- !private ["PSo24CBCentralManagerDelegate", "UUID"]
+- !private ["PSo24CBCentralManagerDelegate", "bluetoothListner"]
+- ["PSo24CBCentralManagerDelegate", "centralManager"]
+- ["PSo24CBCentralManagerDelegate", "centralManagerDidUpdateState"]
+- !private ["PSo24CBCentralManagerDelegate", "listener"]
+- !private ["PSo24CBCentralManagerDelegate", "manager"]
+- ["PSo24CBCentralManagerDelegate", "peripheral"]
+- ["PSo24CBCentralManagerDelegate", "peripheralDidInvalidateServices"]
+- ["PSo24CBCentralManagerDelegate", "peripheralDidUpdateName"]
+- ["PSo24CBCentralManagerDelegate", "peripheralDidUpdateRSSI"]
+- !private ["PSo24CBCentralManagerDelegate", "print"]
+- ["PSo24CBCentralManagerDelegate", ""]
+- !private ["OSC21CBCentralManagerState", "poweredOn"]
+- !private ["OSC21CBCentralManagerState", "unauthorized"]
+- !private ["CSo16CBCharacteristic", "uuid"]
+- !private ["CSo16CBCharacteristic", "value"]
+- !private ["OSC25CBCharacteristicWriteType", "withResponse"]
+- !private ["CSo12CBPeripheral", "delegate"]
+- !private ["CSo12CBPeripheral", "discoverCharacteristics"]
+- !private ["CSo12CBPeripheral", "discoverServices"]
+- !private ["CSo12CBPeripheral", "identifier"]
+- !private ["CSo12CBPeripheral", "services"]
+- !private ["CSo12CBPeripheral", "setNotifyValue"]
+- !private ["CSo12CBPeripheral", "writeValue"]
+- !private ["PSo20CBPeripheralDelegate", "BEAN_DATA_UUID"]
+- !private ["PSo20CBPeripheralDelegate", "BEAN_ENABLE_COMPASS_UUID"]
+- !private ["PSo20CBPeripheralDelegate", "BEAN_ENABLE_SERVICES_UUID"]
+- !private ["PSo20CBPeripheralDelegate", "BEAN_NAME"]
+- !private ["PSo20CBPeripheralDelegate", "BEAN_SERVICE_UUID"]
+- !private ["PSo20CBPeripheralDelegate", "BluetoothEvent"]
+- !private ["PSo20CBPeripheralDelegate", "CBAdvertisementDataLocalNameKey"]
+- !private ["PSo20CBPeripheralDelegate", "CBCentralManager"]
+- ["PSo20CBPeripheralDelegate", "CBUUID"]
+- !private ["PSo20CBPeripheralDelegate", "Data"]
+- !private ["PSo20CBPeripheralDelegate", "Double"]
+- !private ["PSo20CBPeripheralDelegate", "Int"]
+- !private ["PSo20CBPeripheralDelegate", "String"]
+- !private ["PSo20CBPeripheralDelegate", "UUID"]
+- !private ["PSo20CBPeripheralDelegate", "bluetoothListner"]
+- ["PSo20CBPeripheralDelegate", "centralManager"]
+- ["PSo20CBPeripheralDelegate", "centralManagerDidUpdateState"]
+- !private ["PSo20CBPeripheralDelegate", "listener"]
+- !private ["PSo20CBPeripheralDelegate", "manager"]
+- ["PSo20CBPeripheralDelegate", "peripheral"]
+- ["PSo20CBPeripheralDelegate", "peripheralDidInvalidateServices"]
+- ["PSo20CBPeripheralDelegate", "peripheralDidUpdateName"]
+- ["PSo20CBPeripheralDelegate", "peripheralDidUpdateRSSI"]
+- !private ["PSo20CBPeripheralDelegate", "print"]
+- ["PSo20CBPeripheralDelegate", ""]
+- !private ["CSo9CBService", "characteristics"]
+- !private ["CSo9CBService", "uuid"]
+- ["CSo6CBUUID", "init"]
+- !private ["CSo6CBUUID", "uuidString"]
+- !private ["Ps7CVarArg", "BEAN_DATA_UUID"]
+- !private ["Ps7CVarArg", "BEAN_ENABLE_COMPASS_UUID"]
+- !private ["Ps7CVarArg", "BEAN_ENABLE_SERVICES_UUID"]
+- !private ["Ps7CVarArg", "BEAN_NAME"]
+- !private ["Ps7CVarArg", "BEAN_SERVICE_UUID"]
+- !private ["Ps7CVarArg", "BluetoothEvent"]
+- !private ["Ps7CVarArg", "CBAdvertisementDataLocalNameKey"]
+- !private ["Ps7CVarArg", "CBCentralManager"]
+- ["Ps7CVarArg", "CBUUID"]
+- !private ["Ps7CVarArg", "Data"]
+- !private ["Ps7CVarArg", "Double"]
+- !private ["Ps7CVarArg", "Int"]
+- !private ["Ps7CVarArg", "String"]
+- !private ["Ps7CVarArg", "UUID"]
+- !private ["Ps7CVarArg", "appending"]
+- !private ["Ps7CVarArg", "bluetoothListner"]
+- !private ["Ps7CVarArg", "cancelPeripheralConnection"]
+- ["Ps7CVarArg", "centralManager"]
+- ["Ps7CVarArg", "centralManagerDidUpdateState"]
+- !private ["Ps7CVarArg", "characteristics"]
+- !private ["Ps7CVarArg", "connect"]
+- !private ["Ps7CVarArg", "contains"]
+- !private ["Ps7CVarArg", "delegate"]
+- !private ["Ps7CVarArg", "discoverCharacteristics"]
+- !private ["Ps7CVarArg", "discoverServices"]
+- !private ["Ps7CVarArg", "hashValue"]
+- !private ["Ps7CVarArg", "identifier"]
+- ["Ps7CVarArg", "init"]
+- !private ["Ps7CVarArg", "listener"]
+- !private ["Ps7CVarArg", "manager"]
+- !private ["Ps7CVarArg", "object"]
+- ["Ps7CVarArg", "peripheral"]
+- ["Ps7CVarArg", "peripheralDidInvalidateServices"]
+- ["Ps7CVarArg", "peripheralDidUpdateName"]
+- ["Ps7CVarArg", "peripheralDidUpdateRSSI"]
+- !private ["Ps7CVarArg", "print"]
+- !private ["Ps7CVarArg", "scanForPeripherals"]
+- !private ["Ps7CVarArg", "services"]
+- !private ["Ps7CVarArg", "setNotifyValue"]
+- !private ["Ps7CVarArg", "state"]
+- !private ["Ps7CVarArg", "stopScan"]
+- !private ["Ps7CVarArg", "subscript"]
+- !private ["Ps7CVarArg", "substring"]
+- !private ["Ps7CVarArg", "uuid"]
+- !private ["Ps7CVarArg", "uuidString"]
+- !private ["Ps7CVarArg", "value"]
+- !private ["Ps7CVarArg", "writeValue"]
+- ["Ps7CVarArg", ""]
+- !private ["Ps10Collection", "hexEncodedString"]
+- !private ["Ps10Collection", "init"]
+- !private ["Ps10Collection", "subscript"]
+- !private ["Ps10Comparable", "appending"]
+- !private ["Ps10Comparable", "hashValue"]
+- ["Ps10Comparable", "init"]
+- !private ["Ps10Comparable", "substring"]
+- !private ["Ps28CustomDebugStringConvertible", "BEAN_DATA_UUID"]
+- !private ["Ps28CustomDebugStringConvertible", "BEAN_ENABLE_COMPASS_UUID"]
+- !private ["Ps28CustomDebugStringConvertible", "BEAN_ENABLE_SERVICES_UUID"]
+- !private ["Ps28CustomDebugStringConvertible", "BEAN_NAME"]
+- !private ["Ps28CustomDebugStringConvertible", "BEAN_SERVICE_UUID"]
+- !private ["Ps28CustomDebugStringConvertible", "BluetoothEvent"]
+- !private ["Ps28CustomDebugStringConvertible", "CBAdvertisementDataLocalNameKey"]
+- !private ["Ps28CustomDebugStringConvertible", "CBCentralManager"]
+- ["Ps28CustomDebugStringConvertible", "CBUUID"]
+- !private ["Ps28CustomDebugStringConvertible", "Data"]
+- !private ["Ps28CustomDebugStringConvertible", "Double"]
+- !private ["Ps28CustomDebugStringConvertible", "Int"]
+- !private ["Ps28CustomDebugStringConvertible", "String"]
+- !private ["Ps28CustomDebugStringConvertible", "UUID"]
+- !private ["Ps28CustomDebugStringConvertible", "appending"]
+- !private ["Ps28CustomDebugStringConvertible", "bluetoothListner"]
+- !private ["Ps28CustomDebugStringConvertible", "cancelPeripheralConnection"]
+- ["Ps28CustomDebugStringConvertible", "centralManager"]
+- ["Ps28CustomDebugStringConvertible", "centralManagerDidUpdateState"]
+- !private ["Ps28CustomDebugStringConvertible", "characteristics"]
+- !private ["Ps28CustomDebugStringConvertible", "connect"]
+- !private ["Ps28CustomDebugStringConvertible", "contains"]
+- !private ["Ps28CustomDebugStringConvertible", "delegate"]
+- !private ["Ps28CustomDebugStringConvertible", "discoverCharacteristics"]
+- !private ["Ps28CustomDebugStringConvertible", "discoverServices"]
+- !private ["Ps28CustomDebugStringConvertible", "hexEncodedString"]
+- !private ["Ps28CustomDebugStringConvertible", "identifier"]
+- ["Ps28CustomDebugStringConvertible", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "listener"]
+- !private ["Ps28CustomDebugStringConvertible", "manager"]
+- !private ["Ps28CustomDebugStringConvertible", "object"]
+- ["Ps28CustomDebugStringConvertible", "peripheral"]
+- ["Ps28CustomDebugStringConvertible", "peripheralDidInvalidateServices"]
+- ["Ps28CustomDebugStringConvertible", "peripheralDidUpdateName"]
+- ["Ps28CustomDebugStringConvertible", "peripheralDidUpdateRSSI"]
+- !private ["Ps28CustomDebugStringConvertible", "print"]
+- !private ["Ps28CustomDebugStringConvertible", "scanForPeripherals"]
+- !private ["Ps28CustomDebugStringConvertible", "services"]
+- !private ["Ps28CustomDebugStringConvertible", "setNotifyValue"]
+- !private ["Ps28CustomDebugStringConvertible", "state"]
+- !private ["Ps28CustomDebugStringConvertible", "stopScan"]
+- !private ["Ps28CustomDebugStringConvertible", "subscript"]
+- !private ["Ps28CustomDebugStringConvertible", "substring"]
+- !private ["Ps28CustomDebugStringConvertible", "uuid"]
+- !private ["Ps28CustomDebugStringConvertible", "uuidString"]
+- !private ["Ps28CustomDebugStringConvertible", "value"]
+- !private ["Ps28CustomDebugStringConvertible", "writeValue"]
+- ["Ps28CustomDebugStringConvertible", ""]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "appending"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "contains"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "hashValue"]
+- ["Ps29CustomPlaygroundQuickLookable", "init"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "substring"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "appending"]
+- !private ["Ps17CustomReflectable", "hashValue"]
+- !private ["Ps17CustomReflectable", "hexEncodedString"]
+- ["Ps17CustomReflectable", "init"]
+- !private ["Ps17CustomReflectable", "object"]
+- !private ["Ps17CustomReflectable", "subscript"]
+- !private ["Ps17CustomReflectable", "substring"]
+- !private ["Ps23CustomStringConvertible", "BEAN_DATA_UUID"]
+- !private ["Ps23CustomStringConvertible", "BEAN_ENABLE_COMPASS_UUID"]
+- !private ["Ps23CustomStringConvertible", "BEAN_ENABLE_SERVICES_UUID"]
+- !private ["Ps23CustomStringConvertible", "BEAN_NAME"]
+- !private ["Ps23CustomStringConvertible", "BEAN_SERVICE_UUID"]
+- !private ["Ps23CustomStringConvertible", "BluetoothEvent"]
+- !private ["Ps23CustomStringConvertible", "CBAdvertisementDataLocalNameKey"]
+- !private ["Ps23CustomStringConvertible", "CBCentralManager"]
+- ["Ps23CustomStringConvertible", "CBUUID"]
+- !private ["Ps23CustomStringConvertible", "Data"]
+- !private ["Ps23CustomStringConvertible", "Double"]
+- !private ["Ps23CustomStringConvertible", "Int"]
+- !private ["Ps23CustomStringConvertible", "String"]
+- !private ["Ps23CustomStringConvertible", "UUID"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps23CustomStringConvertible", "appending"]
+- !private ["Ps23CustomStringConvertible", "bluetoothListner"]
+- !private ["Ps23CustomStringConvertible", "cancelPeripheralConnection"]
+- ["Ps23CustomStringConvertible", "centralManager"]
+- ["Ps23CustomStringConvertible", "centralManagerDidUpdateState"]
+- !private ["Ps23CustomStringConvertible", "characteristics"]
+- !private ["Ps23CustomStringConvertible", "connect"]
+- !private ["Ps23CustomStringConvertible", "contains"]
+- !private ["Ps23CustomStringConvertible", "delegate"]
+- !private ["Ps23CustomStringConvertible", "discoverCharacteristics"]
+- !private ["Ps23CustomStringConvertible", "discoverServices"]
+- !private ["Ps23CustomStringConvertible", "hashValue"]
+- !private ["Ps23CustomStringConvertible", "hexEncodedString"]
+- !private ["Ps23CustomStringConvertible", "identifier"]
+- ["Ps23CustomStringConvertible", "init"]
+- !private ["Ps23CustomStringConvertible", "listener"]
+- !private ["Ps23CustomStringConvertible", "manager"]
+- !private ["Ps23CustomStringConvertible", "object"]
+- ["Ps23CustomStringConvertible", "peripheral"]
+- ["Ps23CustomStringConvertible", "peripheralDidInvalidateServices"]
+- ["Ps23CustomStringConvertible", "peripheralDidUpdateName"]
+- ["Ps23CustomStringConvertible", "peripheralDidUpdateRSSI"]
+- !private ["Ps23CustomStringConvertible", "print"]
+- !private ["Ps23CustomStringConvertible", "scanForPeripherals"]
+- !private ["Ps23CustomStringConvertible", "services"]
+- !private ["Ps23CustomStringConvertible", "setNotifyValue"]
+- !private ["Ps23CustomStringConvertible", "state"]
+- !private ["Ps23CustomStringConvertible", "stopScan"]
+- !private ["Ps23CustomStringConvertible", "subscript"]
+- !private ["Ps23CustomStringConvertible", "substring"]
+- !private ["Ps23CustomStringConvertible", "uuid"]
+- !private ["Ps23CustomStringConvertible", "uuidString"]
+- !private ["Ps23CustomStringConvertible", "value"]
+- !private ["Ps23CustomStringConvertible", "writeValue"]
+- ["Ps23CustomStringConvertible", ""]
+- !private ["V10Foundation4Data", "hexEncodedString"]
+- !private ["V10Foundation4Data", "init"]
+- !private ["Sd", "init"]
+- !private ["Ps9Equatable", "BEAN_DATA_UUID"]
+- !private ["Ps9Equatable", "BEAN_ENABLE_COMPASS_UUID"]
+- !private ["Ps9Equatable", "BEAN_ENABLE_SERVICES_UUID"]
+- !private ["Ps9Equatable", "BEAN_NAME"]
+- !private ["Ps9Equatable", "BEAN_SERVICE_UUID"]
+- !private ["Ps9Equatable", "BluetoothEvent"]
+- !private ["Ps9Equatable", "CBAdvertisementDataLocalNameKey"]
+- !private ["Ps9Equatable", "CBCentralManager"]
+- ["Ps9Equatable", "CBUUID"]
+- !private ["Ps9Equatable", "Data"]
+- !private ["Ps9Equatable", "Double"]
+- !private ["Ps9Equatable", "Int"]
+- !private ["Ps9Equatable", "String"]
+- !private ["Ps9Equatable", "UUID"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- ["Ps9Equatable", "_toAnyHashable"]
+- !private ["Ps9Equatable", "appending"]
+- !private ["Ps9Equatable", "bluetoothListner"]
+- !private ["Ps9Equatable", "cancelPeripheralConnection"]
+- ["Ps9Equatable", "centralManager"]
+- ["Ps9Equatable", "centralManagerDidUpdateState"]
+- !private ["Ps9Equatable", "characteristics"]
+- !private ["Ps9Equatable", "connect"]
+- !private ["Ps9Equatable", "contains"]
+- !private ["Ps9Equatable", "delegate"]
+- !private ["Ps9Equatable", "discoverCharacteristics"]
+- !private ["Ps9Equatable", "discoverServices"]
+- ["Ps9Equatable", "hashValue"]
+- !private ["Ps9Equatable", "hexEncodedString"]
+- !private ["Ps9Equatable", "identifier"]
+- ["Ps9Equatable", "init"]
+- !private ["Ps9Equatable", "listener"]
+- !private ["Ps9Equatable", "manager"]
+- !private ["Ps9Equatable", "object"]
+- !private ["Ps9Equatable", "off"]
+- !private ["Ps9Equatable", "on"]
+- ["Ps9Equatable", "peripheral"]
+- ["Ps9Equatable", "peripheralDidInvalidateServices"]
+- ["Ps9Equatable", "peripheralDidUpdateName"]
+- ["Ps9Equatable", "peripheralDidUpdateRSSI"]
+- !private ["Ps9Equatable", "poweredOn"]
+- !private ["Ps9Equatable", "print"]
+- !private ["Ps9Equatable", "scanForPeripherals"]
+- !private ["Ps9Equatable", "services"]
+- !private ["Ps9Equatable", "setNotifyValue"]
+- !private ["Ps9Equatable", "state"]
+- !private ["Ps9Equatable", "stopScan"]
+- !private ["Ps9Equatable", "substring"]
+- !private ["Ps9Equatable", "unauthorized"]
+- !private ["Ps9Equatable", "uuid"]
+- !private ["Ps9Equatable", "uuidString"]
+- !private ["Ps9Equatable", "value"]
+- !private ["Ps9Equatable", "withResponse"]
+- !private ["Ps9Equatable", "writeValue"]
+- ["Ps9Equatable", ""]
+- !private ["P13RxTestProject5Event", "init"]
+- !private ["Ps25ExpressibleByArrayLiteral", "subscript"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps30ExpressibleByDictionaryLiteral", "object"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "appending"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "contains"]
+- ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "substring"]
+- !private ["Ps25ExpressibleByFloatLiteral", "init"]
+- !private ["Ps27ExpressibleByIntegerLiteral", "hashValue"]
+- !private ["Ps27ExpressibleByIntegerLiteral", "init"]
+- !private ["Ps26ExpressibleByStringLiteral", "appending"]
+- !private ["Ps26ExpressibleByStringLiteral", "contains"]
+- ["Ps26ExpressibleByStringLiteral", "init"]
+- !private ["Ps26ExpressibleByStringLiteral", "substring"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "appending"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "contains"]
+- ["Ps33ExpressibleByUnicodeScalarLiteral", "init"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "substring"]
+- !private ["P13RxTestProject12Firebaseable", "init"]
+- !private ["Ps13FloatingPoint", "init"]
+- !private ["Ps8Hashable", "BEAN_DATA_UUID"]
+- !private ["Ps8Hashable", "BEAN_ENABLE_COMPASS_UUID"]
+- !private ["Ps8Hashable", "BEAN_ENABLE_SERVICES_UUID"]
+- !private ["Ps8Hashable", "BEAN_NAME"]
+- !private ["Ps8Hashable", "BEAN_SERVICE_UUID"]
+- !private ["Ps8Hashable", "BluetoothEvent"]
+- !private ["Ps8Hashable", "CBAdvertisementDataLocalNameKey"]
+- !private ["Ps8Hashable", "CBCentralManager"]
+- ["Ps8Hashable", "CBUUID"]
+- !private ["Ps8Hashable", "Data"]
+- !private ["Ps8Hashable", "Double"]
+- !private ["Ps8Hashable", "Int"]
+- !private ["Ps8Hashable", "String"]
+- !private ["Ps8Hashable", "UUID"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- ["Ps8Hashable", "_toAnyHashable"]
+- !private ["Ps8Hashable", "appending"]
+- !private ["Ps8Hashable", "bluetoothListner"]
+- !private ["Ps8Hashable", "cancelPeripheralConnection"]
+- ["Ps8Hashable", "centralManager"]
+- ["Ps8Hashable", "centralManagerDidUpdateState"]
+- !private ["Ps8Hashable", "characteristics"]
+- !private ["Ps8Hashable", "connect"]
+- !private ["Ps8Hashable", "contains"]
+- !private ["Ps8Hashable", "delegate"]
+- !private ["Ps8Hashable", "discoverCharacteristics"]
+- !private ["Ps8Hashable", "discoverServices"]
+- ["Ps8Hashable", "hashValue"]
+- !private ["Ps8Hashable", "hexEncodedString"]
+- !private ["Ps8Hashable", "identifier"]
+- ["Ps8Hashable", "init"]
+- !private ["Ps8Hashable", "listener"]
+- !private ["Ps8Hashable", "manager"]
+- !private ["Ps8Hashable", "object"]
+- !private ["Ps8Hashable", "off"]
+- !private ["Ps8Hashable", "on"]
+- ["Ps8Hashable", "peripheral"]
+- ["Ps8Hashable", "peripheralDidInvalidateServices"]
+- ["Ps8Hashable", "peripheralDidUpdateName"]
+- ["Ps8Hashable", "peripheralDidUpdateRSSI"]
+- !private ["Ps8Hashable", "poweredOn"]
+- !private ["Ps8Hashable", "print"]
+- !private ["Ps8Hashable", "scanForPeripherals"]
+- !private ["Ps8Hashable", "services"]
+- !private ["Ps8Hashable", "setNotifyValue"]
+- !private ["Ps8Hashable", "state"]
+- !private ["Ps8Hashable", "stopScan"]
+- !private ["Ps8Hashable", "substring"]
+- !private ["Ps8Hashable", "unauthorized"]
+- !private ["Ps8Hashable", "uuid"]
+- !private ["Ps8Hashable", "uuidString"]
+- !private ["Ps8Hashable", "value"]
+- !private ["Ps8Hashable", "withResponse"]
+- !private ["Ps8Hashable", "writeValue"]
+- ["Ps8Hashable", ""]
+- ["P13RxTestProject17IBluetoothManager", "BluetoothStatus"]
+- ["P13RxTestProject17IBluetoothManager", "onBleReadyToWork"]
+- ["P13RxTestProject17IBluetoothManager", "onBleStatus"]
+- ["P13RxTestProject17IBluetoothManager", "onVaavudBleFound"]
+- !private ["Si", "hashValue"]
+- !private ["Si", "init"]
+- !private ["Ps7Integer", "hashValue"]
+- !private ["Ps7Integer", "init"]
+- !private ["Ps17IntegerArithmetic", "hashValue"]
+- !private ["Ps17IntegerArithmetic", "init"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps25LosslessStringConvertible", "appending"]
+- ["Ps25LosslessStringConvertible", "init"]
+- !private ["Ps25LosslessStringConvertible", "substring"]
+- !private ["Ps10MirrorPath", "appending"]
+- !private ["Ps10MirrorPath", "hashValue"]
+- ["Ps10MirrorPath", "init"]
+- !private ["Ps10MirrorPath", "substring"]
+- !private ["Ps17MutableCollection", "hexEncodedString"]
+- !private ["Ps17MutableCollection", "init"]
+- !private ["Ps17MutableCollection", "subscript"]
+- !private ["PSo8NSCoding", "appending"]
+- !private ["PSo8NSCoding", "contains"]
+- ["PSo8NSCoding", "init"]
+- !private ["PSo8NSCoding", "object"]
+- !private ["PSo8NSCoding", "substring"]
+- !private ["PSo9NSCopying", "appending"]
+- !private ["PSo9NSCopying", "contains"]
+- !private ["PSo9NSCopying", "delegate"]
+- !private ["PSo9NSCopying", "discoverCharacteristics"]
+- !private ["PSo9NSCopying", "discoverServices"]
+- !private ["PSo9NSCopying", "identifier"]
+- ["PSo9NSCopying", "init"]
+- !private ["PSo9NSCopying", "object"]
+- !private ["PSo9NSCopying", "services"]
+- !private ["PSo9NSCopying", "setNotifyValue"]
+- !private ["PSo9NSCopying", "substring"]
+- !private ["PSo9NSCopying", "uuidString"]
+- !private ["PSo9NSCopying", "writeValue"]
+- !private ["CSo12NSDictionary", "object"]
+- !private ["PSo17NSFastEnumeration", "object"]
+- !private ["PSo20NSFetchRequestResult", "object"]
+- !private ["PSo16NSMutableCopying", "appending"]
+- !private ["PSo16NSMutableCopying", "contains"]
+- ["PSo16NSMutableCopying", "init"]
+- !private ["PSo16NSMutableCopying", "object"]
+- !private ["PSo16NSMutableCopying", "substring"]
+- ["CSo8NSObject", "BEAN_BATTERY_STATUS_UUID"]
+- ["CSo8NSObject", "BEAN_DATA_UUID"]
+- ["CSo8NSObject", "BEAN_ENABLE_COMPASS_UUID"]
+- ["CSo8NSObject", "BEAN_ENABLE_SERVICES_UUID"]
+- ["CSo8NSObject", "BEAN_NAME"]
+- ["CSo8NSObject", "BEAN_SERVICE_UUID"]
+- !private ["CSo8NSObject", "BluetoothEvent"]
+- ["CSo8NSObject", "BluetoothListener"]
+- !private ["CSo8NSObject", "CBAdvertisementDataLocalNameKey"]
+- ["CSo8NSObject", "CBCentralManager"]
+- ["CSo8NSObject", "CBCharacteristic"]
+- ["CSo8NSObject", "CBPeripheral"]
+- ["CSo8NSObject", "CBService"]
+- ["CSo8NSObject", "CBUUID"]
+- !private ["CSo8NSObject", "Data"]
+- !private ["CSo8NSObject", "Double"]
+- ["CSo8NSObject", "Error"]
+- ["CSo8NSObject", "IBluetoothManager"]
+- !private ["CSo8NSObject", "Int"]
+- !private ["CSo8NSObject", "NSDictionary"]
+- ["CSo8NSObject", "NSNumber"]
+- !private ["CSo8NSObject", "NSString"]
+- ["CSo8NSObject", "String"]
+- !private ["CSo8NSObject", "UInt8"]
+- !private ["CSo8NSObject", "UUID"]
+- ["CSo8NSObject", "addBleListener"]
+- ["CSo8NSObject", "addListener"]
+- !private ["CSo8NSObject", "appending"]
+- ["CSo8NSObject", "bluetoothListner"]
+- !private ["CSo8NSObject", "cancelPeripheralConnection"]
+- ["CSo8NSObject", "centralManager"]
+- ["CSo8NSObject", "centralManagerDidUpdateState"]
+- !private ["CSo8NSObject", "characteristics"]
+- !private ["CSo8NSObject", "connect"]
+- !private ["CSo8NSObject", "contains"]
+- !private ["CSo8NSObject", "delegate"]
+- !private ["CSo8NSObject", "discoverCharacteristics"]
+- !private ["CSo8NSObject", "discoverServices"]
+- !private ["CSo8NSObject", "identifier"]
+- ["CSo8NSObject", "init"]
+- ["CSo8NSObject", "listener"]
+- ["CSo8NSObject", "manager"]
+- !private ["CSo8NSObject", "object"]
+- ["CSo8NSObject", "peripheral"]
+- ["CSo8NSObject", "peripheralDidInvalidateServices"]
+- ["CSo8NSObject", "peripheralDidUpdateName"]
+- ["CSo8NSObject", "peripheralDidUpdateRSSI"]
+- !private ["CSo8NSObject", "print"]
+- !private ["CSo8NSObject", "scanForPeripherals"]
+- !private ["CSo8NSObject", "services"]
+- !private ["CSo8NSObject", "setNotifyValue"]
+- ["CSo8NSObject", "start"]
+- !private ["CSo8NSObject", "state"]
+- ["CSo8NSObject", "stop"]
+- !private ["CSo8NSObject", "stopScan"]
+- !private ["CSo8NSObject", "substring"]
+- ["CSo8NSObject", "timeBack"]
+- !private ["CSo8NSObject", "uuid"]
+- !private ["CSo8NSObject", "uuidString"]
+- !private ["CSo8NSObject", "value"]
+- !private ["CSo8NSObject", "writeValue"]
+- ["CSo8NSObject", ""]
+- !private ["PSo16NSObjectProtocol", "BEAN_DATA_UUID"]
+- !private ["PSo16NSObjectProtocol", "BEAN_ENABLE_COMPASS_UUID"]
+- !private ["PSo16NSObjectProtocol", "BEAN_ENABLE_SERVICES_UUID"]
+- !private ["PSo16NSObjectProtocol", "BEAN_NAME"]
+- !private ["PSo16NSObjectProtocol", "BEAN_SERVICE_UUID"]
+- !private ["PSo16NSObjectProtocol", "BluetoothEvent"]
+- !private ["PSo16NSObjectProtocol", "CBAdvertisementDataLocalNameKey"]
+- !private ["PSo16NSObjectProtocol", "CBCentralManager"]
+- ["PSo16NSObjectProtocol", "CBUUID"]
+- !private ["PSo16NSObjectProtocol", "Data"]
+- !private ["PSo16NSObjectProtocol", "Double"]
+- !private ["PSo16NSObjectProtocol", "Int"]
+- !private ["PSo16NSObjectProtocol", "String"]
+- !private ["PSo16NSObjectProtocol", "UUID"]
+- !private ["PSo16NSObjectProtocol", "appending"]
+- !private ["PSo16NSObjectProtocol", "bluetoothListner"]
+- !private ["PSo16NSObjectProtocol", "cancelPeripheralConnection"]
+- ["PSo16NSObjectProtocol", "centralManager"]
+- ["PSo16NSObjectProtocol", "centralManagerDidUpdateState"]
+- !private ["PSo16NSObjectProtocol", "characteristics"]
+- !private ["PSo16NSObjectProtocol", "connect"]
+- !private ["PSo16NSObjectProtocol", "contains"]
+- !private ["PSo16NSObjectProtocol", "delegate"]
+- !private ["PSo16NSObjectProtocol", "discoverCharacteristics"]
+- !private ["PSo16NSObjectProtocol", "discoverServices"]
+- !private ["PSo16NSObjectProtocol", "identifier"]
+- ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "listener"]
+- !private ["PSo16NSObjectProtocol", "manager"]
+- !private ["PSo16NSObjectProtocol", "object"]
+- ["PSo16NSObjectProtocol", "peripheral"]
+- ["PSo16NSObjectProtocol", "peripheralDidInvalidateServices"]
+- ["PSo16NSObjectProtocol", "peripheralDidUpdateName"]
+- ["PSo16NSObjectProtocol", "peripheralDidUpdateRSSI"]
+- !private ["PSo16NSObjectProtocol", "print"]
+- !private ["PSo16NSObjectProtocol", "scanForPeripherals"]
+- !private ["PSo16NSObjectProtocol", "services"]
+- !private ["PSo16NSObjectProtocol", "setNotifyValue"]
+- !private ["PSo16NSObjectProtocol", "state"]
+- !private ["PSo16NSObjectProtocol", "stopScan"]
+- !private ["PSo16NSObjectProtocol", "substring"]
+- !private ["PSo16NSObjectProtocol", "uuid"]
+- !private ["PSo16NSObjectProtocol", "uuidString"]
+- !private ["PSo16NSObjectProtocol", "value"]
+- !private ["PSo16NSObjectProtocol", "writeValue"]
+- ["PSo16NSObjectProtocol", ""]
+- !private ["PSo19NSPasteboardReading", "appending"]
+- !private ["PSo19NSPasteboardReading", "contains"]
+- ["PSo19NSPasteboardReading", "init"]
+- !private ["PSo19NSPasteboardReading", "substring"]
+- !private ["PSo19NSPasteboardWriting", "appending"]
+- !private ["PSo19NSPasteboardWriting", "contains"]
+- ["PSo19NSPasteboardWriting", "init"]
+- !private ["PSo19NSPasteboardWriting", "substring"]
+- !private ["PSo14NSSecureCoding", "appending"]
+- !private ["PSo14NSSecureCoding", "contains"]
+- ["PSo14NSSecureCoding", "init"]
+- !private ["PSo14NSSecureCoding", "object"]
+- !private ["PSo14NSSecureCoding", "substring"]
+- !private ["CSo8NSString", "appending"]
+- !private ["CSo8NSString", "contains"]
+- ["CSo8NSString", "init"]
+- !private ["CSo8NSString", "substring"]
+- !private ["Ps22RandomAccessCollection", "hexEncodedString"]
+- !private ["Ps22RandomAccessCollection", "init"]
+- !private ["Ps22RandomAccessCollection", "subscript"]
+- !private ["Ps26RangeReplaceableCollection", "hexEncodedString"]
+- !private ["Ps26RangeReplaceableCollection", "init"]
+- !private ["Ps26RangeReplaceableCollection", "subscript"]
+- !private ["Ps16RawRepresentable", "poweredOn"]
+- !private ["Ps16RawRepresentable", "unauthorized"]
+- !private ["Ps16RawRepresentable", "withResponse"]
+- !private ["P10Foundation20ReferenceConvertible", "hexEncodedString"]
+- !private ["P10Foundation20ReferenceConvertible", "init"]
+- !private ["Ps8Sequence", "hexEncodedString"]
+- !private ["Ps8Sequence", "init"]
+- !private ["Ps8Sequence", "object"]
+- !private ["Ps8Sequence", "subscript"]
+- !private ["Ps13SignedInteger", "hashValue"]
+- !private ["Ps13SignedInteger", "init"]
+- !private ["Ps12SignedNumber", "hashValue"]
+- !private ["Ps12SignedNumber", "init"]
+- !private ["Ps10Strideable", "hashValue"]
+- !private ["Ps10Strideable", "init"]
+- !private ["SS", "appending"]
+- ["SS", "init"]
+- !private ["SS", "substring"]
+- !private ["Ps16TextOutputStream", "appending"]
+- ["Ps16TextOutputStream", "init"]
+- !private ["Ps16TextOutputStream", "substring"]
+- !private ["Ps20TextOutputStreamable", "appending"]
+- ["Ps20TextOutputStreamable", "init"]
+- !private ["Ps20TextOutputStreamable", "substring"]
+- !private ["V10Foundation4UUID", "init"]
+- !private ["Ps14_ArrayProtocol", "subscript"]
+- !private ["Ps23_BidirectionalIndexable", "hexEncodedString"]
+- !private ["Ps23_BidirectionalIndexable", "init"]
+- !private ["Ps23_BidirectionalIndexable", "subscript"]
+- !private ["Ps15_CVarArgAligned", "init"]
+- !private ["Ps22_CVarArgPassedAsDouble", "init"]
+- !private ["Ps24_DestructorSafeContainer", "subscript"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "appending"]
+- ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "substring"]
+- !private ["Ps33_ExpressibleByBuiltinFloatLiteral", "init"]
+- !private ["Ps35_ExpressibleByBuiltinIntegerLiteral", "hashValue"]
+- !private ["Ps35_ExpressibleByBuiltinIntegerLiteral", "init"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "appending"]
+- ["Ps34_ExpressibleByBuiltinStringLiteral", "init"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "substring"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "appending"]
+- ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "init"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "substring"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "appending"]
+- ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "init"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "substring"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "appending"]
+- ["Ps33_ExpressibleByStringInterpolation", "init"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "substring"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "appending"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "contains"]
+- ["Ps35_HasCustomAnyHashableRepresentation", "init"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "substring"]
+- !private ["Ps9_Hashable", "BEAN_DATA_UUID"]
+- !private ["Ps9_Hashable", "BEAN_ENABLE_COMPASS_UUID"]
+- !private ["Ps9_Hashable", "BEAN_ENABLE_SERVICES_UUID"]
+- !private ["Ps9_Hashable", "BEAN_NAME"]
+- !private ["Ps9_Hashable", "BEAN_SERVICE_UUID"]
+- !private ["Ps9_Hashable", "BluetoothEvent"]
+- !private ["Ps9_Hashable", "CBAdvertisementDataLocalNameKey"]
+- !private ["Ps9_Hashable", "CBCentralManager"]
+- ["Ps9_Hashable", "CBUUID"]
+- !private ["Ps9_Hashable", "Data"]
+- !private ["Ps9_Hashable", "Double"]
+- !private ["Ps9_Hashable", "Int"]
+- !private ["Ps9_Hashable", "String"]
+- !private ["Ps9_Hashable", "UUID"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- ["Ps9_Hashable", "_toAnyHashable"]
+- !private ["Ps9_Hashable", "appending"]
+- !private ["Ps9_Hashable", "bluetoothListner"]
+- !private ["Ps9_Hashable", "cancelPeripheralConnection"]
+- ["Ps9_Hashable", "centralManager"]
+- ["Ps9_Hashable", "centralManagerDidUpdateState"]
+- !private ["Ps9_Hashable", "characteristics"]
+- !private ["Ps9_Hashable", "connect"]
+- !private ["Ps9_Hashable", "contains"]
+- !private ["Ps9_Hashable", "delegate"]
+- !private ["Ps9_Hashable", "discoverCharacteristics"]
+- !private ["Ps9_Hashable", "discoverServices"]
+- ["Ps9_Hashable", "hashValue"]
+- !private ["Ps9_Hashable", "hexEncodedString"]
+- !private ["Ps9_Hashable", "identifier"]
+- ["Ps9_Hashable", "init"]
+- !private ["Ps9_Hashable", "listener"]
+- !private ["Ps9_Hashable", "manager"]
+- !private ["Ps9_Hashable", "object"]
+- !private ["Ps9_Hashable", "off"]
+- !private ["Ps9_Hashable", "on"]
+- ["Ps9_Hashable", "peripheral"]
+- ["Ps9_Hashable", "peripheralDidInvalidateServices"]
+- ["Ps9_Hashable", "peripheralDidUpdateName"]
+- ["Ps9_Hashable", "peripheralDidUpdateRSSI"]
+- !private ["Ps9_Hashable", "poweredOn"]
+- !private ["Ps9_Hashable", "print"]
+- !private ["Ps9_Hashable", "scanForPeripherals"]
+- !private ["Ps9_Hashable", "services"]
+- !private ["Ps9_Hashable", "setNotifyValue"]
+- !private ["Ps9_Hashable", "state"]
+- !private ["Ps9_Hashable", "stopScan"]
+- !private ["Ps9_Hashable", "substring"]
+- !private ["Ps9_Hashable", "unauthorized"]
+- !private ["Ps9_Hashable", "uuid"]
+- !private ["Ps9_Hashable", "uuidString"]
+- !private ["Ps9_Hashable", "value"]
+- !private ["Ps9_Hashable", "withResponse"]
+- !private ["Ps9_Hashable", "writeValue"]
+- ["Ps9_Hashable", ""]
+- !private ["Ps14_Incrementable", "hashValue"]
+- !private ["Ps14_Incrementable", "init"]
+- !private ["Ps10_Indexable", "hexEncodedString"]
+- !private ["Ps10_Indexable", "init"]
+- !private ["Ps10_Indexable", "subscript"]
+- !private ["Ps14_IndexableBase", "hexEncodedString"]
+- !private ["Ps14_IndexableBase", "init"]
+- !private ["Ps14_IndexableBase", "subscript"]
+- !private ["Ps8_Integer", "hashValue"]
+- !private ["Ps8_Integer", "init"]
+- !private ["Ps18_IntegerArithmetic", "hashValue"]
+- !private ["Ps18_IntegerArithmetic", "init"]
+- !private ["Ps17_MutableIndexable", "hexEncodedString"]
+- !private ["Ps17_MutableIndexable", "init"]
+- !private ["Ps17_MutableIndexable", "subscript"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "appending"]
+- !private ["Ps21_ObjectiveCBridgeable", "hashValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "hexEncodedString"]
+- ["Ps21_ObjectiveCBridgeable", "init"]
+- !private ["Ps21_ObjectiveCBridgeable", "subscript"]
+- !private ["Ps21_ObjectiveCBridgeable", "substring"]
+- !private ["Ps22_RandomAccessIndexable", "hexEncodedString"]
+- !private ["Ps22_RandomAccessIndexable", "init"]
+- !private ["Ps22_RandomAccessIndexable", "subscript"]
+- !private ["Ps26_RangeReplaceableIndexable", "hexEncodedString"]
+- !private ["Ps26_RangeReplaceableIndexable", "init"]
+- !private ["Ps26_RangeReplaceableIndexable", "subscript"]
+- !private ["Ps14_SignedInteger", "hashValue"]
+- !private ["Ps14_SignedInteger", "init"]
+- !private ["Ps11_Strideable", "hashValue"]
+- !private ["Ps11_Strideable", "init"]
+depends-nominal:
+- !private "Ps16AbsoluteValuable"
+- "Ps9AnyObject"
+- !private "Sa"
+- !private "Ps23BidirectionalCollection"
+- !private "Ps19BinaryFloatingPoint"
+- !private "Ps17BitwiseOperations"
+- "C13RxTestProject19BluetoothController"
+- !private "V13RxTestProject14BluetoothEvent"
+- !private "P13RxTestProject17BluetoothListener"
+- "O13RxTestProject15BluetoothStatus"
+- !private "Sb"
+- !private "CSo16CBCentralManager"
+- "PSo24CBCentralManagerDelegate"
+- !private "OSC21CBCentralManagerState"
+- !private "CSo16CBCharacteristic"
+- !private "OSC25CBCharacteristicWriteType"
+- !private "CSo12CBPeripheral"
+- "PSo20CBPeripheralDelegate"
+- !private "CSo9CBService"
+- "CSo6CBUUID"
+- "Ps7CVarArg"
+- !private "Ps10Collection"
+- "Ps10Comparable"
+- "Ps28CustomDebugStringConvertible"
+- "Ps29CustomPlaygroundQuickLookable"
+- "Ps17CustomReflectable"
+- "Ps23CustomStringConvertible"
+- !private "V10Foundation4Data"
+- !private "Sd"
+- "Ps9Equatable"
+- !private "P13RxTestProject5Event"
+- !private "Ps25ExpressibleByArrayLiteral"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- !private "Ps30ExpressibleByDictionaryLiteral"
+- "Ps43ExpressibleByExtendedGraphemeClusterLiteral"
+- !private "Ps25ExpressibleByFloatLiteral"
+- !private "Ps27ExpressibleByIntegerLiteral"
+- "Ps26ExpressibleByStringLiteral"
+- "Ps33ExpressibleByUnicodeScalarLiteral"
+- !private "P13RxTestProject12Firebaseable"
+- !private "Ps13FloatingPoint"
+- "Ps8Hashable"
+- "P13RxTestProject17IBluetoothManager"
+- !private "Si"
+- !private "Ps7Integer"
+- !private "Ps17IntegerArithmetic"
+- "Ps25LosslessStringConvertible"
+- "Ps10MirrorPath"
+- !private "Ps17MutableCollection"
+- "PSo8NSCoding"
+- "PSo9NSCopying"
+- !private "CSo12NSDictionary"
+- !private "PSo17NSFastEnumeration"
+- !private "PSo20NSFetchRequestResult"
+- "PSo16NSMutableCopying"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- "PSo19NSPasteboardReading"
+- "PSo19NSPasteboardWriting"
+- "PSo14NSSecureCoding"
+- "CSo8NSString"
+- !private "Ps22RandomAccessCollection"
+- !private "Ps26RangeReplaceableCollection"
+- !private "Ps16RawRepresentable"
+- !private "P10Foundation20ReferenceConvertible"
+- !private "Ps8Sequence"
+- !private "Ps13SignedInteger"
+- !private "Ps12SignedNumber"
+- !private "Ps10Strideable"
+- "SS"
+- "Ps16TextOutputStream"
+- "Ps20TextOutputStreamable"
+- !private "V10Foundation4UUID"
+- !private "Ps14_ArrayProtocol"
+- !private "Ps23_BidirectionalIndexable"
+- !private "Ps15_CVarArgAligned"
+- !private "Ps22_CVarArgPassedAsDouble"
+- !private "Ps24_DestructorSafeContainer"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- "Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral"
+- !private "Ps33_ExpressibleByBuiltinFloatLiteral"
+- !private "Ps35_ExpressibleByBuiltinIntegerLiteral"
+- "Ps34_ExpressibleByBuiltinStringLiteral"
+- "Ps39_ExpressibleByBuiltinUTF16StringLiteral"
+- "Ps41_ExpressibleByBuiltinUnicodeScalarLiteral"
+- "Ps33_ExpressibleByStringInterpolation"
+- "Ps35_HasCustomAnyHashableRepresentation"
+- "Ps9_Hashable"
+- !private "Ps14_Incrementable"
+- !private "Ps10_Indexable"
+- !private "Ps14_IndexableBase"
+- !private "Ps8_Integer"
+- !private "Ps18_IntegerArithmetic"
+- !private "Ps17_MutableIndexable"
+- "Ps21_ObjectiveCBridgeable"
+- !private "Ps22_RandomAccessIndexable"
+- !private "Ps26_RangeReplaceableIndexable"
+- !private "Ps14_SignedInteger"
+- !private "Ps11_Strideable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/XPC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreData.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreBluetooth.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Metal.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreLocation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AVFoundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/MediaPlayer.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/GLKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AppKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreText.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AudioToolbox.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/XPC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreMedia.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreData.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/simd.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreLocation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AVFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreAudio.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/GLKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/IOKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AppKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxCocoaRuntime.build/module.modulemap"
+interface-hash: "60b36901c8eb40c8f1e61f7c40eed588"

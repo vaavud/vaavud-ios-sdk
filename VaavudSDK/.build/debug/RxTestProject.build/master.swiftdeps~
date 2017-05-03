@@ -1,0 +1,14 @@
+version: "Apple Swift version 3.1 (swiftlang-802.0.53 clang-802.0.42)"
+options: "9550a4c800f6eeb601b6ffb14213a939"
+build_time: [546617015, 587339000]
+inputs:
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/AudioSampleProcessor.swift": !dirty [545820522, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/AudioVolume.swift": !dirty [545820522, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/BluetoothController .swift": !dirty [546445421, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/Events.swift": !dirty [546429029, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/LocationController.swift": !dirty [545820522, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/MedianFilter.swift": !dirty [546533154, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/RotationProcessor.swift": !dirty [545820522, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/TickTimeProcessor.swift": !dirty [545820522, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/Vaavud.swift": !dirty [546616747, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/WindController.swift": !dirty [545820522, 0]

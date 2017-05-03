@@ -1,0 +1,741 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "LocationController"
+provides-nominal:
+- "C13RxTestProject18LocationController"
+provides-member:
+- ["C13RxTestProject18LocationController", ""]
+provides-dynamic-lookup:
+- "locationManager"
+- "start"
+- "stop"
+depends-top-level:
+- !private "!="
+- !private "&&"
+- !private "+"
+- !private "=="
+- !private ">="
+- !private "AltitudeEvent"
+- !private "Array"
+- "AssignmentPrecedence"
+- "CLAuthorizationStatus"
+- "CLHeading"
+- "CLLocation"
+- "CLLocationManager"
+- "CLLocationManagerDelegate"
+- !private "CastingPrecedence"
+- !private "CourseEvent"
+- "Error"
+- !private "ErrorEvent"
+- !private "HeadingEvent"
+- "LocationController"
+- !private "LocationEvent"
+- "LocationListener"
+- !private "NSError"
+- "NSObject"
+- !private "StringLiteralType"
+- !private "UIDevice"
+- !private "VaavudOtherError"
+- !private "VelocityEvent"
+- !private "kCLLocationAccuracyBestForNavigation"
+- !private "print"
+- !private "||"
+depends-member:
+- !private ["V13RxTestProject13AltitudeEvent", "init"]
+- !private ["Ps9AnyObject", "AltitudeEvent"]
+- ["Ps9AnyObject", "CLLocationManager"]
+- !private ["Ps9AnyObject", "CourseEvent"]
+- !private ["Ps9AnyObject", "ErrorEvent"]
+- !private ["Ps9AnyObject", "HeadingEvent"]
+- !private ["Ps9AnyObject", "LocationEvent"]
+- !private ["Ps9AnyObject", "LocationListener"]
+- !private ["Ps9AnyObject", "UIDevice"]
+- !private ["Ps9AnyObject", "VaavudOtherError"]
+- !private ["Ps9AnyObject", "VelocityEvent"]
+- !private ["Ps9AnyObject", "altitude"]
+- !private ["Ps9AnyObject", "authorizationStatus"]
+- !private ["Ps9AnyObject", "course"]
+- !private ["Ps9AnyObject", "delegate"]
+- !private ["Ps9AnyObject", "desiredAccuracy"]
+- !private ["Ps9AnyObject", "distanceFilter"]
+- !private ["Ps9AnyObject", "headingFilter"]
+- !private ["Ps9AnyObject", "headingOrientation"]
+- ["Ps9AnyObject", "init"]
+- !private ["Ps9AnyObject", "kCLLocationAccuracyBestForNavigation"]
+- !private ["Ps9AnyObject", "listener1"]
+- !private ["Ps9AnyObject", "listener2"]
+- !private ["Ps9AnyObject", "listeners"]
+- !private ["Ps9AnyObject", "location"]
+- ["Ps9AnyObject", "locationManager"]
+- ["Ps9AnyObject", "locationManagerDidPauseLocationUpdates"]
+- ["Ps9AnyObject", "locationManagerDidResumeLocationUpdates"]
+- ["Ps9AnyObject", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["Ps9AnyObject", "print"]
+- !private ["Ps9AnyObject", "requestAlwaysAuthorization"]
+- !private ["Ps9AnyObject", "speed"]
+- !private ["Ps9AnyObject", "startUpdatingHeading"]
+- !private ["Ps9AnyObject", "startUpdatingLocation"]
+- !private ["Ps9AnyObject", "stopUpdatingHeading"]
+- !private ["Ps9AnyObject", "stopUpdatingLocation"]
+- !private ["Ps9AnyObject", "timestamp"]
+- !private ["Ps9AnyObject", "trueHeading"]
+- ["Ps9AnyObject", ""]
+- !private ["Sa", "init"]
+- !private ["Sa", "last"]
+- !private ["Sa", "map"]
+- !private ["Sa", "reduce"]
+- !private ["Ps23BidirectionalCollection", "init"]
+- !private ["Ps23BidirectionalCollection", "last"]
+- !private ["Ps23BidirectionalCollection", "map"]
+- !private ["Ps23BidirectionalCollection", "reduce"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["OSC21CLAuthorizationStatus", "denied"]
+- !private ["OSC21CLAuthorizationStatus", "notDetermined"]
+- !private ["OSC21CLAuthorizationStatus", "restricted"]
+- !private ["OSC19CLDeviceOrientation", "portraitUpsideDown"]
+- !private ["CSo9CLHeading", "trueHeading"]
+- !private ["CSo10CLLocation", "altitude"]
+- !private ["CSo10CLLocation", "course"]
+- !private ["CSo10CLLocation", "speed"]
+- !private ["CSo10CLLocation", "timestamp"]
+- !private ["CSo17CLLocationManager", "authorizationStatus"]
+- !private ["CSo17CLLocationManager", "delegate"]
+- !private ["CSo17CLLocationManager", "desiredAccuracy"]
+- !private ["CSo17CLLocationManager", "distanceFilter"]
+- !private ["CSo17CLLocationManager", "headingFilter"]
+- !private ["CSo17CLLocationManager", "headingOrientation"]
+- ["CSo17CLLocationManager", "init"]
+- !private ["CSo17CLLocationManager", "location"]
+- !private ["CSo17CLLocationManager", "requestAlwaysAuthorization"]
+- !private ["CSo17CLLocationManager", "startUpdatingHeading"]
+- !private ["CSo17CLLocationManager", "startUpdatingLocation"]
+- !private ["CSo17CLLocationManager", "stopUpdatingHeading"]
+- !private ["CSo17CLLocationManager", "stopUpdatingLocation"]
+- !private ["PSo25CLLocationManagerDelegate", "AltitudeEvent"]
+- ["PSo25CLLocationManagerDelegate", "CLLocationManager"]
+- !private ["PSo25CLLocationManagerDelegate", "CourseEvent"]
+- !private ["PSo25CLLocationManagerDelegate", "ErrorEvent"]
+- !private ["PSo25CLLocationManagerDelegate", "HeadingEvent"]
+- !private ["PSo25CLLocationManagerDelegate", "LocationEvent"]
+- !private ["PSo25CLLocationManagerDelegate", "LocationListener"]
+- !private ["PSo25CLLocationManagerDelegate", "UIDevice"]
+- !private ["PSo25CLLocationManagerDelegate", "VaavudOtherError"]
+- !private ["PSo25CLLocationManagerDelegate", "VelocityEvent"]
+- !private ["PSo25CLLocationManagerDelegate", "kCLLocationAccuracyBestForNavigation"]
+- !private ["PSo25CLLocationManagerDelegate", "listener1"]
+- !private ["PSo25CLLocationManagerDelegate", "listener2"]
+- !private ["PSo25CLLocationManagerDelegate", "listeners"]
+- ["PSo25CLLocationManagerDelegate", "locationManager"]
+- ["PSo25CLLocationManagerDelegate", "locationManagerDidPauseLocationUpdates"]
+- ["PSo25CLLocationManagerDelegate", "locationManagerDidResumeLocationUpdates"]
+- ["PSo25CLLocationManagerDelegate", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["PSo25CLLocationManagerDelegate", "print"]
+- ["PSo25CLLocationManagerDelegate", ""]
+- !private ["Ps7CVarArg", "AltitudeEvent"]
+- ["Ps7CVarArg", "CLLocationManager"]
+- !private ["Ps7CVarArg", "CourseEvent"]
+- !private ["Ps7CVarArg", "ErrorEvent"]
+- !private ["Ps7CVarArg", "HeadingEvent"]
+- !private ["Ps7CVarArg", "LocationEvent"]
+- !private ["Ps7CVarArg", "LocationListener"]
+- !private ["Ps7CVarArg", "UIDevice"]
+- !private ["Ps7CVarArg", "VaavudOtherError"]
+- !private ["Ps7CVarArg", "VelocityEvent"]
+- !private ["Ps7CVarArg", "altitude"]
+- !private ["Ps7CVarArg", "authorizationStatus"]
+- !private ["Ps7CVarArg", "course"]
+- !private ["Ps7CVarArg", "delegate"]
+- !private ["Ps7CVarArg", "desiredAccuracy"]
+- !private ["Ps7CVarArg", "distanceFilter"]
+- !private ["Ps7CVarArg", "headingFilter"]
+- !private ["Ps7CVarArg", "headingOrientation"]
+- ["Ps7CVarArg", "init"]
+- !private ["Ps7CVarArg", "kCLLocationAccuracyBestForNavigation"]
+- !private ["Ps7CVarArg", "last"]
+- !private ["Ps7CVarArg", "listener1"]
+- !private ["Ps7CVarArg", "listener2"]
+- !private ["Ps7CVarArg", "listeners"]
+- !private ["Ps7CVarArg", "location"]
+- ["Ps7CVarArg", "locationManager"]
+- ["Ps7CVarArg", "locationManagerDidPauseLocationUpdates"]
+- ["Ps7CVarArg", "locationManagerDidResumeLocationUpdates"]
+- ["Ps7CVarArg", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["Ps7CVarArg", "map"]
+- !private ["Ps7CVarArg", "print"]
+- !private ["Ps7CVarArg", "reduce"]
+- !private ["Ps7CVarArg", "requestAlwaysAuthorization"]
+- !private ["Ps7CVarArg", "speed"]
+- !private ["Ps7CVarArg", "startUpdatingHeading"]
+- !private ["Ps7CVarArg", "startUpdatingLocation"]
+- !private ["Ps7CVarArg", "stopUpdatingHeading"]
+- !private ["Ps7CVarArg", "stopUpdatingLocation"]
+- !private ["Ps7CVarArg", "timestamp"]
+- !private ["Ps7CVarArg", "trueHeading"]
+- ["Ps7CVarArg", ""]
+- !private ["Ps10Collection", "init"]
+- !private ["Ps10Collection", "last"]
+- !private ["Ps10Collection", "map"]
+- !private ["Ps10Collection", "reduce"]
+- !private ["Ps10Comparable", "init"]
+- !private ["V13RxTestProject11CourseEvent", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "AltitudeEvent"]
+- ["Ps28CustomDebugStringConvertible", "CLLocationManager"]
+- !private ["Ps28CustomDebugStringConvertible", "CourseEvent"]
+- !private ["Ps28CustomDebugStringConvertible", "ErrorEvent"]
+- !private ["Ps28CustomDebugStringConvertible", "HeadingEvent"]
+- !private ["Ps28CustomDebugStringConvertible", "LocationEvent"]
+- !private ["Ps28CustomDebugStringConvertible", "LocationListener"]
+- !private ["Ps28CustomDebugStringConvertible", "UIDevice"]
+- !private ["Ps28CustomDebugStringConvertible", "VaavudOtherError"]
+- !private ["Ps28CustomDebugStringConvertible", "VelocityEvent"]
+- !private ["Ps28CustomDebugStringConvertible", "altitude"]
+- !private ["Ps28CustomDebugStringConvertible", "authorizationStatus"]
+- !private ["Ps28CustomDebugStringConvertible", "course"]
+- !private ["Ps28CustomDebugStringConvertible", "delegate"]
+- !private ["Ps28CustomDebugStringConvertible", "desiredAccuracy"]
+- !private ["Ps28CustomDebugStringConvertible", "distanceFilter"]
+- !private ["Ps28CustomDebugStringConvertible", "headingFilter"]
+- !private ["Ps28CustomDebugStringConvertible", "headingOrientation"]
+- ["Ps28CustomDebugStringConvertible", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "kCLLocationAccuracyBestForNavigation"]
+- !private ["Ps28CustomDebugStringConvertible", "last"]
+- !private ["Ps28CustomDebugStringConvertible", "listener1"]
+- !private ["Ps28CustomDebugStringConvertible", "listener2"]
+- !private ["Ps28CustomDebugStringConvertible", "listeners"]
+- !private ["Ps28CustomDebugStringConvertible", "location"]
+- ["Ps28CustomDebugStringConvertible", "locationManager"]
+- ["Ps28CustomDebugStringConvertible", "locationManagerDidPauseLocationUpdates"]
+- ["Ps28CustomDebugStringConvertible", "locationManagerDidResumeLocationUpdates"]
+- ["Ps28CustomDebugStringConvertible", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["Ps28CustomDebugStringConvertible", "map"]
+- !private ["Ps28CustomDebugStringConvertible", "print"]
+- !private ["Ps28CustomDebugStringConvertible", "reduce"]
+- !private ["Ps28CustomDebugStringConvertible", "requestAlwaysAuthorization"]
+- !private ["Ps28CustomDebugStringConvertible", "speed"]
+- !private ["Ps28CustomDebugStringConvertible", "startUpdatingHeading"]
+- !private ["Ps28CustomDebugStringConvertible", "startUpdatingLocation"]
+- !private ["Ps28CustomDebugStringConvertible", "stopUpdatingHeading"]
+- !private ["Ps28CustomDebugStringConvertible", "stopUpdatingLocation"]
+- !private ["Ps28CustomDebugStringConvertible", "timestamp"]
+- !private ["Ps28CustomDebugStringConvertible", "trueHeading"]
+- ["Ps28CustomDebugStringConvertible", ""]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "init"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "init"]
+- !private ["Ps17CustomReflectable", "last"]
+- !private ["Ps17CustomReflectable", "map"]
+- !private ["Ps17CustomReflectable", "reduce"]
+- !private ["Ps23CustomStringConvertible", "AltitudeEvent"]
+- ["Ps23CustomStringConvertible", "CLLocationManager"]
+- !private ["Ps23CustomStringConvertible", "CourseEvent"]
+- !private ["Ps23CustomStringConvertible", "ErrorEvent"]
+- !private ["Ps23CustomStringConvertible", "HeadingEvent"]
+- !private ["Ps23CustomStringConvertible", "LocationAuthorisation"]
+- !private ["Ps23CustomStringConvertible", "LocationEvent"]
+- !private ["Ps23CustomStringConvertible", "LocationListener"]
+- !private ["Ps23CustomStringConvertible", "UIDevice"]
+- !private ["Ps23CustomStringConvertible", "VaavudOtherError"]
+- !private ["Ps23CustomStringConvertible", "VelocityEvent"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps23CustomStringConvertible", "altitude"]
+- !private ["Ps23CustomStringConvertible", "authorizationStatus"]
+- !private ["Ps23CustomStringConvertible", "course"]
+- !private ["Ps23CustomStringConvertible", "delegate"]
+- !private ["Ps23CustomStringConvertible", "desiredAccuracy"]
+- !private ["Ps23CustomStringConvertible", "distanceFilter"]
+- !private ["Ps23CustomStringConvertible", "headingFilter"]
+- !private ["Ps23CustomStringConvertible", "headingOrientation"]
+- ["Ps23CustomStringConvertible", "init"]
+- !private ["Ps23CustomStringConvertible", "kCLLocationAccuracyBestForNavigation"]
+- !private ["Ps23CustomStringConvertible", "last"]
+- !private ["Ps23CustomStringConvertible", "listener1"]
+- !private ["Ps23CustomStringConvertible", "listener2"]
+- !private ["Ps23CustomStringConvertible", "listeners"]
+- !private ["Ps23CustomStringConvertible", "location"]
+- ["Ps23CustomStringConvertible", "locationManager"]
+- ["Ps23CustomStringConvertible", "locationManagerDidPauseLocationUpdates"]
+- ["Ps23CustomStringConvertible", "locationManagerDidResumeLocationUpdates"]
+- ["Ps23CustomStringConvertible", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["Ps23CustomStringConvertible", "map"]
+- !private ["Ps23CustomStringConvertible", "print"]
+- !private ["Ps23CustomStringConvertible", "reduce"]
+- !private ["Ps23CustomStringConvertible", "requestAlwaysAuthorization"]
+- !private ["Ps23CustomStringConvertible", "speed"]
+- !private ["Ps23CustomStringConvertible", "startUpdatingHeading"]
+- !private ["Ps23CustomStringConvertible", "startUpdatingLocation"]
+- !private ["Ps23CustomStringConvertible", "stopUpdatingHeading"]
+- !private ["Ps23CustomStringConvertible", "stopUpdatingLocation"]
+- !private ["Ps23CustomStringConvertible", "timestamp"]
+- !private ["Ps23CustomStringConvertible", "trueHeading"]
+- ["Ps23CustomStringConvertible", ""]
+- !private ["Ps9Equatable", "AltitudeEvent"]
+- ["Ps9Equatable", "CLLocationManager"]
+- !private ["Ps9Equatable", "CourseEvent"]
+- !private ["Ps9Equatable", "ErrorEvent"]
+- !private ["Ps9Equatable", "HeadingEvent"]
+- !private ["Ps9Equatable", "LocationEvent"]
+- !private ["Ps9Equatable", "LocationListener"]
+- !private ["Ps9Equatable", "UIDevice"]
+- !private ["Ps9Equatable", "VaavudOtherError"]
+- !private ["Ps9Equatable", "VelocityEvent"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- !private ["Ps9Equatable", "altitude"]
+- !private ["Ps9Equatable", "authorizationStatus"]
+- !private ["Ps9Equatable", "course"]
+- !private ["Ps9Equatable", "delegate"]
+- !private ["Ps9Equatable", "denied"]
+- !private ["Ps9Equatable", "desiredAccuracy"]
+- !private ["Ps9Equatable", "distanceFilter"]
+- !private ["Ps9Equatable", "headingFilter"]
+- !private ["Ps9Equatable", "headingOrientation"]
+- ["Ps9Equatable", "init"]
+- !private ["Ps9Equatable", "kCLLocationAccuracyBestForNavigation"]
+- !private ["Ps9Equatable", "listener1"]
+- !private ["Ps9Equatable", "listener2"]
+- !private ["Ps9Equatable", "listeners"]
+- !private ["Ps9Equatable", "location"]
+- ["Ps9Equatable", "locationManager"]
+- ["Ps9Equatable", "locationManagerDidPauseLocationUpdates"]
+- ["Ps9Equatable", "locationManagerDidResumeLocationUpdates"]
+- ["Ps9Equatable", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["Ps9Equatable", "notDetermined"]
+- !private ["Ps9Equatable", "portraitUpsideDown"]
+- !private ["Ps9Equatable", "print"]
+- !private ["Ps9Equatable", "requestAlwaysAuthorization"]
+- !private ["Ps9Equatable", "restricted"]
+- !private ["Ps9Equatable", "speed"]
+- !private ["Ps9Equatable", "startUpdatingHeading"]
+- !private ["Ps9Equatable", "startUpdatingLocation"]
+- !private ["Ps9Equatable", "stopUpdatingHeading"]
+- !private ["Ps9Equatable", "stopUpdatingLocation"]
+- !private ["Ps9Equatable", "timestamp"]
+- !private ["Ps9Equatable", "trueHeading"]
+- ["Ps9Equatable", ""]
+- !private ["Ps5Error", "LocationAuthorisation"]
+- !private ["V13RxTestProject10ErrorEvent", "init"]
+- !private ["OV13RxTestProject10ErrorEvent14ErrorEventType", "LocationManagerFailure"]
+- !private ["P13RxTestProject5Event", "init"]
+- !private ["Ps25ExpressibleByArrayLiteral", "init"]
+- !private ["Ps25ExpressibleByArrayLiteral", "last"]
+- !private ["Ps25ExpressibleByArrayLiteral", "map"]
+- !private ["Ps25ExpressibleByArrayLiteral", "reduce"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps26ExpressibleByStringLiteral", "init"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "init"]
+- !private ["P13RxTestProject12Firebaseable", "init"]
+- !private ["Ps8Hashable", "AltitudeEvent"]
+- ["Ps8Hashable", "CLLocationManager"]
+- !private ["Ps8Hashable", "CourseEvent"]
+- !private ["Ps8Hashable", "ErrorEvent"]
+- !private ["Ps8Hashable", "HeadingEvent"]
+- !private ["Ps8Hashable", "LocationEvent"]
+- !private ["Ps8Hashable", "LocationListener"]
+- !private ["Ps8Hashable", "UIDevice"]
+- !private ["Ps8Hashable", "VaavudOtherError"]
+- !private ["Ps8Hashable", "VelocityEvent"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps8Hashable", "altitude"]
+- !private ["Ps8Hashable", "authorizationStatus"]
+- !private ["Ps8Hashable", "course"]
+- !private ["Ps8Hashable", "delegate"]
+- !private ["Ps8Hashable", "denied"]
+- !private ["Ps8Hashable", "desiredAccuracy"]
+- !private ["Ps8Hashable", "distanceFilter"]
+- !private ["Ps8Hashable", "headingFilter"]
+- !private ["Ps8Hashable", "headingOrientation"]
+- ["Ps8Hashable", "init"]
+- !private ["Ps8Hashable", "kCLLocationAccuracyBestForNavigation"]
+- !private ["Ps8Hashable", "listener1"]
+- !private ["Ps8Hashable", "listener2"]
+- !private ["Ps8Hashable", "listeners"]
+- !private ["Ps8Hashable", "location"]
+- ["Ps8Hashable", "locationManager"]
+- ["Ps8Hashable", "locationManagerDidPauseLocationUpdates"]
+- ["Ps8Hashable", "locationManagerDidResumeLocationUpdates"]
+- ["Ps8Hashable", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["Ps8Hashable", "notDetermined"]
+- !private ["Ps8Hashable", "portraitUpsideDown"]
+- !private ["Ps8Hashable", "print"]
+- !private ["Ps8Hashable", "requestAlwaysAuthorization"]
+- !private ["Ps8Hashable", "restricted"]
+- !private ["Ps8Hashable", "speed"]
+- !private ["Ps8Hashable", "startUpdatingHeading"]
+- !private ["Ps8Hashable", "startUpdatingLocation"]
+- !private ["Ps8Hashable", "stopUpdatingHeading"]
+- !private ["Ps8Hashable", "stopUpdatingLocation"]
+- !private ["Ps8Hashable", "timestamp"]
+- !private ["Ps8Hashable", "trueHeading"]
+- ["Ps8Hashable", ""]
+- !private ["V13RxTestProject12HeadingEvent", "init"]
+- !private ["C13RxTestProject18LocationController", "AltitudeEvent"]
+- ["C13RxTestProject18LocationController", "CLAuthorizationStatus"]
+- ["C13RxTestProject18LocationController", "CLHeading"]
+- ["C13RxTestProject18LocationController", "CLLocation"]
+- ["C13RxTestProject18LocationController", "CLLocationManager"]
+- !private ["C13RxTestProject18LocationController", "CourseEvent"]
+- ["C13RxTestProject18LocationController", "Error"]
+- !private ["C13RxTestProject18LocationController", "ErrorEvent"]
+- !private ["C13RxTestProject18LocationController", "HeadingEvent"]
+- !private ["C13RxTestProject18LocationController", "LocationEvent"]
+- ["C13RxTestProject18LocationController", "LocationListener"]
+- !private ["C13RxTestProject18LocationController", "NSError"]
+- !private ["C13RxTestProject18LocationController", "UIDevice"]
+- !private ["C13RxTestProject18LocationController", "VaavudOtherError"]
+- !private ["C13RxTestProject18LocationController", "VelocityEvent"]
+- ["C13RxTestProject18LocationController", "addListener"]
+- ["C13RxTestProject18LocationController", "deinit"]
+- ["C13RxTestProject18LocationController", "init"]
+- !private ["C13RxTestProject18LocationController", "kCLLocationAccuracyBestForNavigation"]
+- !private ["C13RxTestProject18LocationController", "listener1"]
+- !private ["C13RxTestProject18LocationController", "listener2"]
+- !private ["C13RxTestProject18LocationController", "listeners"]
+- ["C13RxTestProject18LocationController", "locationManager"]
+- ["C13RxTestProject18LocationController", "locationManagerDidPauseLocationUpdates"]
+- ["C13RxTestProject18LocationController", "locationManagerDidResumeLocationUpdates"]
+- ["C13RxTestProject18LocationController", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["C13RxTestProject18LocationController", "print"]
+- ["C13RxTestProject18LocationController", "start"]
+- ["C13RxTestProject18LocationController", "stop"]
+- !private ["V13RxTestProject13LocationEvent", "init"]
+- !private ["P13RxTestProject16LocationListener", "newAltitude"]
+- !private ["P13RxTestProject16LocationListener", "newCourse"]
+- !private ["P13RxTestProject16LocationListener", "newError"]
+- !private ["P13RxTestProject16LocationListener", "newHeading"]
+- !private ["P13RxTestProject16LocationListener", "newLocation"]
+- !private ["P13RxTestProject16LocationListener", "newVelocity"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps25LosslessStringConvertible", "init"]
+- !private ["Ps10MirrorPath", "init"]
+- !private ["Ps17MutableCollection", "init"]
+- !private ["Ps17MutableCollection", "last"]
+- !private ["Ps17MutableCollection", "map"]
+- !private ["Ps17MutableCollection", "reduce"]
+- !private ["PSo8NSCoding", "altitude"]
+- !private ["PSo8NSCoding", "course"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo8NSCoding", "speed"]
+- !private ["PSo8NSCoding", "timestamp"]
+- !private ["PSo8NSCoding", "trueHeading"]
+- !private ["PSo9NSCopying", "altitude"]
+- !private ["PSo9NSCopying", "course"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["PSo9NSCopying", "speed"]
+- !private ["PSo9NSCopying", "timestamp"]
+- !private ["PSo9NSCopying", "trueHeading"]
+- !private ["PSo16NSMutableCopying", "init"]
+- !private ["CSo8NSObject", "AltitudeEvent"]
+- ["CSo8NSObject", "CLAuthorizationStatus"]
+- ["CSo8NSObject", "CLHeading"]
+- ["CSo8NSObject", "CLLocation"]
+- ["CSo8NSObject", "CLLocationManager"]
+- !private ["CSo8NSObject", "CourseEvent"]
+- ["CSo8NSObject", "Error"]
+- !private ["CSo8NSObject", "ErrorEvent"]
+- !private ["CSo8NSObject", "HeadingEvent"]
+- !private ["CSo8NSObject", "LocationEvent"]
+- ["CSo8NSObject", "LocationListener"]
+- !private ["CSo8NSObject", "NSError"]
+- !private ["CSo8NSObject", "UIDevice"]
+- !private ["CSo8NSObject", "VaavudOtherError"]
+- !private ["CSo8NSObject", "VelocityEvent"]
+- ["CSo8NSObject", "addListener"]
+- !private ["CSo8NSObject", "altitude"]
+- !private ["CSo8NSObject", "authorizationStatus"]
+- !private ["CSo8NSObject", "course"]
+- !private ["CSo8NSObject", "delegate"]
+- !private ["CSo8NSObject", "desiredAccuracy"]
+- !private ["CSo8NSObject", "distanceFilter"]
+- !private ["CSo8NSObject", "headingFilter"]
+- !private ["CSo8NSObject", "headingOrientation"]
+- ["CSo8NSObject", "init"]
+- !private ["CSo8NSObject", "kCLLocationAccuracyBestForNavigation"]
+- ["CSo8NSObject", "listener1"]
+- ["CSo8NSObject", "listener2"]
+- ["CSo8NSObject", "listeners"]
+- !private ["CSo8NSObject", "location"]
+- ["CSo8NSObject", "locationManager"]
+- ["CSo8NSObject", "locationManagerDidPauseLocationUpdates"]
+- ["CSo8NSObject", "locationManagerDidResumeLocationUpdates"]
+- ["CSo8NSObject", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["CSo8NSObject", "print"]
+- !private ["CSo8NSObject", "requestAlwaysAuthorization"]
+- !private ["CSo8NSObject", "speed"]
+- ["CSo8NSObject", "start"]
+- !private ["CSo8NSObject", "startUpdatingHeading"]
+- !private ["CSo8NSObject", "startUpdatingLocation"]
+- ["CSo8NSObject", "stop"]
+- !private ["CSo8NSObject", "stopUpdatingHeading"]
+- !private ["CSo8NSObject", "stopUpdatingLocation"]
+- !private ["CSo8NSObject", "timestamp"]
+- !private ["CSo8NSObject", "trueHeading"]
+- ["CSo8NSObject", ""]
+- !private ["PSo16NSObjectProtocol", "AltitudeEvent"]
+- ["PSo16NSObjectProtocol", "CLLocationManager"]
+- !private ["PSo16NSObjectProtocol", "CourseEvent"]
+- !private ["PSo16NSObjectProtocol", "ErrorEvent"]
+- !private ["PSo16NSObjectProtocol", "HeadingEvent"]
+- !private ["PSo16NSObjectProtocol", "LocationEvent"]
+- !private ["PSo16NSObjectProtocol", "LocationListener"]
+- !private ["PSo16NSObjectProtocol", "UIDevice"]
+- !private ["PSo16NSObjectProtocol", "VaavudOtherError"]
+- !private ["PSo16NSObjectProtocol", "VelocityEvent"]
+- !private ["PSo16NSObjectProtocol", "altitude"]
+- !private ["PSo16NSObjectProtocol", "authorizationStatus"]
+- !private ["PSo16NSObjectProtocol", "course"]
+- !private ["PSo16NSObjectProtocol", "delegate"]
+- !private ["PSo16NSObjectProtocol", "desiredAccuracy"]
+- !private ["PSo16NSObjectProtocol", "distanceFilter"]
+- !private ["PSo16NSObjectProtocol", "headingFilter"]
+- !private ["PSo16NSObjectProtocol", "headingOrientation"]
+- ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "kCLLocationAccuracyBestForNavigation"]
+- !private ["PSo16NSObjectProtocol", "listener1"]
+- !private ["PSo16NSObjectProtocol", "listener2"]
+- !private ["PSo16NSObjectProtocol", "listeners"]
+- !private ["PSo16NSObjectProtocol", "location"]
+- ["PSo16NSObjectProtocol", "locationManager"]
+- ["PSo16NSObjectProtocol", "locationManagerDidPauseLocationUpdates"]
+- ["PSo16NSObjectProtocol", "locationManagerDidResumeLocationUpdates"]
+- ["PSo16NSObjectProtocol", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["PSo16NSObjectProtocol", "print"]
+- !private ["PSo16NSObjectProtocol", "requestAlwaysAuthorization"]
+- !private ["PSo16NSObjectProtocol", "speed"]
+- !private ["PSo16NSObjectProtocol", "startUpdatingHeading"]
+- !private ["PSo16NSObjectProtocol", "startUpdatingLocation"]
+- !private ["PSo16NSObjectProtocol", "stopUpdatingHeading"]
+- !private ["PSo16NSObjectProtocol", "stopUpdatingLocation"]
+- !private ["PSo16NSObjectProtocol", "timestamp"]
+- !private ["PSo16NSObjectProtocol", "trueHeading"]
+- ["PSo16NSObjectProtocol", ""]
+- !private ["PSo19NSPasteboardReading", "init"]
+- !private ["PSo19NSPasteboardWriting", "init"]
+- !private ["PSo14NSSecureCoding", "altitude"]
+- !private ["PSo14NSSecureCoding", "course"]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["PSo14NSSecureCoding", "speed"]
+- !private ["PSo14NSSecureCoding", "timestamp"]
+- !private ["PSo14NSSecureCoding", "trueHeading"]
+- !private ["CSo8NSString", "init"]
+- !private ["Ps22RandomAccessCollection", "init"]
+- !private ["Ps22RandomAccessCollection", "last"]
+- !private ["Ps22RandomAccessCollection", "map"]
+- !private ["Ps22RandomAccessCollection", "reduce"]
+- !private ["Ps26RangeReplaceableCollection", "init"]
+- !private ["Ps26RangeReplaceableCollection", "last"]
+- !private ["Ps26RangeReplaceableCollection", "map"]
+- !private ["Ps26RangeReplaceableCollection", "reduce"]
+- !private ["Ps16RawRepresentable", "denied"]
+- !private ["Ps16RawRepresentable", "notDetermined"]
+- !private ["Ps16RawRepresentable", "portraitUpsideDown"]
+- !private ["Ps16RawRepresentable", "restricted"]
+- !private ["Ps8Sequence", "init"]
+- !private ["Ps8Sequence", "last"]
+- !private ["Ps8Sequence", "map"]
+- !private ["Ps8Sequence", "reduce"]
+- !private ["SS", "init"]
+- !private ["Ps16TextOutputStream", "init"]
+- !private ["Ps20TextOutputStreamable", "init"]
+- !private ["O13RxTestProject16VaavudOtherError", "LocationAuthorisation"]
+- !private ["O13RxTestProject16VaavudOtherError", "deinit"]
+- !private ["V13RxTestProject13VelocityEvent", "init"]
+- !private ["Ps14_ArrayProtocol", "init"]
+- !private ["Ps14_ArrayProtocol", "last"]
+- !private ["Ps14_ArrayProtocol", "map"]
+- !private ["Ps14_ArrayProtocol", "reduce"]
+- !private ["Ps23_BidirectionalIndexable", "init"]
+- !private ["Ps23_BidirectionalIndexable", "last"]
+- !private ["Ps23_BidirectionalIndexable", "map"]
+- !private ["Ps23_BidirectionalIndexable", "reduce"]
+- !private ["Ps24_DestructorSafeContainer", "init"]
+- !private ["Ps24_DestructorSafeContainer", "last"]
+- !private ["Ps24_DestructorSafeContainer", "map"]
+- !private ["Ps24_DestructorSafeContainer", "reduce"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "init"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "init"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "init"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "init"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "init"]
+- !private ["Ps9_Hashable", "AltitudeEvent"]
+- ["Ps9_Hashable", "CLLocationManager"]
+- !private ["Ps9_Hashable", "CourseEvent"]
+- !private ["Ps9_Hashable", "ErrorEvent"]
+- !private ["Ps9_Hashable", "HeadingEvent"]
+- !private ["Ps9_Hashable", "LocationEvent"]
+- !private ["Ps9_Hashable", "LocationListener"]
+- !private ["Ps9_Hashable", "UIDevice"]
+- !private ["Ps9_Hashable", "VaavudOtherError"]
+- !private ["Ps9_Hashable", "VelocityEvent"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps9_Hashable", "altitude"]
+- !private ["Ps9_Hashable", "authorizationStatus"]
+- !private ["Ps9_Hashable", "course"]
+- !private ["Ps9_Hashable", "delegate"]
+- !private ["Ps9_Hashable", "denied"]
+- !private ["Ps9_Hashable", "desiredAccuracy"]
+- !private ["Ps9_Hashable", "distanceFilter"]
+- !private ["Ps9_Hashable", "headingFilter"]
+- !private ["Ps9_Hashable", "headingOrientation"]
+- ["Ps9_Hashable", "init"]
+- !private ["Ps9_Hashable", "kCLLocationAccuracyBestForNavigation"]
+- !private ["Ps9_Hashable", "listener1"]
+- !private ["Ps9_Hashable", "listener2"]
+- !private ["Ps9_Hashable", "listeners"]
+- !private ["Ps9_Hashable", "location"]
+- ["Ps9_Hashable", "locationManager"]
+- ["Ps9_Hashable", "locationManagerDidPauseLocationUpdates"]
+- ["Ps9_Hashable", "locationManagerDidResumeLocationUpdates"]
+- ["Ps9_Hashable", "locationManagerShouldDisplayHeadingCalibration"]
+- !private ["Ps9_Hashable", "notDetermined"]
+- !private ["Ps9_Hashable", "portraitUpsideDown"]
+- !private ["Ps9_Hashable", "print"]
+- !private ["Ps9_Hashable", "requestAlwaysAuthorization"]
+- !private ["Ps9_Hashable", "restricted"]
+- !private ["Ps9_Hashable", "speed"]
+- !private ["Ps9_Hashable", "startUpdatingHeading"]
+- !private ["Ps9_Hashable", "startUpdatingLocation"]
+- !private ["Ps9_Hashable", "stopUpdatingHeading"]
+- !private ["Ps9_Hashable", "stopUpdatingLocation"]
+- !private ["Ps9_Hashable", "timestamp"]
+- !private ["Ps9_Hashable", "trueHeading"]
+- ["Ps9_Hashable", ""]
+- !private ["Ps10_Indexable", "init"]
+- !private ["Ps10_Indexable", "last"]
+- !private ["Ps10_Indexable", "map"]
+- !private ["Ps10_Indexable", "reduce"]
+- !private ["Ps14_IndexableBase", "init"]
+- !private ["Ps14_IndexableBase", "last"]
+- !private ["Ps14_IndexableBase", "map"]
+- !private ["Ps14_IndexableBase", "reduce"]
+- !private ["Ps17_MutableIndexable", "init"]
+- !private ["Ps17_MutableIndexable", "last"]
+- !private ["Ps17_MutableIndexable", "map"]
+- !private ["Ps17_MutableIndexable", "reduce"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "init"]
+- !private ["Ps21_ObjectiveCBridgeable", "last"]
+- !private ["Ps21_ObjectiveCBridgeable", "map"]
+- !private ["Ps21_ObjectiveCBridgeable", "reduce"]
+- !private ["Ps22_RandomAccessIndexable", "init"]
+- !private ["Ps22_RandomAccessIndexable", "last"]
+- !private ["Ps22_RandomAccessIndexable", "map"]
+- !private ["Ps22_RandomAccessIndexable", "reduce"]
+- !private ["Ps26_RangeReplaceableIndexable", "init"]
+- !private ["Ps26_RangeReplaceableIndexable", "last"]
+- !private ["Ps26_RangeReplaceableIndexable", "map"]
+- !private ["Ps26_RangeReplaceableIndexable", "reduce"]
+depends-nominal:
+- !private "V13RxTestProject13AltitudeEvent"
+- "Ps9AnyObject"
+- !private "Sa"
+- !private "Ps23BidirectionalCollection"
+- !private "Sb"
+- !private "OSC21CLAuthorizationStatus"
+- !private "OSC19CLDeviceOrientation"
+- !private "CSo9CLHeading"
+- !private "CSo10CLLocation"
+- "CSo17CLLocationManager"
+- "PSo25CLLocationManagerDelegate"
+- "Ps7CVarArg"
+- !private "Ps10Collection"
+- !private "Ps10Comparable"
+- !private "V13RxTestProject11CourseEvent"
+- "Ps28CustomDebugStringConvertible"
+- !private "Ps29CustomPlaygroundQuickLookable"
+- !private "Ps17CustomReflectable"
+- "Ps23CustomStringConvertible"
+- "Ps9Equatable"
+- !private "Ps5Error"
+- !private "V13RxTestProject10ErrorEvent"
+- !private "OV13RxTestProject10ErrorEvent14ErrorEventType"
+- !private "P13RxTestProject5Event"
+- !private "Ps25ExpressibleByArrayLiteral"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- !private "Ps43ExpressibleByExtendedGraphemeClusterLiteral"
+- !private "Ps26ExpressibleByStringLiteral"
+- !private "Ps33ExpressibleByUnicodeScalarLiteral"
+- !private "P13RxTestProject12Firebaseable"
+- "Ps8Hashable"
+- !private "V13RxTestProject12HeadingEvent"
+- "C13RxTestProject18LocationController"
+- !private "V13RxTestProject13LocationEvent"
+- !private "P13RxTestProject16LocationListener"
+- !private "Ps25LosslessStringConvertible"
+- !private "Ps10MirrorPath"
+- !private "Ps17MutableCollection"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "PSo16NSMutableCopying"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- !private "PSo19NSPasteboardReading"
+- !private "PSo19NSPasteboardWriting"
+- !private "PSo14NSSecureCoding"
+- !private "CSo8NSString"
+- !private "Ps22RandomAccessCollection"
+- !private "Ps26RangeReplaceableCollection"
+- !private "Ps16RawRepresentable"
+- !private "Ps8Sequence"
+- !private "SS"
+- !private "Ps16TextOutputStream"
+- !private "Ps20TextOutputStreamable"
+- !private "O13RxTestProject16VaavudOtherError"
+- !private "V13RxTestProject13VelocityEvent"
+- !private "Ps14_ArrayProtocol"
+- !private "Ps23_BidirectionalIndexable"
+- !private "Ps24_DestructorSafeContainer"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- !private "Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral"
+- !private "Ps34_ExpressibleByBuiltinStringLiteral"
+- !private "Ps39_ExpressibleByBuiltinUTF16StringLiteral"
+- !private "Ps41_ExpressibleByBuiltinUnicodeScalarLiteral"
+- !private "Ps33_ExpressibleByStringInterpolation"
+- !private "Ps35_HasCustomAnyHashableRepresentation"
+- "Ps9_Hashable"
+- !private "Ps10_Indexable"
+- !private "Ps14_IndexableBase"
+- !private "Ps17_MutableIndexable"
+- !private "Ps21_ObjectiveCBridgeable"
+- !private "Ps22_RandomAccessIndexable"
+- !private "Ps26_RangeReplaceableIndexable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/XPC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreData.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreBluetooth.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Metal.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreLocation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AVFoundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/MediaPlayer.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/GLKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AppKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreText.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AudioToolbox.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/XPC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreMedia.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreData.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/simd.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreLocation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AVFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreAudio.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/GLKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/IOKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AppKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxCocoaRuntime.build/module.modulemap"
+interface-hash: "87c9dc0b1d889ff965b20f96bd81d2d9"

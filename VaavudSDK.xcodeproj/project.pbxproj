@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07B2EFD61EB2306700760F5E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2EFD51EB2306700760F5E /* CoreMotion.framework */; };
+		07B2F0191EB2330000760F5E /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2EFF01EB232E000760F5E /* RxSwift.framework */; };
+		07B2F0391EB2385800760F5E /* RxBluetoothKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2F0321EB2384A00760F5E /* RxBluetoothKit.framework */; };
 		0D0C1D1A1EB0C4BD00B07381 /* MedianFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0C1D191EB0C4BD00B07381 /* MedianFilter.swift */; };
 		2B1EE56A1E5B176700C9561C /* BluetoothController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1EE5691E5B176700C9561C /* BluetoothController .swift */; };
 		9F0409B71BA5DC22009FFBD4 /* VaavudSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F0409B61BA5DC22009FFBD4 /* VaavudSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +26,181 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		07B2EFEF1EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C8A56AD71AD7424700B4673B;
+			remoteInfo = "RxSwift-iOS";
+		};
+		07B2EFF11EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C88BB8711B07E5ED0064D411;
+			remoteInfo = "RxSwift-macOS";
+		};
+		07B2EFF31EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2EA280C1BB9B5A200880ED3;
+			remoteInfo = "RxSwift-tvOS";
+		};
+		07B2EFF51EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C8F0C0021BBBFB8B001B112F;
+			remoteInfo = "RxSwift-watchOS";
+		};
+		07B2EFF71EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C809396D1B8A71760088E94D;
+			remoteInfo = "RxCocoa-iOS";
+		};
+		07B2EFF91EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C80939E71B8A71840088E94D;
+			remoteInfo = "RxCocoa-macOS";
+		};
+		07B2EFFB1EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2138C751BB9BE9800339B5C;
+			remoteInfo = "RxCocoa-tvOS";
+		};
+		07B2EFFD1EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C8F0C04B1BBBFBB9001B112F;
+			remoteInfo = "RxCocoa-watchOS";
+		};
+		07B2EFFF1EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C8093BC71B8A71F00088E94D;
+			remoteInfo = "RxBlocking-iOS";
+		};
+		07B2F0011EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C8093C451B8A71FC0088E94D;
+			remoteInfo = "RxBlocking-macOS";
+		};
+		07B2F0031EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2EBEB811BB9B99D003A27DC;
+			remoteInfo = "RxBlocking-tvOS";
+		};
+		07B2F0051EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C8F0C0581BBBFBCE001B112F;
+			remoteInfo = "RxBlocking-watchOS";
+		};
+		07B2F0071EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C88FA50C1C25C44800CCFEA4;
+			remoteInfo = "RxTest-iOS";
+		};
+		07B2F0091EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C88FA51D1C25C4B500CCFEA4;
+			remoteInfo = "RxTest-macOS";
+		};
+		07B2F00B1EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C88FA52E1C25C4C000CCFEA4;
+			remoteInfo = "RxTest-tvOS";
+		};
+		07B2F00D1EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C88FA53F1C25C4CC00CCFEA4;
+			remoteInfo = "RxTest-watchOS";
+		};
+		07B2F00F1EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C83508C31C386F6F0027C24C;
+			remoteInfo = "AllTests-iOS";
+		};
+		07B2F0111EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C83509841C38740E0027C24C;
+			remoteInfo = "AllTests-tvOS";
+		};
+		07B2F0131EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C83509941C38742C0027C24C;
+			remoteInfo = "AllTests-macOS";
+		};
+		07B2F0151EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C85BA04B1C3878740075D68E;
+			remoteInfo = Microoptimizations;
+		};
+		07B2F0171EB232E000760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C8E8BA551E2C181A00A4AC2C;
+			remoteInfo = Benchmarks;
+		};
+		07B2F0311EB2384A00760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2F02A1EB2384A00760F5E /* RxBluetoothKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2666FD841CCE457C005E81CE;
+			remoteInfo = "RxBluetoothKit iOS";
+		};
+		07B2F0331EB2384A00760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2F02A1EB2384A00760F5E /* RxBluetoothKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2666FD8D1CCE457C005E81CE;
+			remoteInfo = "RxBluetoothKit iOSTests";
+		};
+		07B2F0351EB2384A00760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2F02A1EB2384A00760F5E /* RxBluetoothKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2666FDA31CCE4626005E81CE;
+			remoteInfo = "RxBluetoothKit macOS";
+		};
+		07B2F0371EB2384A00760F5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07B2F02A1EB2384A00760F5E /* RxBluetoothKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2666FDAC1CCE4626005E81CE;
+			remoteInfo = "RxBluetoothKit macOSTests";
+		};
 		9F0409BE1BA5DC22009FFBD4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9F0409A81BA5DC22009FFBD4 /* Project object */;
@@ -33,6 +211,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07B2EFD51EB2306700760F5E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		07B2EFD71EB232E000760F5E /* Rx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Rx.xcodeproj; path = RxSwift/Rx.xcodeproj; sourceTree = SOURCE_ROOT; };
+		07B2F02A1EB2384A00760F5E /* RxBluetoothKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RxBluetoothKit.xcodeproj; path = RxBluetoothKit/RxBluetoothKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		0D0C1D191EB0C4BD00B07381 /* MedianFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedianFilter.swift; sourceTree = "<group>"; };
 		2B1EE5691E5B176700C9561C /* BluetoothController .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BluetoothController .swift"; sourceTree = "<group>"; };
 		9F0409B11BA5DC22009FFBD4 /* VaavudSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VaavudSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +237,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B2F0391EB2385800760F5E /* RxBluetoothKit.framework in Frameworks */,
+				07B2F0191EB2330000760F5E /* RxSwift.framework in Frameworks */,
+				07B2EFD61EB2306700760F5E /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +254,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07B2EFD41EB2306700760F5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				07B2EFD51EB2306700760F5E /* CoreMotion.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		07B2EFD81EB232E000760F5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07B2EFF01EB232E000760F5E /* RxSwift.framework */,
+				07B2EFF21EB232E000760F5E /* RxSwift.framework */,
+				07B2EFF41EB232E000760F5E /* RxSwift.framework */,
+				07B2EFF61EB232E000760F5E /* RxSwift.framework */,
+				07B2EFF81EB232E000760F5E /* RxCocoa.framework */,
+				07B2EFFA1EB232E000760F5E /* RxCocoa.framework */,
+				07B2EFFC1EB232E000760F5E /* RxCocoa.framework */,
+				07B2EFFE1EB232E000760F5E /* RxCocoa.framework */,
+				07B2F0001EB232E000760F5E /* RxBlocking.framework */,
+				07B2F0021EB232E000760F5E /* RxBlocking.framework */,
+				07B2F0041EB232E000760F5E /* RxBlocking.framework */,
+				07B2F0061EB232E000760F5E /* RxBlocking.framework */,
+				07B2F0081EB232E000760F5E /* RxTest.framework */,
+				07B2F00A1EB232E000760F5E /* RxTest.framework */,
+				07B2F00C1EB232E000760F5E /* RxTest.framework */,
+				07B2F00E1EB232E000760F5E /* RxTest.framework */,
+				07B2F0101EB232E000760F5E /* AllTests-iOS.xctest */,
+				07B2F0121EB232E000760F5E /* AllTests-tvOS.xctest */,
+				07B2F0141EB232E000760F5E /* AllTests-macOS.xctest */,
+				07B2F0161EB232E000760F5E /* PerformanceTests.app */,
+				07B2F0181EB232E000760F5E /* Benchmarks.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07B2F02B1EB2384A00760F5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07B2F0321EB2384A00760F5E /* RxBluetoothKit.framework */,
+				07B2F0341EB2384A00760F5E /* RxBluetoothKit iOSTests.xctest */,
+				07B2F0361EB2384A00760F5E /* RxBluetoothKit.framework */,
+				07B2F0381EB2384A00760F5E /* RxBluetoothKit macOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9F0409A71BA5DC22009FFBD4 = {
 			isa = PBXGroup;
 			children = (
 				9F0409B31BA5DC22009FFBD4 /* VaavudSDK */,
 				9F0409C01BA5DC22009FFBD4 /* VaavudSDKTests */,
 				9F0409B21BA5DC22009FFBD4 /* Products */,
+				07B2EFD41EB2306700760F5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,6 +323,8 @@
 		9F0409B31BA5DC22009FFBD4 /* VaavudSDK */ = {
 			isa = PBXGroup;
 			children = (
+				07B2F02A1EB2384A00760F5E /* RxBluetoothKit.xcodeproj */,
+				07B2EFD71EB232E000760F5E /* Rx.xcodeproj */,
 				0D0C1D191EB0C4BD00B07381 /* MedianFilter.swift */,
 				9F0409D41BA5DD18009FFBD4 /* Vaavud.swift */,
 				9F0409D01BA5DD18009FFBD4 /* Events.swift */,
@@ -221,6 +455,16 @@
 			mainGroup = 9F0409A71BA5DC22009FFBD4;
 			productRefGroup = 9F0409B21BA5DC22009FFBD4 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 07B2EFD81EB232E000760F5E /* Products */;
+					ProjectRef = 07B2EFD71EB232E000760F5E /* Rx.xcodeproj */;
+				},
+				{
+					ProductGroup = 07B2F02B1EB2384A00760F5E /* Products */;
+					ProjectRef = 07B2F02A1EB2384A00760F5E /* RxBluetoothKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9F0409B01BA5DC22009FFBD4 /* VaavudSDK */,
@@ -228,6 +472,185 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		07B2EFF01EB232E000760F5E /* RxSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxSwift.framework;
+			remoteRef = 07B2EFEF1EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2EFF21EB232E000760F5E /* RxSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxSwift.framework;
+			remoteRef = 07B2EFF11EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2EFF41EB232E000760F5E /* RxSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxSwift.framework;
+			remoteRef = 07B2EFF31EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2EFF61EB232E000760F5E /* RxSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxSwift.framework;
+			remoteRef = 07B2EFF51EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2EFF81EB232E000760F5E /* RxCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxCocoa.framework;
+			remoteRef = 07B2EFF71EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2EFFA1EB232E000760F5E /* RxCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxCocoa.framework;
+			remoteRef = 07B2EFF91EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2EFFC1EB232E000760F5E /* RxCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxCocoa.framework;
+			remoteRef = 07B2EFFB1EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2EFFE1EB232E000760F5E /* RxCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxCocoa.framework;
+			remoteRef = 07B2EFFD1EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0001EB232E000760F5E /* RxBlocking.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxBlocking.framework;
+			remoteRef = 07B2EFFF1EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0021EB232E000760F5E /* RxBlocking.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxBlocking.framework;
+			remoteRef = 07B2F0011EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0041EB232E000760F5E /* RxBlocking.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxBlocking.framework;
+			remoteRef = 07B2F0031EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0061EB232E000760F5E /* RxBlocking.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxBlocking.framework;
+			remoteRef = 07B2F0051EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0081EB232E000760F5E /* RxTest.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxTest.framework;
+			remoteRef = 07B2F0071EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F00A1EB232E000760F5E /* RxTest.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxTest.framework;
+			remoteRef = 07B2F0091EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F00C1EB232E000760F5E /* RxTest.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxTest.framework;
+			remoteRef = 07B2F00B1EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F00E1EB232E000760F5E /* RxTest.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxTest.framework;
+			remoteRef = 07B2F00D1EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0101EB232E000760F5E /* AllTests-iOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "AllTests-iOS.xctest";
+			remoteRef = 07B2F00F1EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0121EB232E000760F5E /* AllTests-tvOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "AllTests-tvOS.xctest";
+			remoteRef = 07B2F0111EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0141EB232E000760F5E /* AllTests-macOS.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "AllTests-macOS.xctest";
+			remoteRef = 07B2F0131EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0161EB232E000760F5E /* PerformanceTests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			name = PerformanceTests.app;
+			path = Microoptimizations.app;
+			remoteRef = 07B2F0151EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0181EB232E000760F5E /* Benchmarks.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Benchmarks.xctest;
+			remoteRef = 07B2F0171EB232E000760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0321EB2384A00760F5E /* RxBluetoothKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxBluetoothKit.framework;
+			remoteRef = 07B2F0311EB2384A00760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0341EB2384A00760F5E /* RxBluetoothKit iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "RxBluetoothKit iOSTests.xctest";
+			remoteRef = 07B2F0331EB2384A00760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0361EB2384A00760F5E /* RxBluetoothKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RxBluetoothKit.framework;
+			remoteRef = 07B2F0351EB2384A00760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		07B2F0381EB2384A00760F5E /* RxBluetoothKit macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "RxBluetoothKit macOSTests.xctest";
+			remoteRef = 07B2F0371EB2384A00760F5E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9F0409AF1BA5DC22009FFBD4 /* Resources */ = {
@@ -328,7 +751,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -372,7 +795,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";

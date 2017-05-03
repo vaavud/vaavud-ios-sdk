@@ -514,7 +514,7 @@ protocol WindListener: class {
     func debugPlot(pointss: [[CGPoint]])
 }
 
-protocol BluetoothListener: class {
+public protocol BluetoothListener: class {
     func newReading(event: BluetoothEvent)
     func extraInfo(event: BluetoothExtraEvent)
 }

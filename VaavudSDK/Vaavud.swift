@@ -59,7 +59,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
         windController.addListener(listener: self)
         locationController.addListener(listener: windController)
         locationController.addListener(listener: self)
-        bluetoothController.addListener(listener: self)
+//        bluetoothController.addListener(listener: self)
     }
     
     public func sleipnirAvailable() -> Bool {
@@ -139,12 +139,10 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     }
     
     
-    public func startWithBluetooth(listener: IBluetoothManager) {
+    public func startWithBluetooth() {
         reset()
         do {
             try locationController.start()
-            bluetoothController.addBleListener(listener: listener)
-            bluetoothController.start()
             medianFilter.clear()
             startPressure()
         }
@@ -190,7 +188,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     public func stop() {
         windController.stop()
         locationController.stop()
-        bluetoothController.stop()
+//        bluetoothController.stop()
         pressureController?.stopRelativeAltitudeUpdates()
     }
     
@@ -258,7 +256,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     // MARK: bluetooth listener
     
     
-    func newReading(event: BluetoothEvent) {
+    public func newReading(event: BluetoothEvent) {
         
         medianFilter.addValues(newValue: event.windSpeed, newDirection: Int(event.windDirection))
         
@@ -276,7 +274,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     }
     
     
-    func extraInfo(event: BluetoothExtraEvent) {
+    public func extraInfo(event: BluetoothExtraEvent) {
         bluetoothExtraCallback?(event)
     }
 

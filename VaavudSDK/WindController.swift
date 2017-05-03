@@ -206,8 +206,8 @@ class WindController: NSObject, LocationListener {
         let rightChannel = buffer.floatChannelData![1]
         
         for i in 0..<Int(buffer.frameLength) {
-            leftChannel[i] = sinf(Float(i)*2*Float(M_PI)/3) // One 3rd of the sample frequency
-            rightChannel[i] = -sinf(Float(i)*2*Float(M_PI)/3)
+            leftChannel[i] = sinf(Float(i)*2*Float(Double.pi)/3) // One 3rd of the sample frequency
+            rightChannel[i] = -sinf(Float(i)*2*Float(Double.pi)/3)
         }
         return buffer
     }

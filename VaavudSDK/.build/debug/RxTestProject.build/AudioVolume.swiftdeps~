@@ -1,0 +1,568 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "AudioResponse"
+- "volSteps"
+- "volumeSetting"
+- "SearchType"
+- "ExpState"
+- "ExpDirection"
+- "VolumeTest"
+- "Volume"
+- "findMax"
+- "=="
+- "=="
+- "=="
+provides-nominal:
+- "V13RxTestProject13AudioResponse"
+- "O13RxTestProject10SearchType"
+- "O13RxTestProject8ExpState"
+- "O13RxTestProject12ExpDirection"
+- "V13RxTestProject10VolumeTest"
+- "V13RxTestProject6Volume"
+provides-member:
+- ["V13RxTestProject13AudioResponse", ""]
+- ["O13RxTestProject10SearchType", ""]
+- ["O13RxTestProject8ExpState", ""]
+- ["O13RxTestProject12ExpDirection", ""]
+- ["V13RxTestProject10VolumeTest", ""]
+- ["V13RxTestProject6Volume", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "%"
+- !private "&&"
+- !private "*"
+- !private "+"
+- !private "+="
+- !private "-"
+- !private "..<"
+- "/"
+- !private "<"
+- "=="
+- !private ">"
+- !private ">="
+- "AssignmentPrecedence"
+- "AudioResponse"
+- "CastingPrecedence"
+- "Comparable"
+- "CustomStringConvertible"
+- !private "Data"
+- "Double"
+- "ExpDirection"
+- "ExpState"
+- "Float"
+- "FloatLiteralType"
+- "Int"
+- "IntegerLiteralType"
+- !private "NSData"
+- !private "NSKeyedArchiver"
+- !private "NSKeyedUnarchiver"
+- "SearchType"
+- "String"
+- !private "StringLiteralType"
+- "TernaryPrecedence"
+- !private "UnicodeScalarType"
+- !private "UserDefaults"
+- "Volume"
+- "VolumeTest"
+- !private "abs"
+- "findMax"
+- !private "max"
+- !private "min"
+- "volSteps"
+- "volumeSetting"
+depends-member:
+- !private ["Ps16AbsoluteValuable", "init"]
+- !private ["Ps9AnyObject", "archivedData"]
+- !private ["Ps9AnyObject", "init"]
+- !private ["Ps9AnyObject", "object"]
+- !private ["Ps9AnyObject", "set"]
+- !private ["Ps9AnyObject", "setValue"]
+- !private ["Ps9AnyObject", "standard"]
+- !private ["Ps9AnyObject", "synchronize"]
+- !private ["Ps9AnyObject", "unarchiveObject"]
+- !private ["Ps9AnyObject", "value"]
+- !private ["Sa", "count"]
+- ["Sa", "init"]
+- !private ["Sa", "subscript"]
+- ["V13RxTestProject13AudioResponse", "Double"]
+- ["V13RxTestProject13AudioResponse", "Int"]
+- ["V13RxTestProject13AudioResponse", "String"]
+- ["V13RxTestProject13AudioResponse", "deinit"]
+- ["V13RxTestProject13AudioResponse", "description"]
+- ["V13RxTestProject13AudioResponse", "detectionErrors"]
+- ["V13RxTestProject13AudioResponse", "diff20"]
+- ["V13RxTestProject13AudioResponse", "init"]
+- ["V13RxTestProject13AudioResponse", "rotations"]
+- ["V13RxTestProject13AudioResponse", "sN"]
+- !private ["Ps23BidirectionalCollection", "count"]
+- ["Ps23BidirectionalCollection", "init"]
+- !private ["Ps23BidirectionalCollection", "subscript"]
+- !private ["Ps19BinaryFloatingPoint", "init"]
+- !private ["Ps17BitwiseOperations", "hashValue"]
+- ["Ps17BitwiseOperations", "init"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["Ps7CVarArg", "archivedData"]
+- !private ["Ps7CVarArg", "count"]
+- !private ["Ps7CVarArg", "hashValue"]
+- ["Ps7CVarArg", "init"]
+- !private ["Ps7CVarArg", "object"]
+- !private ["Ps7CVarArg", "set"]
+- !private ["Ps7CVarArg", "setValue"]
+- !private ["Ps7CVarArg", "standard"]
+- !private ["Ps7CVarArg", "subscript"]
+- !private ["Ps7CVarArg", "synchronize"]
+- !private ["Ps7CVarArg", "unarchiveObject"]
+- !private ["Ps7CVarArg", "value"]
+- !private ["Ps10Collection", "count"]
+- ["Ps10Collection", "init"]
+- !private ["Ps10Collection", "subscript"]
+- !private ["Ps10Comparable", "hashValue"]
+- ["Ps10Comparable", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "SteepestAssent"]
+- !private ["Ps28CustomDebugStringConvertible", "archivedData"]
+- !private ["Ps28CustomDebugStringConvertible", "count"]
+- ["Ps28CustomDebugStringConvertible", "init"]
+- !private ["Ps28CustomDebugStringConvertible", "object"]
+- !private ["Ps28CustomDebugStringConvertible", "set"]
+- !private ["Ps28CustomDebugStringConvertible", "setValue"]
+- !private ["Ps28CustomDebugStringConvertible", "standard"]
+- !private ["Ps28CustomDebugStringConvertible", "subscript"]
+- !private ["Ps28CustomDebugStringConvertible", "synchronize"]
+- !private ["Ps28CustomDebugStringConvertible", "unarchiveObject"]
+- !private ["Ps28CustomDebugStringConvertible", "value"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "hashValue"]
+- ["Ps29CustomPlaygroundQuickLookable", "init"]
+- !private ["Ps17CustomReflectable", "SteepestAssent"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "count"]
+- !private ["Ps17CustomReflectable", "hashValue"]
+- ["Ps17CustomReflectable", "init"]
+- !private ["Ps17CustomReflectable", "subscript"]
+- ["Ps23CustomStringConvertible", "Double"]
+- ["Ps23CustomStringConvertible", "ExpDirection"]
+- ["Ps23CustomStringConvertible", "ExpState"]
+- ["Ps23CustomStringConvertible", "Int"]
+- !private ["Ps23CustomStringConvertible", "NSKeyedArchiver"]
+- !private ["Ps23CustomStringConvertible", "NSKeyedUnarchiver"]
+- ["Ps23CustomStringConvertible", "SearchType"]
+- !private ["Ps23CustomStringConvertible", "String"]
+- !private ["Ps23CustomStringConvertible", "UserDefaults"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps23CustomStringConvertible", "abs"]
+- !private ["Ps23CustomStringConvertible", "archivedData"]
+- !private ["Ps23CustomStringConvertible", "count"]
+- !private ["Ps23CustomStringConvertible", "counter"]
+- ["Ps23CustomStringConvertible", "description"]
+- !private ["Ps23CustomStringConvertible", "detectionErrors"]
+- !private ["Ps23CustomStringConvertible", "diff20"]
+- !private ["Ps23CustomStringConvertible", "expDirection"]
+- !private ["Ps23CustomStringConvertible", "expState"]
+- !private ["Ps23CustomStringConvertible", "findMax"]
+- !private ["Ps23CustomStringConvertible", "hashValue"]
+- ["Ps23CustomStringConvertible", "init"]
+- !private ["Ps23CustomStringConvertible", "max"]
+- !private ["Ps23CustomStringConvertible", "min"]
+- !private ["Ps23CustomStringConvertible", "noiseThreshold"]
+- !private ["Ps23CustomStringConvertible", "object"]
+- !private ["Ps23CustomStringConvertible", "returnToDiffState"]
+- !private ["Ps23CustomStringConvertible", "rotations"]
+- !private ["Ps23CustomStringConvertible", "sN"]
+- !private ["Ps23CustomStringConvertible", "set"]
+- !private ["Ps23CustomStringConvertible", "setValue"]
+- !private ["Ps23CustomStringConvertible", "standard"]
+- !private ["Ps23CustomStringConvertible", "subscript"]
+- !private ["Ps23CustomStringConvertible", "synchronize"]
+- !private ["Ps23CustomStringConvertible", "unarchiveObject"]
+- !private ["Ps23CustomStringConvertible", "value"]
+- !private ["Ps23CustomStringConvertible", "volState"]
+- ["Ps23CustomStringConvertible", "volSteps"]
+- !private ["Ps23CustomStringConvertible", "volume"]
+- !private ["Ps23CustomStringConvertible", "volumeSetting"]
+- ["Ps23CustomStringConvertible", ""]
+- ["Ps9Equatable", "Diff"]
+- ["Ps9Equatable", "Explore"]
+- ["Ps9Equatable", "Left"]
+- ["Ps9Equatable", "Right"]
+- ["Ps9Equatable", "SequentialSearch"]
+- ["Ps9Equatable", "SteepestAssent"]
+- ["Ps9Equatable", "Top"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- ["Ps9Equatable", "_toAnyHashable"]
+- !private ["Ps9Equatable", "archivedData"]
+- ["Ps9Equatable", "hashValue"]
+- ["Ps9Equatable", "init"]
+- !private ["Ps9Equatable", "object"]
+- !private ["Ps9Equatable", "set"]
+- !private ["Ps9Equatable", "setValue"]
+- !private ["Ps9Equatable", "standard"]
+- !private ["Ps9Equatable", "synchronize"]
+- !private ["Ps9Equatable", "unarchiveObject"]
+- !private ["Ps9Equatable", "value"]
+- ["Ps9Equatable", ""]
+- ["O13RxTestProject12ExpDirection", "=="]
+- ["O13RxTestProject12ExpDirection", "Left"]
+- ["O13RxTestProject12ExpDirection", "Right"]
+- ["O13RxTestProject12ExpDirection", "_toAnyHashable"]
+- ["O13RxTestProject12ExpDirection", "deinit"]
+- ["O13RxTestProject12ExpDirection", "hashValue"]
+- ["O13RxTestProject8ExpState", "=="]
+- ["O13RxTestProject8ExpState", "Explore"]
+- ["O13RxTestProject8ExpState", "Top"]
+- ["O13RxTestProject8ExpState", "_toAnyHashable"]
+- ["O13RxTestProject8ExpState", "deinit"]
+- ["O13RxTestProject8ExpState", "hashValue"]
+- !private ["Ps25ExpressibleByArrayLiteral", "count"]
+- ["Ps25ExpressibleByArrayLiteral", "init"]
+- !private ["Ps25ExpressibleByArrayLiteral", "subscript"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps43ExpressibleByExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps25ExpressibleByFloatLiteral", "init"]
+- !private ["Ps27ExpressibleByIntegerLiteral", "hashValue"]
+- ["Ps27ExpressibleByIntegerLiteral", "init"]
+- !private ["Ps23ExpressibleByNilLiteral", "SteepestAssent"]
+- !private ["Ps26ExpressibleByStringLiteral", "init"]
+- !private ["Ps33ExpressibleByUnicodeScalarLiteral", "init"]
+- !private ["Sf", "init"]
+- !private ["Ps13FloatingPoint", "init"]
+- ["Ps8Hashable", "Diff"]
+- ["Ps8Hashable", "Explore"]
+- ["Ps8Hashable", "Left"]
+- ["Ps8Hashable", "Right"]
+- ["Ps8Hashable", "SequentialSearch"]
+- ["Ps8Hashable", "SteepestAssent"]
+- ["Ps8Hashable", "Top"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- ["Ps8Hashable", "_toAnyHashable"]
+- !private ["Ps8Hashable", "archivedData"]
+- ["Ps8Hashable", "hashValue"]
+- ["Ps8Hashable", "init"]
+- !private ["Ps8Hashable", "object"]
+- !private ["Ps8Hashable", "set"]
+- !private ["Ps8Hashable", "setValue"]
+- !private ["Ps8Hashable", "standard"]
+- !private ["Ps8Hashable", "synchronize"]
+- !private ["Ps8Hashable", "unarchiveObject"]
+- !private ["Ps8Hashable", "value"]
+- ["Ps8Hashable", ""]
+- !private ["Si", "hashValue"]
+- ["Si", "init"]
+- !private ["Ps7Integer", "hashValue"]
+- ["Ps7Integer", "init"]
+- !private ["Ps17IntegerArithmetic", "hashValue"]
+- ["Ps17IntegerArithmetic", "init"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps25LosslessStringConvertible", "init"]
+- !private ["Ps10MirrorPath", "hashValue"]
+- ["Ps10MirrorPath", "init"]
+- !private ["Ps17MutableCollection", "count"]
+- ["Ps17MutableCollection", "init"]
+- !private ["Ps17MutableCollection", "subscript"]
+- !private ["CSo7NSCoder", "archivedData"]
+- !private ["CSo7NSCoder", "unarchiveObject"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["CSo15NSKeyedArchiver", "archivedData"]
+- !private ["CSo17NSKeyedUnarchiver", "unarchiveObject"]
+- !private ["PSo16NSMutableCopying", "init"]
+- !private ["CSo8NSObject", "archivedData"]
+- !private ["CSo8NSObject", "object"]
+- !private ["CSo8NSObject", "set"]
+- !private ["CSo8NSObject", "setValue"]
+- !private ["CSo8NSObject", "standard"]
+- !private ["CSo8NSObject", "synchronize"]
+- !private ["CSo8NSObject", "unarchiveObject"]
+- !private ["CSo8NSObject", "value"]
+- !private ["PSo16NSObjectProtocol", "archivedData"]
+- !private ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "object"]
+- !private ["PSo16NSObjectProtocol", "set"]
+- !private ["PSo16NSObjectProtocol", "setValue"]
+- !private ["PSo16NSObjectProtocol", "standard"]
+- !private ["PSo16NSObjectProtocol", "synchronize"]
+- !private ["PSo16NSObjectProtocol", "unarchiveObject"]
+- !private ["PSo16NSObjectProtocol", "value"]
+- !private ["PSo19NSPasteboardReading", "init"]
+- !private ["PSo19NSPasteboardWriting", "init"]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["CSo8NSString", "init"]
+- !private ["Sq", "SteepestAssent"]
+- !private ["Ps22RandomAccessCollection", "count"]
+- ["Ps22RandomAccessCollection", "init"]
+- !private ["Ps22RandomAccessCollection", "subscript"]
+- !private ["Ps26RangeReplaceableCollection", "count"]
+- ["Ps26RangeReplaceableCollection", "init"]
+- !private ["Ps26RangeReplaceableCollection", "subscript"]
+- ["O13RxTestProject10SearchType", "=="]
+- ["O13RxTestProject10SearchType", "Diff"]
+- ["O13RxTestProject10SearchType", "SequentialSearch"]
+- ["O13RxTestProject10SearchType", "SteepestAssent"]
+- ["O13RxTestProject10SearchType", "_toAnyHashable"]
+- ["O13RxTestProject10SearchType", "deinit"]
+- ["O13RxTestProject10SearchType", "hashValue"]
+- !private ["Ps8Sequence", "count"]
+- ["Ps8Sequence", "init"]
+- !private ["Ps8Sequence", "subscript"]
+- !private ["Ps13SignedInteger", "hashValue"]
+- ["Ps13SignedInteger", "init"]
+- !private ["Ps12SignedNumber", "hashValue"]
+- ["Ps12SignedNumber", "init"]
+- !private ["Ps10Strideable", "hashValue"]
+- ["Ps10Strideable", "init"]
+- !private ["SS", "init"]
+- !private ["Ps16TextOutputStream", "init"]
+- !private ["Ps20TextOutputStreamable", "init"]
+- !private ["CSo12UserDefaults", "object"]
+- !private ["CSo12UserDefaults", "set"]
+- !private ["CSo12UserDefaults", "setValue"]
+- !private ["CSo12UserDefaults", "standard"]
+- !private ["CSo12UserDefaults", "synchronize"]
+- !private ["CSo12UserDefaults", "value"]
+- ["V13RxTestProject6Volume", "AudioResponse"]
+- !private ["V13RxTestProject6Volume", "Data"]
+- ["V13RxTestProject6Volume", "Double"]
+- ["V13RxTestProject6Volume", "ExpDirection"]
+- ["V13RxTestProject6Volume", "ExpState"]
+- ["V13RxTestProject6Volume", "Float"]
+- ["V13RxTestProject6Volume", "Int"]
+- !private ["V13RxTestProject6Volume", "NSData"]
+- !private ["V13RxTestProject6Volume", "NSKeyedArchiver"]
+- !private ["V13RxTestProject6Volume", "NSKeyedUnarchiver"]
+- ["V13RxTestProject6Volume", "SearchType"]
+- ["V13RxTestProject6Volume", "String"]
+- !private ["V13RxTestProject6Volume", "UserDefaults"]
+- !private ["V13RxTestProject6Volume", "abs"]
+- ["V13RxTestProject6Volume", "counter"]
+- ["V13RxTestProject6Volume", "deinit"]
+- ["V13RxTestProject6Volume", "description"]
+- ["V13RxTestProject6Volume", "expDirection"]
+- ["V13RxTestProject6Volume", "expState"]
+- !private ["V13RxTestProject6Volume", "findMax"]
+- ["V13RxTestProject6Volume", "init"]
+- !private ["V13RxTestProject6Volume", "max"]
+- !private ["V13RxTestProject6Volume", "min"]
+- ["V13RxTestProject6Volume", "newVolume"]
+- ["V13RxTestProject6Volume", "noiseThreshold"]
+- ["V13RxTestProject6Volume", "returnToDiffState"]
+- ["V13RxTestProject6Volume", "sN"]
+- ["V13RxTestProject6Volume", "save"]
+- ["V13RxTestProject6Volume", "volState"]
+- ["V13RxTestProject6Volume", "volSteps"]
+- ["V13RxTestProject6Volume", "volume"]
+- !private ["V13RxTestProject6Volume", "volumeSetting"]
+- ["V13RxTestProject10VolumeTest", "AudioResponse"]
+- ["V13RxTestProject10VolumeTest", "Double"]
+- ["V13RxTestProject10VolumeTest", "Float"]
+- ["V13RxTestProject10VolumeTest", "Int"]
+- ["V13RxTestProject10VolumeTest", "String"]
+- ["V13RxTestProject10VolumeTest", "counter"]
+- ["V13RxTestProject10VolumeTest", "debugDictionary"]
+- ["V13RxTestProject10VolumeTest", "deinit"]
+- ["V13RxTestProject10VolumeTest", "description"]
+- ["V13RxTestProject10VolumeTest", "diff20"]
+- ["V13RxTestProject10VolumeTest", "init"]
+- ["V13RxTestProject10VolumeTest", "newVolume"]
+- ["V13RxTestProject10VolumeTest", "sN"]
+- ["V13RxTestProject10VolumeTest", "volSteps"]
+- ["V13RxTestProject10VolumeTest", "volume"]
+- !private ["V13RxTestProject10VolumeTest", "volumeSetting"]
+- !private ["Ps14_ArrayProtocol", "count"]
+- ["Ps14_ArrayProtocol", "init"]
+- !private ["Ps14_ArrayProtocol", "subscript"]
+- !private ["Ps23_BidirectionalIndexable", "count"]
+- ["Ps23_BidirectionalIndexable", "init"]
+- !private ["Ps23_BidirectionalIndexable", "subscript"]
+- !private ["Ps15_CVarArgAligned", "init"]
+- !private ["Ps22_CVarArgPassedAsDouble", "init"]
+- !private ["Ps24_DestructorSafeContainer", "count"]
+- ["Ps24_DestructorSafeContainer", "init"]
+- !private ["Ps24_DestructorSafeContainer", "subscript"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral", "init"]
+- !private ["Ps33_ExpressibleByBuiltinFloatLiteral", "init"]
+- !private ["Ps35_ExpressibleByBuiltinIntegerLiteral", "hashValue"]
+- ["Ps35_ExpressibleByBuiltinIntegerLiteral", "init"]
+- !private ["Ps34_ExpressibleByBuiltinStringLiteral", "init"]
+- !private ["Ps39_ExpressibleByBuiltinUTF16StringLiteral", "init"]
+- !private ["Ps41_ExpressibleByBuiltinUnicodeScalarLiteral", "init"]
+- !private ["Ps33_ExpressibleByStringInterpolation", "init"]
+- !private ["Ps35_HasCustomAnyHashableRepresentation", "init"]
+- ["Ps9_Hashable", "Diff"]
+- ["Ps9_Hashable", "Explore"]
+- ["Ps9_Hashable", "Left"]
+- ["Ps9_Hashable", "Right"]
+- ["Ps9_Hashable", "SequentialSearch"]
+- ["Ps9_Hashable", "SteepestAssent"]
+- ["Ps9_Hashable", "Top"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- ["Ps9_Hashable", "_toAnyHashable"]
+- !private ["Ps9_Hashable", "archivedData"]
+- ["Ps9_Hashable", "hashValue"]
+- ["Ps9_Hashable", "init"]
+- !private ["Ps9_Hashable", "object"]
+- !private ["Ps9_Hashable", "set"]
+- !private ["Ps9_Hashable", "setValue"]
+- !private ["Ps9_Hashable", "standard"]
+- !private ["Ps9_Hashable", "synchronize"]
+- !private ["Ps9_Hashable", "unarchiveObject"]
+- !private ["Ps9_Hashable", "value"]
+- ["Ps9_Hashable", ""]
+- !private ["Ps14_Incrementable", "hashValue"]
+- ["Ps14_Incrementable", "init"]
+- !private ["Ps10_Indexable", "count"]
+- ["Ps10_Indexable", "init"]
+- !private ["Ps10_Indexable", "subscript"]
+- !private ["Ps14_IndexableBase", "count"]
+- ["Ps14_IndexableBase", "init"]
+- !private ["Ps14_IndexableBase", "subscript"]
+- !private ["Ps8_Integer", "hashValue"]
+- ["Ps8_Integer", "init"]
+- !private ["Ps18_IntegerArithmetic", "hashValue"]
+- ["Ps18_IntegerArithmetic", "init"]
+- !private ["Ps17_MutableIndexable", "count"]
+- ["Ps17_MutableIndexable", "init"]
+- !private ["Ps17_MutableIndexable", "subscript"]
+- !private ["Ps21_ObjectiveCBridgeable", "SteepestAssent"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "count"]
+- !private ["Ps21_ObjectiveCBridgeable", "hashValue"]
+- ["Ps21_ObjectiveCBridgeable", "init"]
+- !private ["Ps21_ObjectiveCBridgeable", "subscript"]
+- !private ["Vs26_OptionalNilComparisonType", "SteepestAssent"]
+- !private ["Ps22_RandomAccessIndexable", "count"]
+- ["Ps22_RandomAccessIndexable", "init"]
+- !private ["Ps22_RandomAccessIndexable", "subscript"]
+- !private ["Ps26_RangeReplaceableIndexable", "count"]
+- ["Ps26_RangeReplaceableIndexable", "init"]
+- !private ["Ps26_RangeReplaceableIndexable", "subscript"]
+- !private ["Ps14_SignedInteger", "hashValue"]
+- ["Ps14_SignedInteger", "init"]
+- !private ["Ps11_Strideable", "hashValue"]
+- ["Ps11_Strideable", "init"]
+depends-nominal:
+- !private "Ps16AbsoluteValuable"
+- !private "Ps9AnyObject"
+- "Sa"
+- "V13RxTestProject13AudioResponse"
+- "Ps23BidirectionalCollection"
+- !private "Ps19BinaryFloatingPoint"
+- "Ps17BitwiseOperations"
+- !private "Sb"
+- "Ps7CVarArg"
+- "Ps10Collection"
+- "Ps10Comparable"
+- "Ps28CustomDebugStringConvertible"
+- "Ps29CustomPlaygroundQuickLookable"
+- "Ps17CustomReflectable"
+- "Ps23CustomStringConvertible"
+- "Ps9Equatable"
+- "O13RxTestProject12ExpDirection"
+- "O13RxTestProject8ExpState"
+- "Ps25ExpressibleByArrayLiteral"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- !private "Ps43ExpressibleByExtendedGraphemeClusterLiteral"
+- !private "Ps25ExpressibleByFloatLiteral"
+- "Ps27ExpressibleByIntegerLiteral"
+- !private "Ps23ExpressibleByNilLiteral"
+- !private "Ps26ExpressibleByStringLiteral"
+- !private "Ps33ExpressibleByUnicodeScalarLiteral"
+- !private "Sf"
+- !private "Ps13FloatingPoint"
+- "Ps8Hashable"
+- "Si"
+- "Ps7Integer"
+- "Ps17IntegerArithmetic"
+- !private "Ps25LosslessStringConvertible"
+- "Ps10MirrorPath"
+- "Ps17MutableCollection"
+- !private "CSo7NSCoder"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "CSo15NSKeyedArchiver"
+- !private "CSo17NSKeyedUnarchiver"
+- !private "PSo16NSMutableCopying"
+- !private "CSo8NSObject"
+- !private "PSo16NSObjectProtocol"
+- !private "PSo19NSPasteboardReading"
+- !private "PSo19NSPasteboardWriting"
+- !private "PSo14NSSecureCoding"
+- !private "CSo8NSString"
+- !private "Sq"
+- "Ps22RandomAccessCollection"
+- "Ps26RangeReplaceableCollection"
+- "O13RxTestProject10SearchType"
+- "Ps8Sequence"
+- "Ps13SignedInteger"
+- "Ps12SignedNumber"
+- "Ps10Strideable"
+- !private "SS"
+- !private "Ps16TextOutputStream"
+- !private "Ps20TextOutputStreamable"
+- !private "CSo12UserDefaults"
+- "V13RxTestProject6Volume"
+- "V13RxTestProject10VolumeTest"
+- "Ps14_ArrayProtocol"
+- "Ps23_BidirectionalIndexable"
+- !private "Ps15_CVarArgAligned"
+- !private "Ps22_CVarArgPassedAsDouble"
+- "Ps24_DestructorSafeContainer"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- !private "Ps51_ExpressibleByBuiltinExtendedGraphemeClusterLiteral"
+- !private "Ps33_ExpressibleByBuiltinFloatLiteral"
+- "Ps35_ExpressibleByBuiltinIntegerLiteral"
+- !private "Ps34_ExpressibleByBuiltinStringLiteral"
+- !private "Ps39_ExpressibleByBuiltinUTF16StringLiteral"
+- !private "Ps41_ExpressibleByBuiltinUnicodeScalarLiteral"
+- !private "Ps33_ExpressibleByStringInterpolation"
+- !private "Ps35_HasCustomAnyHashableRepresentation"
+- "Ps9_Hashable"
+- "Ps14_Incrementable"
+- "Ps10_Indexable"
+- "Ps14_IndexableBase"
+- "Ps8_Integer"
+- "Ps18_IntegerArithmetic"
+- "Ps17_MutableIndexable"
+- "Ps21_ObjectiveCBridgeable"
+- !private "Vs26_OptionalNilComparisonType"
+- "Ps22_RandomAccessIndexable"
+- "Ps26_RangeReplaceableIndexable"
+- "Ps14_SignedInteger"
+- "Ps11_Strideable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/XPC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreData.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreBluetooth.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Metal.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreLocation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AVFoundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/MediaPlayer.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/GLKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AppKit.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreText.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AudioToolbox.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/XPC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreMedia.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreData.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/simd.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreLocation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AVFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreAudio.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/GLKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/IOKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/AppKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxCocoaRuntime.build/module.modulemap"
+interface-hash: "0b88a4bed9d758c2984fcb5cdb405a8e"

@@ -1,0 +1,195 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+provides-nominal:
+provides-member:
+- ["P7RxSwift14ObservableType", ""]
+- ["P7RxSwift14ObservableType", "filter"]
+- ["P7RxSwift14ObservableType", "takeWhile"]
+- ["P7RxSwift14ObservableType", "takeWhileWithIndex"]
+- ["P7RxSwift14ObservableType", "take"]
+- ["P7RxSwift14ObservableType", "takeLast"]
+- ["P7RxSwift14ObservableType", "skip"]
+- ["P7RxSwift14ObservableType", "skipWhile"]
+- ["P7RxSwift14ObservableType", "skipWhileWithIndex"]
+- ["P7RxSwift14ObservableType", "map"]
+- ["P7RxSwift14ObservableType", "mapWithIndex"]
+- ["P7RxSwift14ObservableType", "flatMap"]
+- ["P7RxSwift14ObservableType", "flatMapWithIndex"]
+- ["P7RxSwift14ObservableType", "flatMapFirst"]
+- ["P7RxSwift14ObservableType", "flatMapLatest"]
+- ["P7RxSwift14ObservableType", "elementAt"]
+- ["P7RxSwift14ObservableType", "single"]
+- ["P7RxSwift14ObservableType", "single"]
+- ["P7RxSwift14ObservableType", "groupBy"]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "=="
+- "Bool"
+- !private "BooleanLiteralType"
+- !private "ElementAt"
+- !private "Filter"
+- !private "FlatMap"
+- !private "FlatMapFirst"
+- !private "FlatMapLatest"
+- !private "FlatMapWithIndex"
+- !private "FloatLiteralType"
+- !private "GroupBy"
+- "GroupedObservable"
+- "Hashable"
+- "Int"
+- !private "IntegerLiteralType"
+- !private "MapWithIndex"
+- "Observable"
+- "ObservableConvertibleType"
+- "ObservableType"
+- !private "SingleAsync"
+- !private "SkipCount"
+- !private "SkipWhile"
+- !private "TakeCount"
+- !private "TakeLast"
+- !private "TakeWhile"
+depends-member:
+- !private ["Ps9AnyObject", "composeMap"]
+- !private ["Ps9AnyObject", "empty"]
+- !private ["Ps9AnyObject", "init"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["Ps29CustomPlaygroundQuickLookable", "_getBuiltinLogicValue"]
+- !private ["Ps17CustomReflectable", "_getBuiltinLogicValue"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["C7RxSwift9ElementAt", "init"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- !private ["Ps27ExpressibleByBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["C7RxSwift6Filter", "init"]
+- !private ["C7RxSwift7FlatMap", "init"]
+- !private ["C7RxSwift12FlatMapFirst", "init"]
+- !private ["C7RxSwift13FlatMapLatest", "init"]
+- !private ["C7RxSwift16FlatMapWithIndex", "init"]
+- !private ["C7RxSwift7GroupBy", "init"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps25LosslessStringConvertible", "_getBuiltinLogicValue"]
+- !private ["C7RxSwift12MapWithIndex", "init"]
+- !private ["C7RxSwift10Observable", "composeMap"]
+- !private ["C7RxSwift10Observable", "empty"]
+- ["P7RxSwift25ObservableConvertibleType", "Bool"]
+- ["P7RxSwift25ObservableConvertibleType", "E"]
+- !private ["P7RxSwift25ObservableConvertibleType", "ElementAt"]
+- !private ["P7RxSwift25ObservableConvertibleType", "Filter"]
+- !private ["P7RxSwift25ObservableConvertibleType", "FlatMap"]
+- !private ["P7RxSwift25ObservableConvertibleType", "FlatMapFirst"]
+- !private ["P7RxSwift25ObservableConvertibleType", "FlatMapLatest"]
+- !private ["P7RxSwift25ObservableConvertibleType", "FlatMapWithIndex"]
+- !private ["P7RxSwift25ObservableConvertibleType", "GroupBy"]
+- ["P7RxSwift25ObservableConvertibleType", "GroupedObservable"]
+- ["P7RxSwift25ObservableConvertibleType", "Hashable"]
+- ["P7RxSwift25ObservableConvertibleType", "Int"]
+- !private ["P7RxSwift25ObservableConvertibleType", "MapWithIndex"]
+- ["P7RxSwift25ObservableConvertibleType", "Observable"]
+- ["P7RxSwift25ObservableConvertibleType", "ObservableConvertibleType"]
+- !private ["P7RxSwift25ObservableConvertibleType", "SingleAsync"]
+- !private ["P7RxSwift25ObservableConvertibleType", "SkipCount"]
+- !private ["P7RxSwift25ObservableConvertibleType", "SkipWhile"]
+- !private ["P7RxSwift25ObservableConvertibleType", "TakeCount"]
+- !private ["P7RxSwift25ObservableConvertibleType", "TakeLast"]
+- !private ["P7RxSwift25ObservableConvertibleType", "TakeWhile"]
+- !private ["P7RxSwift25ObservableConvertibleType", "asObservable"]
+- !private ["P7RxSwift25ObservableConvertibleType", "composeMap"]
+- !private ["P7RxSwift25ObservableConvertibleType", "empty"]
+- !private ["P7RxSwift25ObservableConvertibleType", "init"]
+- ["P7RxSwift14ObservableType", "Bool"]
+- ["P7RxSwift14ObservableType", "E"]
+- !private ["P7RxSwift14ObservableType", "ElementAt"]
+- !private ["P7RxSwift14ObservableType", "Filter"]
+- !private ["P7RxSwift14ObservableType", "FlatMap"]
+- !private ["P7RxSwift14ObservableType", "FlatMapFirst"]
+- !private ["P7RxSwift14ObservableType", "FlatMapLatest"]
+- !private ["P7RxSwift14ObservableType", "FlatMapWithIndex"]
+- !private ["P7RxSwift14ObservableType", "GroupBy"]
+- ["P7RxSwift14ObservableType", "GroupedObservable"]
+- ["P7RxSwift14ObservableType", "Hashable"]
+- ["P7RxSwift14ObservableType", "Int"]
+- !private ["P7RxSwift14ObservableType", "MapWithIndex"]
+- ["P7RxSwift14ObservableType", "Observable"]
+- ["P7RxSwift14ObservableType", "ObservableConvertibleType"]
+- !private ["P7RxSwift14ObservableType", "SingleAsync"]
+- !private ["P7RxSwift14ObservableType", "SkipCount"]
+- !private ["P7RxSwift14ObservableType", "SkipWhile"]
+- !private ["P7RxSwift14ObservableType", "TakeCount"]
+- !private ["P7RxSwift14ObservableType", "TakeLast"]
+- !private ["P7RxSwift14ObservableType", "TakeWhile"]
+- !private ["P7RxSwift14ObservableType", "asObservable"]
+- !private ["P7RxSwift14ObservableType", "composeMap"]
+- ["P7RxSwift14ObservableType", "elementAt"]
+- !private ["P7RxSwift14ObservableType", "empty"]
+- ["P7RxSwift14ObservableType", "filter"]
+- ["P7RxSwift14ObservableType", "flatMap"]
+- ["P7RxSwift14ObservableType", "flatMapFirst"]
+- ["P7RxSwift14ObservableType", "flatMapLatest"]
+- ["P7RxSwift14ObservableType", "flatMapWithIndex"]
+- ["P7RxSwift14ObservableType", "groupBy"]
+- !private ["P7RxSwift14ObservableType", "init"]
+- ["P7RxSwift14ObservableType", "map"]
+- ["P7RxSwift14ObservableType", "mapWithIndex"]
+- ["P7RxSwift14ObservableType", "single"]
+- ["P7RxSwift14ObservableType", "skip"]
+- ["P7RxSwift14ObservableType", "skipWhile"]
+- ["P7RxSwift14ObservableType", "skipWhileWithIndex"]
+- ["P7RxSwift14ObservableType", "take"]
+- ["P7RxSwift14ObservableType", "takeLast"]
+- ["P7RxSwift14ObservableType", "takeWhile"]
+- ["P7RxSwift14ObservableType", "takeWhileWithIndex"]
+- !private ["C7RxSwift11SingleAsync", "init"]
+- !private ["C7RxSwift9SkipCount", "init"]
+- !private ["C7RxSwift9SkipWhile", "init"]
+- !private ["C7RxSwift9TakeCount", "init"]
+- !private ["C7RxSwift8TakeLast", "init"]
+- !private ["C7RxSwift9TakeWhile", "init"]
+- !private ["Ps35_ExpressibleByBuiltinBooleanLiteral", "_getBuiltinLogicValue"]
+- !private ["Ps9_Hashable", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+depends-nominal:
+- !private "Ps9AnyObject"
+- !private "Sb"
+- !private "Ps29CustomPlaygroundQuickLookable"
+- !private "Ps17CustomReflectable"
+- !private "Ps23CustomStringConvertible"
+- !private "C7RxSwift9ElementAt"
+- !private "Ps9Equatable"
+- !private "Ps27ExpressibleByBooleanLiteral"
+- !private "C7RxSwift6Filter"
+- !private "C7RxSwift7FlatMap"
+- !private "C7RxSwift12FlatMapFirst"
+- !private "C7RxSwift13FlatMapLatest"
+- !private "C7RxSwift16FlatMapWithIndex"
+- !private "C7RxSwift7GroupBy"
+- !private "Ps8Hashable"
+- !private "Ps25LosslessStringConvertible"
+- !private "C7RxSwift12MapWithIndex"
+- !private "C7RxSwift10Observable"
+- "P7RxSwift25ObservableConvertibleType"
+- "P7RxSwift14ObservableType"
+- !private "C7RxSwift11SingleAsync"
+- !private "C7RxSwift9SkipCount"
+- !private "C7RxSwift9SkipWhile"
+- !private "C7RxSwift9TakeCount"
+- !private "C7RxSwift8TakeLast"
+- !private "C7RxSwift9TakeWhile"
+- !private "Ps35_ExpressibleByBuiltinBooleanLiteral"
+- !private "Ps9_Hashable"
+- !private "Ps21_ObjectiveCBridgeable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreText.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/IOKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxCocoaRuntime.build/module.modulemap"
+interface-hash: "b46c864e7bab902617b3c28276b11205"

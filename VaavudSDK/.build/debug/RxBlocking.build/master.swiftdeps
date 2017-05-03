@@ -1,0 +1,12 @@
+version: "Apple Swift version 3.1 (swiftlang-802.0.53 clang-802.0.42)"
+options: "f9770d5952ed2395fedb8c23d0a710fb"
+build_time: [546616588, 582380000]
+inputs:
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/checkouts/RxSwift.git--5214619868639177420/Sources/RxBlocking/BlockingObservable+Operators.swift": [546616574, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/checkouts/RxSwift.git--5214619868639177420/Sources/RxBlocking/BlockingObservable.swift": [546616574, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/checkouts/RxSwift.git--5214619868639177420/Sources/RxBlocking/ObservableConvertibleType+Blocking.swift": [546616574, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/checkouts/RxSwift.git--5214619868639177420/Sources/RxBlocking/Platform.Darwin.swift": [546616574, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/checkouts/RxSwift.git--5214619868639177420/Sources/RxBlocking/Platform.Linux.swift": [546616574, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/checkouts/RxSwift.git--5214619868639177420/Sources/RxBlocking/RecursiveLock.swift": [546616574, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/checkouts/RxSwift.git--5214619868639177420/Sources/RxBlocking/Resources.swift": [546616574, 0]
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/checkouts/RxSwift.git--5214619868639177420/Sources/RxBlocking/RunLoopLock.swift": [546616574, 0]

@@ -1,0 +1,65 @@
+{
+  "": {
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/master.swiftdeps"
+  },
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/AudioSampleProcessor.swift": {
+    "dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/AudioSampleProcessor.d",
+    "object": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/AudioSampleProcessor.swift.o",
+    "swiftmodule": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/AudioSampleProcessor~partial.swiftmodule",
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/AudioSampleProcessor.swiftdeps"
+  },
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/AudioVolume.swift": {
+    "dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/AudioVolume.d",
+    "object": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/AudioVolume.swift.o",
+    "swiftmodule": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/AudioVolume~partial.swiftmodule",
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/AudioVolume.swiftdeps"
+  },
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/BluetoothController .swift": {
+    "dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/BluetoothController .d",
+    "object": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/BluetoothController .swift.o",
+    "swiftmodule": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/BluetoothController ~partial.swiftmodule",
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/BluetoothController .swiftdeps"
+  },
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/Events.swift": {
+    "dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/Events.d",
+    "object": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/Events.swift.o",
+    "swiftmodule": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/Events~partial.swiftmodule",
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/Events.swiftdeps"
+  },
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/LocationController.swift": {
+    "dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/LocationController.d",
+    "object": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/LocationController.swift.o",
+    "swiftmodule": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/LocationController~partial.swiftmodule",
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/LocationController.swiftdeps"
+  },
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/MedianFilter.swift": {
+    "dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/MedianFilter.d",
+    "object": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/MedianFilter.swift.o",
+    "swiftmodule": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/MedianFilter~partial.swiftmodule",
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/MedianFilter.swiftdeps"
+  },
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/RotationProcessor.swift": {
+    "dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/RotationProcessor.d",
+    "object": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/RotationProcessor.swift.o",
+    "swiftmodule": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/RotationProcessor~partial.swiftmodule",
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/RotationProcessor.swiftdeps"
+  },
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/TickTimeProcessor.swift": {
+    "dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/TickTimeProcessor.d",
+    "object": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/TickTimeProcessor.swift.o",
+    "swiftmodule": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/TickTimeProcessor~partial.swiftmodule",
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/TickTimeProcessor.swiftdeps"
+  },
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/Vaavud.swift": {
+    "dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/Vaavud.d",
+    "object": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/Vaavud.swift.o",
+    "swiftmodule": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/Vaavud~partial.swiftmodule",
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/Vaavud.swiftdeps"
+  },
+  "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/WindController.swift": {
+    "dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/WindController.d",
+    "object": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/WindController.swift.o",
+    "swiftmodule": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/WindController~partial.swiftmodule",
+    "swift-dependencies": "/Users/diegogalindo/Projects/vaavud/vaavud-ios-sdk/VaavudSDK/.build/debug/RxTestProject.build/WindController.swiftdeps"
+  }
+}
