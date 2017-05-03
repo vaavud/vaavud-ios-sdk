@@ -38,7 +38,7 @@ public class BluetoothController: NSObject  {
     let BEAN_BATTERY_STATUS_UUID = CBUUID(string: "0000a001-0000-1000-8000-00805f9b34fb") // Nivel de bateria 0) Standby 1)Low power 2)Normal
     let BEAN_ENABLE_SERVICES_UUID = CBUUID(string: "0000a003-0000-1000-8000-00805f9b34fb") // Activar 1
     let BEAN_ENABLE_COMPASS_UUID = CBUUID(string: "0000a008-0000-1000-8000-00805f9b34fb") // On/Off compass
-    let BEAN_SCRATCH_UUID = CBUUID(string: "0000a007-0000-1000-8000-00805f9b34fb") // Offset 
+    let BEAN_ADD_OFFSER_UUID = CBUUID(string: "0000a007-0000-1000-8000-00805f9b34fb") // Offset
     
     
     //Service
@@ -84,7 +84,7 @@ public class BluetoothController: NSObject  {
         
         return manager.scanForPeripherals(withServices: [self.BEAN_SERVICE_UUID])
             .timeout(10.0, scheduler: scheduler)
-//            .filter{ $0.peripheral.identifier == UUID(uuidString: "2958CC31-1E64-484A-AC59-F52D4A0536C4")}  // TODO remove in realse
+            .filter{ $0.peripheral.identifier == UUID(uuidString: "2958CC31-1E64-484A-AC59-F52D4A0536C4")}  // TODO remove in realse
             .take(1)
             .flatMap{$0.peripheral.connect()}
             .timeout(10.0, scheduler: scheduler)
@@ -158,6 +158,37 @@ public class BluetoothController: NSObject  {
                 return obs.writeValue(activate, type: .withResponse)
             })
     }
+    
+    
+    public func readOffSet() {
+        self.mainService!.discoverCharacteristics([BEAN_ADD_OFFSER_UUID])
+        .flatMap{Observable.from($0)}
+        .flatMap{$0.readValue()}
+            .subscribe(onNext: {
+                print("offset")
+                print($0.value?.hexEncodedString())
+            }, onError: {
+                print("offset Errpr")
+                print($0)
+            }, onCompleted: {
+                print("offset final")
+                
+            })
+    }
+
+    
+    public func addOffset(activate: Data) -> Observable<Characteristic> {
+        guard let service = mainService else {
+            fatalError("No Main service connected")
+        }
+        
+        return service.discoverCharacteristics([BEAN_ADD_OFFSER_UUID])
+            .flatMap{Observable.from($0)}
+            .flatMap({obs -> Observable<Characteristic> in
+                return obs.writeValue(activate, type: .withResponse)
+            })
+    }
+    
     
     public func onDispose() {
         if let rowData = caractRowData {
