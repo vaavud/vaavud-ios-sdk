@@ -84,7 +84,7 @@ public class BluetoothController: NSObject  {
         
         return manager.scanForPeripherals(withServices: [self.BEAN_SERVICE_UUID])
             .timeout(10.0, scheduler: scheduler)
-            .filter{ $0.peripheral.identifier == UUID(uuidString: "2958CC31-1E64-484A-AC59-F52D4A0536C4")}  // TODO remove in realse
+//            .filter{ $0.peripheral.identifier == UUID(uuidString: "2958CC31-1E64-484A-AC59-F52D4A0536C4")}  // TODO remove in realse
             .take(1)
             .flatMap{$0.peripheral.connect()}
             .timeout(10.0, scheduler: scheduler)
