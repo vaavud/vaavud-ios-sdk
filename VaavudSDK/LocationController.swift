@@ -26,7 +26,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
             throw VaavudOtherError.LocationAuthorisation(status)
         }
         
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.distanceFilter = 1
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation

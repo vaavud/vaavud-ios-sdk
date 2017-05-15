@@ -39,13 +39,13 @@ public protocol FirebaseEntity {
 //Bluetooth
 
 extension Data {
-    func hexEncodedString() -> String {
+    public func hexEncodedString() -> String {
         return map { String(format: "%02hhx", $0) }.joined()
     }
 }
 
 extension String {
-    func substring(from: Int?, to: Int?) -> String {
+    public func substring(from: Int?, to: Int?) -> String {
         if let start = from {
             guard start < self.characters.count else {
                 return ""

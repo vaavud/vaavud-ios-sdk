@@ -253,7 +253,7 @@ class WindController: NSObject, LocationListener {
 
         for _ in 0..<nSamples {
             let index = Int(arc4random_uniform(UInt32(samples.count - skipSamples - 3))) + skipSamples
-            var diff : Int16 = 0
+            var diff : Int32 = 0
             
             for j in 0..<3 {
                 diff = diff + abs(samples[index + j] - samples[index + j + 1])
@@ -352,7 +352,7 @@ class WindController: NSObject, LocationListener {
                 if let reason = AVAudioSessionRouteChangeReason(rawValue: intValue) {
                     let error = ErrorEvent(eventType: .AudioRouteChange(reason))
                     _ = self.listeners.map { $0.newError(event: error) }
-                    self.stop()
+//                    self.stop()
                 }
             }
         }

@@ -11,7 +11,7 @@
 		07B2F0191EB2330000760F5E /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2EFF01EB232E000760F5E /* RxSwift.framework */; };
 		07B2F0391EB2385800760F5E /* RxBluetoothKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2F0321EB2384A00760F5E /* RxBluetoothKit.framework */; };
 		0D0C1D1A1EB0C4BD00B07381 /* MedianFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0C1D191EB0C4BD00B07381 /* MedianFilter.swift */; };
-		2B1EE56A1E5B176700C9561C /* BluetoothController .swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1EE5691E5B176700C9561C /* BluetoothController .swift */; };
+		2B1EE56A1E5B176700C9561C /* BluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1EE5691E5B176700C9561C /* BluetoothController.swift */; };
 		9F0409B71BA5DC22009FFBD4 /* VaavudSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F0409B61BA5DC22009FFBD4 /* VaavudSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9F0409BD1BA5DC22009FFBD4 /* VaavudSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0409B11BA5DC22009FFBD4 /* VaavudSDK.framework */; };
 		9F0409C41BA5DC22009FFBD4 /* VaavudSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0409C31BA5DC22009FFBD4 /* VaavudSDKTests.swift */; };
@@ -215,7 +215,7 @@
 		07B2EFD71EB232E000760F5E /* Rx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Rx.xcodeproj; path = RxSwift/Rx.xcodeproj; sourceTree = SOURCE_ROOT; };
 		07B2F02A1EB2384A00760F5E /* RxBluetoothKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RxBluetoothKit.xcodeproj; path = RxBluetoothKit/RxBluetoothKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 		0D0C1D191EB0C4BD00B07381 /* MedianFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedianFilter.swift; sourceTree = "<group>"; };
-		2B1EE5691E5B176700C9561C /* BluetoothController .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BluetoothController .swift"; sourceTree = "<group>"; };
+		2B1EE5691E5B176700C9561C /* BluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothController.swift; sourceTree = "<group>"; };
 		9F0409B11BA5DC22009FFBD4 /* VaavudSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VaavudSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0409B51BA5DC22009FFBD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F0409B61BA5DC22009FFBD4 /* VaavudSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VaavudSDK.h; sourceTree = "<group>"; };
@@ -369,7 +369,7 @@
 				9F0409D51BA5DD18009FFBD4 /* WindController.swift */,
 				9F0409D21BA5DD18009FFBD4 /* RotationProcessor.swift */,
 				9F0409D31BA5DD18009FFBD4 /* TickTimeProcessor.swift */,
-				2B1EE5691E5B176700C9561C /* BluetoothController .swift */,
+				2B1EE5691E5B176700C9561C /* BluetoothController.swift */,
 			);
 			name = Internal;
 			sourceTree = "<group>";
@@ -674,7 +674,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B1EE56A1E5B176700C9561C /* BluetoothController .swift in Sources */,
+				2B1EE56A1E5B176700C9561C /* BluetoothController.swift in Sources */,
 				0D0C1D1A1EB0C4BD00B07381 /* MedianFilter.swift in Sources */,
 				9F0409D91BA5DD18009FFBD4 /* LocationController.swift in Sources */,
 				9F0409D81BA5DD18009FFBD4 /* Events.swift in Sources */,

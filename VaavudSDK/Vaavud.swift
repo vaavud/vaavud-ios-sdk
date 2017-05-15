@@ -44,7 +44,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     
     
     private var lastDirection: WindDirectionEvent?
-    private var lastSpeed: WindSpeedEvent?
+    public var lastSpeed: WindSpeedEvent?
     private var lastCourse: CourseEvent?
     private var lastVelocity: VelocityEvent?
     
@@ -112,7 +112,6 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
             }
             
             trueDirection = trueDirection * 180 / Double.pi
-            print(trueDirection)
             
             if (trueDirection != -1) && !trueDirection.isNaN {
                 let directionEvent = TrueWindDirectionEvent(direction: trueDirection)
@@ -138,8 +137,11 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
         session = VaavudSession()
     }
     
+    private var offset : [String:Any] = [:]
     
-    public func startWithBluetooth() {
+    
+    public func startWithBluetooth(offset: [String:Any]) {
+        self.offset = offset
         reset()
         do {
             try locationController.start()
@@ -270,6 +272,8 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
         lastDirection = windDirectionE
         
         estimateTrueWind(time: event.time)
+
+        
         bluetoothCallback?(event)
     }
     
