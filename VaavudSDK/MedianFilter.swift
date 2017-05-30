@@ -17,13 +17,13 @@ class MedianFilter {
     private var sortedValues = [Double]()
     private var sortedDirectionX = [Float]()
     private var sortedDirectionY = [Float]()
-    private var medianValue : Double = -1.0
+    private var medianValue : Double = 0
     private var directionMedianValue : Int = -1
     
     
     //  let y = sort(x) { $0 > $1 }
     
-    required init() {
+    init() {
         // initialize remaining variables
         values.removeAll()
         directionX.removeAll()
@@ -34,8 +34,6 @@ class MedianFilter {
     }
     
     func addValues(newValue: Double,newDirection:Int) {
-        //        Log.d(TAG,"Adding Value "+newValue + this.toString())
-        
         values.append(newValue)
         directionX.append((Float(newValue) * cos( GLKMathDegreesToRadians(Float(newDirection)) )))
         directionY.append((Float(newValue) * sin( GLKMathDegreesToRadians(Float(newDirection)) )))
@@ -43,18 +41,14 @@ class MedianFilter {
     
     func evaluateSpeedFilter() -> Double  {
         
-        //        Log.d(TAG,"Evaluate Filter "+values.size + this.toString())
         if (values.count > 10){
             sortedValues.append(contentsOf: values)
             sortedValues.sort()
             medianValue = sortedValues[sortedValues.count/2]
             sortedValues.removeAll()
-            //            Log.d(TAG,"Median Value:"+ medianValue)
         }
         if (values.count > 20) {
-            //            Log.d(TAG,"Values size Before"+ values.size)
             values.remove(at: 0)
-            //            Log.d(TAG,"Values size After"+ values.size)
         }
         return medianValue
     }
@@ -74,15 +68,13 @@ class MedianFilter {
             medianX = sortedDirectionX[sortedDirectionX.count/2]
             medianY = sortedDirectionY[sortedDirectionY.count/2]
             tan = medianY/medianX
-            //            System.out.println("Sin: "+medianX/values.get(0)+" Cos: "+medianY/values.get(0)+" Tan: "+tan)
-            //            var directionTmp =
-            //            Log.d(TAG,"Evaluate directionTmp "+directionTmp)
+            
             directionMedianValue = ((360 + Int(GLKMathRadiansToDegrees(atan(Float(tan))))) % 360)
-            if (medianX < 0 && medianY > 0 ) {
+            if medianX < 0 && medianY > 0  {
                 directionMedianValue -= 180
                 directionMedianValue = ((360 + directionMedianValue) % 360)
             }
-            if (medianX < 0 && medianY < 0 ){
+            if medianX < 0 && medianY < 0 {
                 directionMedianValue += 180
                 directionMedianValue = ((360 + directionMedianValue) % 360)
             }

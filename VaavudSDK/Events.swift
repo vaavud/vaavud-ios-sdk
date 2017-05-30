@@ -296,6 +296,25 @@ public struct BluetoothExtraEvent: Event, Firebaseable{
     }
 }
 
+public struct DataPoint: Firebaseable {
+    
+    let time = Date()
+    let windSpeed: Double
+    let windDirection: Double?
+    let location: [String:Any]
+
+
+    public var fireDict: FirebaseDictionary {
+        var f : FirebaseDictionary = [:]
+        f["timestamp"] = time.ms
+        f["windSpeed"] = windSpeed
+        f["windDirection"] = windDirection
+        f["location"] = location
+        return f
+    }
+
+}
+
 
 public struct HeadingEvent: Event, Firebaseable {
     public let time: Date

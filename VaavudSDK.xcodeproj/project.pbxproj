@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		074D5E1F1ECDE606008A06E7 /* VaavudSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D5E1E1ECDE606008A06E7 /* VaavudSession.swift */; };
 		07B2EFD61EB2306700760F5E /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2EFD51EB2306700760F5E /* CoreMotion.framework */; };
 		07B2F0191EB2330000760F5E /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2EFF01EB232E000760F5E /* RxSwift.framework */; };
 		07B2F0391EB2385800760F5E /* RxBluetoothKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2F0321EB2384A00760F5E /* RxBluetoothKit.framework */; };
+		07F2C93C1ECB79CB00331C92 /* Sessionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F2C93B1ECB79CB00331C92 /* Sessionable.swift */; };
+		07F2C9581ECB7ED400331C92 /* BleSdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F2C9571ECB7ED400331C92 /* BleSdk.swift */; };
+		07F2C95B1ECCD8C200331C92 /* CLLocationManager+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F2C95A1ECCD8C200331C92 /* CLLocationManager+Rx.swift */; };
+		07F2C95D1ECCD8FC00331C92 /* RxCLLocationManagerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F2C95C1ECCD8FC00331C92 /* RxCLLocationManagerDelegateProxy.swift */; };
+		07F2C9631ECCE20000331C92 /* LocationControllerRx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F2C9621ECCE20000331C92 /* LocationControllerRx.swift */; };
+		07F2C9641ECCE7D300331C92 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B2EFF81EB232E000760F5E /* RxCocoa.framework */; };
 		0D0C1D1A1EB0C4BD00B07381 /* MedianFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0C1D191EB0C4BD00B07381 /* MedianFilter.swift */; };
 		2B1EE56A1E5B176700C9561C /* BluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1EE5691E5B176700C9561C /* BluetoothController.swift */; };
 		9F0409B71BA5DC22009FFBD4 /* VaavudSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F0409B61BA5DC22009FFBD4 /* VaavudSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -211,9 +218,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		074D5E1E1ECDE606008A06E7 /* VaavudSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaavudSession.swift; sourceTree = "<group>"; };
 		07B2EFD51EB2306700760F5E /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		07B2EFD71EB232E000760F5E /* Rx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Rx.xcodeproj; path = RxSwift/Rx.xcodeproj; sourceTree = SOURCE_ROOT; };
 		07B2F02A1EB2384A00760F5E /* RxBluetoothKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RxBluetoothKit.xcodeproj; path = RxBluetoothKit/RxBluetoothKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		07F2C93B1ECB79CB00331C92 /* Sessionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sessionable.swift; sourceTree = "<group>"; };
+		07F2C9571ECB7ED400331C92 /* BleSdk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BleSdk.swift; sourceTree = "<group>"; };
+		07F2C95A1ECCD8C200331C92 /* CLLocationManager+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationManager+Rx.swift"; sourceTree = "<group>"; };
+		07F2C95C1ECCD8FC00331C92 /* RxCLLocationManagerDelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCLLocationManagerDelegateProxy.swift; sourceTree = "<group>"; };
+		07F2C9621ECCE20000331C92 /* LocationControllerRx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationControllerRx.swift; sourceTree = "<group>"; };
 		0D0C1D191EB0C4BD00B07381 /* MedianFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedianFilter.swift; sourceTree = "<group>"; };
 		2B1EE5691E5B176700C9561C /* BluetoothController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothController.swift; sourceTree = "<group>"; };
 		9F0409B11BA5DC22009FFBD4 /* VaavudSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VaavudSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07F2C9641ECCE7D300331C92 /* RxCocoa.framework in Frameworks */,
 				07B2F0391EB2385800760F5E /* RxBluetoothKit.framework in Frameworks */,
 				07B2F0191EB2330000760F5E /* RxSwift.framework in Frameworks */,
 				07B2EFD61EB2306700760F5E /* CoreMotion.framework in Frameworks */,
@@ -301,6 +315,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		07F2C9561ECB7EC500331C92 /* rx */ = {
+			isa = PBXGroup;
+			children = (
+				07F2C9571ECB7ED400331C92 /* BleSdk.swift */,
+			);
+			name = rx;
+			sourceTree = "<group>";
+		};
 		9F0409A71BA5DC22009FFBD4 = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +345,7 @@
 		9F0409B31BA5DC22009FFBD4 /* VaavudSDK */ = {
 			isa = PBXGroup;
 			children = (
+				07F2C9561ECB7EC500331C92 /* rx */,
 				07B2F02A1EB2384A00760F5E /* RxBluetoothKit.xcodeproj */,
 				07B2EFD71EB232E000760F5E /* Rx.xcodeproj */,
 				0D0C1D191EB0C4BD00B07381 /* MedianFilter.swift */,
@@ -331,6 +354,8 @@
 				9F0409CD1BA5DCB1009FFBD4 /* Internal */,
 				9F0409B61BA5DC22009FFBD4 /* VaavudSDK.h */,
 				9F0409B41BA5DC22009FFBD4 /* Supporting Files */,
+				07F2C93B1ECB79CB00331C92 /* Sessionable.swift */,
+				074D5E1E1ECDE606008A06E7 /* VaavudSession.swift */,
 			);
 			path = VaavudSDK;
 			sourceTree = "<group>";
@@ -339,6 +364,8 @@
 			isa = PBXGroup;
 			children = (
 				9F0409B51BA5DC22009FFBD4 /* Info.plist */,
+				07F2C95A1ECCD8C200331C92 /* CLLocationManager+Rx.swift */,
+				07F2C95C1ECCD8FC00331C92 /* RxCLLocationManagerDelegateProxy.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -370,6 +397,7 @@
 				9F0409D21BA5DD18009FFBD4 /* RotationProcessor.swift */,
 				9F0409D31BA5DD18009FFBD4 /* TickTimeProcessor.swift */,
 				2B1EE5691E5B176700C9561C /* BluetoothController.swift */,
+				07F2C9621ECCE20000331C92 /* LocationControllerRx.swift */,
 			);
 			name = Internal;
 			sourceTree = "<group>";
@@ -682,7 +710,13 @@
 				9F0409D61BA5DD18009FFBD4 /* AudioSampleProcessor.swift in Sources */,
 				9F0409DB1BA5DD18009FFBD4 /* TickTimeProcessor.swift in Sources */,
 				9F0409DD1BA5DD18009FFBD4 /* WindController.swift in Sources */,
+				07F2C9581ECB7ED400331C92 /* BleSdk.swift in Sources */,
+				074D5E1F1ECDE606008A06E7 /* VaavudSession.swift in Sources */,
 				9F0409DC1BA5DD18009FFBD4 /* Vaavud.swift in Sources */,
+				07F2C93C1ECB79CB00331C92 /* Sessionable.swift in Sources */,
+				07F2C9631ECCE20000331C92 /* LocationControllerRx.swift in Sources */,
+				07F2C95D1ECCD8FC00331C92 /* RxCLLocationManagerDelegateProxy.swift in Sources */,
+				07F2C95B1ECCD8C200331C92 /* CLLocationManager+Rx.swift in Sources */,
 				9F0409DA1BA5DD18009FFBD4 /* RotationProcessor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

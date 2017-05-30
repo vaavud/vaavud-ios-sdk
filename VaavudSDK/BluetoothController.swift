@@ -24,6 +24,27 @@ public protocol IBluetoothManager {
     func onVaavudBleFound()
 }
 
+public struct Ultrasonic {
+    public let windDirection: Int
+    public let windSpeed: Double
+    public let compass: Int
+    public let battery: Int
+    public let temperature: Int
+    
+    
+    public var toDic: [String:Any] {
+        var d : [String:Any] = [:]
+        d["windDirection"] = windDirection
+        d["windSpeed"] = windSpeed
+        d["compass"] = compass
+        d["battery"] = battery
+        d["temperature"] = temperature
+        
+        return d
+    }
+}
+
+
 
 public class BluetoothController: NSObject  {
     
@@ -84,7 +105,7 @@ public class BluetoothController: NSObject  {
         
         return manager.scanForPeripherals(withServices: [self.BEAN_SERVICE_UUID])
             .timeout(10.0, scheduler: scheduler)
-            .filter{ $0.peripheral.identifier == UUID(uuidString: "2958CC31-1E64-484A-AC59-F52D4A0536C4")}  // TODO remove in realse
+//            .filter{ $0.peripheral.identifier == UUID(uuidString: "2958CC31-1E64-484A-AC59-F52D4A0536C4")}  // TODO remove in release
             .take(1)
             .flatMap{$0.peripheral.connect()}
             .timeout(10.0, scheduler: scheduler)
@@ -107,7 +128,7 @@ public class BluetoothController: NSObject  {
     
     public func onreadOnce() -> Observable<Characteristic> {
         return variable.asObservable()
-            .filter{$0 == true}
+            .filter{$0}
             .flatMap{_ in self.mainService!.discoverCharacteristics([self.BEAN_DATA_UUID])}
             .flatMap{Observable.from($0)}
             .flatMap{$0.readValue()}
@@ -257,55 +278,114 @@ public class BluetoothController: NSObject  {
     }
     
     // MARK: Extra functions
+    
+    
+    
 
     
-    func workWithRowData(val: String){
-        print(val)
+//    public func workWithRowData(val: String){
+//        print(val)
+//        
+//        //Speed
+//        let s10 = val.substring(from: 0, to: 1)
+//        let s11 = val.substring(from: 2, to: 3)
+//        let h1 = Int(s11.appending(s10), radix: 16)
+//        let _h1 = Double(h1!) / 100
+//        
+//        print("speed: \(_h1)")
+//        
+//        //Direction
+//        let s20 = val.substring(from: 4, to: 5)
+//        let s21 = val.substring(from: 6, to: 7)
+//        let h2 = Int(s21.appending(s20), radix: 16)!
+//        print("Direction: \(h2)")
+//        
+//        //Battery
+//        let s30 = val.substring(from: 8, to: 9)
+//        let h3 = Int(s30, radix: 16)! * 10
+//        print("Battery: \(h3)")
+//        
+//        //Temperature
+//        let s40 = val.substring(from: 10, to: 11)
+//        let h4 = Int(s40, radix: 16)! - 100
+//        print("Temperataure: \(h4)")
+//        
+//        
+//        //Escora
+//        let s50 = val.substring(from: 12, to: 13)
+//        let h5 = Int(s50, radix: 16)! - 90
+//        print("Escora: \(h5)")
+//        
+//        
+//        //Cabeceo
+//        let s60 = val.substring(from: 14, to: 15)
+//        let h6 = Int(s60, radix: 16)! - 90
+//        print("Cabeceo: \(h6)")
+//        
+//        
+//        //Compass
+//        let s70 = val.substring(from: 16, to: 17)
+//        let s71 = val.substring(from: 18, to: 19)
+//        
+//        let h7 = Int(s71.appending(s70) , radix: 16)!
+//        print("Compass: \(h7)")
+//        //                print(Date().ms)
+//        
+//    }
+    
+    
+    public class func workWithRowData(val: String) -> Ultrasonic {
+        
+        //    print(val)
         
         //Speed
         let s10 = val.substring(from: 0, to: 1)
         let s11 = val.substring(from: 2, to: 3)
         let h1 = Int(s11.appending(s10), radix: 16)
-        let _h1 = Double(h1!) / 100
+        let windSpeed = Double(h1!) / 100
         
-        print("speed: \(_h1)")
+        //    print("speed: \(_h1)")
         
         //Direction
         let s20 = val.substring(from: 4, to: 5)
         let s21 = val.substring(from: 6, to: 7)
-        let h2 = Int(s21.appending(s20), radix: 16)!
-        print("Direction: \(h2)")
+        let windDirection = Int(s21.appending(s20), radix: 16)!
+        //    print("Direction: \(h2)")
         
         //Battery
         let s30 = val.substring(from: 8, to: 9)
         let h3 = Int(s30, radix: 16)! * 10
-        print("Battery: \(h3)")
+        //    print("Battery: \(h3)")
         
-        //Temperature
+        //    //Temperature
         let s40 = val.substring(from: 10, to: 11)
         let h4 = Int(s40, radix: 16)! - 100
-        print("Temperataure: \(h4)")
-        
-        
-        //Escora
-        let s50 = val.substring(from: 12, to: 13)
-        let h5 = Int(s50, radix: 16)! - 90
-        print("Escora: \(h5)")
-        
-        
-        //Cabeceo
-        let s60 = val.substring(from: 14, to: 15)
-        let h6 = Int(s60, radix: 16)! - 90
-        print("Cabeceo: \(h6)")
+        //    print("Temperataure: \(h4)")
+        //
+        //
+        //    //Escora
+        //    let s50 = val.substring(from: 12, to: 13)
+        //    let h5 = Int(s50, radix: 16)! - 90
+        //    print("Escora: \(h5)")
+        //
+        //
+        //    //Cabeceo
+        //    let s60 = val.substring(from: 14, to: 15)
+        //    let h6 = Int(s60, radix: 16)! - 90
+        //    print("Cabeceo: \(h6)")
         
         
         //Compass
         let s70 = val.substring(from: 16, to: 17)
         let s71 = val.substring(from: 18, to: 19)
+        let compass = Int(s71.appending(s70) , radix: 16)!
         
-        let h7 = Int(s71.appending(s70) , radix: 16)!
-        print("Compass: \(h7)")
-        //                print(Date().ms)
+        //    print("Compass: \(h7)")
         
+        return Ultrasonic(windDirection: windDirection, windSpeed: windSpeed, compass: compass, battery: h3, temperature: h4)
     }
+    
+    
 }
+
+
