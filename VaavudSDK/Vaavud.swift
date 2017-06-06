@@ -146,8 +146,8 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
             }
             
         } else {
-            if(speed != nil) {
-                let trueSpeedEvent = TrueWindSpeedEvent(time: time, speed: speed!)
+            if let speed = speed {
+                let trueSpeedEvent = TrueWindSpeedEvent(time: time, speed: speed)
                 trueWindSpeedCallback?(trueSpeedEvent)
                 session.addTrueWindSpeed(event: trueSpeedEvent)
             }
@@ -187,7 +187,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     }
     
     
-    public func startLocationAndPressureOnly() throws { //mjolnir
+    public func startLocationAndPressureOnly() { //mjolnir
         reset()
         session.setWindMeter(vaavudDevice: .mjolnir)
         locationController.start()
@@ -209,6 +209,7 @@ public class VaavudSDK: WindListener, LocationListener,BluetoothListener {
     
     
     public func stop() -> VaavudSession {
+        
         measurmentPointTimer.invalidate()
         locationController.stop()
         pressureController?.stopRelativeAltitudeUpdates()

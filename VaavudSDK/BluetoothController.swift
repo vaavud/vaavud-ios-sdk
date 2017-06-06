@@ -237,8 +237,6 @@ public class BluetoothController: NSObject  {
         caractOffsetCompass = nil
     }
     
-    
-    
     deinit {
         print("deinit bluethooth")
     }

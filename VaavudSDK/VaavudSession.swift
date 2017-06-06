@@ -13,6 +13,20 @@ public enum VaavudDevice: String {
     case ultrasonic = "Ultrasonic"
     case sleipnir = "sleipnir"
     case mjolnir = "mjolnir"
+    
+    
+    public func index() -> Int {
+        switch self {
+        case .ultrasonic:
+            return 2
+        case .mjolnir:
+            return 0
+        case .sleipnir:
+            return 1
+        }
+    }
+    
+    
 }
 
 
