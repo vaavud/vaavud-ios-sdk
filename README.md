@@ -13,3 +13,6 @@ In order to correctly compile:
    - Under "Build Options", mark "Embedded Content Contains Swift Code"
 
 Cheers! :)
+
+## Examples
+See the top level Example folder: https://github.com/vaavud/vaavud-ios-sdk/tree/master/Examples
